@@ -1,0 +1,98 @@
+.hero {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 0 2rem;
+  padding: 50x 100px 0 100px;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  z-index: 3;
+}
+
+.hero-content h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 64px;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.02em;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.hero-buttons button {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.explore-btn {
+  background-color: #800020;
+  color: white;
+}
+
+.explore-btn:hover {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white !important;
+}
+
+.about-btn {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white !important;
+}
+.about-btn:hover {
+  background-color: #800020;
+  color: white;
+  border: none !important;
+}
+
+.hero-states {
+  display: flex;
+  gap: 1rem;
+}
+
+.hero-state {
+  display: flex;
+  flex-direction: column;
+}
