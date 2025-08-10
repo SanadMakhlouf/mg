@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <div className="hero">
       <img
-        src={`${process.env.PUBLIC_URL}/hero-bg.jpg`}
+        src={`${process.env.PUBLIC_URL}/hero-bgg.jpg`}
         alt="Hero Background"
         className="hero-image"
       />
@@ -23,18 +23,18 @@ const Hero = () => {
           <button className="about-btn">ABOUT US</button>
         </div>
         <div className="hero-states">
-            <div className="hero-state">
-                <h2>100+</h2>
-                <p>Properties</p>
-            </div>
-            <div className="hero-state">
-                <h2>100+</h2>
-                <p>Properties</p>
-            </div>
-            <div className="hero-state">
-                <h2>100+</h2>
-                <p>Properties</p>
-            </div>
+          <div className="hero-state">
+            <h2>100+</h2>
+            <p>Properties</p>
+          </div>
+          <div className="hero-state">
+            <h2>100+</h2>
+            <p>Properties</p>
+          </div>
+          <div className="hero-state">
+            <h2>100+</h2>
+            <p>Properties</p>
+          </div>
         </div>
       </div>
     </div>

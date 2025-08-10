@@ -1,0 +1,105 @@
+.search-section {
+  position: relative;
+  z-index: 10;
+  margin-top: -80px;
+  padding: 0 2rem;
+}
+
+.search-container {
+  background-color: white;
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.search-tabs {
+  display: flex;
+  margin-bottom: 1.5rem;
+  background-color: #f0f0f0;
+  border-radius: 8px 8px 0 0;
+  padding: 4px;
+  gap: 4px;
+}
+
+.tab {
+  flex: 1;
+  padding: 1rem 2rem;
+  border: none;
+  background: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: #666;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.tab:hover:not(.active) {
+  background-color: rgba(128, 0, 32, 0.05);
+  color: #800020;
+}
+
+.tab.active {
+  background-color: white;
+  color: #800020;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.search-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.search-field {
+  flex: 1;
+}
+
+.search-field select,
+.search-field input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+  background-color: #f8f8f8;
+  transition: all 0.3s ease;
+}
+
+.search-field select:focus,
+.search-field input:focus {
+  outline: none;
+  border-color: #800020;
+  background-color: white;
+}
+
+.search-btn {
+  padding: 0.8rem 2rem;
+  background-color: #800020;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #600018;
+}
