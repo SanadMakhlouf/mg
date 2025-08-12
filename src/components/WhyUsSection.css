@@ -1,0 +1,164 @@
+.why-us-section {
+  padding: 6rem 2rem;
+  background-color: #fff;
+}
+
+.why-us-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-us-header {
+  margin-bottom: 4rem;
+}
+
+.why-us-header h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.city-name {
+  color: #333;
+}
+
+.colored-text {
+  color: #999999;
+}
+
+.why-us-description {
+  font-family: "Poppins", sans-serif;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+.stats-group {
+  flex: 1;
+}
+
+.user-avatars {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ddd;
+  border: 2px solid white;
+  margin-left: -15px;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.stats-numbers {
+  display: flex;
+  gap: 2rem;
+}
+
+.stat {
+  text-align: left;
+}
+
+.stat h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.stat p {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.features-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.feature-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #800020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.feature-text {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.feature-text h4 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.feature-text p {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+  padding-right: 50px;
+}
+
+.feature-item img {
+  width: 100px;
+  height: 100px;
+}
+
+.features-list {
+  padding: 30px;
+}
+
+@media (max-width: 768px) {
+  .stats-container {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .why-us-header h2 {
+    font-size: 36px;
+  }
+
+  .stats-numbers {
+    flex-wrap: wrap;
+  }
+
+  .feature-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
