@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import SearchSection from "./components/SearchSection";
 import WhyUsSection from "./components/WhyUsSection";
+import LookingForSection from "./components/LookingForSection";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Hero />
       <SearchSection />
       <WhyUsSection />
+      <LookingForSection />
     </div>
   );
 }

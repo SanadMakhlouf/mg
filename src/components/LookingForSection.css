@@ -1,0 +1,223 @@
+.looking-for-section {
+  background-color: #eeeeee;
+  padding: 6rem 100px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.looking-for-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-header h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.section-header p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+  position: relative;
+  z-index: 10;
+}
+
+.card {
+  flex: 1;
+  background-color: #46001433;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(70, 0, 20, 0.2);
+  transition: all 0.3s ease;
+  min-height: 600px;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(70, 0, 20, 0.2);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #460014;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.card:hover::after {
+  transform: scaleX(1);
+}
+
+.card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #460014;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image img {
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.card-content h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #460014;
+  text-align: center;
+  margin: 0;
+}
+
+.villa-container {
+  width: 99vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  bottom: 200px;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: -100px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.villa-container img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 1024px) {
+  .looking-for-section {
+    padding: 4rem 50px;
+  }
+
+  .villa-container {
+    margin-top: -80px;
+  }
+
+  .villa-container img {
+    height: 500px;
+  }
+
+  .cards-container {
+    gap: 1rem;
+  }
+
+  .card-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .card-image img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .looking-for-section {
+    padding: 3rem 20px;
+  }
+
+  .villa-container {
+    margin-top: -60px;
+  }
+
+  .villa-container img {
+    height: 400px;
+  }
+
+  .section-header h2 {
+    font-size: 32px;
+  }
+
+  .cards-container {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .card {
+    flex: 0 0 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .looking-for-section {
+    padding: 2rem 15px;
+  }
+
+  .villa-container {
+    margin-top: -40px;
+  }
+
+  .villa-container img {
+    height: 300px;
+  }
+
+  .section-header h2 {
+    font-size: 28px;
+  }
+
+  .cards-container {
+    flex-direction: column;
+  }
+
+  .card {
+    flex: 0 0 100%;
+  }
+
+  .card-image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .card-image img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .card-content h3 {
+    font-size: 1.1rem;
+  }
+}

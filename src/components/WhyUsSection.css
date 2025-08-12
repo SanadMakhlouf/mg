@@ -136,8 +136,8 @@
 }
 
 .feature-item img {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
 }
 
 .features-list {
@@ -186,6 +186,10 @@
     width: 60px;
     height: 60px;
   }
+}
+
+.stats-group {
+  padding-top: 30px;
 }
 
 @media (max-width: 480px) {
