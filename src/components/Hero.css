@@ -2,8 +2,8 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
-  padding: 0 2rem;
-  padding: 50x 100px 0 100px;
+  padding: 0 100px;
+  width: 100%;
 }
 
 .hero-image {
@@ -96,4 +96,58 @@
 .hero-state {
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    padding: 0 50px;
+  }
+
+  .hero-content h1 {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 0 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+  }
+
+  .hero-states {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .hero-state {
+    flex: 0 0 calc(33.33% - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 0 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .hero-state {
+    flex: 0 0 calc(50% - 0.5rem);
+    margin-bottom: 1rem;
+  }
 }

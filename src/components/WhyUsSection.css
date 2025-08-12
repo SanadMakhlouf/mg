@@ -6,6 +6,8 @@
 .why-us-container {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .why-us-header {
@@ -143,22 +145,80 @@
 }
 
 @media (max-width: 768px) {
+  .why-us-section {
+    padding: 4rem 1rem;
+  }
+
   .stats-container {
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   .why-us-header h2 {
-    font-size: 36px;
+    font-size: 28px;
   }
 
   .stats-numbers {
     flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .feature-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0;
+  }
+
+  .feature-text {
+    padding: 0;
+  }
+
+  .feature-text p {
+    padding-right: 0;
+  }
+
+  .features-list {
+    padding: 0;
+  }
+
+  .feature-item img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-us-section {
+    padding: 3rem 1rem;
+  }
+
+  .stats-container {
+    gap: 1.5rem;
+  }
+
+  .why-us-header h2 {
+    font-size: 24px;
+  }
+
+  .stats-numbers {
+    gap: 1rem;
+  }
+
+  .stat {
+    flex: 0 0 calc(50% - 0.5rem);
+  }
+
+  .stat h3 {
+    font-size: 1.25rem;
+  }
+
+  .feature-item {
+    gap: 1rem;
+  }
+
+  .feature-item img {
+    width: 50px;
+    height: 50px;
   }
 }
