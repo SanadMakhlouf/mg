@@ -11,7 +11,7 @@ const carouselData = [
     title: "Discover Your\nDream Home\nToday",
   },
   {
-    image: `${process.env.PUBLIC_URL}/hero-bg.jpg`,
+    image: `${process.env.PUBLIC_URL}/test.jpg`,
     title: "Luxury Living\nRedefined\nFor You",
   },
 ];
