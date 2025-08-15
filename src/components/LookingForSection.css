@@ -56,7 +56,6 @@
 
 .card:hover {
   transform: translateY(-8px);
-
 }
 
 .card::after {
@@ -117,7 +116,7 @@
   margin-right: -50vw;
   margin-top: -100px;
   overflow: hidden;
-  z-index: 1;
+  z-index: 100;
 }
 
 .villa-container img {
