@@ -1,6 +1,6 @@
 .looking-for-section {
   background-color: #eeeeee;
-  padding: 6rem 100px;
+  padding: 4rem 100px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -17,6 +17,10 @@
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .section-header h2 {
