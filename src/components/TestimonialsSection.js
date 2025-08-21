@@ -58,6 +58,14 @@ const TestimonialsSection = () => {
               <img src="/user2.png" alt="Customer 2" />
               <img src="/user3.png" alt="Customer 3" />
             </div>
+            <div className="testimonial-controls">
+              <button onClick={prevSlide} className="testimonial-btn prev">
+                &#8249;
+              </button>
+              <button onClick={nextSlide} className="testimonial-btn next">
+                &#8250;
+              </button>
+            </div>
           </div>
         </div>
 
@@ -93,15 +101,6 @@ const TestimonialsSection = () => {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="carousel-controls">
-            <button onClick={prevSlide} className="control-btn prev">
-              &#8249;
-            </button>
-            <button onClick={nextSlide} className="control-btn next">
-              &#8250;
-            </button>
           </div>
         </div>
       </div>

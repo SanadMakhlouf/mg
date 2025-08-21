@@ -6,6 +6,7 @@ import WhyUsSection from "./components/WhyUsSection";
 import LookingForSection from "./components/LookingForSection";
 import LastPropertiesSection from "./components/LastPropertiesSection";
 import TestimonialsSection from "./components/TestimonialsSection";
+import PopularDevelopersSection from "./components/PopularDevelopersSection";
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
         <LookingForSection />
       </div>
       <LastPropertiesSection />
+
       <TestimonialsSection />
+      <PopularDevelopersSection />
     </div>
   );
 }
