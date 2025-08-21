@@ -1,9 +1,9 @@
 .last-properties-section {
-  padding: 2rem 0;
+  padding: 5rem 0;
   width: 100%;
   background-color: #eeeeee;
   overflow: hidden;
-  margin-top: -2rem;
+  margin-top: 5rem;
 }
 
 .last-properties-header {
@@ -50,7 +50,7 @@
 
 .property-card {
   padding: 6px;
-  margin: 0.5rem;
+  margin: 1.5rem;
   position: relative;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
@@ -173,7 +173,7 @@
 
 /* Slick carousel customization */
 .slick-dots {
-
+  bottom: -40px;
 }
 
 .slick-dots li button:before {

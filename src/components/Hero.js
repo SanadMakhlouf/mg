@@ -57,9 +57,57 @@ const Hero = () => {
             </React.Fragment>
           ))}
         </h1>
-        <div className="hero-buttons">
-          <button className="explore-btn">EXPLORE</button>
-          <button className="about-btn">ABOUT US</button>
+        <div style={{ display: "flex", gap: "20px", marginBottom: "3rem" }}>
+          <button
+            style={{
+              cursor: "pointer",
+              padding: "12px 40px",
+              fontSize: "16px",
+              fontWeight: "500",
+              borderRadius: "4px",
+              minWidth: "120px",
+              textAlign: "center",
+              background: "#800020",
+              color: "white",
+              border: "2px solid #800020",
+              transition: "all 0.3s ease",
+            }}
+            onMouseOver={(e) => {
+              e.target.style.background = "transparent";
+              e.target.style.borderColor = "white";
+            }}
+            onMouseOut={(e) => {
+              e.target.style.background = "#800020";
+              e.target.style.borderColor = "#800020";
+            }}
+          >
+            EXPLORE
+          </button>
+          <button
+            style={{
+              cursor: "pointer",
+              padding: "12px 40px",
+              fontSize: "16px",
+              fontWeight: "500",
+              borderRadius: "4px",
+              minWidth: "120px",
+              textAlign: "center",
+              background: "transparent",
+              color: "white",
+              border: "2px solid white",
+              transition: "all 0.3s ease",
+            }}
+            onMouseOver={(e) => {
+              e.target.style.background = "#800020";
+              e.target.style.borderColor = "#800020";
+            }}
+            onMouseOut={(e) => {
+              e.target.style.background = "transparent";
+              e.target.style.borderColor = "white";
+            }}
+          >
+            ABOUT US
+          </button>
         </div>
         <div className="hero-states">
           <div className="hero-state">
@@ -75,25 +123,6 @@ const Hero = () => {
             <p>Properties</p>
           </div>
         </div>
-      </div>
-      <div className="carousel-controls">
-        <button onClick={prevSlide} className="carousel-control prev">
-          &lt;
-        </button>
-        <div className="carousel-dots">
-          {carouselData.map((_, index) => (
-            <button
-              key={index}
-              className={`carousel-dot ${
-                index === currentSlide ? "active" : ""
-              }`}
-              onClick={() => setCurrentSlide(index)}
-            />
-          ))}
-        </div>
-        <button onClick={nextSlide} className="carousel-control next">
-          &gt;
-        </button>
       </div>
     </div>
   );
