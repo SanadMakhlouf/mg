@@ -76,16 +76,98 @@ const PopularDevelopersSection = () => {
           </div>
         </div>
 
-        <div className="developers-carousel">
-          <div className="carousel-controls-popular">
-            <button onClick={prevSlide} className="control-btn prev">
+        <div
+          className="developers-carousel"
+          style={{
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              transform: "translateY(-50%)",
+              left: "20px",
+              zIndex: 10,
+            }}
+          >
+            <button
+              onClick={prevSlide}
+              style={{
+                width: "40px",
+                height: "40px",
+                border: "none",
+                backgroundColor: "#800020",
+                color: "white",
+                fontSize: "24px",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "50%",
+                transition: "background-color 0.3s ease",
+              }}
+              onMouseOver={(e) => {
+                e.target.style.backgroundColor = "#600018";
+              }}
+              onMouseOut={(e) => {
+                e.target.style.backgroundColor = "#800020";
+              }}
+            >
               &#8249;
             </button>
-            <button onClick={nextSlide} className="control-btn next">
+          </div>
+
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              transform: "translateY(-50%)",
+              right: "20px",
+              zIndex: 10,
+            }}
+          >
+            <button
+              onClick={nextSlide}
+              style={{
+                width: "40px",
+                height: "40px",
+                border: "none",
+                backgroundColor: "#800020",
+                color: "white",
+                fontSize: "24px",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "50%",
+                transition: "background-color 0.3s ease",
+              }}
+              onMouseOver={(e) => {
+                e.target.style.backgroundColor = "#600018";
+              }}
+              onMouseOut={(e) => {
+                e.target.style.backgroundColor = "#800020";
+              }}
+            >
               &#8250;
             </button>
           </div>
-          <div className="carousel-wrapper">
+
+          <div
+            className="carousel-wrapper"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              position: "relative",
+            }}
+          >
             {developers.map((developer, index) => {
               // Calculer la position relative par rapport au slide actif
               let position = index - currentSlide;
@@ -97,6 +179,22 @@ const PopularDevelopersSection = () => {
                   className={`developer-card ${
                     position === 0 ? "active" : ""
                   } position-${position}`}
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    transform:
+                      position === 0
+                        ? "translateX(-50%) scale(1)"
+                        : position === 1
+                        ? "translateX(calc(-50% + 320px)) scale(0.9)"
+                        : position === 2
+                        ? "translateX(calc(-50% + 490px)) scale(0.9)"
+                        : position === 3
+                        ? "translateX(calc(-50% - 490px)) scale(0.9)"
+                        : "translateX(calc(-50% - 320px)) scale(0.9)",
+                    opacity: position === 0 ? 1 : 0.7,
+                    zIndex: position === 0 ? 2 : 1,
+                  }}
                 >
                   <div className="developer-image">
                     <img src={developer.image} alt={developer.name} />
