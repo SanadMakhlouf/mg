@@ -1,17 +1,22 @@
 .why-us-section {
-  padding: 6rem 2rem;
+  padding: 6rem 0;
   background-color: #fff;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .why-us-container {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  padding: 0 50px;
   overflow-x: hidden;
 }
 
 .why-us-header {
   margin-bottom: 4rem;
+
 }
 
 .why-us-header h2 {
@@ -20,6 +25,8 @@
   font-weight: 600;
   margin-bottom: 1.5rem;
   line-height: 1.2;
+  display: inline-block;
+  position: relative;
 }
 
 .city-name {
@@ -36,16 +43,23 @@
   font-size: 1rem;
   line-height: 1.6;
   max-width: 800px;
+  margin: 0 auto;
 }
 
 .stats-container {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 4rem;
+  margin: 0 auto;
+  max-width: 1000px;
 }
 
 .stats-group {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .user-avatars {
