@@ -7,6 +7,7 @@ import LookingForSection from "./components/LookingForSection";
 import LastPropertiesSection from "./components/LastPropertiesSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import PopularDevelopersSection from "./components/PopularDevelopersSection";
+import GetInTouchSection from "./components/GetInTouchSection";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
 
       <TestimonialsSection />
       <PopularDevelopersSection />
+      <GetInTouchSection />
     </div>
   );
 }
