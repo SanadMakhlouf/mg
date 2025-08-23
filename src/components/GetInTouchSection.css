@@ -1,5 +1,5 @@
 .get-in-touch {
-  padding: 5rem 0;
+  padding: 5rem;
   background-color: #f8f7f9;
 }
 
@@ -50,7 +50,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   padding-bottom: 40px;
-    border-bottom: 1px solid #70002d;
+  border-bottom: 1px solid #70002d;
 }
 
 .info-item {

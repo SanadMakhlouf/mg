@@ -8,6 +8,7 @@ import LastPropertiesSection from "./components/LastPropertiesSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import PopularDevelopersSection from "./components/PopularDevelopersSection";
 import GetInTouchSection from "./components/GetInTouchSection";
+import MapSection from "./components/MapSection";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <TestimonialsSection />
       <PopularDevelopersSection />
       <GetInTouchSection />
+      <MapSection />
     </div>
   );
 }

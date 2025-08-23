@@ -1,0 +1,160 @@
+.map-section {
+  height: 430px;
+  position: relative;
+  background-image: url("../../public/map.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 300px;
+}
+
+.map-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #460014;
+  opacity: 0.66;
+}
+
+.location-card {
+  background: white;
+  width: 33%;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  left: 10%;
+  z-index: 1;
+}
+
+.subtitle {
+  color: #70002d;
+  font-weight: 700;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+}
+.subtitle::before {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 2px;
+        background-color: #70002d;
+      
+      
+}
+
+.location-card h2 {
+  font-size: 28px;
+  color: #333;
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.location-card > p {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.contact-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.detail-item img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+  margin: 0 auto;
+}
+
+.detail-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detail-item p {
+  color: #666;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.detail-item:first-child p {
+  font-weight: 500;
+}
+
+.search-maps-btn {
+  width: 50%;
+  background-color: #460014;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-transform: uppercase;
+  display: block;
+  margin: 0 auto;
+}
+
+.search-maps-btn:hover {
+  background-color: #590025;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .location-card {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .map-section {
+    height: 350px;
+    padding: 20px;
+  }
+
+  .location-card {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .map-section {
+    height: auto;
+    min-height: 350px;
+    padding: 20px;
+  }
+
+  .location-card {
+    width: 100%;
+  }
+}
