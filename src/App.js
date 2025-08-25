@@ -1,4 +1,5 @@
 import "./App.css";
+import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import SearchSection from "./components/SearchSection";
@@ -9,24 +10,28 @@ import TestimonialsSection from "./components/TestimonialsSection";
 import PopularDevelopersSection from "./components/PopularDevelopersSection";
 import GetInTouchSection from "./components/GetInTouchSection";
 import MapSection from "./components/MapSection";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Hero />
-      <div className="container">
-        <SearchSection />
-        <WhyUsSection />
-        <LookingForSection />
-      </div>
-      <LastPropertiesSection />
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Hero />
+        <div className="container">
+          <SearchSection />
+          <WhyUsSection />
+          <LookingForSection />
+        </div>
+        <LastPropertiesSection />
 
-      <TestimonialsSection />
-      <PopularDevelopersSection />
-      <GetInTouchSection />
-      <MapSection />
-    </div>
+        <TestimonialsSection />
+        <PopularDevelopersSection />
+        <GetInTouchSection />
+        <MapSection />
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
