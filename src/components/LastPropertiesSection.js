@@ -15,20 +15,20 @@ const PropertyCard = ({ image, title, price, beds, baths, sqft }) => {
       </div>
       <div className="property-details">
         <div className="property-info">
-          <div className="info-item">
+          <div className="info-item-l">
             <span>
               {" "}
               {beds} <i className="fa-solid fa-bed"></i>{" "}
             </span>
             <span style={{ color: "#A8A8A8" }}>Beds</span>
           </div>
-          <div className="info-item">
+          <div className="info-item-l">
             <span>
               {baths} <i className="fa-solid fa-bath"></i>
             </span>
             <span style={{ color: "#A8A8A8" }}>Baths</span>
           </div>
-          <div className="info-item">
+          <div className="info-item-l">
             <span>
               {sqft} <i className="fa-solid fa-ruler-combined"></i>
             </span>
