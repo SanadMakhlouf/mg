@@ -1,15 +1,8 @@
 import "./App.css";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import SearchSection from "./components/SearchSection";
-import WhyUsSection from "./components/WhyUsSection";
-import LookingForSection from "./components/LookingForSection";
-import LastPropertiesSection from "./components/LastPropertiesSection";
-import TestimonialsSection from "./components/TestimonialsSection";
-import PopularDevelopersSection from "./components/PopularDevelopersSection";
-import GetInTouchSection from "./components/GetInTouchSection";
-import MapSection from "./components/MapSection";
+import Home from "./components/Home";
+import Buy from "./components/BuyPage/Buy";
 import Footer from "./components/Footer";
 
 function App() {
@@ -17,18 +10,10 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
-        <Hero />
-        <div className="container">
-          <SearchSection />
-          <WhyUsSection />
-          <LookingForSection />
-        </div>
-        <LastPropertiesSection />
-
-        <TestimonialsSection />
-        <PopularDevelopersSection />
-        <GetInTouchSection />
-        <MapSection />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/buy" element={<Buy />} />
+        </Routes>
         <Footer />
       </div>
     </Router>
