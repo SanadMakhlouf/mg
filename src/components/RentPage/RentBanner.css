@@ -1,0 +1,14 @@
+.rent-banner {
+  background-color: #460014;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.rent-banner h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+}

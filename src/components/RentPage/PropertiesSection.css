@@ -1,0 +1,209 @@
+.properties-section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.properties-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.properties-header h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.map-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #460014;
+  border: 2px solid #460014;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.map-button i {
+  font-size: 18px;
+}
+
+.journey-banner {
+  margin-top: 60px;
+  position: relative;
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.journey-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.journey-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.properties-content {
+  display: flex;
+  gap: 30px;
+}
+
+.properties-left {
+  flex: 3;
+}
+
+.properties-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+  max-width: 400px;
+}
+
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.ad-banner {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  background-color: transparent;
+}
+
+.square-banner {
+  aspect-ratio: 1/1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+}
+
+.square-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.square-banner h3 {
+  color: white;
+  font-size: 28px;
+  font-weight: 600;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.ad-banner.full-image {
+  width: 100%;
+}
+
+.full-banner-img {
+  width: 100%;
+  display: block;
+}
+
+.journey-banner {
+  margin-top: 60px;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.journey-banner img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.ad-banner-content {
+  padding: 15px;
+  background-color: #460014;
+  color: white;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.ad-banner-content h3 {
+  font-size: 20px;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.ad-banner-content p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.ad-banner-logo {
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.ad-banner-logo img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+@media (max-width: 1200px) {
+  .properties-content {
+    flex-direction: column;
+  }
+
+  .properties-right {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .properties-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .properties-right {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,97 @@
+.properties-section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.properties-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.properties-header h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.map-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #460014;
+  border: 2px solid #460014;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.map-button i {
+  font-size: 18px;
+}
+
+.journey-banner {
+  margin-top: 60px;
+  position: relative;
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.journey-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.journey-banner-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 1;
+}
+
+.journey-banner-content h2 {
+  font-size: 48px;
+  font-weight: 500;
+  margin: 0;
+  white-space: pre-line;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.journey-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 1024px) {
+  .properties-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .properties-grid {
+    grid-template-columns: 1fr;
+  }
+}

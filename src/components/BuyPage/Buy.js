@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Navbar";
 import BuyHero from "./BuyHero";
 import BuyBanner from "./BuyBanner";
+import PropertiesSection from "./PropertiesSection";
 import "./Buy.css";
 
 const Buy = () => {
@@ -116,6 +117,7 @@ const Buy = () => {
             </div>
           </div>
         </div>
+        <PropertiesSection />
       </div>
     </div>
   );
