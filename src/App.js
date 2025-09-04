@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Buy from "./components/BuyPage/Buy";
 import Rent from "./components/RentPage/Rent";
+import Contact from "./components/ContactPage/Contact";
 import Footer from "./components/Footer";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/buy" element={<Buy />} />
           <Route path="/rent" element={<Rent />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />
       </div>
