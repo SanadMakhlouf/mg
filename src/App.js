@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Buy from "./components/BuyPage/Buy";
 import Rent from "./components/RentPage/Rent";
 import Contact from "./components/ContactPage/Contact";
+import About from "./components/AboutPage/About";
 import Footer from "./components/Footer";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/buy" element={<Buy />} />
           <Route path="/rent" element={<Rent />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
         </Routes>
         <Footer />
       </div>

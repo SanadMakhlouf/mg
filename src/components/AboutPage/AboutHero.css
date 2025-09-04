@@ -1,0 +1,44 @@
+.about-hero {
+  height: 60vh;
+  background-image: url("../../../public/buy-hero.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.about-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.about-hero-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.about-hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.about-hero-breadcrumb {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.about-hero-breadcrumb span {
+  color: white;
+}
