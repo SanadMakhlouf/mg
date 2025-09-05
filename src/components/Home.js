@@ -8,8 +8,6 @@ import TestimonialsSection from "./TestimonialsSection";
 import PopularDevelopersSection from "./PopularDevelopersSection";
 import GetInTouchSection from "./GetInTouchSection";
 import MapSection from "./MapSection";
-import Footer from "./Footer";
-
 const Home = () => {
   return (
     <>
@@ -24,7 +22,6 @@ const Home = () => {
       <PopularDevelopersSection />
       <GetInTouchSection />
       <MapSection />
-      <Footer />
     </>
   );
 };

@@ -6,6 +6,7 @@ import Buy from "./components/BuyPage/Buy";
 import Rent from "./components/RentPage/Rent";
 import Contact from "./components/ContactPage/Contact";
 import About from "./components/AboutPage/About";
+import ListYour from "./components/ListYourPage/ListYour";
 import Footer from "./components/Footer";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/rent" element={<Rent />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/list-your-property" element={<ListYour />} />
         </Routes>
         <Footer />
       </div>
