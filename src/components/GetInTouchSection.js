@@ -9,11 +9,7 @@ const GetInTouchSection = () => {
           <span className="keep-close">KEEP CLOSE</span>
           <h2>Get In Touch</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud. Ut enim ad minim veniam, quis nostrud
-            ut enim ad minim veniam, quis nostrud ut enim ad minim veniam, quis
-            nostrud.
+          We are here to help you sell or rent out your property as fast as possible with 100% transparency, keeping you informed with up-to-date market trends that may affect your property’s sale or rental value.
           </p>
 
           <div className="contact-info">

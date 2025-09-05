@@ -7,6 +7,7 @@ import Rent from "./components/RentPage/Rent";
 import Contact from "./components/ContactPage/Contact";
 import About from "./components/AboutPage/About";
 import ListYour from "./components/ListYourPage/ListYour";
+import ReadyProjects from "./components/ReadyProjectsPage/ReadyProjects";
 import Footer from "./components/Footer";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/list-your-property" element={<ListYour />} />
+          <Route path="/ready-projects" element={<ReadyProjects />} />
         </Routes>
         <Footer />
       </div>

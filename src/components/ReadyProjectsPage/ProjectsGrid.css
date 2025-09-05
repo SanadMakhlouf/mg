@@ -1,0 +1,242 @@
+.projects-section {
+  padding: 30px 0;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #333;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::before {
+  content: "EXPLORE";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  font-size: 12px;
+  color: #999;
+  font-weight: 500;
+}
+
+.projects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.top-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 20px;
+  align-items: stretch;
+  min-height: 580px;
+}
+
+.projects-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+.project-card.large {
+  grid-column: 1 / span 2;
+}
+
+.project-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 280px;
+}
+
+.grid-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.small-cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.project-card.large {
+  flex: 2;
+  height: 280px;
+}
+
+.project-card.medium {
+  flex: 1;
+  height: 280px;
+}
+
+.project-card.small {
+  flex: 1;
+  height: 200px;
+}
+
+.project-card.full-width {
+  width: 100%;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.project-image:hover {
+  transform: scale(1.05);
+}
+
+.project-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+.play-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.play-button span {
+  color: #460014;
+  font-size: 12px;
+}
+
+.project-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 15px;
+  width: 100%;
+  color: white;
+}
+
+.project-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.project-info p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.find-property-card {
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.find-property-card h3 {
+  font-size: 22px;
+  color: #460014;
+  margin-bottom: 15px;
+}
+
+.find-property-card p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #460014;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.info-text {
+  font-size: 14px;
+  color: #666;
+}
+
+.contact-btn {
+  background-color: #460014;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+  margin-top: auto;
+}
+
+.contact-btn:hover {
+  background-color: #2d000d;
+}
+
+@media (max-width: 992px) {
+  .grid-row {
+    flex-direction: column;
+  }
+
+  .small-cards {
+    flex-direction: column;
+  }
+
+  .project-card.large,
+  .project-card.medium,
+  .project-card.small {
+    width: 100%;
+  }
+}
