@@ -96,10 +96,10 @@ const ProjectsGrid = () => {
     description:
       "We are here to help you find your dream property with personalized service and expert advice. Our team is dedicated to understanding your needs and preferences.",
     contactInfo: [
-      { icon: "📍", text: "123 Sheikh Zayed Road, Dubai, UAE" },
-      { icon: "📧", text: "info@mgreal.com" },
-      { icon: "📞", text: "+971 50 123 4567" },
-      { icon: "🕒", text: "Mon-Sat: 9am - 6pm" },
+      { icon: "/loca.png", text: "123 Sheikh Zayed Road, Dubai, UAE" },
+      { icon: "/ime.png", text: "info@mgreal.com" },
+      { icon: "/phone.png", text: "+971 50 123 4567" },
+      { icon: "/time.png", text: "Mon-Sat: 9am - 6pm" },
     ],
   };
 
@@ -158,25 +158,23 @@ const ProjectsGrid = () => {
           </div>
 
           <div className="find-property-card">
-            <div>
-              <h3>{findPropertyInfo.title}</h3>
-              <p>{findPropertyInfo.description}</p>
-              <div className="contact-info">
-                {findPropertyInfo.contactInfo.map((info, index) => (
-                  <div key={index} className="info-item">
-                    <span className="info-icon">{info.icon}</span>
-                    <span className="info-text">{info.text}</span>
-                  </div>
-                ))}
-              </div>
+            <span className="keep-close">KEEP CLOSE AND</span>
+            <h3>{findPropertyInfo.title}</h3>
+            <p>{findPropertyInfo.description}</p>
+            <div className="contact-info">
+              {findPropertyInfo.contactInfo.map((info, index) => (
+                <div key={index} className="info-item">
+                  <img src={info.icon} alt={info.text} />
+                  <p>{info.text}</p>
+                </div>
+              ))}
             </div>
+            <div className="divider"></div>
             <button className="contact-btn">CONTACT US</button>
           </div>
-          
         </div>
 
         {/* Deuxième rangée */}
-     
 
         {/* Troisième rangée */}
         <div className="grid-row small-cards">
