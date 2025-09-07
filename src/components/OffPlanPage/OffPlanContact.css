@@ -1,0 +1,117 @@
+.off-plan-contact {
+  background-image: url("../../assets/off-plans/plan3.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 0;
+  position: relative;
+  color: white;
+  margin: 100px 0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+.off-plan-contact::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.contact-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 80px;
+  position: relative;
+  z-index: 1;
+  gap: 40px;
+  box-sizing: border-box;
+}
+
+.contact-text {
+  margin-bottom: 40px;
+  text-align: left;
+  width: 50%;
+}
+
+.contact-text h2 {
+  font-size: 2.5rem;
+  margin: 0;
+  font-weight: bold;
+  color: #f8c12c;
+}
+
+.contact-text h3 {
+  font-size: 2.5rem;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.contact-text p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+  opacity: 0.9;
+}
+
+.off-plan-contact-form {
+  width: 50%;
+}
+
+.off-plan-form-group {
+  margin-bottom: 20px;
+}
+
+.off-plan-form-input {
+  width: 100%;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffffff !important;
+  color: white;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.off-plan-form-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.off-plan-message-input {
+  height: 120px;
+  resize: none;
+}
+
+.off-plan-send-btn {
+  background: #f8c12c;
+  width: 100%;
+  color: #333;
+  border: none;
+  padding: 15px 30px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.off-plan-send-btn:hover {
+  background: #e5b429;
+}
+
+@media (max-width: 768px) {
+  .contact-content {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .contact-text,
+  .off-plan-contact-form {
+    width: 100%;
+  }
+}

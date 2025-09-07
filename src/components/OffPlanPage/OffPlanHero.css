@@ -1,0 +1,62 @@
+.off-plan-hero {
+  height: 400px;
+  width: 100%;
+  background-image: url("../../../public/buy-hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.off-plan-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.off-plan-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.off-plan-hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.off-plan-hero-breadcrumb {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
+.off-plan-hero-breadcrumb span {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .off-plan-hero {
+    height: 200px;
+  }
+
+  .off-plan-hero h1 {
+    font-size: 36px;
+  }
+
+  .off-plan-hero-breadcrumb {
+    font-size: 14px;
+  }
+}

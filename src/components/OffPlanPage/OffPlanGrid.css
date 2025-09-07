@@ -1,0 +1,185 @@
+.off-plan-projects-section {
+  padding: 2rem 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: left;
+  font-weight: 600;
+  padding-left: 20px;
+}
+
+.off-plan-featured-grid {
+  display: grid;
+  grid-template-columns: 48% 48%;
+  gap: 0;
+  margin-bottom: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Grande carte à gauche */
+.off-plan-featured-card {
+  height: 480px;
+  width: 70%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-left: 0;
+}
+
+/* Conteneur pour les cartes de droite */
+.off-plan-right-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 480px;
+}
+
+/* Carte en haut à droite */
+.off-plan-right-card {
+  height: 240px;
+  width: 95%;
+  margin-left: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Conteneur pour les petites cartes en bas à droite */
+.off-plan-bottom-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  height: 240px;
+  width: 95%;
+  margin-left: auto;
+}
+
+/* Petites cartes en bas à droite */
+.off-plan-small-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+.off-plan-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.off-plan-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(
+    1.01
+  ); /* Légèrement agrandi pour éviter les bordures blanches */
+}
+
+/* Style spécifique pour l'image principale à gauche */
+.off-plan-featured-card .off-plan-image {
+  object-position: center 20%; /* Ajustement pour mieux cadrer l'image principale */
+}
+
+/* Icône de signet */
+.bookmark-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Contenu sur l'image */
+.off-plan-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  z-index: 1;
+}
+
+.project-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+}
+
+.project-subtitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+}
+
+.project-developer {
+  font-size: 1rem;
+  margin: 0 0 5px 0;
+  opacity: 0.9;
+}
+
+.project-type {
+  font-size: 0.9rem;
+  margin: 0 0 5px 0;
+  opacity: 0.9;
+}
+
+.project-location {
+  font-size: 0.9rem;
+  margin: 0 0 15px 0;
+  opacity: 0.9;
+}
+
+.enquire-btn {
+  background-color: white;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.enquire-btn:hover {
+  background-color: #f8c12c;
+  color: white;
+}
+
+@media (max-width: 992px) {
+  .off-plan-featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .off-plan-featured-card,
+  .off-plan-right-cards {
+    height: auto;
+  }
+
+  .off-plan-right-card {
+    height: 240px;
+  }
+
+  .off-plan-bottom-cards {
+    height: 240px;
+  }
+}

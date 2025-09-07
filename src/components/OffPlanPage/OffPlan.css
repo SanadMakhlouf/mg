@@ -1,0 +1,10 @@
+.off-plan-page {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.off-plan-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+}
