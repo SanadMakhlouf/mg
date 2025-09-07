@@ -23,7 +23,7 @@
 /* Grande carte à gauche */
 .off-plan-featured-card {
   height: 480px;
-  width: 70%;
+  width: 100%;
   position: relative;
   overflow: hidden;
   border-radius: 8px;
