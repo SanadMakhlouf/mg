@@ -11,12 +11,9 @@ const OffPlanContact = () => {
     <section className="off-plan-contact">
       <div className="contact-content">
         <div className="contact-text">
-          <h2>INTERESTED IN</h2>
-          <h3>OFF PLAN PROPERTIES?</h3>
-          <p>
-            Our experts are ready to help you find the perfect investment
-            opportunity
-          </p>
+          <h2>OUR EXPERTS</h2>
+          <h3>WILL HELP YOU</h3>
+          <p>Feel free to contact us any time, we are online 24/7</p>
         </div>
         <form onSubmit={handleSubmit} className="off-plan-contact-form">
           <div className="off-plan-form-group">
@@ -35,7 +32,7 @@ const OffPlanContact = () => {
             ></textarea>
           </div>
           <button type="submit" className="off-plan-send-btn">
-            REQUEST INFORMATION
+            SEND MESSAGE
           </button>
         </form>
       </div>
