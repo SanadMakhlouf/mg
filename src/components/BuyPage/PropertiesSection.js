@@ -1,71 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import buyBanner2 from "../../assets/buy-banner2.png";
 import "./PropertiesSection.css";
 
 const PropertiesSection = () => {
-  const properties = [
-    {
-      id: 1,
-      image: "/test.jpg",
-      title: "Modern Luxury Villa",
-      price: "5,500,000",
-      beds: 4,
-      baths: 5,
-      sqft: 4200,
-      location: "Palm Jumeirah - Dubai",
-    },
-    {
-      id: 2,
-      image: "/buy-hero.jpg",
-      title: "Elegant Apartment with Sea View",
-      price: "2,800,000",
-      beds: 2,
-      baths: 3,
-      sqft: 1800,
-      location: "Dubai Marina - Dubai",
-    },
-    {
-      id: 3,
-      image: "/hero-bg.jpg",
-      title: "Spacious Family Home",
-      price: "4,200,000",
-      beds: 5,
-      baths: 4,
-      sqft: 3500,
-      location: "Arabian Ranches - Dubai",
-    },
-    {
-      id: 4,
-      image: "/hero-bgg.jpg",
-      title: "Premium Penthouse",
-      price: "7,900,000",
-      beds: 3,
-      baths: 4,
-      sqft: 2800,
-      location: "Downtown Dubai",
-    },
-    {
-      id: 5,
-      image: "/here-bg2.jpg",
-      title: "Contemporary Townhouse",
-      price: "3,600,000",
-      beds: 3,
-      baths: 3.5,
-      sqft: 2400,
-      location: "Jumeirah Village Circle - Dubai",
-    },
-    {
-      id: 6,
-      image: "/banner.png",
-      title: "Exclusive Beach Villa",
-      price: "8,500,000",
-      beds: 6,
-      baths: 7,
-      sqft: 5500,
-      location: "Palm Jumeirah - Dubai",
-    },
-  ];
+  const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8000/api/properties/type/sale"
+        );
+        const result = await response.json();
+        console.log("API Response:", result);
+
+        if (result.success) {
+          console.log("Properties data:", result.data);
+          // If data is a single object, wrap it in an array
+          const propertiesData = Array.isArray(result.data)
+            ? result.data
+            : [result.data];
+          setProperties(propertiesData);
+        } else {
+          setError("Failed to fetch properties");
+        }
+      } catch (err) {
+        setError("Error fetching properties: " + err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProperties();
+  }, []);
 
   return (
     <div className="properties-section">
@@ -77,19 +47,27 @@ const PropertiesSection = () => {
         </button>
       </div>
       <div className="properties-grid">
-        {properties.map((property) => (
-          <PropertyCard
-            key={property.id}
-            image={property.image}
-            title={property.title}
-            price={property.price}
-            beds={property.beds}
-            baths={property.baths}
-            sqft={property.sqft}
-            location={property.location}
-            onViewDetails={() => {}}
-          />
-        ))}
+        {loading ? (
+          <p>Loading properties...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : properties.length === 0 ? (
+          <p>No properties found</p>
+        ) : (
+          properties.map((property) => (
+            <PropertyCard
+              key={property.id}
+              image={`http://localhost:8000/storage/${property.pictures[0]}`}
+              title={property.name}
+              price={property.price}
+              beds={property.bedrooms}
+              baths={property.bathrooms}
+              sqft={property.area}
+              location={property.location}
+              onViewDetails={() => {}}
+            />
+          ))
+        )}
       </div>
       <div className="journey-banner">
         <img src={buyBanner2} alt="Your journey, our expertise" />
