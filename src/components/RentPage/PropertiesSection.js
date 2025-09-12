@@ -5,6 +5,7 @@ import logo from "../../assets/logo.png";
 import rent from "../../assets/rent.png";
 import rent2 from "../../assets/rent2.png";
 import rent3 from "../../assets/rent3.jpg";
+import config from "../../config";
 import "./RentPropertiesSection.css";
 
 const PropertiesSection = () => {
@@ -15,15 +16,16 @@ const PropertiesSection = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:8000/api/properties/type/rent"
-        );
+        const apiUrl = `${config.API_URL}/properties/type/rent`;
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const result = await response.json();
-        console.log("API Response:", result);
 
         if (result.success) {
-          console.log("Properties data:", result.data);
-          // If data is a single object, wrap it in an array
           const propertiesData = Array.isArray(result.data)
             ? result.data
             : [result.data];
@@ -63,7 +65,7 @@ const PropertiesSection = () => {
               properties.map((property) => (
                 <PropertyCard
                   key={property.id}
-                  image={`http://localhost:8000/storage/${property.pictures[0]}`}
+                  image={`${config.API_URL.replace('/api', '')}/storage/${property.pictures[0]}`}
                   title={property.name}
                   price={property.price}
                   beds={property.bedrooms}

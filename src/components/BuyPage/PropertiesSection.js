@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import buyBanner2 from "../../assets/buy-banner2.png";
+import config from "../../config";
 import "./PropertiesSection.css";
 
 const PropertiesSection = () => {
@@ -11,15 +12,16 @@ const PropertiesSection = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:8000/api/properties/type/sale"
-        );
+        const apiUrl = `${config.API_URL}/properties/type/sale`;
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const result = await response.json();
-        console.log("API Response:", result);
 
         if (result.success) {
-          console.log("Properties data:", result.data);
-          // If data is a single object, wrap it in an array
           const propertiesData = Array.isArray(result.data)
             ? result.data
             : [result.data];
@@ -57,7 +59,7 @@ const PropertiesSection = () => {
           properties.map((property) => (
             <PropertyCard
               key={property.id}
-              image={`http://localhost:8000/storage/${property.pictures[0]}`}
+              image={`${config.API_URL.replace('/api', '')}/storage/${property.pictures[0]}`}
               title={property.name}
               price={property.price}
               beds={property.bedrooms}

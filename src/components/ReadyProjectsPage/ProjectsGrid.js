@@ -1,94 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import config from "../../config";
 import "./ProjectsGrid.css";
 
 const ProjectsGrid = () => {
-  // Données factices pour les projets
-  const projects = [
-    {
-      id: 1,
-      name: "BEACH MANSION",
-      location: "Dubai Marina",
-      image: require("../../assets/ready-projet/projet1.jpg"),
-      size: "large",
-    },
-    {
-      id: 2,
-      name: "DUBAI",
-      location: "Downtown Dubai",
-      image: require("../../assets/ready-projet/projet2.jpg"),
-      size: "large",
-    },
-    {
-      id: 3,
-      name: "PROJECT NAME",
-      location: "Business Bay",
-      image: require("../../assets/ready-projet/projet3.jpg"),
-      size: "large",
-    },
-    {
-      id: 4,
-      name: "FERRARI WORLD",
-      location: "Yas Island",
-      image: require("../../assets/ready-projet/projet4.jpg"),
-      size: "small",
-    },
-    {
-      id: 5,
-      name: "SKYSCRAPERS",
-      location: "Sheikh Zayed Road",
-      image: require("../../assets/ready-projet/projet5.jpg"),
-      size: "small",
-    },
-    {
-      id: 6,
-      name: "BURJ KHALIFA",
-      location: "Downtown Dubai",
-      image: require("../../assets/ready-projet/projet6.jpg"),
-      size: "small",
-    },
-    {
-      id: 7,
-      name: "PROJECT NAME",
-      location: "Palm Jumeirah",
-      image: require("../../assets/ready-projet/projet7.jpg"),
-      size: "large",
-    },
-    {
-      id: 8,
-      name: "YAS ISLAND",
-      location: "Abu Dhabi",
-      image: require("../../assets/ready-projet/projet8.jpg"),
-      size: "medium",
-    },
-    {
-      id: 9,
-      name: "PROJECT NAME",
-      location: "Abu Dhabi",
-      image: require("../../assets/ready-projet/projet9.jpg"),
-      size: "large",
-    },
-    {
-      id: 10,
-      name: "WILD WADI",
-      location: "Jumeirah",
-      image: require("../../assets/ready-projet/projet10.jpg"),
-      size: "small",
-    },
-    {
-      id: 11,
-      name: "MADINAT JUMEIRAH",
-      location: "Jumeirah",
-      image: require("../../assets/ready-projet/projet11.jpg"),
-      size: "small",
-    },
-    {
-      id: 12,
-      name: "DESERT SAFARI",
-      location: "Dubai Desert",
-      image: require("../../assets/ready-projet/projet12.jpg"),
-      size: "small",
-    },
-  ];
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch(`${config.API_URL}/ready-projects/category/ready-project`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.status === "success" && result.data && result.data.data) {
+          setProjects(result.data.data);
+        } else {
+          setError("Failed to fetch projects");
+        }
+      } catch (err) {
+        setError("Error fetching projects: " + err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   // Section d'information sur la recherche de propriétés
   const findPropertyInfo = {
@@ -103,6 +46,38 @@ const ProjectsGrid = () => {
     ],
   };
 
+  if (loading) {
+    return <div className="projects-section"><p>Loading projects...</p></div>;
+  }
+
+  if (error) {
+    return <div className="projects-section"><p>{error}</p></div>;
+  }
+
+  if (projects.length === 0) {
+    return <div className="projects-section"><p>No projects found</p></div>;
+  }
+
+  // Fonction pour générer une carte de projet
+  const ProjectCard = ({ project, size = '' }) => (
+    <div className={`project-card ${size}`}>
+      <div
+        className="project-image"
+        style={{ 
+          backgroundImage: `url(${config.API_URL.replace('/api', '')}/storage/${project.pictures[0]})`
+        }}
+      >
+        <div className="play-button">
+          <span>▶</span>
+        </div>
+        <div className="project-info">
+          <h3>{project.name}</h3>
+          <p>{project.location}</p>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="projects-section">
       <h2 className="section-title">READY Projects</h2>
@@ -111,50 +86,13 @@ const ProjectsGrid = () => {
         {/* Première rangée */}
         <div className="top-grid">
           <div className="projects-cards">
-            <div className="project-card">
-              <div
-                className="project-image"
-                style={{ backgroundImage: `url(${projects[0].image})` }}
-              >
-                <div className="play-button">
-                  <span>▶</span>
-                </div>
-                <div className="project-info">
-                  <h3>{projects[0].name}</h3>
-                  <p>{projects[0].location}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="project-card">
-              <div
-                className="project-image"
-                style={{ backgroundImage: `url(${projects[1].image})` }}
-              >
-                <div className="play-button">
-                  <span>▶</span>
-                </div>
-                <div className="project-info">
-                  <h3>{projects[1].name}</h3>
-                  <p>{projects[1].location}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="project-card large">
-              <div
-                className="project-image"
-                style={{ backgroundImage: `url(${projects[2].image})` }}
-              >
-                <div className="play-button">
-                  <span>▶</span>
-                </div>
-                <div className="project-info">
-                  <h3>{projects[2].name}</h3>
-                  <p>{projects[2].location}</p>
-                </div>
-              </div>
-            </div>
+            {projects.slice(0, 3).map((project, index) => (
+              <ProjectCard 
+                key={project.id} 
+                project={project} 
+                size={index === 2 ? 'large' : ''}
+              />
+            ))}
           </div>
 
           <div className="find-property-card">
@@ -174,153 +112,47 @@ const ProjectsGrid = () => {
           </div>
         </div>
 
-        {/* Deuxième rangée */}
-
-        {/* Troisième rangée */}
+        {/* Deuxième rangée - Petites cartes */}
         <div className="grid-row small-cards">
-          <div className="project-card small">
-            <div
-              className="project-image"
-              style={{ backgroundImage: `url(${projects[3].image})` }}
-            >
-              <div className="play-button">
-                <span>▶</span>
-              </div>
-              <div className="project-info">
-                <h3>{projects[3].name}</h3>
-                <p>{projects[3].location}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="project-card small">
-            <div
-              className="project-image"
-              style={{ backgroundImage: `url(${projects[4].image})` }}
-            >
-              <div className="play-button">
-                <span>▶</span>
-              </div>
-              <div className="project-info">
-                <h3>{projects[4].name}</h3>
-                <p>{projects[4].location}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="project-card small">
-            <div
-              className="project-image"
-              style={{ backgroundImage: `url(${projects[5].image})` }}
-            >
-              <div className="play-button">
-                <span>▶</span>
-              </div>
-              <div className="project-info">
-                <h3>{projects[5].name}</h3>
-                <p>{projects[5].location}</p>
-              </div>
-            </div>
-          </div>
+          {projects.slice(3, 6).map((project) => (
+            <ProjectCard 
+              key={project.id} 
+              project={project} 
+              size="small"
+            />
+          ))}
         </div>
 
-        {/* Quatrième rangée */}
+        {/* Troisième rangée - Grande et moyenne cartes */}
         <div className="grid-row">
-          <div className="project-card large">
-            <div
-              className="project-image"
-              style={{ backgroundImage: `url(${projects[6].image})` }}
-            >
-              <div className="play-button">
-                <span>▶</span>
-              </div>
-              <div className="project-info">
-                <h3>{projects[6].name}</h3>
-                <p>{projects[6].location}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="project-card medium">
-            <div
-              className="project-image"
-              style={{ backgroundImage: `url(${projects[7].image})` }}
-            >
-              <div className="play-button">
-                <span>▶</span>
-              </div>
-              <div className="project-info">
-                <h3>{projects[7].name}</h3>
-                <p>{projects[7].location}</p>
-              </div>
-            </div>
-          </div>
+          {projects.slice(6, 8).map((project, index) => (
+            <ProjectCard 
+              key={project.id} 
+              project={project} 
+              size={index === 0 ? 'large' : 'medium'}
+            />
+          ))}
         </div>
 
-        {/* Cinquième rangée */}
-        <div className="grid-row">
-          <div className="project-card large full-width">
-            <div
-              className="project-image"
-              style={{ backgroundImage: `url(${projects[8].image})` }}
-            >
-              <div className="play-button">
-                <span>▶</span>
-              </div>
-              <div className="project-info">
-                <h3>{projects[8].name}</h3>
-                <p>{projects[8].location}</p>
-              </div>
-            </div>
+        {/* Quatrième rangée - Grande carte pleine largeur */}
+        {projects[8] && (
+          <div className="grid-row">
+            <ProjectCard 
+              project={projects[8]} 
+              size="large full-width"
+            />
           </div>
-        </div>
+        )}
 
-        {/* Sixième rangée */}
+        {/* Cinquième rangée - Petites cartes */}
         <div className="grid-row small-cards">
-          <div className="project-card small">
-            <div
-              className="project-image"
-              style={{ backgroundImage: `url(${projects[9].image})` }}
-            >
-              <div className="play-button">
-                <span>▶</span>
-              </div>
-              <div className="project-info">
-                <h3>{projects[9].name}</h3>
-                <p>{projects[9].location}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="project-card small">
-            <div
-              className="project-image"
-              style={{ backgroundImage: `url(${projects[10].image})` }}
-            >
-              <div className="play-button">
-                <span>▶</span>
-              </div>
-              <div className="project-info">
-                <h3>{projects[10].name}</h3>
-                <p>{projects[10].location}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="project-card small">
-            <div
-              className="project-image"
-              style={{ backgroundImage: `url(${projects[11].image})` }}
-            >
-              <div className="play-button">
-                <span>▶</span>
-              </div>
-              <div className="project-info">
-                <h3>{projects[11].name}</h3>
-                <p>{projects[11].location}</p>
-              </div>
-            </div>
-          </div>
+          {projects.slice(9, 12).map((project) => (
+            <ProjectCard 
+              key={project.id} 
+              project={project} 
+              size="small"
+            />
+          ))}
         </div>
       </div>
     </div>
