@@ -5,6 +5,7 @@ import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showPropertiesDropdown, setShowPropertiesDropdown] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +20,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const togglePropertiesDropdown = () => {
+    setShowPropertiesDropdown(!showPropertiesDropdown);
+  };
+
   return (
     <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="navbar-container">
@@ -29,7 +34,24 @@ const Navbar = () => {
         </div>
         <div className="navbar-links">
           <Link to="/">HOME</Link>
-          <Link to="/buy">PROPERTIES</Link>
+          <div className="dropdown-container">
+            <div
+              className="dropdown-trigger"
+              onMouseEnter={() => setShowPropertiesDropdown(true)}
+              onMouseLeave={() => setShowPropertiesDropdown(false)}
+            >
+              <span>PROPERTIES</span>
+              <div
+                className={`dropdown-menu ${
+                  showPropertiesDropdown ? "show" : ""
+                }`}
+              >
+                <Link to="/buy">BUY</Link>
+                <Link to="/rent">RENT</Link>
+                <Link to="/off-plan-properties">OFF PLANS</Link>
+              </div>
+            </div>
+          </div>
           <Link to="/services">SERVICES</Link>
           <Link to="/about">ABOUT US</Link>
           <Link to="/contact">CONTACT</Link>

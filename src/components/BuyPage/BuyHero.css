@@ -47,16 +47,41 @@
   color: white;
 }
 
+@media (max-width: 992px) {
+  .buy-hero {
+    height: 300px;
+  }
+
+  .buy-hero h1 {
+    font-size: 40px;
+  }
+}
+
 @media (max-width: 768px) {
   .buy-hero {
     height: 200px;
   }
 
   .buy-hero h1 {
-    font-size: 36px;
+    font-size: 32px;
+    margin-bottom: 10px;
   }
 
   .buy-hero-breadcrumb {
     font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .buy-hero {
+    height: 180px;
+  }
+
+  .buy-hero h1 {
+    font-size: 28px;
+  }
+
+  .buy-hero-breadcrumb {
+    font-size: 12px;
   }
 }

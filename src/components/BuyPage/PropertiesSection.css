@@ -87,11 +87,62 @@
 @media (max-width: 1024px) {
   .properties-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .properties-header {
+    margin-bottom: 20px;
+  }
+
+  .properties-header h2 {
+    font-size: 24px;
+  }
+
+  .journey-banner {
+    height: 250px;
   }
 }
 
 @media (max-width: 768px) {
+  .properties-section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
   .properties-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .properties-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .map-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .journey-banner {
+    height: 200px;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .properties-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .properties-header h2 {
+    font-size: 20px;
+  }
+
+  .journey-banner {
+    height: 150px;
+    margin-top: 30px;
   }
 }

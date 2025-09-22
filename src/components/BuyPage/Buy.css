@@ -94,17 +94,80 @@
   background-color: #2d000d;
 }
 
+@media (max-width: 992px) {
+  .buy-container {
+    padding: 15px;
+  }
+
+  .filter-row {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .filter-group {
+    flex: 0 0 calc(50% - 8px);
+    min-width: calc(50% - 8px);
+  }
+
+  .location-group {
+    flex: 0 0 100%;
+  }
+}
+
 @media (max-width: 768px) {
+  .buy-container {
+    padding: 10px;
+  }
+
+  .buy-search-section {
+    padding: 15px;
+  }
+
   .filter-row {
     flex-direction: column;
     gap: 15px;
   }
 
+  .filter-group {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
   .search-input-container {
     flex-direction: column;
+    gap: 15px;
+  }
+
+  .search-button {
+    width: 100%;
+    padding: 10px;
   }
 
   .location-group {
     flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .buy-container {
+    padding: 10px;
+  }
+
+  .buy-search-section {
+    padding: 12px;
+  }
+
+  .search-header h3 {
+    font-size: 14px;
+  }
+
+  .filter-group label {
+    font-size: 13px;
+  }
+
+  .filter-group select,
+  .filter-group input {
+    padding: 8px 10px;
+    font-size: 13px;
   }
 }
