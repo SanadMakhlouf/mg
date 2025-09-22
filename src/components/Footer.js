@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-left">
-          <img src={logo}  alt="MG" className="footer-logo" />
+          <img src={logo} alt="MG" className="footer-logo" />
           <div className="social-icons">
             <a
               href="https://facebook.com"
@@ -56,7 +56,7 @@ const Footer = () => {
                 <Link to="/about">About Us</Link>
               </li>
               <li>
-                <Link to="/agents">Our Agents</Link>
+                <Link to="/about#trusted-agents">Our Agents</Link>
               </li>
               <li>
                 <Link to="/blog">Latest Blog</Link>

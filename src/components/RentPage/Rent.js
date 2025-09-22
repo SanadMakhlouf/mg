@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "../Navbar";
 import RentHero from "./RentHero";
 import RentBanner from "./RentBanner";
@@ -7,6 +8,54 @@ import PropertiesSection from "./PropertiesSection";
 import "./Rent.css";
 
 const Rent = () => {
+  const location = useLocation();
+  const [filterParams, setFilterParams] = useState({
+    completionStatus: "",
+    location: "",
+    propertyType: "",
+    minBathrooms: "",
+    maxBathrooms: "",
+    minBedrooms: "",
+    maxBedrooms: "",
+    minArea: "",
+    maxArea: "",
+    minPrice: "",
+    maxPrice: "",
+  });
+
+  // Extract search parameters from URL when component mounts
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const newFilterParams = { ...filterParams };
+
+    // Update filter parameters from URL query parameters
+    for (const [key, value] of queryParams.entries()) {
+      if (key in newFilterParams) {
+        newFilterParams[key] = value;
+      }
+    }
+
+    setFilterParams(newFilterParams);
+  }, [location.search]);
+
+  // Handle filter changes
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilterParams({
+      ...filterParams,
+      [name]: value,
+    });
+  };
+
+  // Handle search button click
+  const handleSearch = () => {
+    // Here you would implement the actual filtering logic
+    // For now, we'll just log the filter parameters
+    console.log("Filtering properties with:", filterParams);
+
+    // You could call an API or filter local data here
+  };
+
   return (
     <div className="rent-page">
       <Navbar />
@@ -22,7 +71,11 @@ const Rent = () => {
             <div className="filter-row">
               <div className="filter-group">
                 <label>Completion Status</label>
-                <select>
+                <select
+                  name="completionStatus"
+                  value={filterParams.completionStatus}
+                  onChange={handleFilterChange}
+                >
                   <option value="">Completion Status</option>
                   <option value="completed">Completed</option>
                   <option value="under-construction">Under Construction</option>
@@ -34,9 +87,19 @@ const Rent = () => {
                 <div className="search-input-container">
                   <input
                     type="text"
+                    name="location"
+                    value={filterParams.location}
+                    onChange={handleFilterChange}
                     placeholder="Search City, Region Or Address..."
+                    onKeyPress={(e) => {
+                      if (e.key === "Enter") {
+                        handleSearch();
+                      }
+                    }}
                   />
-                  <button className="search-button">SEARCH</button>
+                  <button className="search-button" onClick={handleSearch}>
+                    SEARCH
+                  </button>
                 </div>
               </div>
             </div>
@@ -44,16 +107,26 @@ const Rent = () => {
             <div className="filter-row">
               <div className="filter-group">
                 <label>Property Type</label>
-                <select>
+                <select
+                  name="propertyType"
+                  value={filterParams.propertyType}
+                  onChange={handleFilterChange}
+                >
                   <option value="">Property Type</option>
                   <option value="apartment">Apartment</option>
                   <option value="villa">Villa</option>
                   <option value="townhouse">Townhouse</option>
+                  <option value="office">Office</option>
+                  <option value="shop">Shop</option>
                 </select>
               </div>
               <div className="filter-group">
                 <label>Min. Bathrooms</label>
-                <select>
+                <select
+                  name="minBathrooms"
+                  value={filterParams.minBathrooms}
+                  onChange={handleFilterChange}
+                >
                   <option value="">Bathrooms</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -62,7 +135,11 @@ const Rent = () => {
               </div>
               <div className="filter-group">
                 <label>Max. Bathrooms</label>
-                <select>
+                <select
+                  name="maxBathrooms"
+                  value={filterParams.maxBathrooms}
+                  onChange={handleFilterChange}
+                >
                   <option value="">Bathrooms</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -71,7 +148,11 @@ const Rent = () => {
               </div>
               <div className="filter-group">
                 <label>Min. Bedrooms</label>
-                <select>
+                <select
+                  name="minBedrooms"
+                  value={filterParams.minBedrooms}
+                  onChange={handleFilterChange}
+                >
                   <option value="">Bedrooms</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -80,7 +161,11 @@ const Rent = () => {
               </div>
               <div className="filter-group">
                 <label>Max. Bedrooms</label>
-                <select>
+                <select
+                  name="maxBedrooms"
+                  value={filterParams.maxBedrooms}
+                  onChange={handleFilterChange}
+                >
                   <option value="">Bedrooms</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -92,7 +177,11 @@ const Rent = () => {
             <div className="filter-row">
               <div className="filter-group">
                 <label>Min. Area</label>
-                <select>
+                <select
+                  name="minArea"
+                  value={filterParams.minArea}
+                  onChange={handleFilterChange}
+                >
                   <option value="">Min Area</option>
                   <option value="500">500 sq ft</option>
                   <option value="1000">1000 sq ft</option>
@@ -101,7 +190,11 @@ const Rent = () => {
               </div>
               <div className="filter-group">
                 <label>Max. Area</label>
-                <select>
+                <select
+                  name="maxArea"
+                  value={filterParams.maxArea}
+                  onChange={handleFilterChange}
+                >
                   <option value="">Max Area</option>
                   <option value="1000">1000 sq ft</option>
                   <option value="2000">2000 sq ft</option>
@@ -110,16 +203,28 @@ const Rent = () => {
               </div>
               <div className="filter-group">
                 <label>Min. Price</label>
-                <input type="text" placeholder="Price ( AED )" />
+                <input
+                  type="text"
+                  name="minPrice"
+                  value={filterParams.minPrice}
+                  onChange={handleFilterChange}
+                  placeholder="Price ( AED )"
+                />
               </div>
               <div className="filter-group">
                 <label>Max. Price</label>
-                <input type="text" placeholder="Price ( AED )" />
+                <input
+                  type="text"
+                  name="maxPrice"
+                  value={filterParams.maxPrice}
+                  onChange={handleFilterChange}
+                  placeholder="Price ( AED )"
+                />
               </div>
             </div>
           </div>
         </div>
-        <PropertiesSection />
+        <PropertiesSection filterParams={filterParams} />
       </div>
     </div>
   );

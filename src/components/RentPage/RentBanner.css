@@ -12,3 +12,35 @@
   font-size: 24px;
   font-weight: 500;
 }
+
+@media (max-width: 992px) {
+  .rent-banner {
+    padding: 18px;
+  }
+
+  .rent-banner h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rent-banner {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  .rent-banner h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rent-banner {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .rent-banner h2 {
+    font-size: 18px;
+  }
+}
