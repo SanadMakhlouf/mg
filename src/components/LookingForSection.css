@@ -1,16 +1,19 @@
 .looking-for-section {
   background-color: #eeeeee;
-  padding: 6rem 50px;
+  padding: 6rem 0;
   width: 100%;
   box-sizing: border-box;
   position: relative;
   padding-bottom: 400px;
+  overflow: hidden;
 }
 
 .looking-for-container {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  padding: 0 50px;
+  box-sizing: border-box;
 }
 
 .section-header {
@@ -117,26 +120,28 @@
   left: 0;
   right: 0;
   margin-top: -200px;
-  z-index: 100;
+  z-index: 1;
+  width: 100%;
 }
 
 .villa-container img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 @media (max-width: 1024px) {
   .looking-for-section {
-    padding: 4rem 50px;
+    padding: 4rem 0;
+    padding-bottom: 0;
+  }
+
+  .looking-for-container {
+    padding: 0 30px;
   }
 
   .villa-container {
-    margin-top: -80px;
-  }
-
-  .villa-container img {
-    height: 500px;
+    display: none;
   }
 
   .cards-container {
@@ -156,15 +161,11 @@
 
 @media (max-width: 768px) {
   .looking-for-section {
-    padding: 3rem 20px;
+    padding: 3rem 0;
   }
 
-  .villa-container {
-    margin-top: -60px;
-  }
-
-  .villa-container img {
-    height: 400px;
+  .looking-for-container {
+    padding: 0 20px;
   }
 
   .section-header h2 {
@@ -183,15 +184,11 @@
 
 @media (max-width: 480px) {
   .looking-for-section {
-    padding: 2rem 15px;
+    padding: 2rem 0;
   }
 
-  .villa-container {
-    margin-top: -40px;
-  }
-
-  .villa-container img {
-    height: 300px;
+  .looking-for-container {
+    padding: 0 15px;
   }
 
   .section-header h2 {

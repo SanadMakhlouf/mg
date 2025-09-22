@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Hero.css";
 
 const carouselData = [
@@ -58,7 +59,8 @@ const Hero = () => {
           ))}
         </h1>
         <div style={{ display: "flex", gap: "20px", marginBottom: "3rem" }}>
-          <button
+          <Link
+            to="/ready-projects"
             style={{
               cursor: "pointer",
               padding: "12px 40px",
@@ -71,6 +73,8 @@ const Hero = () => {
               color: "white",
               border: "2px solid #800020",
               transition: "all 0.3s ease",
+              textDecoration: "none",
+              display: "inline-block",
             }}
             onMouseOver={(e) => {
               e.target.style.background = "transparent";
@@ -81,9 +85,10 @@ const Hero = () => {
               e.target.style.borderColor = "#800020";
             }}
           >
-            EXPLORE
-          </button>
-          <button
+            READY PROJECTS
+          </Link>
+          <Link
+            to="/about"
             style={{
               cursor: "pointer",
               padding: "12px 40px",
@@ -96,6 +101,8 @@ const Hero = () => {
               color: "white",
               border: "2px solid white",
               transition: "all 0.3s ease",
+              textDecoration: "none",
+              display: "inline-block",
             }}
             onMouseOver={(e) => {
               e.target.style.background = "#800020";
@@ -107,7 +114,7 @@ const Hero = () => {
             }}
           >
             ABOUT US
-          </button>
+          </Link>
         </div>
         <div className="hero-states">
           <div className="hero-state">

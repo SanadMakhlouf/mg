@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="navbar-container">
         <div className="navbar-logo">
           <Link to="/">
@@ -18,7 +33,9 @@ const Navbar = () => {
           <Link to="/services">SERVICES</Link>
           <Link to="/about">ABOUT US</Link>
           <Link to="/contact">CONTACT</Link>
-          <button className="list-property-btn">LIST PROPERTY</button>
+          <Link to="/off-plan-properties" className="list-property-btn">
+            OFF PLANS
+          </Link>
           <button className="investment-plan-btn">INVESTMENT PLAN</button>
         </div>
       </div>
