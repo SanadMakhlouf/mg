@@ -101,6 +101,15 @@
 }
 
 @media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .logo-container {
+    display: none;
+  }
+
   .vision,
   .mission {
     flex-direction: column;
