@@ -1,13 +1,15 @@
 .map-section {
-  height: 430px;
   position: relative;
   background-image: url("../../public/map.png");
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
   margin-bottom: 50px;
+  width: 100%;
+  padding: 60px 0;
 }
 
 .map-section::before {
@@ -23,13 +25,14 @@
 
 .location-card {
   background: white;
-  width: 33%;
-  padding: 25px;
+  width: 80%;
+  max-width: 450px;
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   position: relative;
-  left: 10%;
   z-index: 1;
+  margin: 0 auto;
 }
 
 .subtitle {
@@ -68,16 +71,14 @@
 .contact-details {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  flex-direction: column;
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 20px;
+  margin-bottom: 25px;
 }
 
 .detail-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
-  justify-content: center;
 }
 
 .detail-item img {
@@ -85,8 +86,7 @@
   height: 20px;
   object-fit: contain;
   flex-shrink: 0;
-  display: block;
-  margin: 0 auto;
+  margin-top: 3px;
 }
 
 .detail-item div {
@@ -128,31 +128,72 @@
 
 /* Responsive Design */
 @media (max-width: 1200px) {
+  .map-section {
+    padding: 50px 20px;
+  }
+
   .location-card {
-    width: 50%;
+    width: 90%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 992px) {
+  .map-section {
+    padding: 40px 20px;
+  }
+
+  .location-card {
+    width: 90%;
+    max-width: 450px;
   }
 }
 
 @media (max-width: 768px) {
   .map-section {
-    height: 350px;
-    padding: 20px;
+    padding: 40px 20px;
   }
 
   .location-card {
     width: 90%;
-    margin: 0 auto;
+    max-width: 400px;
+    padding: 25px 20px;
+  }
+
+  .contact-details {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .detail-item {
+    justify-content: flex-start;
+  }
+
+  .location-card h2 {
+    font-size: 24px;
   }
 }
 
 @media (max-width: 576px) {
   .map-section {
-    height: auto;
-    min-height: 350px;
-    padding: 20px;
+    padding: 30px 15px;
   }
 
   .location-card {
     width: 100%;
+    padding: 20px 15px;
+  }
+
+  .search-maps-btn {
+    width: 100%;
+  }
+
+  .detail-item img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .detail-item p {
+    font-size: 13px;
   }
 }
