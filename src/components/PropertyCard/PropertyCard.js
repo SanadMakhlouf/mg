@@ -10,10 +10,12 @@ const PropertyCard = ({
   sqft,
   location = "Al Danah - Abou Dabi - Émirats arabes unis",
   onViewDetails,
+  isHotDeal = false,
 }) => {
   return (
     <div className="property-card">
       <img src={image} alt={title} className="property-image" />
+      {isHotDeal && <div className="hot-deal-badge">HOT DEAL</div>}
       <div className="property-location">
         <i className="fa-solid fa-location-dot"></i> {location}
       </div>

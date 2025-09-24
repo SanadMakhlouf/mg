@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./LastPropertiesSection.css";
@@ -14,6 +15,7 @@ const LastPropertiesSection = () => {
       beds: "5",
       baths: "5",
       sqft: "500",
+      isHotDeal: true,
     },
     {
       image: "/hero-bg2.jpg",
@@ -30,6 +32,7 @@ const LastPropertiesSection = () => {
       beds: "5",
       baths: "5",
       sqft: "500",
+      isHotDeal: true,
     },
     {
       image: "/hero-bgg.jpg",
@@ -75,7 +78,9 @@ const LastPropertiesSection = () => {
     <section className="last-properties-section">
       <div className="last-properties-header">
         <h2>LAST PROPRETIES.</h2>
-        <button className="view-all-btn">VIEW ALL PROPERTIES</button>
+        <Link to="/buy" className="view-all-btn">
+          VIEW ALL PROPERTIES
+        </Link>
       </div>
       <div className="carousel-container">
         <Slider {...settings}>

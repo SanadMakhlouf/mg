@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./PopularDevelopersSection.css";
 
 const PopularDevelopersSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   const developers = [
     {
@@ -10,12 +12,14 @@ const PopularDevelopersSection = () => {
       name: "SHEIKH ZAYED GRAND MOSQUE",
       image: "/hero-bg.jpg",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      tag: "sheikh-zayed",
     },
     {
       id: 2,
       name: "EMIRATES PALACE",
       image: "/hero-bgg.jpg",
       description: "Experience luxury at its finest in the heart of Abu Dhabi",
+      tag: "emirates-palace",
     },
     {
       id: 3,
@@ -23,18 +27,21 @@ const PopularDevelopersSection = () => {
       image: "/here-bg2.jpg",
       description:
         "Home to Ferrari World, Yas Waterworld, and Warner Bros. World",
+      tag: "yas-island",
     },
     {
       id: 4,
       name: "SAADIYAT ISLAND",
       image: "/hero-bg.jpg",
       description: "Cultural district featuring the Louvre Abu Dhabi",
+      tag: "saadiyat-island",
     },
     {
       id: 5,
       name: "AL REEM ISLAND",
       image: "/hero-bgg.jpg",
       description: "Modern residential and commercial development in Abu Dhabi",
+      tag: "al-reem-island",
     },
     {
       id: 6,
@@ -42,6 +49,7 @@ const PopularDevelopersSection = () => {
       image: "/here-bg2.jpg",
       description:
         "8 kilometers of pristine beachfront and recreational facilities",
+      tag: "corniche-beach",
     },
   ];
 
@@ -53,6 +61,10 @@ const PopularDevelopersSection = () => {
     setCurrentSlide(
       (prev) => (prev - 1 + developers.length) % developers.length
     );
+  };
+
+  const navigateToBlogWithTag = (tag) => {
+    navigate(`/blog?tag=${tag}`);
   };
 
   return (
@@ -205,7 +217,12 @@ const PopularDevelopersSection = () => {
                           <p>{developer.description}</p>
                         </div>
                         <div className="info-action">
-                          <button className="explore-btn">→</button>
+                          <button
+                            className="explore-btn"
+                            onClick={() => navigateToBlogWithTag(developer.tag)}
+                          >
+                            →
+                          </button>
                         </div>
                       </div>
                     )}
@@ -217,7 +234,9 @@ const PopularDevelopersSection = () => {
         </div>
 
         <div className="explore-more">
-          <button className="explore-more-btn">EXPLORE MORE AREAS</button>
+          <Link to="/blog" className="explore-more-btn">
+            EXPLORE MORE AREAS
+          </Link>
         </div>
       </div>
     </section>

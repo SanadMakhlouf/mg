@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Hero.css";
 
+// NOTE: These images are low quality and should be replaced with higher resolution versions
 const carouselData = [
   {
     image: `${process.env.PUBLIC_URL}/hero-bgg.jpg`,

@@ -1,7 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import "./GetInTouchSection.css";
 
 const GetInTouchSection = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // You can replace this with an actual API endpoint
+      // For now, we'll simulate a successful submission after a delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      console.log("Form submitted:", formData);
+      // Reset form after successful submission
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+      setSubmitStatus({ success: true, message: "Message sent successfully!" });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus({
+        success: false,
+        message: "Failed to send message. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section className="get-in-touch">
       <div className="get-in-touch-container">
@@ -9,7 +55,10 @@ const GetInTouchSection = () => {
           <span className="keep-close">KEEP CLOSE</span>
           <h2>Get In Touch</h2>
           <p>
-          We are here to help you sell or rent out your property as fast as possible with 100% transparency, keeping you informed with up-to-date market trends that may affect your property’s sale or rental value.
+            We are here to help you sell or rent out your property as fast as
+            possible with 100% transparency, keeping you informed with
+            up-to-date market trends that may affect your property’s sale or
+            rental value.
           </p>
 
           <div className="contact-info">
@@ -63,29 +112,70 @@ const GetInTouchSection = () => {
           <h2>Your Details</h2>
           <p>How Can We Assist You ?</p>
 
-          <form className="contact-form">
+          <form className="contact-form" onSubmit={handleSubmit}>
+            {submitStatus && (
+              <div
+                className={`submit-status ${
+                  submitStatus.success ? "success" : "error"
+                }`}
+              >
+                {submitStatus.message}
+              </div>
+            )}
+
             <div className="form-group">
               <label>FULL NAME *</label>
-              <input type="text" placeholder="Mohamed Al Mansoori" />
+              <input
+                type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                placeholder="Mohamed Al Mansoori"
+                required
+              />
             </div>
 
             <div className="form-group">
               <label>EMAIL ADDRESS *</label>
-              <input type="email" placeholder="info@meridiagroup.ae" />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="info@meridiagroup.ae"
+                required
+              />
             </div>
 
             <div className="form-group">
               <label>MOBILE NUMBER *</label>
-              <input type="tel" placeholder="+97150907039" />
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="+97150907039"
+                required
+              />
             </div>
 
             <div className="form-group">
               <label>COMMENT / MESSAGE *</label>
-              <textarea placeholder="Message"></textarea>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Message"
+                required
+              ></textarea>
             </div>
 
-            <button type="submit" className="send-message-btn">
-              SEND MESSAGE
+            <button
+              type="submit"
+              className="send-message-btn"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
             </button>
           </form>
         </div>

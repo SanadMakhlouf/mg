@@ -7,6 +7,19 @@
   border-radius: 8px;
 }
 
+.hot-deal-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #800020;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  z-index: 1;
+}
+
 .property-type {
   position: absolute;
   top: 2rem;

@@ -3,6 +3,19 @@ import "./Footer.css";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
+// Custom link component that scrolls to top when clicked
+const ScrollToTopLink = ({ to, children, ...props }) => {
+  const handleClick = () => {
+    window.scrollTo(0, 0);
+  };
+
+  return (
+    <Link to={to} onClick={handleClick} {...props}>
+      {children}
+    </Link>
+  );
+};
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -53,16 +66,18 @@ const Footer = () => {
             <h3>Company</h3>
             <ul>
               <li>
-                <Link to="/about">About Us</Link>
+                <ScrollToTopLink to="/about">About Us</ScrollToTopLink>
               </li>
               <li>
-                <Link to="/about#trusted-agents">Our Agents</Link>
+                <ScrollToTopLink to="/about#trusted-agents">
+                  Our Agents
+                </ScrollToTopLink>
               </li>
               <li>
-                <Link to="/blog">Latest Blog</Link>
+                <ScrollToTopLink to="/blog">Latest Blog</ScrollToTopLink>
               </li>
               <li>
-                <Link to="/contact">Contact Us</Link>
+                <ScrollToTopLink to="/contact">Contact Us</ScrollToTopLink>
               </li>
             </ul>
           </div>
@@ -71,17 +86,18 @@ const Footer = () => {
             <h3>Ressources</h3>
             <ul>
               <li>
-                <Link to="/rent">Rent A Proprety</Link>
+                <ScrollToTopLink to="/rent">Rent A Proprety</ScrollToTopLink>
               </li>
               <li>
-                <Link to="/buy">Buy A Proprety</Link>
+                <ScrollToTopLink to="/buy">Buy A Proprety</ScrollToTopLink>
               </li>
               <li>
-                <Link to="/sell">Sell A Proprety</Link>
+                <ScrollToTopLink to="/sell">Sell A Proprety</ScrollToTopLink>
               </li>
-              <li>
+              {/* Investment Plan button hidden temporarily */}
+              {/* <li>
                 <Link to="/investment">Investment Plan</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -89,7 +105,7 @@ const Footer = () => {
             <h3>Say Hello ?</h3>
             <ul>
               <li>
-                <Link to="/support">Need Support ?</Link>
+                <ScrollToTopLink to="/support">Need Support ?</ScrollToTopLink>
               </li>
               <li>
                 <a href="mailto:info@meridiangroup.ae">info@meridiangroup.ae</a>
@@ -114,8 +130,8 @@ const Footer = () => {
       <div className="footer-bottom">
         <p>Copyright© 2024 MERIDIAN GROUP. All Rights Reserved</p>
         <div className="footer-bottom-links">
-          <Link to="/privacy">Privacy Policy</Link>
-          <Link to="/terms">Terms & Conditions</Link>
+          <ScrollToTopLink to="/privacy">Privacy Policy</ScrollToTopLink>
+          <ScrollToTopLink to="/terms">Terms & Conditions</ScrollToTopLink>
         </div>
       </div>
     </footer>

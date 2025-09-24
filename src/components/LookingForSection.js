@@ -1,5 +1,6 @@
 import React from "react";
 import "./LookingForSection.css";
+// NOTE: These images are low quality and will be replaced with higher resolution versions provided by the client
 import villa from "../assets/vila.png";
 import office from "../assets/office.png";
 import apartment from "../assets/apart.png";
@@ -66,10 +67,11 @@ const LookingForSection = () => {
             </div>
           </div>
         </div>
-        
-       
       </div>
-      <div className="villa-container">  <img src={villa2} alt="villa2" /></div>
+      <div className="villa-container">
+        {/* This image is low quality and will be replaced */}
+        <img src={villa2} alt="villa2" />
+      </div>
     </section>
   );
 };

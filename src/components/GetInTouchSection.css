@@ -175,6 +175,30 @@
   background-color: #590025;
 }
 
+.send-message-btn:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.submit-status {
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.submit-status.success {
+  background-color: #e6f7e6;
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.submit-status.error {
+  background-color: #fce8e8;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
 /* Icons */
 .location-icon {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>');

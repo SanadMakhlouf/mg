@@ -1,5 +1,6 @@
 import React from "react";
 import "./WhyUsSection.css";
+// NOTE: These icons will be replaced by client-provided icons
 import home from "../assets/home.png";
 import money from "../assets/money.png";
 import chart from "../assets/chart.png";
@@ -14,12 +15,13 @@ const WhyUsSection = () => {
             <div className="why-us-header">
               <h2>
                 <span className="city-name">
-                  ABU DHABI'S <span className="colored-text">MOST <br /> </span>
-                </span> 
+                  ABU DHABI'S{" "}
+                  <span className="colored-text">
+                    MOST <br />{" "}
+                  </span>
+                </span>
                 <span>TRUSTED </span>
                 <span className="colored-text">REAL ESTATE</span> PARTNER
-
-                
               </h2>
               <p className="why-us-description">
                 MG REAL ESTATE PARTNERS WITH ABU DHABI'S TOP DEVELOPERS AND
@@ -30,7 +32,7 @@ const WhyUsSection = () => {
 
             <div className="user-avatars">
               {/* You'll need to add actual avatar images here */}
-             <img src={avatar} alt="avatar" />
+              <img src={avatar} alt="avatar" />
             </div>
             <div className="stats-numbers">
               <div className="stat">
