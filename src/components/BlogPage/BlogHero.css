@@ -9,7 +9,7 @@
   justify-content: center;
   text-align: center;
   color: white;
-  margin-top: 80px; /* To account for navbar */
+  margin-top: 0; /* Remove margin as navbar should be above */
 }
 
 .blog-hero-overlay {
