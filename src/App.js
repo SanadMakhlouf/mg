@@ -10,6 +10,7 @@ import ListYour from "./components/ListYourPage/ListYour";
 import ReadyProjects from "./components/ReadyProjectsPage/ReadyProjects";
 import OffPlan from "./components/OffPlanPage/OffPlan";
 import Services from "./components/ServicesPage/Services";
+import PropertyDetails from "./components/PropertyDetails/PropertyDetails";
 import Footer from "./components/Footer";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/list-your-property" element={<ListYour />} />
           <Route path="/ready-projects" element={<ReadyProjects />} />
           <Route path="/off-plan-properties" element={<OffPlan />} />
+          <Route path="/property/:id" element={<PropertyDetails />} />
         </Routes>
         <Footer />
       </div>

@@ -58,7 +58,8 @@ const Navbar = () => {
           <Link to="/off-plan-properties" className="list-property-btn">
             OFF PLANS
           </Link>
-          <button className="investment-plan-btn">INVESTMENT PLAN</button>
+          {/* Investment Plan button hidden temporarily */}
+          {/* <button className="investment-plan-btn">INVESTMENT PLAN</button> */}
         </div>
       </div>
     </nav>

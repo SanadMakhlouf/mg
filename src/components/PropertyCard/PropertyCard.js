@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./PropertyCard.css";
 
 const PropertyCard = ({
+  id = "1", // Default ID for existing cards
   image,
   title,
   price,
@@ -12,8 +14,21 @@ const PropertyCard = ({
   onViewDetails,
   isHotDeal = false,
 }) => {
+  const navigate = useNavigate();
+
+  const handleViewDetails = () => {
+    if (onViewDetails) {
+      onViewDetails();
+    } else {
+      navigate(`/property/${id}`);
+    }
+  };
   return (
-    <div className="property-card">
+    <div
+      className="property-card"
+      onClick={handleViewDetails}
+      style={{ cursor: "pointer" }}
+    >
       <img src={image} alt={title} className="property-image" />
       {isHotDeal && <div className="hot-deal-badge">HOT DEAL</div>}
       <div className="property-location">
@@ -44,7 +59,7 @@ const PropertyCard = ({
           <h3 className="property-title">{title}</h3>
           <div className="price-container">
             <p className="property-price">{price} AED</p>
-            <button className="view-details-btn" onClick={onViewDetails}>
+            <button className="view-details-btn" onClick={handleViewDetails}>
               <i className="fa-solid fa-arrow-right"></i>
             </button>
           </div>
