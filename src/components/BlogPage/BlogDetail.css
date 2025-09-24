@@ -1,6 +1,5 @@
 .blog-detail-container {
   min-height: 100vh;
-  margin-top: 80px; /* To account for navbar */
 }
 
 .blog-detail-header {
