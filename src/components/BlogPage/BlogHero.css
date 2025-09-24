@@ -1,0 +1,112 @@
+.blog-hero {
+  position: relative;
+  height: 400px;
+  background-image: url("../../assets/ready-projet/projet1.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin-top: 80px; /* To account for navbar */
+}
+
+.blog-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(70, 0, 20, 0.8), rgba(70, 0, 20, 0.9));
+}
+
+.blog-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.blog-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.blog-hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.blog-search {
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.blog-search-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.blog-search-btn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+  width: 50px;
+  border: none;
+  background-color: #800020;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.blog-search-btn:hover {
+  background-color: #600018;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .blog-hero {
+    height: 350px;
+  }
+
+  .blog-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .blog-hero p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .blog-hero {
+    height: 300px;
+  }
+
+  .blog-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .blog-hero p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-search-input {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}

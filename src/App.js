@@ -11,6 +11,8 @@ import ReadyProjects from "./components/ReadyProjectsPage/ReadyProjects";
 import OffPlan from "./components/OffPlanPage/OffPlan";
 import Services from "./components/ServicesPage/Services";
 import PropertyDetails from "./components/PropertyDetails/PropertyDetails";
+import BlogPage from "./components/BlogPage/BlogPage";
+import BlogDetail from "./components/BlogPage/BlogDetail";
 import Footer from "./components/Footer";
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           <Route path="/ready-projects" element={<ReadyProjects />} />
           <Route path="/off-plan-properties" element={<OffPlan />} />
           <Route path="/property/:id" element={<PropertyDetails />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
         </Routes>
         <Footer />
       </div>
