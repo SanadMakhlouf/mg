@@ -6,6 +6,7 @@ import logo from "../assets/logo.png";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showPropertiesDropdown, setShowPropertiesDropdown] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,13 +33,38 @@ const Navbar = () => {
             <img src={logo} alt="logo" />
           </Link>
         </div>
-        <div className="navbar-links">
-          <Link to="/">HOME</Link>
+
+        {/* Hamburger Menu Button */}
+        <button
+          className={`hamburger-menu ${isMobileMenuOpen ? "open" : ""}`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        {/* Navigation Links */}
+        <div
+          className={`navbar-links ${isMobileMenuOpen ? "mobile-open" : ""}`}
+        >
+          <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
+            HOME
+          </Link>
           <div className="dropdown-container">
             <div
               className="dropdown-trigger"
-              onMouseEnter={() => setShowPropertiesDropdown(true)}
-              onMouseLeave={() => setShowPropertiesDropdown(false)}
+              onMouseEnter={() =>
+                !isMobileMenuOpen && setShowPropertiesDropdown(true)
+              }
+              onMouseLeave={() =>
+                !isMobileMenuOpen && setShowPropertiesDropdown(false)
+              }
+              onClick={() =>
+                isMobileMenuOpen &&
+                setShowPropertiesDropdown(!showPropertiesDropdown)
+              }
             >
               <span>PROPERTIES</span>
               <div
@@ -46,16 +72,35 @@ const Navbar = () => {
                   showPropertiesDropdown ? "show" : ""
                 }`}
               >
-                <Link to="/buy">BUY</Link>
-                <Link to="/rent">RENT</Link>
-                <Link to="/off-plan-properties">OFF PLANS</Link>
+                <Link to="/buy" onClick={() => setIsMobileMenuOpen(false)}>
+                  BUY
+                </Link>
+                <Link to="/rent" onClick={() => setIsMobileMenuOpen(false)}>
+                  RENT
+                </Link>
+                <Link
+                  to="/off-plan-properties"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  OFF PLANS
+                </Link>
               </div>
             </div>
           </div>
-          <Link to="/services">SERVICES</Link>
-          <Link to="/about">ABOUT US</Link>
-          <Link to="/contact">CONTACT</Link>
-          <Link to="/off-plan-properties" className="list-property-btn">
+          <Link to="/services" onClick={() => setIsMobileMenuOpen(false)}>
+            SERVICES
+          </Link>
+          <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+            ABOUT US
+          </Link>
+          <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+            CONTACT
+          </Link>
+          <Link
+            to="/off-plan-properties"
+            className="list-property-btn"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
             OFF PLANS
           </Link>
           {/* Investment Plan button hidden temporarily */}
