@@ -16,12 +16,11 @@
 
 .why-us-header {
   margin-bottom: 4rem;
-
 }
 
 .why-us-header h2 {
   font-family: "Poppins", sans-serif;
-  font-size: 28px;;
+  font-size: 28px;
   font-weight: 600;
   margin-bottom: 1.5rem;
   line-height: 1.2;
@@ -160,12 +159,22 @@
 
 @media (max-width: 768px) {
   .why-us-section {
-    padding: 4rem 1rem;
+    padding: 4rem 0;
+  }
+
+  .why-us-container {
+    padding: 0 20px;
   }
 
   .stats-container {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 2rem;
+  }
+
+  .stats-group {
+    flex: 0 0 calc(50% - 1rem);
+    padding-top: 20px;
   }
 
   .why-us-header h2 {
@@ -174,31 +183,47 @@
 
   .stats-numbers {
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 1.5rem;
   }
 
   .feature-item {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     text-align: left;
     padding: 0;
   }
 
   .feature-text {
-    padding: 0;
+    padding: 10px;
+  }
+
+  .feature-text h4 {
+    font-size: 1rem;
   }
 
   .feature-text p {
-    padding-right: 0;
+    padding-right: 20px;
+    font-size: 0.85rem;
   }
 
   .features-list {
-    padding: 0;
+    padding: 15px;
+    gap: 1.5rem;
   }
 
   .feature-item img {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
+  }
+
+  .user-avatars {
+    margin-bottom: 1.5rem;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -208,35 +233,95 @@
 
 @media (max-width: 480px) {
   .why-us-section {
-    padding: 3rem 1rem;
+    padding: 3rem 0;
+  }
+
+  .why-us-container {
+    padding: 0 15px;
   }
 
   .stats-container {
     gap: 1.5rem;
   }
 
+  .stats-group {
+    flex: 0 0 100%;
+    padding-top: 15px;
+  }
+
+  .why-us-header {
+    margin-bottom: 2rem;
+  }
+
   .why-us-header h2 {
     font-size: 24px;
+    text-align: center;
+  }
+
+  .why-us-description {
+    text-align: center;
+    font-size: 0.9rem;
   }
 
   .stats-numbers {
     gap: 1rem;
+    justify-content: center;
   }
 
   .stat {
     flex: 0 0 calc(50% - 0.5rem);
+    text-align: center;
   }
 
   .stat h3 {
     font-size: 1.25rem;
   }
 
+  .stat p {
+    font-size: 0.8rem;
+  }
+
+  .features-list {
+    padding: 10px;
+    gap: 1.25rem;
+  }
+
   .feature-item {
-    gap: 1rem;
+    gap: 0.75rem;
+  }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .feature-text {
+    padding: 5px;
+  }
+
+  .feature-text h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .feature-text p {
+    font-size: 0.8rem;
+    padding-right: 10px;
   }
 
   .feature-item img {
     width: 50px;
     height: 50px;
+  }
+
+  .user-avatars {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .avatar {
+    width: 35px;
+    height: 35px;
+    margin-left: -10px;
   }
 }
