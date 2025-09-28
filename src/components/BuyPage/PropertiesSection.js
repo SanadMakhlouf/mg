@@ -55,7 +55,8 @@ const PropertiesSection = () => {
           properties.map((property) => (
             <PropertyCard
               key={property.id}
-              image={`${config.API_URL.replace("/api", "")}/storage/${
+              id={property.id}
+              image={`${config.API_URL.replace("/api/v1", "")}/storage/${
                 property.pictures[0]
               }`}
               title={property.name}
@@ -64,7 +65,6 @@ const PropertiesSection = () => {
               baths={property.bathrooms}
               sqft={property.area}
               location={property.location}
-              onViewDetails={() => {}}
             />
           ))
         )}

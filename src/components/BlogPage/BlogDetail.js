@@ -29,12 +29,12 @@ const BlogDetail = () => {
             ...result.data,
             image: result.data.image.startsWith("http")
               ? result.data.image
-              : `${config.API_URL.replace("/api", "")}/storage/${
+              : `${config.API_URL.replace("/api/v1", "")}/storage/${
                   result.data.image
                 }`,
             authorImage: result.data.authorImage.startsWith("http")
               ? result.data.authorImage
-              : `${config.API_URL.replace("/api", "")}/storage/${
+              : `${config.API_URL.replace("/api/v1", "")}/storage/${
                   result.data.authorImage
                 }`,
           };
@@ -55,7 +55,7 @@ const BlogDetail = () => {
                 ...post,
                 image: post.image.startsWith("http")
                   ? post.image
-                  : `${config.API_URL.replace("/api", "")}/storage/${
+                  : `${config.API_URL.replace("/api/v1", "")}/storage/${
                       post.image
                     }`,
               }));

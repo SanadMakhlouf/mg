@@ -137,12 +137,12 @@ const BlogPage = () => {
                   ...blog,
                   image: blog.image.startsWith("http")
                     ? blog.image
-                    : `${config.API_URL.replace("/api", "")}/storage/${
+                    : `${config.API_URL.replace("/api/v1", "")}/storage/${
                         blog.image
                       }`,
                   authorImage: blog.authorImage.startsWith("http")
                     ? blog.authorImage
-                    : `${config.API_URL.replace("/api", "")}/storage/${
+                    : `${config.API_URL.replace("/api/v1", "")}/storage/${
                         blog.authorImage
                       }`,
                 }}

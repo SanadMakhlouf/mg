@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import config from "../../config";
 import "./ProjectsGrid.css";
 
 const ProjectsGrid = () => {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -10,8 +12,10 @@ const ProjectsGrid = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch(`${config.API_URL}/ready-projects/category/ready-project`);
-        
+        const response = await fetch(
+          `${config.API_URL}/ready-projects/category/ready-project`
+        );
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -47,36 +51,57 @@ const ProjectsGrid = () => {
   };
 
   if (loading) {
-    return <div className="projects-section"><p>Loading projects...</p></div>;
+    return (
+      <div className="projects-section">
+        <p>Loading projects...</p>
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="projects-section"><p>{error}</p></div>;
+    return (
+      <div className="projects-section">
+        <p>{error}</p>
+      </div>
+    );
   }
 
   if (projects.length === 0) {
-    return <div className="projects-section"><p>No projects found</p></div>;
+    return (
+      <div className="projects-section">
+        <p>No projects found</p>
+      </div>
+    );
   }
 
   // Fonction pour générer une carte de projet
-  const ProjectCard = ({ project, size = '' }) => (
-    <div className={`project-card ${size}`}>
-      <div
-        className="project-image"
-        style={{ 
-          backgroundImage: `url(${config.API_URL.replace('/api', '')}/storage/${project.pictures[0]})`
-        }}
-      >
-        <div className="play-button">
-          <span>▶</span>
-        </div>
-        <div className="project-info">
-          <h3>{project.name}</h3>
-          <p>{project.location}</p>
+  const ProjectCard = ({ project, size = "" }) => {
+    const handleClick = () => {
+      navigate(`/property/${project.id}`);
+    };
+
+    return (
+      <div className={`project-card ${size}`} onClick={handleClick}>
+        <div
+          className="project-image"
+          style={{
+            backgroundImage: `url(${config.API_URL.replace(
+              "/api/v1",
+              ""
+            )}/storage/${project.pictures[0]})`,
+          }}
+        >
+          <div className="play-button">
+            <span>▶</span>
+          </div>
+          <div className="project-info">
+            <h3>{project.name}</h3>
+            <p>{project.location}</p>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="projects-section">
@@ -87,10 +112,10 @@ const ProjectsGrid = () => {
         <div className="top-grid">
           <div className="projects-cards">
             {projects.slice(0, 3).map((project, index) => (
-              <ProjectCard 
-                key={project.id} 
-                project={project} 
-                size={index === 2 ? 'large' : ''}
+              <ProjectCard
+                key={project.id}
+                project={project}
+                size={index === 2 ? "large" : ""}
               />
             ))}
           </div>
@@ -115,21 +140,17 @@ const ProjectsGrid = () => {
         {/* Deuxième rangée - Petites cartes */}
         <div className="grid-row small-cards">
           {projects.slice(3, 6).map((project) => (
-            <ProjectCard 
-              key={project.id} 
-              project={project} 
-              size="small"
-            />
+            <ProjectCard key={project.id} project={project} size="small" />
           ))}
         </div>
 
         {/* Troisième rangée - Grande et moyenne cartes */}
         <div className="grid-row">
           {projects.slice(6, 8).map((project, index) => (
-            <ProjectCard 
-              key={project.id} 
-              project={project} 
-              size={index === 0 ? 'large' : 'medium'}
+            <ProjectCard
+              key={project.id}
+              project={project}
+              size={index === 0 ? "large" : "medium"}
             />
           ))}
         </div>
@@ -137,21 +158,14 @@ const ProjectsGrid = () => {
         {/* Quatrième rangée - Grande carte pleine largeur */}
         {projects[8] && (
           <div className="grid-row">
-            <ProjectCard 
-              project={projects[8]} 
-              size="large full-width"
-            />
+            <ProjectCard project={projects[8]} size="large full-width" />
           </div>
         )}
 
         {/* Cinquième rangée - Petites cartes */}
         <div className="grid-row small-cards">
           {projects.slice(9, 12).map((project) => (
-            <ProjectCard 
-              key={project.id} 
-              project={project} 
-              size="small"
-            />
+            <ProjectCard key={project.id} project={project} size="small" />
           ))}
         </div>
       </div>

@@ -202,6 +202,13 @@
   margin-bottom: 0.5rem;
 }
 
+.agent-job-title {
+  color: #800020;
+  font-style: italic;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
 .agent-info p {
   display: flex;
   align-items: center;

@@ -3,6 +3,32 @@
   background-color: #fff;
 }
 
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.loading-spinner i {
+  font-size: 2.5rem;
+  color: #800020;
+  margin-bottom: 1rem;
+}
+
+.loading-spinner p {
+  font-size: 1.1rem;
+  color: #333;
+}
+
 .developers-container {
   max-width: 1400px;
   margin: 0 auto;

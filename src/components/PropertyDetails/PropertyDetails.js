@@ -109,13 +109,23 @@ const PropertyDetails = () => {
   // Obtenir les équipements par défaut basés sur le type de propriété
   const amenities = defaultAmenities[property.type] || defaultAmenities.default;
 
-  // Créer un agent par défaut si aucun n'est fourni
-  const agent = property.agent || defaultAgent;
+  // Créer un agent par défaut si aucun n'est fourni ou si l'agent est null
+  const agent = property.agent
+    ? {
+        name: property.agent.name || "",
+        phone: property.agent.phone || "",
+        email: property.agent.email || "",
+        image: property.agent.photo_url || "/user1.png",
+        job_title: property.agent.job_title || "",
+      }
+    : defaultAgent;
 
   // Construire l'URL de l'image principale
   const mainImageUrl =
     property.pictures && property.pictures.length > 0
-      ? `${config.API_URL.replace("/api", "")}/storage/${property.pictures[0]}`
+      ? `${config.API_URL.replace("/api/v1", "")}/storage/${
+          property.pictures[0]
+        }`
       : "/test.jpg";
 
   return (
@@ -186,12 +196,19 @@ const PropertyDetails = () => {
               {property.agent ? (
                 // Affichage des informations de l'agent si disponible
                 <>
-                  <p>
-                    <i className="fa-solid fa-phone"></i> {agent.phone}
-                  </p>
-                  <p>
-                    <i className="fa-solid fa-envelope"></i> {agent.email}
-                  </p>
+                  {agent.job_title && (
+                    <p className="agent-job-title">{agent.job_title}</p>
+                  )}
+                  {agent.phone && (
+                    <p>
+                      <i className="fa-solid fa-phone"></i> {agent.phone}
+                    </p>
+                  )}
+                  {agent.email && (
+                    <p>
+                      <i className="fa-solid fa-envelope"></i> {agent.email}
+                    </p>
+                  )}
                   <button className="contact-agent-btn">Contact Agent</button>
                 </>
               ) : (

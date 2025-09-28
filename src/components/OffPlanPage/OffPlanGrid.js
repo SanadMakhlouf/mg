@@ -64,7 +64,7 @@ const OffPlanGrid = () => {
   // Helper function to get image URL
   const getImageUrl = (pictures) => {
     if (!pictures || pictures.length === 0) return "";
-    return `${config.API_URL.replace("/api", "")}/storage/${pictures[0]}`;
+    return `${config.API_URL.replace("/api/v1", "")}/storage/${pictures[0]}`;
   };
 
   return (

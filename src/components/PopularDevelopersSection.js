@@ -1,12 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./PopularDevelopersSection.css";
+import config from "../config";
 
 const PopularDevelopersSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
+  const [developers, setDevelopers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const developers = [
+  // Récupérer les blogs depuis l'API
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`${config.API_URL}/blogs?limit=6`);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.status === "success" && Array.isArray(result.data)) {
+          // Transformer les données des blogs en format pour le carousel
+          const formattedData = result.data.map((blog) => ({
+            id: blog.id,
+            name: blog.title.toUpperCase(),
+            image: blog.image.startsWith("http")
+              ? blog.image
+              : `${config.API_URL.replace("/api/v1", "")}/storage/${
+                  blog.image
+                }`,
+            description:
+              blog.excerpt || "Explore this amazing location in Abu Dhabi",
+            tag:
+              blog.tags && blog.tags.length > 0
+                ? blog.tags[0]
+                : blog.category.toLowerCase().replace(/\s+/g, "-"),
+          }));
+
+          setDevelopers(formattedData);
+        } else {
+          // Si pas de données, utiliser des données par défaut
+          setDevelopers(getDefaultDevelopers());
+        }
+      } catch (err) {
+        console.error("Error fetching blogs:", err);
+        setError(err.message);
+        // En cas d'erreur, utiliser des données par défaut
+        setDevelopers(getDefaultDevelopers());
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  // Fonction pour obtenir des données par défaut en cas d'erreur
+  const getDefaultDevelopers = () => [
     {
       id: 1,
       name: "SHEIKH ZAYED GRAND MOSQUE",
@@ -63,9 +117,39 @@ const PopularDevelopersSection = () => {
     );
   };
 
-  const navigateToBlogWithTag = (tag) => {
-    navigate(`/blog?tag=${tag}`);
+  const navigateToBlog = (blogId) => {
+    navigate(`/blog/${blogId}`);
   };
+
+  // Afficher un message de chargement
+  if (loading) {
+    return (
+      <section className="popular-developers-section">
+        <div className="developers-container">
+          <div className="developers-header">
+            <div className="header-content">
+              <h2>
+                POPULAR <span className="text-gray">AREAS</span> IN
+                <br />
+                ABU DHABI
+              </h2>
+            </div>
+          </div>
+          <div className="loading-container">
+            <div className="loading-spinner">
+              <i className="fas fa-spinner fa-spin"></i>
+              <p>Loading popular areas...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Si aucun développeur n'est disponible, ne pas afficher la section
+  if (developers.length === 0) {
+    return null;
+  }
 
   return (
     <section className="popular-developers-section">
@@ -73,7 +157,7 @@ const PopularDevelopersSection = () => {
         <div className="developers-header">
           <div className="header-content">
             <h2>
-              POPULAR <span className="text-gray">DEVELOPER</span> IN
+              POPULAR <span className="text-gray">AREAS</span> IN
               <br />
               ABU DHABI
             </h2>
@@ -219,7 +303,7 @@ const PopularDevelopersSection = () => {
                         <div className="info-action">
                           <button
                             className="explore-btn"
-                            onClick={() => navigateToBlogWithTag(developer.tag)}
+                            onClick={() => navigateToBlog(developer.id)}
                           >
                             →
                           </button>

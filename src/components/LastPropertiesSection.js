@@ -115,7 +115,7 @@ const LastPropertiesSection = () => {
                 id={property.id}
                 image={
                   property.pictures && property.pictures.length > 0
-                    ? `${config.API_URL.replace("/api", "")}/storage/${
+                    ? `${config.API_URL.replace("/api/v1", "")}/storage/${
                         property.pictures[0]
                       }`
                     : "/test.jpg"
