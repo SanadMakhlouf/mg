@@ -223,25 +223,150 @@
     padding: 0 1rem;
   }
 
+  .last-properties-header h2 {
+    font-size: 2rem;
+  }
+
   .carousel-container {
     padding: 0 2rem;
+    margin-top: 60px;
   }
 
   .property-card {
     padding: 0.5rem;
+    margin: 1rem auto;
+    max-width: 600px;
+  }
+
+  .property-image {
+    height: 280px;
+  }
+
+  .slick-prev {
+    left: -15px;
+  }
+
+  .slick-next {
+    right: -15px;
   }
 }
 
 @media (max-width: 768px) {
   .last-properties-section {
     padding: 2rem 0;
+    margin-top: 3rem;
   }
 
-  .section-header h2 {
-    font-size: 2rem;
+  .last-properties-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .carousel-container {
+    padding: 0 1.5rem;
+    margin-top: 40px;
+  }
+
+  .property-card {
+    margin: 0.5rem auto;
+    max-width: 450px;
+  }
+
+  .property-image {
+    height: 250px;
+  }
+
+  .property-title {
+    font-size: 1.1rem;
+  }
+
+  .property-price {
+    font-size: 1.3rem;
+  }
+
+  .slick-prev,
+  .slick-next {
+    width: 35px;
+    height: 35px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 20px;
+  }
+
+  .slick-prev {
+    left: -10px;
+  }
+
+  .slick-next {
+    right: -10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .last-properties-section {
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+  }
+
+  .last-properties-header h2 {
+    font-size: 1.5rem;
   }
 
   .carousel-container {
     padding: 0 1rem;
+    margin-top: 30px;
+  }
+
+  .property-card {
+    margin: 0.3rem auto;
+    max-width: 320px;
+  }
+
+  .property-image {
+    height: 200px;
+  }
+
+  .property-details {
+    padding: 0.75rem;
+  }
+
+  .property-title {
+    font-size: 1rem;
+  }
+
+  .property-price {
+    font-size: 1.2rem;
+  }
+
+  .view-details-btn i {
+    font-size: 30px;
+  }
+
+  .slick-prev,
+  .slick-next {
+    width: 30px;
+    height: 30px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 16px;
+  }
+
+  .slick-prev {
+    left: -5px;
+  }
+
+  .slick-next {
+    right: -5px;
+  }
+
+  .slick-dots {
+    bottom: -30px;
+  }
+
+  .slick-dots li button:before {
+    font-size: 10px;
   }
 }
