@@ -7,6 +7,7 @@ const PropertyDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [property, setProperty] = useState(null);
+  const [agentDetails, setAgentDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -54,6 +55,53 @@ const PropertyDetails = () => {
 
         if (data.success && data.data) {
           setProperty(data.data);
+
+          // Si un agent est associé, récupérer ses détails
+          if (data.data.agent?.id) {
+            console.log("Fetching agent details for ID:", data.data.agent.id);
+            try {
+              const agentResponse = await fetch(
+                `${config.API_URL}/agents/${data.data.agent.id}`,
+                {
+                  method: "GET",
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                  },
+                }
+              );
+
+              if (!agentResponse.ok) {
+                const errorText = await agentResponse.text();
+                console.error("Agent response not OK:", {
+                  status: agentResponse.status,
+                  statusText: agentResponse.statusText,
+                  errorText,
+                });
+                throw new Error(`HTTP error! status: ${agentResponse.status}`);
+              }
+
+              const agentData = await agentResponse.json();
+              console.log("Agent API response:", agentData);
+
+              if (agentData.status === "success" && agentData.data) {
+                console.log("Setting agent details:", agentData.data);
+                // Assurons-nous que les réseaux sociaux sont correctement définis
+                const socialMedia = agentData.data.social_media || {};
+                setAgentDetails({
+                  ...agentData.data,
+                  social_media: socialMedia,
+                });
+              } else {
+                console.error(
+                  "Agent API returned unexpected format:",
+                  agentData
+                );
+              }
+            } catch (err) {
+              console.error("Error fetching agent details:", err);
+            }
+          }
         } else {
           setError("Property not found");
           setTimeout(() => navigate("/"), 2000);
@@ -117,8 +165,24 @@ const PropertyDetails = () => {
         email: property.agent.email || "",
         image: property.agent.photo_url || "/user1.png",
         job_title: property.agent.job_title || "",
+        social_media: agentDetails?.social_media || {}, // Utiliser uniquement les réseaux sociaux de agentDetails
+        has_contact_info: !!(property.agent.phone || property.agent.email),
       }
     : defaultAgent;
+
+  // Debug logs pour voir les données des réseaux sociaux
+  console.log("Social media from agentDetails:", agentDetails?.social_media);
+
+  // Debug logs pour voir les données de l'agent
+  console.log("Property agent data:", property.agent);
+  console.log("Agent details data:", agentDetails);
+  console.log("Final agent object:", agent);
+
+  // Afficher les détails de l'agent dans la console
+  console.log("Agent details from API:", agentDetails);
+
+  // Afficher les liens des réseaux sociaux dans la console
+  console.log("Agent social media links:", property.agent?.social_media);
 
   // Construire l'URL de l'image principale
   const mainImageUrl =
@@ -209,7 +273,109 @@ const PropertyDetails = () => {
                       <i className="fa-solid fa-envelope"></i> {agent.email}
                     </p>
                   )}
-                  <button className="contact-agent-btn">Contact Agent</button>
+                  <div className="agent-social-media">
+                    {!agent.social_media ||
+                    !Object.keys(agent.social_media).length ? (
+                      <>
+                        <a
+                          href="#"
+                          className="social-icon"
+                          aria-label="Facebook"
+                        >
+                          <i className="fa-brands fa-facebook"></i>
+                        </a>
+                        <a
+                          href="#"
+                          className="social-icon"
+                          aria-label="LinkedIn"
+                        >
+                          <i className="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a
+                          href="#"
+                          className="social-icon"
+                          aria-label="Twitter"
+                        >
+                          <i className="fa-brands fa-twitter"></i>
+                        </a>
+                        <a
+                          href="#"
+                          className="social-icon"
+                          aria-label="Instagram"
+                        >
+                          <i className="fa-brands fa-instagram"></i>
+                        </a>
+                        <a
+                          href="#"
+                          className="social-icon"
+                          aria-label="WhatsApp"
+                        >
+                          <i className="fa-brands fa-whatsapp"></i>
+                        </a>
+                      </>
+                    ) : (
+                      <>
+                        {agent.social_media.facebook && (
+                          <a
+                            href={agent.social_media.facebook}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-icon"
+                            aria-label="Facebook"
+                          >
+                            <i className="fa-brands fa-facebook"></i>
+                          </a>
+                        )}
+                        {agent.social_media.linkedin && (
+                          <a
+                            href={agent.social_media.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-icon"
+                            aria-label="LinkedIn"
+                          >
+                            <i className="fa-brands fa-linkedin"></i>
+                          </a>
+                        )}
+                        {agent.social_media.twitter && (
+                          <a
+                            href={agent.social_media.twitter}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-icon"
+                            aria-label="Twitter"
+                          >
+                            <i className="fa-brands fa-twitter"></i>
+                          </a>
+                        )}
+                        {agent.social_media.instagram && (
+                          <a
+                            href={agent.social_media.instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-icon"
+                            aria-label="Instagram"
+                          >
+                            <i className="fa-brands fa-instagram"></i>
+                          </a>
+                        )}
+                        {agent.social_media.whatsapp && (
+                          <a
+                            href={`https://wa.me/${agent.social_media.whatsapp}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-icon"
+                            aria-label="WhatsApp"
+                          >
+                            <i className="fa-brands fa-whatsapp"></i>
+                          </a>
+                        )}
+                      </>
+                    )}
+                  </div>
+                  {agent.has_contact_info && (
+                    <button className="contact-agent-btn">Contact Agent</button>
+                  )}
                 </>
               ) : (
                 // Affichage des informations de contact de l'agence

@@ -209,6 +209,42 @@
   font-weight: 500;
 }
 
+.agent-social-media {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  justify-content: center;
+}
+
+.agent-social-media .social-icon {
+  color: #800020;
+  font-size: 1.2rem;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #800020;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.agent-social-media .social-icon:hover {
+  background-color: #800020;
+  color: white;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.agent-social-media .social-icon.disabled {
+  color: #ccc;
+  border-color: #ccc;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .agent-info p {
   display: flex;
   align-items: center;
