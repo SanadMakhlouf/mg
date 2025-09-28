@@ -14,7 +14,7 @@ const PropertiesSection = () => {
       try {
         const apiUrl = `${config.API_URL}/properties/type/sale`;
         const response = await fetch(apiUrl);
-        
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -43,10 +43,6 @@ const PropertiesSection = () => {
     <div className="properties-section">
       <div className="properties-header">
         <h2>Property for Buy</h2>
-        <button className="map-button">
-          <i className="fa-solid fa-map-location-dot"></i>
-          Go to Map
-        </button>
       </div>
       <div className="properties-grid">
         {loading ? (
@@ -59,7 +55,9 @@ const PropertiesSection = () => {
           properties.map((property) => (
             <PropertyCard
               key={property.id}
-              image={`${config.API_URL.replace('/api', '')}/storage/${property.pictures[0]}`}
+              image={`${config.API_URL.replace("/api", "")}/storage/${
+                property.pictures[0]
+              }`}
               title={property.name}
               price={property.price}
               beds={property.bedrooms}

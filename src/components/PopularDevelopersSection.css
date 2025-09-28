@@ -209,6 +209,15 @@
 }
 
 @media (max-width: 1200px) {
+  .developers-header {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .developers-header h2 {
+    text-align: center;
+  }
+
   .developer-card.active {
     width: 600px;
   }
@@ -241,6 +250,10 @@
 
   .developer-card.position-3 {
     transform: translateX(-540px);
+  }
+
+  .developers-header h2 {
+    font-size: 30px;
   }
 }
 
