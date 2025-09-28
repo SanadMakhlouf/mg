@@ -46,23 +46,21 @@
 
 .developer-card {
   position: absolute;
-  width: 150px;
+  width: 600px;
   height: 400px;
   transition: all 0.5s ease;
-  opacity: 0.7;
+  opacity: 0;
   border-radius: 20px;
   overflow: hidden;
-  transform: scale(0.9);
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
 }
 
 .developer-card.active {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) scale(1);
-  width: 600px;
-  height: 400px;
   opacity: 1;
   z-index: 2;
+  display: block;
 }
 
 .developer-image {
@@ -71,6 +69,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .developer-image img {
@@ -128,26 +127,6 @@
 /* Positions des cartes */
 .developer-card.position-0 {
   z-index: 2;
-}
-
-.developer-card.position-1 {
-  left: calc(50% + 320px);
-  z-index: 1;
-}
-
-.developer-card.position-2 {
-  left: calc(50% + 490px);
-  z-index: 0;
-}
-
-.developer-card.position-3 {
-  left: calc(50% - 490px);
-  z-index: 0;
-}
-
-.developer-card.position-4 {
-  left: calc(50% - 320px);
-  z-index: 1;
 }
 
 .carousel-controls-popular {
@@ -209,38 +188,16 @@
 }
 
 @media (max-width: 1200px) {
-  .developer-card.active {
-    width: 600px;
-  }
-
-  .developer-card.position-1 {
-    transform: translateX(500px);
-  }
-
-  .developer-card.position-2 {
-    transform: translateX(640px);
-  }
-
-  .developer-card.position-3 {
-    transform: translateX(-640px);
+  .developer-card {
+    width: 500px;
+    height: 350px;
   }
 }
 
 @media (max-width: 992px) {
-  .developer-card.active {
-    width: 500px;
-  }
-
-  .developer-card.position-1 {
-    transform: translateX(400px);
-  }
-
-  .developer-card.position-2 {
-    transform: translateX(540px);
-  }
-
-  .developer-card.position-3 {
-    transform: translateX(-540px);
+  .developer-card {
+    width: 450px;
+    height: 300px;
   }
 }
 

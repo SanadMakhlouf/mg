@@ -43,10 +43,7 @@ const PropertiesSection = () => {
     <div className="properties-section">
       <div className="properties-header">
         <h2>Property for Buy</h2>
-        <button className="map-button">
-          <i className="fa-solid fa-map-location-dot"></i>
-          Go to Map
-        </button>
+      
       </div>
       <div className="properties-grid">
         {loading ? (
