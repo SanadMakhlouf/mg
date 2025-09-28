@@ -180,79 +180,79 @@ const TrustedAgents = () => {
                     <h3>{agent.name || "FULL NAME"}</h3>
                     <p>{agent.job_title || "Real Estate Agent"}</p>
                     <div className="social-icons">
-                      {agent.social_media?.facebook && (
-                        <a
-                          href={agent.social_media.facebook}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="Facebook"
-                        >
-                          <i className="fab fa-facebook-f"></i>
-                        </a>
-                      )}
-                      {agent.social_media?.linkedin && (
-                        <a
-                          href={agent.social_media.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="LinkedIn"
-                        >
-                          <i className="fab fa-linkedin-in"></i>
-                        </a>
-                      )}
-                      {agent.social_media?.twitter && (
-                        <a
-                          href={agent.social_media.twitter}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="Twitter"
-                        >
-                          <i className="fab fa-twitter"></i>
-                        </a>
-                      )}
-                      {agent.social_media?.instagram && (
-                        <a
-                          href={agent.social_media.instagram}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="Instagram"
-                        >
-                          <i className="fab fa-instagram"></i>
-                        </a>
-                      )}
-                      {agent.social_media?.whatsapp && (
-                        <a
-                          href={`https://wa.me/${agent.social_media.whatsapp}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="WhatsApp"
-                        >
-                          <i className="fab fa-whatsapp"></i>
-                        </a>
-                      )}
-                      {!agent.social_media?.facebook &&
-                        !agent.social_media?.linkedin &&
-                        !agent.social_media?.twitter &&
-                        !agent.social_media?.instagram &&
-                        !agent.social_media?.whatsapp && (
-                          <>
-                            <a href="#" aria-label="Facebook">
+                      {!agent.social_media ||
+                      !Object.keys(agent.social_media).length ? (
+                        <>
+                          <a href="#" aria-label="Facebook">
+                            <i className="fab fa-facebook-f"></i>
+                          </a>
+                          <a href="#" aria-label="LinkedIn">
+                            <i className="fab fa-linkedin-in"></i>
+                          </a>
+                          <a href="#" aria-label="Twitter">
+                            <i className="fab fa-twitter"></i>
+                          </a>
+                          <a href="#" aria-label="Instagram">
+                            <i className="fab fa-instagram"></i>
+                          </a>
+                          <a href="#" aria-label="WhatsApp">
+                            <i className="fab fa-whatsapp"></i>
+                          </a>
+                        </>
+                      ) : (
+                        <>
+                          {agent.social_media.facebook && (
+                            <a
+                              href={agent.social_media.facebook}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="Facebook"
+                            >
                               <i className="fab fa-facebook-f"></i>
                             </a>
-                            <a href="#" aria-label="LinkedIn">
+                          )}
+                          {agent.social_media.linkedin && (
+                            <a
+                              href={agent.social_media.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="LinkedIn"
+                            >
                               <i className="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="#" aria-label="Twitter">
+                          )}
+                          {agent.social_media.twitter && (
+                            <a
+                              href={agent.social_media.twitter}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="Twitter"
+                            >
                               <i className="fab fa-twitter"></i>
                             </a>
-                            <a href="#" aria-label="Instagram">
+                          )}
+                          {agent.social_media.instagram && (
+                            <a
+                              href={agent.social_media.instagram}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="Instagram"
+                            >
                               <i className="fab fa-instagram"></i>
                             </a>
-                            <a href="#" aria-label="WhatsApp">
+                          )}
+                          {agent.social_media.whatsapp && (
+                            <a
+                              href={`https://wa.me/${agent.social_media.whatsapp}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="WhatsApp"
+                            >
                               <i className="fab fa-whatsapp"></i>
                             </a>
-                          </>
-                        )}
+                          )}
+                        </>
+                      )}
                     </div>
                   </div>
                 ))
