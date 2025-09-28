@@ -6,6 +6,33 @@
   margin-top: 5rem;
 }
 
+.loading-container,
+.error-container,
+.no-properties-message {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.error-container {
+  color: #d32f2f;
+  border-left: 4px solid #d32f2f;
+}
+
+.loading-container {
+  color: #1976d2;
+  border-left: 4px solid #1976d2;
+}
+
+.no-properties-message {
+  color: #616161;
+  border-left: 4px solid #9e9e9e;
+}
+
 .last-properties-header {
   display: flex;
   flex-direction: row;
@@ -215,27 +242,38 @@
   font-size: 24px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .last-properties-header {
     flex-direction: column;
     text-align: center;
-    gap: 1rem;
-    padding: 0 1rem;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
   }
 
+  .last-properties-header h2 {
+    font-size: 2.2rem;
+  }
+
+  .carousel-container {
+    padding: 0 2.5rem;
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 1024px) {
   .last-properties-header h2 {
     font-size: 2rem;
   }
 
   .carousel-container {
     padding: 0 2rem;
-    margin-top: 60px;
+    margin-top: 40px;
   }
 
   .property-card {
     padding: 0.5rem;
-    margin: 1rem auto;
-    max-width: 600px;
+    margin: 0.75rem auto;
+    max-width: 500px;
   }
 
   .property-image {
@@ -253,8 +291,8 @@
 
 @media (max-width: 768px) {
   .last-properties-section {
-    padding: 2rem 0;
-    margin-top: 3rem;
+    padding: 2.5rem 0;
+    margin-top: 2.5rem;
   }
 
   .last-properties-header h2 {
@@ -263,16 +301,21 @@
 
   .carousel-container {
     padding: 0 1.5rem;
-    margin-top: 40px;
+    margin-top: 30px;
   }
 
   .property-card {
     margin: 0.5rem auto;
     max-width: 450px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
   }
 
   .property-image {
     height: 250px;
+  }
+
+  .property-details {
+    padding: 0.85rem;
   }
 
   .property-title {
@@ -283,10 +326,16 @@
     font-size: 1.3rem;
   }
 
+  .property-info {
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+
   .slick-prev,
   .slick-next {
     width: 35px;
     height: 35px;
+    background-color: rgba(128, 0, 32, 0.9);
   }
 
   .slick-prev:before,
@@ -301,26 +350,65 @@
   .slick-next {
     right: -10px;
   }
+
+  .slick-dots {
+    bottom: -35px;
+  }
+}
+
+@media (max-width: 576px) {
+  .last-properties-section {
+    padding: 2rem 0;
+    margin-top: 2rem;
+  }
+
+  .last-properties-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .carousel-container {
+    padding: 0 1.25rem;
+    margin-top: 25px;
+  }
+
+  .property-card {
+    margin: 0.4rem auto;
+    max-width: 360px;
+  }
+
+  .property-image {
+    height: 220px;
+  }
+
+  .property-details {
+    padding: 0.8rem;
+  }
 }
 
 @media (max-width: 480px) {
   .last-properties-section {
     padding: 1.5rem 0;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
   }
 
   .last-properties-header h2 {
     font-size: 1.5rem;
   }
 
+  .last-properties-header .view-all-btn {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.9rem;
+  }
+
   .carousel-container {
     padding: 0 1rem;
-    margin-top: 30px;
+    margin-top: 20px;
   }
 
   .property-card {
     margin: 0.3rem auto;
     max-width: 320px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
   }
 
   .property-image {
@@ -339,14 +427,27 @@
     font-size: 1.2rem;
   }
 
+  .property-info {
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.7rem;
+  }
+
+  .property-type {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
   .view-details-btn i {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .slick-prev,
   .slick-next {
     width: 30px;
     height: 30px;
+    background-color: rgba(128, 0, 32, 0.85);
   }
 
   .slick-prev:before,
@@ -363,10 +464,36 @@
   }
 
   .slick-dots {
-    bottom: -30px;
+    bottom: -25px;
   }
 
   .slick-dots li button:before {
     font-size: 10px;
+  }
+}
+
+@media (max-width: 375px) {
+  .property-card {
+    max-width: 280px;
+  }
+
+  .property-image {
+    height: 180px;
+  }
+
+  .property-details {
+    padding: 0.7rem;
+  }
+
+  .property-title {
+    font-size: 0.95rem;
+  }
+
+  .property-price {
+    font-size: 1.1rem;
+  }
+
+  .view-details-btn i {
+    font-size: 24px;
   }
 }

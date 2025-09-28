@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./PropertyCard.css";
 
 const PropertyCard = ({
-  id = "1", // Default ID for existing cards
+  id = "1",
   image,
   title,
   price,
@@ -11,17 +11,13 @@ const PropertyCard = ({
   baths,
   sqft,
   location = "Al Danah - Abou Dabi - Émirats arabes unis",
-  onViewDetails,
   isHotDeal = false,
 }) => {
   const navigate = useNavigate();
 
-  const handleViewDetails = () => {
-    if (onViewDetails) {
-      onViewDetails();
-    } else {
-      navigate(`/property/${id}`);
-    }
+  const handleViewDetails = (e) => {
+    e.stopPropagation(); // Empêche la propagation du clic
+    navigate(`/property/${id}`);
   };
   return (
     <div

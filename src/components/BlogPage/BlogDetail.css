@@ -390,13 +390,83 @@
   color: #600018;
 }
 
-.loading-spinner {
+.loading-spinner,
+.blog-error,
+.blog-not-found {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 300px;
-  font-size: 1.5rem;
+  text-align: center;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+.loading-spinner i,
+.blog-error i,
+.blog-not-found i {
+  font-size: 3rem;
   color: #800020;
+  margin-bottom: 1.5rem;
+}
+
+.loading-spinner p,
+.blog-error p,
+.blog-not-found p {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 1rem 0;
+}
+
+.blog-error h2,
+.blog-not-found h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.retry-btn,
+.back-to-blogs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.retry-btn {
+  background-color: #800020;
+  color: white;
+  border: none;
+}
+
+.retry-btn:hover {
+  background-color: #600018;
+}
+
+.back-to-blogs-btn {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+  text-decoration: none;
+}
+
+.back-to-blogs-btn:hover {
+  background-color: #eee;
 }
 
 .blog-not-found {

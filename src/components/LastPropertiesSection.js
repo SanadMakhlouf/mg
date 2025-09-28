@@ -1,52 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./LastPropertiesSection.css";
 import PropertyCard from "./PropertyCard/PropertyCard";
+import config from "../config";
 
 const LastPropertiesSection = () => {
-  const properties = [
-    {
-      id: "1",
-      image: "/hero-bg.jpg",
-      title: "OCEAN BREEZE VILLA",
-      price: "3,281,888",
-      beds: "5",
-      baths: "5",
-      sqft: "500",
-      isHotDeal: true,
-    },
-    {
-      id: "2",
-      image: "/hero-bg2.jpg",
-      title: "SKYLINE APARTMENT",
-      price: "1,950,000",
-      beds: "3",
-      baths: "2",
-      sqft: "320",
-    },
-    {
-      id: "3",
-      image: "/test.jpg",
-      title: "DESERT OASIS VILLA",
-      price: "4,500,000",
-      beds: "6",
-      baths: "7",
-      sqft: "750",
-      isHotDeal: true,
-    },
-    {
-      id: "4",
-      image: "/hero-bgg.jpg",
-      title: "MARINA HEIGHTS",
-      price: "2,800,000",
-      beds: "4",
-      baths: "3",
-      sqft: "450",
-    },
-  ];
+  const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        const response = await fetch(`${config.API_URL}/properties`);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.success && Array.isArray(data.data)) {
+          // Filtrer pour obtenir uniquement les propriétés de type "ready-project"
+          const readyProjects = data.data.filter(
+            (prop) => prop.category === "ready-project"
+          );
+
+          // S'il n'y a pas assez de ready-projects, prendre aussi d'autres propriétés
+          let projectsToShow =
+            readyProjects.length >= 6 ? readyProjects : data.data;
+
+          // Prendre 6 projets au hasard
+          const randomProjects = shuffleArray(projectsToShow).slice(0, 6);
+          setProperties(randomProjects);
+        } else {
+          setError("Failed to fetch properties data");
+        }
+      } catch (err) {
+        console.error("Error fetching properties:", err);
+        setError(`Error fetching properties: ${err.message}`);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProperties();
+  }, []);
+
+  // Fonction pour mélanger un tableau (algorithme de Fisher-Yates)
+  const shuffleArray = (array) => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  };
 
   const settings = {
     dots: true,
@@ -81,17 +93,50 @@ const LastPropertiesSection = () => {
   return (
     <section className="last-properties-section">
       <div className="last-properties-header">
-        <h2>LAST PROPRETIES.</h2>
+        <h2>FEATURED PROPERTIES</h2>
         <Link to="/buy" className="view-all-btn">
           VIEW ALL PROPERTIES
         </Link>
       </div>
       <div className="carousel-container">
-        <Slider {...settings}>
-          {properties.map((property, index) => (
-            <PropertyCard key={index} {...property} />
-          ))}
-        </Slider>
+        {loading ? (
+          <div className="loading-container">
+            <p>Loading properties...</p>
+          </div>
+        ) : error ? (
+          <div className="error-container">
+            <p>{error}</p>
+          </div>
+        ) : properties.length > 0 ? (
+          <Slider {...settings}>
+            {properties.map((property, index) => (
+              <PropertyCard
+                key={property.id || index}
+                id={property.id}
+                image={
+                  property.pictures && property.pictures.length > 0
+                    ? `${config.API_URL.replace("/api", "")}/storage/${
+                        property.pictures[0]
+                      }`
+                    : "/test.jpg"
+                }
+                title={property.name || "PROPERTY"}
+                price={
+                  property.price ? `${property.price}` : "Contact for price"
+                }
+                beds={property.bedrooms || "N/A"}
+                baths={property.bathrooms || "N/A"}
+                sqft={property.area || "N/A"}
+                location={property.location || "Dubai, UAE"}
+                isHotDeal={property.category === "off-plans"}
+              />
+            ))}
+          </Slider>
+        ) : (
+          <div className="no-properties-message">
+            <p>No properties available at the moment.</p>
+          </div>
+        )}
       </div>
     </section>
   );
