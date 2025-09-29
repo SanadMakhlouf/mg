@@ -278,18 +278,10 @@ const PopularDevelopersSection = () => {
                   style={{
                     position: "absolute",
                     left: "50%",
-                    transform:
-                      position === 0
-                        ? "translateX(-50%) scale(1)"
-                        : position === 1
-                        ? "translateX(calc(-50% + 320px)) scale(0.9)"
-                        : position === 2
-                        ? "translateX(calc(-50% + 490px)) scale(0.9)"
-                        : position === 3
-                        ? "translateX(calc(-50% - 490px)) scale(0.9)"
-                        : "translateX(calc(-50% - 320px)) scale(0.9)",
-                    opacity: position === 0 ? 1 : 0.7,
-                    zIndex: position === 0 ? 2 : 1,
+                    transform: "translateX(-50%)",
+                    opacity: position === 0 ? 1 : 0,
+                    zIndex: position === 0 ? 2 : 0,
+                    display: position === 0 ? "block" : "none",
                   }}
                 >
                   <div className="developer-image">

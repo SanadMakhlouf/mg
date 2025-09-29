@@ -43,6 +43,10 @@ const PropertiesSection = () => {
     <div className="properties-section">
       <div className="properties-header">
         <h2>Property for Buy</h2>
+<<<<<<< HEAD
+=======
+      
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
       </div>
       <div className="properties-grid">
         {loading ? (

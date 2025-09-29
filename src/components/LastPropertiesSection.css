@@ -265,8 +265,13 @@
     font-size: 2rem;
   }
 
+  .last-properties-header h2 {
+    font-size: 2rem;
+  }
+
   .carousel-container {
     padding: 0 2rem;
+<<<<<<< HEAD
     margin-top: 40px;
   }
 
@@ -286,21 +291,44 @@
 
   .slick-next {
     right: -15px;
+=======
+    margin-top: 60px;
+  }
+
+  .property-card {
+    padding: 0.75rem;
+    margin: 1rem auto;
+    max-width: 600px;
+  }
+
+  .property-image {
+    height: 300px;
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   }
 }
 
 @media (max-width: 768px) {
   .last-properties-section {
+<<<<<<< HEAD
     padding: 2.5rem 0;
     margin-top: 2.5rem;
   }
 
   .last-properties-header h2 {
     font-size: 1.8rem;
+=======
+    padding: 3rem 0;
+    margin-top: 3rem;
+  }
+
+  .last-properties-header h2 {
+    font-size: 1.75rem;
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   }
 
   .carousel-container {
     padding: 0 1.5rem;
+<<<<<<< HEAD
     margin-top: 30px;
   }
 
@@ -308,16 +336,29 @@
     margin: 0.5rem auto;
     max-width: 450px;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+=======
+    margin-top: 40px;
+  }
+
+  .property-card {
+    padding: 0.5rem;
+    margin: 0.75rem auto;
+    max-width: 450px;
+    width: 100%;
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   }
 
   .property-image {
     height: 250px;
   }
 
+<<<<<<< HEAD
   .property-details {
     padding: 0.85rem;
   }
 
+=======
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   .property-title {
     font-size: 1.1rem;
   }
@@ -326,6 +367,7 @@
     font-size: 1.3rem;
   }
 
+<<<<<<< HEAD
   .property-info {
     margin-bottom: 0.85rem;
     padding-bottom: 0.85rem;
@@ -343,6 +385,13 @@
     font-size: 20px;
   }
 
+=======
+  .property-location {
+    font-size: 10px;
+  }
+
+  /* Adjust navigation arrows position */
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   .slick-prev {
     left: -10px;
   }
@@ -351,6 +400,7 @@
     right: -10px;
   }
 
+<<<<<<< HEAD
   .slick-dots {
     bottom: -35px;
   }
@@ -382,26 +432,50 @@
 
   .property-details {
     padding: 0.8rem;
+=======
+  .slick-prev,
+  .slick-next {
+    width: 35px;
+    height: 35px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 20px;
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   }
 }
 
 @media (max-width: 480px) {
   .last-properties-section {
+<<<<<<< HEAD
     padding: 1.5rem 0;
     margin-top: 1.5rem;
+=======
+    padding: 2rem 0;
+    margin-top: 2rem;
+  }
+
+  .last-properties-header {
+    padding: 0 15px;
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   }
 
   .last-properties-header h2 {
     font-size: 1.5rem;
+<<<<<<< HEAD
   }
 
   .last-properties-header .view-all-btn {
     padding: 0.4rem 0.9rem;
     font-size: 0.9rem;
+=======
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   }
 
   .carousel-container {
     padding: 0 1rem;
+<<<<<<< HEAD
     margin-top: 20px;
   }
 
@@ -409,6 +483,15 @@
     margin: 0.3rem auto;
     max-width: 320px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+=======
+    margin-top: 30px;
+  }
+
+  .property-card {
+    padding: 0.5rem;
+    margin: 0.5rem auto;
+    max-width: 320px;
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   }
 
   .property-image {
@@ -427,11 +510,14 @@
     font-size: 1.2rem;
   }
 
+<<<<<<< HEAD
   .property-info {
     margin-bottom: 0.7rem;
     padding-bottom: 0.7rem;
   }
 
+=======
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   .property-type {
     top: 1rem;
     left: 1rem;
@@ -439,20 +525,40 @@
     font-size: 0.8rem;
   }
 
+<<<<<<< HEAD
   .view-details-btn i {
     font-size: 28px;
   }
 
+=======
+  .property-info {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .info-item span:first-child {
+    font-size: 0.9rem;
+  }
+
+  .info-item span:last-child {
+    font-size: 0.8rem;
+  }
+
+  /* Adjust navigation for single card */
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   .slick-prev,
   .slick-next {
     width: 30px;
     height: 30px;
+<<<<<<< HEAD
     background-color: rgba(128, 0, 32, 0.85);
   }
 
   .slick-prev:before,
   .slick-next:before {
     font-size: 16px;
+=======
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   }
 
   .slick-prev {
@@ -463,12 +569,23 @@
     right: -5px;
   }
 
+<<<<<<< HEAD
   .slick-dots {
     bottom: -25px;
+=======
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 16px;
+  }
+
+  .slick-dots {
+    bottom: -30px;
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   }
 
   .slick-dots li button:before {
     font-size: 10px;
+<<<<<<< HEAD
   }
 }
 
@@ -495,5 +612,7 @@
 
   .view-details-btn i {
     font-size: 24px;
+=======
+>>>>>>> fc24e0f6b46939fa405beae16fecc1be2bddb070
   }
 }
