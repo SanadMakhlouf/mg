@@ -73,8 +73,8 @@ const PropertiesSection = ({ filterParams }) => {
               propertiesData = propertiesData.filter((property) => {
                 // Check if property has type and if it matches the filter
                 return (
-                  property.propertyType &&
-                  property.propertyType.toLowerCase() ===
+                  property.type &&
+                  property.type.toLowerCase() ===
                     filterParams.propertyType.toLowerCase()
                 );
               });
