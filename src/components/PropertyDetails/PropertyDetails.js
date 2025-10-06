@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./PropertyDetails.css";
 import config from "../../config";
+import ImageCarousel from "./ImageCarousel";
 
 const PropertyDetails = () => {
   const { id } = useParams();
@@ -184,11 +185,11 @@ const PropertyDetails = () => {
   // Afficher les liens des réseaux sociaux dans la console
   console.log("Agent social media links:", property.agent?.social_media);
 
-  // Construire l'URL de l'image principale
-  const mainImageUrl =
+  // Prepare images for carousel
+  const propertyImages =
     property.pictures && property.pictures.length > 0
-      ? property.pictures[0]
-      : "/test.jpg";
+      ? property.pictures
+      : ["/test.jpg"];
 
   return (
     <div className="property-details-page">
@@ -202,11 +203,7 @@ const PropertyDetails = () => {
 
         <div className="property-main-content">
           <div className="property-images">
-            <img
-              src={mainImageUrl}
-              alt={property.name}
-              className="main-image"
-            />
+            <ImageCarousel images={propertyImages} alt={property.name} />
             {isHotDeal && (
               <div className="hot-deal-badge-details">HOT DEAL</div>
             )}
