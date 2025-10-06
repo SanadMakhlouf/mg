@@ -14,10 +14,12 @@ import PropertyDetails from "./components/PropertyDetails/PropertyDetails";
 import BlogPage from "./components/BlogPage/BlogPage";
 import BlogDetail from "./components/BlogPage/BlogDetail";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="App">
         <Navbar />
         <Routes>

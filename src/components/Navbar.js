@@ -93,6 +93,9 @@ const Navbar = () => {
           <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
             ABOUT US
           </Link>
+          <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>
+            BLOG
+          </Link>
           <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
             CONTACT
           </Link>

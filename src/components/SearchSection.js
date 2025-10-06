@@ -6,7 +6,6 @@ const SearchSection = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("rental");
   const [searchParams, setSearchParams] = useState({
-    completionStatus: "",
     location: "",
     propertyType: "",
     minBathrooms: "",
@@ -71,17 +70,6 @@ const SearchSection = () => {
         <div className="search-form">
           <div className="search-row">
             <div className="search-field">
-              <select
-                name="completionStatus"
-                value={searchParams.completionStatus}
-                onChange={handleInputChange}
-              >
-                <option value="">Completion Status</option>
-                <option value="ready">Ready</option>
-                <option value="under-construction">Under Construction</option>
-              </select>
-            </div>
-            <div className="search-field">
               <input
                 type="text"
                 name="location"
@@ -95,11 +83,6 @@ const SearchSection = () => {
                 }}
               />
             </div>
-            <button className="search-btn" onClick={handleSearch}>
-              SEARCH
-            </button>
-          </div>
-          <div className="search-row">
             <div className="search-field">
               <select
                 name="propertyType"
@@ -114,6 +97,11 @@ const SearchSection = () => {
                 <option value="shop">Shop</option>
               </select>
             </div>
+            <button className="search-btn" onClick={handleSearch}>
+              SEARCH
+            </button>
+          </div>
+          <div className="search-row">
             <div className="search-field">
               <select
                 name="minBathrooms"
@@ -139,6 +127,7 @@ const SearchSection = () => {
                 <option value="4">4+</option>
               </select>
             </div>
+            <div className="search-field">{/* Placeholder for balance */}</div>
           </div>
           <div className="search-row">
             <div className="search-field">

@@ -8,16 +8,7 @@ const BlogHero = ({ title, subtitle }) => {
       <div className="blog-hero-content">
         <h1>{title}</h1>
         <p>{subtitle}</p>
-        <div className="blog-search">
-          <input
-            type="text"
-            placeholder="Search articles..."
-            className="blog-search-input"
-          />
-          <button className="blog-search-btn">
-            <i className="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </div>
+  
       </div>
     </div>
   );
