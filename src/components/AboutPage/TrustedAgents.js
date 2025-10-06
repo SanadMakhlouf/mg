@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./TrustedAgents.css";
 import user1 from "../../assets/about-us/user1.jpg";
 import user2 from "../../assets/about-us/user2.jpg";
+import ceoImage from "../../assets/Abdullah Chaar- CEO.png";
+import cooImage from "../../assets/Greg MCEWEN- COO.png";
 import config from "../../config";
-// Using the existing images for CEO and CTO, you can replace these with actual images later
 
 const TrustedAgents = () => {
   const [agents, setAgents] = useState([]);
@@ -77,23 +78,24 @@ const TrustedAgents = () => {
             {/* CEO */}
             <div className="executive-card">
               <div className="executive-image">
-                <img src={user1} alt="CEO" />
+                <img src={ceoImage} alt="Abdullah Chaar - CEO" />
               </div>
               <div className="executive-info">
-                <h3>John Smith</h3>
+                <h3>Abdullah Chaar</h3>
                 <p className="executive-title">Chief Executive Officer</p>
                 <div className="executive-description">
                   <p>
-                    With over 20 years of experience in real estate development
-                    and investment, John has led the company to new heights
-                    since its founding. His vision for sustainable growth and
-                    commitment to excellence has established Meridian Group as a
-                    leader in the UAE real estate market.
+                    Abdullah Chaar leads Meridian Group with a vision of
+                    excellence and innovation in the UAE real estate market. His
+                    strategic leadership and deep understanding of the regional
+                    market have positioned Meridian Group as a trusted name in
+                    property services.
                   </p>
                   <p>
-                    John holds an MBA from Harvard Business School and has
-                    previously served as Director of Operations at several
-                    prestigious international real estate firms.
+                    With extensive experience in real estate development and
+                    investment, Abdullah brings a wealth of knowledge and
+                    expertise to drive the company's growth and success in the
+                    competitive UAE market.
                   </p>
                 </div>
                 <div className="social-icons">
@@ -110,27 +112,28 @@ const TrustedAgents = () => {
               </div>
             </div>
 
-            {/* CTO */}
+            {/* COO */}
             <div className="executive-card">
               <div className="executive-image">
-                <img src={user2} alt="CTO" />
+                <img src={cooImage} alt="Greg McEwen - COO" />
               </div>
               <div className="executive-info">
-                <h3>Sarah Johnson</h3>
-                <p className="executive-title">Chief Technology Officer</p>
+                <h3>Greg McEwen</h3>
+                <p className="executive-title">Chief Operating Officer</p>
                 <div className="executive-description">
                   <p>
-                    Sarah brings innovative technological solutions to Meridian
-                    Group's operations, overseeing digital transformation and
-                    implementing cutting-edge property technology. Her expertise
-                    in PropTech has revolutionized how we connect clients with
-                    their perfect properties.
+                    Greg McEwen oversees the day-to-day operations of Meridian
+                    Group, ensuring operational excellence and efficient service
+                    delivery across all business units. His operational
+                    expertise and strategic planning capabilities drive the
+                    company's continued growth and success.
                   </p>
                   <p>
-                    With a background in Computer Science and Real Estate
-                    Management, Sarah previously led technology initiatives at
-                    major property management firms and tech startups in Dubai
-                    and London.
+                    With a strong background in operations management and
+                    business development, Greg plays a crucial role in
+                    maintaining Meridian Group's high standards of service
+                    quality and client satisfaction in the competitive UAE real
+                    estate market.
                   </p>
                 </div>
                 <div className="social-icons">
