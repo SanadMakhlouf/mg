@@ -182,9 +182,7 @@ const PropertiesSection = ({ filterParams }) => {
                 <PropertyCard
                   key={property.id}
                   id={property.id}
-                  image={`${config.API_URL.replace("/api/v1", "")}/storage/${
-                    property.pictures[0]
-                  }`}
+                  image={property.pictures[0]}
                   title={property.name}
                   price={property.price}
                   beds={property.bedrooms}

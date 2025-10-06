@@ -85,10 +85,7 @@ const ProjectsGrid = () => {
         <div
           className="project-image"
           style={{
-            backgroundImage: `url(${config.API_URL.replace(
-              "/api/v1",
-              ""
-            )}/storage/${project.pictures[0]})`,
+            backgroundImage: `url(${project.pictures[0]})`,
           }}
         >
           <div className="play-button">
