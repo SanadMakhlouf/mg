@@ -96,6 +96,9 @@ const Navbar = () => {
           <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>
             BLOG
           </Link>
+          <Link to="/interactive-map" onClick={() => setIsMobileMenuOpen(false)} className="beta-link">
+            MAP <span className="beta-badge">BETA</span>
+          </Link>
           <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
             CONTACT
           </Link>

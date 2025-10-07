@@ -13,6 +13,7 @@ import Services from "./components/ServicesPage/Services";
 import PropertyDetails from "./components/PropertyDetails/PropertyDetails";
 import BlogPage from "./components/BlogPage/BlogPage";
 import BlogDetail from "./components/BlogPage/BlogDetail";
+import InteractiveMap from "./components/InteractiveMapPage/InteractiveMap";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/property/:id" element={<PropertyDetails />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/interactive-map" element={<InteractiveMap />} />
         </Routes>
         <Footer />
       </div>

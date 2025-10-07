@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Abu Dhabi 3D – Custom Controls (CDN/AMD)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ArcGIS JS CSS + Loader (CDN) -->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css" />
+  <script src="https://js.arcgis.com/4.33/"></script>
+
+  <style>
+    html, body, #viewDiv { height: 100%; margin: 0; }
+    .toolbar {
+      position: absolute; top: 12px; left: 12px; z-index: 10;
+      background: rgba(255,255,255,.92); backdrop-filter: blur(6px);
+      border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.12);
+      padding: 10px; display: grid; gap: 8px; min-width: 240px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+    .toolbar h3 { margin: 0 0 6px; font-size: 14px; font-weight: 600; }
+    .toolbar button, .toolbar select {
+      width: 100%; padding: 8px 10px; border-radius: 10px; border: 1px solid #ddd; background: #fff;
+      cursor: pointer; font-size: 13px;
+    }
+    .credit {
+      position:absolute; bottom:8px; left:12px; font-size:12px; color:#333;
+      background:rgba(255,255,255,.8); padding:4px 8px; border-radius:8px;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewDiv"></div>
+
+  <!-- Custom toolbar -->
+  <div class="toolbar">
+    <h3>Custom Controls</h3>
+    <button id="btnHome">Reset View</button>
+    <select id="cameraSelect">
+      <option value="">Camera preset…</option>
+      <option value="Corniche">Corniche</option>
+      <option value="Louvre Abu Dhabi">Louvre Abu Dhabi</option>
+      <option value="Grand Mosque">Grand Mosque</option>
+    </select>
+    <select id="layerSelect">
+      <option value="show-all">Show all layers</option>
+      <!-- Populated at runtime -->
+    </select>
+  </div>
+
+  <div class="credit">© Map data & attribution shown in-app</div>
+
+  <script>
+    // Load ArcGIS modules via AMD (CDN-friendly)
+    require([
+      "esri/WebScene",
+      "esri/views/SceneView",
+      "esri/widgets/Search",
+      "esri/widgets/Home",
+      "esri/widgets/Fullscreen",
+      "esri/widgets/BasemapGallery",
+      "esri/widgets/LayerList",
+      "esri/widgets/Legend",
+      "esri/widgets/Daylight",
+      "esri/widgets/DirectLineMeasurement3D",
+      "esri/widgets/Screenshot",
+      "esri/widgets/Expand"
+      // If you need API key usage for premium services:
+      // ,"esri/config"
+    ], function (
+      WebScene, SceneView, Search, Home, Fullscreen, BasemapGallery,
+      LayerList, Legend, Daylight, DirectLineMeasurement3D, Screenshot, Expand
+      // , esriConfig
+    ) {
+      // OPTIONAL: if your scene/basemaps require authenticated premium services
+      // esriConfig.apiKey = "YOUR_ARCGIS_API_KEY";
+
+      // 1) Load the same Abu Dhabi WebScene by item ID
+      const scene = new WebScene({
+        portalItem: { id: "bf7310c8edf14000a58a883b97d0c9ad" }
+      });
+
+      // 2) Create the 3D view
+      const view = new SceneView({
+        container: "viewDiv",
+        map: scene,
+        environment: {
+          lighting: { date: new Date(), directShadowsEnabled: true },
+          atmosphereEnabled: true
+        },
+        qualityProfile: "high", // switch to "medium" for weaker devices
+        popup: { dockEnabled: true, dockOptions: { position: "top-right" } }
+      });
+
+      // 3) Core widgets
+      view.ui.add(new Search({ view }), "top-right");
+      const home = new Home({ view });
+      view.ui.add(home, "top-left");
+      view.ui.add(new Fullscreen({ view }), "top-right");
+
+      // 4) Layer tools (LayerList + Legend in Expand panels)
+      const layerList = new Expand({ content: new LayerList({ view }), view, expandTooltip: "Layers" });
+      const legend = new Expand({ content: new Legend({ view }), view, expandTooltip: "Legend" });
+      view.ui.add(layerList, "top-right");
+      view.ui.add(legend, "top-right");
+
+      // 5) Basemap gallery
+      const basemapGallery = new Expand({
+        content: new BasemapGallery({ view }),
+        view, expandTooltip: "Basemaps"
+      });
+      view.ui.add(basemapGallery, "top-right");
+
+      // 6) Daylight (sun/shadows/time of day)
+      const daylight = new Expand({
+        content: new Daylight({ view, playSpeedMultiplier: 1 }),
+        view, expandTooltip: "Daylight"
+      });
+      view.ui.add(daylight, "top-right");
+
+      // 7) 3D measurement
+      const measure = new Expand({
+        content: new DirectLineMeasurement3D({ view }),
+        view, expandTooltip: "Measure 3D"
+      });
+      view.ui.add(measure, "top-right");
+
+      // 8) Screenshot
+      const screenshot = new Expand({
+        content: new Screenshot({ view }),
+        view, expandTooltip: "Screenshot"
+      });
+      view.ui.add(screenshot, "top-right");
+
+      // 9) Simple custom controls (left toolbar)
+      const toolbarEl = document.querySelector(".toolbar");
+      const layerSelect = document.getElementById("layerSelect");
+      const cameraSelect = document.getElementById("cameraSelect");
+
+      // Populate operational layers once the scene is ready
+      view.when(function () {
+        // scene.allLayers includes group layers & sublayers; we’ll list top-level operational layers
+        scene.layers.forEach(function (layer) {
+          const opt = document.createElement("option");
+          opt.value = layer.id;
+          opt.textContent = layer.title || layer.id;
+          layerSelect.appendChild(opt);
+        });
+      });
+
+      // Toggle selected layer visibility (simple single-select demo)
+      layerSelect.addEventListener("change", function () {
+        const id = layerSelect.value;
+        if (id === "show-all") {
+          scene.layers.forEach(function (l) { l.visible = true; });
+          return;
+        }
+        scene.layers.forEach(function (l) {
+          l.visible = (l.id === id);
+        });
+      });
+
+      // Camera presets (tweak positions/angles as you like)
+      const cameras = {
+        "Corniche": {
+          position: { longitude: 54.321, latitude: 24.489, z: 800 },
+          heading: 70, tilt: 65
+        },
+        "Louvre Abu Dhabi": {
+          position: { longitude: 54.4107, latitude: 24.5335, z: 600 },
+          heading: 250, tilt: 70
+        },
+        "Grand Mosque": {
+          position: { longitude: 54.4766, latitude: 24.4129, z: 800 },
+          heading: 180, tilt: 65
+        }
+      };
+
+      cameraSelect.addEventListener("change", function () {
+        const key = cameraSelect.value;
+        if (!key) return;
+        const cam = cameras[key];
+        view.goTo({
+          position: cam.position,
+          heading: cam.heading,
+          tilt: cam.tilt
+        }, { animate: true, duration: 2000, easing: "ease-in-out" });
+      });
+
+      // Reset to scene’s initial viewpoint
+      document.getElementById("btnHome").addEventListener("click", function () {
+        home.go();
+      });
+    });
+  </script>
+</body>
+</html>

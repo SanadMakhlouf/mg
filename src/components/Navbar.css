@@ -83,6 +83,35 @@
   cursor: pointer;
 }
 
+/* Beta Link Styles */
+.beta-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.beta-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #800020, #c41e3a);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(128, 0, 32, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(128, 0, 32, 0.8), 0 0 25px rgba(196, 30, 58, 0.6);
+  }
+}
+
 /* Dropdown styles */
 .dropdown-container {
   position: relative;
