@@ -225,6 +225,12 @@
   opacity: 0.9;
 }
 
+.location-btn.active {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.6);
+}
+
 .control-btn:disabled,
 .location-btn:disabled {
   opacity: 0.5;

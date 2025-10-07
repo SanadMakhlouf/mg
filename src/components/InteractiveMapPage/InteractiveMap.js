@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WebScene from '@arcgis/core/WebScene';
 import SceneView from '@arcgis/core/views/SceneView';
+import Basemap from '@arcgis/core/Basemap';
 import './InteractiveMap.css';
 
 const InteractiveMap = () => {
@@ -9,6 +10,7 @@ const InteractiveMap = () => {
   const mapDiv = useRef(null);
   const sceneViewRef = useRef(null);
   const [isViewReady, setIsViewReady] = useState(false);
+  const [currentBasemap, setCurrentBasemap] = useState('streets-navigation-vector');
   const mountedRef = useRef(false);
 
   // Initialize ArcGIS 3D Map
@@ -27,15 +29,6 @@ const InteractiveMap = () => {
       const view = new SceneView({
         container: mapDiv.current,
         map: webscene,
-        camera: {
-          position: {
-            x: 54.350047, // longitude (custom coordinates)
-            y: 24.482752, // latitude (custom coordinates)
-            z: 50000 // altitude in meters
-          },
-          tilt: 65, // Camera tilt (0 = top-down, 90 = horizontal)
-          heading: 0 // Camera rotation
-        },
         qualityProfile: 'high',
         environment: {
           atmosphere: {
@@ -49,10 +42,26 @@ const InteractiveMap = () => {
 
       sceneViewRef.current = view;
 
-      // Wait for view to be ready
+      // Wait for view to be ready, THEN set camera position
       view.when(() => {
         console.log('SceneView is ready');
-        setIsViewReady(true);
+        
+        // Override the WebScene's default camera with our custom position
+        view.goTo({
+          position: {
+            x: 54.350047, // longitude (custom coordinates)
+            y: 24.482752, // latitude (custom coordinates)
+            z: 5000 // altitude in meters (lower for closer view)
+          },
+          tilt: 65,
+          heading: 0
+        }, {
+          animate: false // No animation, instant position
+        }).then(() => {
+          setIsViewReady(true);
+          console.log('Camera set to custom position');
+        });
+        
       }).catch((error) => {
         console.error('Error loading SceneView:', error);
         setIsViewReady(false);
@@ -67,6 +76,77 @@ const InteractiveMap = () => {
       };
     }
   }, []);
+
+  const changeBasemap = (basemapId) => {
+    if (sceneViewRef.current && isViewReady) {
+      try {
+        const newBasemap = Basemap.fromId(basemapId);
+        sceneViewRef.current.map.basemap = newBasemap;
+        setCurrentBasemap(basemapId);
+        console.log('Basemap changed to:', basemapId);
+      } catch (error) {
+        console.error('Error changing basemap:', error);
+      }
+    }
+  };
+
+  const zoomToFeature = async (view, objectId) => {
+    try {
+      // Wait for all layers to load
+      await view.when();
+      
+      // Get all layers from the webscene
+      const layers = view.map.allLayers;
+      
+      console.log('Searching for object ID:', objectId);
+      console.log('Available layers:', layers.length);
+      
+      // Search through all layers for the feature
+      for (const layer of layers.items) {
+        if (layer.type === 'scene' || layer.type === 'feature') {
+          try {
+            // Query the layer for the specific object ID
+            const query = layer.createQuery();
+            query.objectIds = [objectId];
+            query.returnGeometry = true;
+            query.outFields = ['*'];
+            
+            const result = await layer.queryFeatures(query);
+            
+            if (result.features.length > 0) {
+              const feature = result.features[0];
+              console.log('Found feature:', feature);
+              
+              // Zoom to the feature
+              view.goTo({
+                target: feature,
+                zoom: 18, // Close zoom level to see the building
+                tilt: 65,
+                heading: 0
+              }, {
+                duration: 3000,
+                easing: 'ease-in-out'
+              });
+              
+              // Optionally highlight the feature
+              view.whenLayerView(layer).then((layerView) => {
+                layerView.highlight(feature);
+              });
+              
+              return; // Stop searching once found
+            }
+          } catch (err) {
+            // Layer doesn't support queries or feature not found, continue
+            console.log('Layer query failed:', layer.title, err.message);
+          }
+        }
+      }
+      
+      console.warn('Feature with object ID', objectId, 'not found in any layer');
+    } catch (error) {
+      console.error('Error zooming to feature:', error);
+    }
+  };
 
   const handleResetView = () => {
     if (sceneViewRef.current && isViewReady) {
@@ -294,6 +374,61 @@ const InteractiveMap = () => {
             <button className="control-btn zoom-preset" onClick={handleZoomToCountry} title="Country Level (200km)" disabled={!isViewReady}>
               <i className="fas fa-globe-asia"></i>
               <span>Country</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="control-section">
+          <h3>Basemap</h3>
+          <div className="location-buttons">
+            <button 
+              className={`location-btn ${currentBasemap === 'streets-navigation-vector' ? 'active' : ''}`}
+              onClick={() => changeBasemap('streets-navigation-vector')} 
+              disabled={!isViewReady}
+            >
+              <i className="fas fa-directions"></i> Navigation
+            </button>
+            <button 
+              className={`location-btn ${currentBasemap === 'satellite' ? 'active' : ''}`}
+              onClick={() => changeBasemap('satellite')} 
+              disabled={!isViewReady}
+            >
+              <i className="fas fa-satellite"></i> Satellite
+            </button>
+            <button 
+              className={`location-btn ${currentBasemap === 'hybrid' ? 'active' : ''}`}
+              onClick={() => changeBasemap('hybrid')} 
+              disabled={!isViewReady}
+            >
+              <i className="fas fa-map"></i> Hybrid
+            </button>
+            <button 
+              className={`location-btn ${currentBasemap === 'streets' ? 'active' : ''}`}
+              onClick={() => changeBasemap('streets')} 
+              disabled={!isViewReady}
+            >
+              <i className="fas fa-road"></i> Streets
+            </button>
+            <button 
+              className={`location-btn ${currentBasemap === 'topo' ? 'active' : ''}`}
+              onClick={() => changeBasemap('topo')} 
+              disabled={!isViewReady}
+            >
+              <i className="fas fa-mountain"></i> Topographic
+            </button>
+            <button 
+              className={`location-btn ${currentBasemap === 'dark-gray' ? 'active' : ''}`}
+              onClick={() => changeBasemap('dark-gray')} 
+              disabled={!isViewReady}
+            >
+              <i className="fas fa-moon"></i> Dark
+            </button>
+            <button 
+              className={`location-btn ${currentBasemap === 'gray' ? 'active' : ''}`}
+              onClick={() => changeBasemap('gray')} 
+              disabled={!isViewReady}
+            >
+              <i className="fas fa-square"></i> Gray
             </button>
           </div>
         </div>
