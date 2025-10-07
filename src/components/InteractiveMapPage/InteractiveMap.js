@@ -9,14 +9,17 @@ const InteractiveMap = () => {
   const mapDiv = useRef(null);
   const sceneViewRef = useRef(null);
   const [isViewReady, setIsViewReady] = useState(false);
+  const mountedRef = useRef(false);
 
   // Initialize ArcGIS 3D Map
   useEffect(() => {
-    if (mapDiv.current && !sceneViewRef.current) {
-      // Use a pre-configured WebScene from ArcGIS Online
+    if (mapDiv.current && !mountedRef.current) {
+      mountedRef.current = true;
+
+      // Load the pre-configured WebScene from ArcGIS Online
       const webscene = new WebScene({
         portalItem: {
-          id: "bf7310c8edf14000a58a883b97d0c9ad" // Public 3D scene of UAE/Middle East
+          id: "bf7310c8edf14000a58a883b97d0c9ad" // Beautiful 3D scene with buildings
         }
       });
 
@@ -26,14 +29,22 @@ const InteractiveMap = () => {
         map: webscene,
         camera: {
           position: {
-            x: 54.3773, // longitude
-            y: 24.4539, // latitude
+            x: 54.350047, // longitude (custom coordinates)
+            y: 24.482752, // latitude (custom coordinates)
             z: 50000 // altitude in meters
           },
           tilt: 65, // Camera tilt (0 = top-down, 90 = horizontal)
           heading: 0 // Camera rotation
         },
-        qualityProfile: 'high'
+        qualityProfile: 'high',
+        environment: {
+          atmosphere: {
+            quality: 'high'
+          },
+          lighting: {
+            directShadowsEnabled: true
+          }
+        }
       });
 
       sceneViewRef.current = view;
@@ -44,11 +55,14 @@ const InteractiveMap = () => {
         setIsViewReady(true);
       }).catch((error) => {
         console.error('Error loading SceneView:', error);
+        setIsViewReady(false);
       });
 
       return () => {
         if (view) {
           view.destroy();
+          sceneViewRef.current = null;
+          mountedRef.current = false;
         }
       };
     }
@@ -58,8 +72,8 @@ const InteractiveMap = () => {
     if (sceneViewRef.current && isViewReady) {
       sceneViewRef.current.goTo({
         position: {
-          x: 54.3773,
-          y: 24.4539,
+          x: 54.3705,
+          y: 24.4764,
           z: 50000
         },
         tilt: 65,
@@ -138,17 +152,65 @@ const InteractiveMap = () => {
     }
   };
 
+  const handleZoomToStreet = () => {
+    if (sceneViewRef.current && isViewReady) {
+      sceneViewRef.current.goTo({
+        position: {
+          x: sceneViewRef.current.camera.position.x,
+          y: sceneViewRef.current.camera.position.y,
+          z: 500 // Street level - 500m
+        },
+        tilt: 75
+      }, {
+        duration: 1500,
+        easing: 'ease-in-out'
+      });
+    }
+  };
+
+  const handleZoomToCity = () => {
+    if (sceneViewRef.current && isViewReady) {
+      sceneViewRef.current.goTo({
+        position: {
+          x: sceneViewRef.current.camera.position.x,
+          y: sceneViewRef.current.camera.position.y,
+          z: 15000 // City level - 15km
+        },
+        tilt: 65
+      }, {
+        duration: 1500,
+        easing: 'ease-in-out'
+      });
+    }
+  };
+
+  const handleZoomToCountry = () => {
+    if (sceneViewRef.current && isViewReady) {
+      sceneViewRef.current.goTo({
+        position: {
+          x: 54.3705,
+          y: 24.4764,
+          z: 200000 // Country level - 200km
+        },
+        tilt: 45
+      }, {
+        duration: 2000,
+        easing: 'ease-in-out'
+      });
+    }
+  };
+
   const goToLocation = (location) => {
     if (!sceneViewRef.current || !isViewReady) return;
 
     const locations = {
-      dubai: { x: 55.2708, y: 25.2048, z: 15000 },
-      abudhabi: { x: 54.3773, y: 24.4539, z: 15000 },
-      sharjah: { x: 55.3781, y: 25.3463, z: 15000 },
-      rasalkhaimah: { x: 55.9432, y: 25.7893, z: 15000 },
-      fujairah: { x: 56.3261, y: 25.1288, z: 15000 },
-      ajman: { x: 55.5136, y: 25.4052, z: 10000 },
-      ummalquwain: { x: 55.5547, y: 25.5647, z: 10000 }
+      dubai: { x: 55.2708, y: 25.2048, z: 15000 }, // Dubai Downtown
+      abudhabi: { x: 54.3705, y: 24.4764, z: 15000 }, // Abu Dhabi Corniche
+      sharjah: { x: 55.3781, y: 25.3463, z: 15000 }, // Sharjah City
+      rasalkhaimah: { x: 55.9432, y: 25.7893, z: 15000 }, // RAK City
+      fujairah: { x: 56.3261, y: 25.1288, z: 15000 }, // Fujairah City
+      ajman: { x: 55.5136, y: 25.4052, z: 10000 }, // Ajman City
+      ummalquwain: { x: 55.5547, y: 25.5647, z: 10000 } // UAQ City
     };
 
     const coords = locations[location];
@@ -214,6 +276,24 @@ const InteractiveMap = () => {
             <button className="control-btn" onClick={handleZoomOut} title="Zoom Out" disabled={!isViewReady}>
               <i className="fas fa-search-minus"></i>
               <span>Zoom Out</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="control-section">
+          <h3>Zoom Presets</h3>
+          <div className="control-buttons">
+            <button className="control-btn zoom-preset" onClick={handleZoomToStreet} title="Street Level (500m)" disabled={!isViewReady}>
+              <i className="fas fa-road"></i>
+              <span>Street</span>
+            </button>
+            <button className="control-btn zoom-preset" onClick={handleZoomToCity} title="City Level (15km)" disabled={!isViewReady}>
+              <i className="fas fa-city"></i>
+              <span>City</span>
+            </button>
+            <button className="control-btn zoom-preset" onClick={handleZoomToCountry} title="Country Level (200km)" disabled={!isViewReady}>
+              <i className="fas fa-globe-asia"></i>
+              <span>Country</span>
             </button>
           </div>
         </div>
