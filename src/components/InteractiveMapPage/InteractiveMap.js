@@ -3,6 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import WebScene from '@arcgis/core/WebScene';
 import SceneView from '@arcgis/core/views/SceneView';
 import Basemap from '@arcgis/core/Basemap';
+import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer';
+import Graphic from '@arcgis/core/Graphic';
+import PointSymbol3D from '@arcgis/core/symbols/PointSymbol3D';
+import IconSymbol3DLayer from '@arcgis/core/symbols/IconSymbol3DLayer';
+import config from '../../config';
 import './InteractiveMap.css';
 
 const InteractiveMap = () => {
@@ -11,7 +16,12 @@ const InteractiveMap = () => {
   const sceneViewRef = useRef(null);
   const [isViewReady, setIsViewReady] = useState(false);
   const [currentBasemap, setCurrentBasemap] = useState('streets-navigation-vector');
+  const [properties, setProperties] = useState([]);
+  const [selectedProperty, setSelectedProperty] = useState(null);
+  const [showPropertyPopup, setShowPropertyPopup] = useState(false);
   const mountedRef = useRef(false);
+  const graphicsLayerRef = useRef(null);
+  const highlightRef = useRef(null);
 
   // Initialize ArcGIS 3D Map
   useEffect(() => {
@@ -24,6 +34,17 @@ const InteractiveMap = () => {
           id: "bf7310c8edf14000a58a883b97d0c9ad" // Beautiful 3D scene with buildings
         }
       });
+
+      // Create graphics layer for property markers
+      const graphicsLayer = new GraphicsLayer({
+        title: "Property Markers",
+        elevationInfo: {
+          mode: "relative-to-ground",
+          offset: 50
+        }
+      });
+      graphicsLayerRef.current = graphicsLayer;
+      webscene.add(graphicsLayer);
 
       // Create the 3D scene view
       const view = new SceneView({
@@ -61,6 +82,22 @@ const InteractiveMap = () => {
           setIsViewReady(true);
           console.log('Camera set to custom position');
         });
+
+        // Add click handler for property markers
+        view.on("click", (event) => {
+          view.hitTest(event).then((response) => {
+            if (response.results.length > 0) {
+              const graphic = response.results.find(
+                (result) => result.graphic && result.graphic.layer === graphicsLayer
+              );
+              
+              if (graphic) {
+                const propertyData = graphic.graphic.attributes;
+                handlePropertyClick(propertyData);
+              }
+            }
+          });
+        });
         
       }).catch((error) => {
         console.error('Error loading SceneView:', error);
@@ -76,6 +113,274 @@ const InteractiveMap = () => {
       };
     }
   }, []);
+
+  // Dummy property data
+  const dummyProperties = [
+    {
+      id: 1,
+      title: "Luxury Waterfront Villa - Al Raha Beach",
+      price: "4500000",
+      propertyType: "sale",
+      beds: 5,
+      baths: 6,
+      area: 6500,
+      location: "Al Raha Beach, Abu Dhabi",
+      description: "Stunning 5-bedroom villa with private beach access, infinity pool, and panoramic sea views. Modern architecture with premium finishes throughout.",
+      pictures: ["/test.jpg"],
+      latitude: 24.5147,
+      longitude: 54.6158
+    },
+    {
+      id: 2,
+      title: "Modern Apartment - Corniche Towers",
+      price: "85000",
+      propertyType: "rental",
+      beds: 2,
+      baths: 2,
+      area: 1450,
+      location: "Corniche Road, Abu Dhabi",
+      description: "Elegant 2-bedroom apartment with stunning Corniche views. Fully furnished with modern amenities, gym, and pool access.",
+      pictures: ["/test.jpg"],
+      latitude: 24.4764,
+      longitude: 54.3705
+    },
+    {
+      id: 3,
+      title: "Penthouse Suite - Saadiyat Island",
+      price: "8900000",
+      propertyType: "sale",
+      beds: 4,
+      baths: 5,
+      area: 5200,
+      location: "Saadiyat Island, Abu Dhabi",
+      description: "Exclusive penthouse with 360-degree views of the Arabian Gulf. Private elevator, rooftop terrace, and smart home technology.",
+      pictures: ["/test.jpg"],
+      latitude: 24.5398,
+      longitude: 54.4345
+    },
+    {
+      id: 4,
+      title: "Sky Gardens Residence - Al Reem Island",
+      price: "3200000",
+      propertyType: "offplan",
+      beds: 3,
+      baths: 4,
+      area: 2800,
+      location: "Al Reem Island, Abu Dhabi",
+      description: "Off-plan luxury development with sky gardens on every floor. Expected completion Q4 2026. Premium amenities and prime location.",
+      pictures: ["/test.jpg"],
+      latitude: 24.4965,
+      longitude: 54.4011
+    },
+    {
+      id: 5,
+      title: "Family Villa - Khalifa City",
+      price: "120000",
+      propertyType: "rental",
+      beds: 4,
+      baths: 4,
+      area: 3500,
+      location: "Khalifa City A, Abu Dhabi",
+      description: "Spacious 4-bedroom villa in family-friendly community. Private garden, maid's room, and covered parking for 3 cars.",
+      pictures: ["/test.jpg"],
+      latitude: 24.4239,
+      longitude: 54.5986
+    },
+    {
+      id: 6,
+      title: "Marina Residences - Yas Island",
+      price: "2850000",
+      propertyType: "offplan",
+      beds: 2,
+      baths: 3,
+      area: 1950,
+      location: "Yas Island, Abu Dhabi",
+      description: "Waterfront living at its finest. Off-plan development with marina views, beach access, and resort-style amenities. Completion 2027.",
+      pictures: ["/test.jpg"],
+      latitude: 24.4672,
+      longitude: 54.6086
+    },
+    {
+      id: 7,
+      title: "Executive Studio - Al Maryah Island",
+      price: "65000",
+      propertyType: "rental",
+      beds: 1,
+      baths: 1,
+      area: 850,
+      location: "Al Maryah Island, Abu Dhabi",
+      description: "Modern studio apartment in the heart of Abu Dhabi's financial district. Walking distance to The Galleria and premium dining.",
+      pictures: ["/test.jpg"],
+      latitude: 24.5028,
+      longitude: 54.3897
+    },
+    {
+      id: 8,
+      title: "Beachfront Palace - Saadiyat",
+      price: "15500000",
+      propertyType: "sale",
+      beds: 7,
+      baths: 8,
+      area: 12000,
+      location: "Saadiyat Beach, Abu Dhabi",
+      description: "Ultra-luxury beachfront palace with private beach, tennis court, and cinema room. Architectural masterpiece with imported materials.",
+      pictures: ["/test.jpg"],
+      latitude: 24.5556,
+      longitude: 54.4512
+    },
+    {
+      id: 9,
+      title: "City View Apartment - Downtown",
+      price: "2100000",
+      propertyType: "sale",
+      beds: 3,
+      baths: 3,
+      area: 2100,
+      location: "Downtown Abu Dhabi",
+      description: "Contemporary 3-bedroom apartment with floor-to-ceiling windows. Close to cultural landmarks and premium shopping.",
+      pictures: ["/test.jpg"],
+      latitude: 24.4539,
+      longitude: 54.3773
+    },
+    {
+      id: 10,
+      title: "Green Community Villa - Al Reef",
+      price: "95000",
+      propertyType: "rental",
+      beds: 3,
+      baths: 3,
+      area: 2800,
+      location: "Al Reef, Abu Dhabi",
+      description: "Eco-friendly villa in sustainable community with parks and cycling paths. Solar panels, energy-efficient design, and community pool.",
+      pictures: ["/test.jpg"],
+      latitude: 24.3994,
+      longitude: 54.6194
+    },
+    {
+      id: 11,
+      title: "Business Bay Tower - Capital Gate",
+      price: "4200000",
+      propertyType: "offplan",
+      beds: 2,
+      baths: 2,
+      area: 1600,
+      location: "Capital Gate District, Abu Dhabi",
+      description: "Off-plan commercial and residential tower in prime business district. Smart offices, coworking spaces, and luxury residences. 2028 completion.",
+      pictures: ["/test.jpg"],
+      latitude: 24.4186,
+      longitude: 54.4344
+    },
+    {
+      id: 12,
+      title: "Heritage Mansion - Al Mushrif",
+      price: "6800000",
+      propertyType: "sale",
+      beds: 6,
+      baths: 7,
+      area: 8500,
+      location: "Al Mushrif, Abu Dhabi",
+      description: "Classic Arabian architecture meets modern luxury. Grand entrance, multiple living areas, staff quarters, and lush landscaped gardens.",
+      pictures: ["/test.jpg"],
+      latitude: 24.4422,
+      longitude: 54.4586
+    }
+  ];
+
+  // Load properties (using dummy data)
+  useEffect(() => {
+    if (isViewReady) {
+      console.log('Loading dummy properties:', dummyProperties.length);
+      setProperties(dummyProperties);
+
+      // Add all dummy properties to the map
+      dummyProperties.forEach(property => {
+        addPropertyMarker(property);
+      });
+    }
+  }, [isViewReady]);
+
+  // Add property marker to map
+  const addPropertyMarker = (property) => {
+    if (!graphicsLayerRef.current || !property.latitude || !property.longitude) return;
+
+    const point = {
+      type: "point",
+      longitude: parseFloat(property.longitude),
+      latitude: parseFloat(property.latitude),
+      z: 0
+    };
+
+    // Different colors for different property types
+    const colorMap = {
+      sale: [255, 69, 0],      // Red-Orange for Sale
+      rental: [30, 144, 255],  // Dodger Blue for Rental
+      offplan: [50, 205, 50]   // Lime Green for Off-Plan
+    };
+
+    const symbol = new PointSymbol3D({
+      symbolLayers: [
+        new IconSymbol3DLayer({
+          resource: {
+            primitive: "circle"
+          },
+          material: {
+            color: colorMap[property.propertyType] || [255, 69, 0]
+          },
+          size: 20,
+          outline: {
+            color: [255, 255, 255, 0.9],
+            size: 2
+          }
+        })
+      ]
+    });
+
+    const getImageUrl = (pictures) => {
+      if (!pictures || pictures.length === 0) return '/test.jpg';
+      const pic = pictures[0];
+      if (pic.startsWith('http')) return pic;
+      return `${config.API_URL.replace('/api', '')}/storage/${pic}`;
+    };
+
+    const graphic = new Graphic({
+      geometry: point,
+      symbol: symbol,
+      attributes: {
+        id: property.id,
+        title: property.title,
+        price: property.price,
+        propertyType: property.propertyType,
+        beds: property.beds,
+        baths: property.baths,
+        area: property.area,
+        location: property.location,
+        description: property.description,
+        image: getImageUrl(property.pictures)
+      }
+    });
+
+    graphicsLayerRef.current.add(graphic);
+  };
+
+  // Handle property marker click
+  const handlePropertyClick = (propertyData) => {
+    console.log('Property clicked:', propertyData);
+    setSelectedProperty(propertyData);
+    setShowPropertyPopup(true);
+  };
+
+  // Close popup
+  const closePopup = () => {
+    setShowPropertyPopup(false);
+    setSelectedProperty(null);
+  };
+
+  // Navigate to property details
+  const viewPropertyDetails = () => {
+    if (selectedProperty) {
+      navigate(`/property/${selectedProperty.id}`);
+    }
+  };
 
   const changeBasemap = (basemapId) => {
     if (sceneViewRef.current && isViewReady) {
@@ -475,7 +780,100 @@ const InteractiveMap = () => {
       {isViewReady && (
         <div className="info-banner">
           <i className="fas fa-info-circle"></i>
-          <span>Use mouse to pan, scroll to zoom, right-click + drag to rotate</span>
+          <span>Use mouse to pan, scroll to zoom, right-click + drag to rotate • Click markers to view property details</span>
+        </div>
+      )}
+
+      {/* Property Popup */}
+      {showPropertyPopup && selectedProperty && (
+        <>
+          <div className="property-popup-overlay" onClick={closePopup}></div>
+          <div className="property-popup">
+            <button className="popup-close-btn" onClick={closePopup}>
+              <i className="fas fa-times"></i>
+            </button>
+            
+            <div className="popup-image">
+              <img src={selectedProperty.image} alt={selectedProperty.title} />
+              <div className="property-type-badge">
+                {selectedProperty.propertyType === 'sale' && '🏠 For Sale'}
+                {selectedProperty.propertyType === 'rental' && '🏢 For Rent'}
+                {selectedProperty.propertyType === 'offplan' && '🏗️ Off-Plan'}
+              </div>
+            </div>
+
+            <div className="popup-content">
+              <h2>{selectedProperty.title}</h2>
+              
+              <div className="popup-price">
+                AED {parseFloat(selectedProperty.price).toLocaleString()}
+                {selectedProperty.propertyType === 'rental' && '/month'}
+              </div>
+
+              {selectedProperty.location && (
+                <div className="popup-location">
+                  <i className="fas fa-map-marker-alt"></i>
+                  {selectedProperty.location}
+                </div>
+              )}
+
+              <div className="popup-features">
+                {selectedProperty.beds && (
+                  <div className="feature-item">
+                    <i className="fas fa-bed"></i>
+                    <span>{selectedProperty.beds} Beds</span>
+                  </div>
+                )}
+                {selectedProperty.baths && (
+                  <div className="feature-item">
+                    <i className="fas fa-bath"></i>
+                    <span>{selectedProperty.baths} Baths</span>
+                  </div>
+                )}
+                {selectedProperty.area && (
+                  <div className="feature-item">
+                    <i className="fas fa-ruler-combined"></i>
+                    <span>{selectedProperty.area} sqft</span>
+                  </div>
+                )}
+              </div>
+
+              {selectedProperty.description && (
+                <div className="popup-description">
+                  <p>{selectedProperty.description.substring(0, 150)}...</p>
+                </div>
+              )}
+
+              <button className="popup-view-btn" onClick={viewPropertyDetails}>
+                <i className="fas fa-eye"></i>
+                View Full Details
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Property Legend */}
+      {isViewReady && properties.length > 0 && (
+        <div className="property-legend">
+          <h4>Property Markers</h4>
+          <div className="legend-items">
+            <div className="legend-item">
+              <span className="legend-marker sale"></span>
+              <span>For Sale</span>
+            </div>
+            <div className="legend-item">
+              <span className="legend-marker rental"></span>
+              <span>For Rent</span>
+            </div>
+            <div className="legend-item">
+              <span className="legend-marker offplan"></span>
+              <span>Off-Plan</span>
+            </div>
+          </div>
+          <div className="legend-count">
+            {properties.length} properties on map
+          </div>
         </div>
       )}
     </div>
