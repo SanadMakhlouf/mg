@@ -41,31 +41,48 @@ const BlogPage = () => {
     fetchBlogs();
   }, []);
 
-  // Get unique categories from blogs
-  const categories = ["all", ...new Set(blogs.map((blog) => blog.category))];
+  // Get unique categories from blogs with error handling
+  const categories = [
+    "all",
+    ...new Set(blogs.map((blog) => blog.category).filter(Boolean)),
+  ];
 
   // Filter blogs based on active category or tag
   useEffect(() => {
-    if (tagFilter) {
-      setFilteredBlogs(blogs.filter((blog) => blog.tags.includes(tagFilter)));
-      setActiveCategory("all");
-    } else if (activeCategory === "all") {
+    try {
+      if (tagFilter) {
+        setFilteredBlogs(
+          blogs.filter((blog) => blog.tags && blog.tags.includes(tagFilter))
+        );
+        setActiveCategory("all");
+      } else if (activeCategory === "all") {
+        setFilteredBlogs(blogs);
+      } else {
+        setFilteredBlogs(
+          blogs.filter((blog) => blog.category === activeCategory)
+        );
+      }
+      setCurrentPage(1);
+    } catch (error) {
+      console.error("Error filtering blogs:", error);
       setFilteredBlogs(blogs);
-    } else {
-      setFilteredBlogs(
-        blogs.filter((blog) => blog.category === activeCategory)
-      );
     }
-    setCurrentPage(1);
   }, [activeCategory, tagFilter, blogs]);
 
-  // Pagination logic
-  const indexOfLastBlog = currentPage * blogsPerPage;
+  // Pagination logic with error handling
+  const safeCurrentPage = Math.max(
+    1,
+    Math.min(currentPage, Math.ceil(filteredBlogs.length / blogsPerPage) || 1)
+  );
+  const indexOfLastBlog = safeCurrentPage * blogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
   const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
-  const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
+  const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage) || 1;
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    const safePageNumber = Math.max(1, Math.min(pageNumber, totalPages));
+    setCurrentPage(safePageNumber);
+  };
 
   if (loading) {
     return (
@@ -130,24 +147,37 @@ const BlogPage = () => {
 
         <div className="blog-grid">
           {currentBlogs.length > 0 ? (
-            currentBlogs.map((blog) => (
-              <BlogCard
-                key={blog.id}
-                blog={{
-                  ...blog,
-                  image: blog.image.startsWith("http")
-                    ? blog.image
-                    : `${config.API_URL.replace("/api/v1", "")}/storage/${
-                        blog.image
-                      }`,
-                  authorImage: blog.authorImage.startsWith("http")
-                    ? blog.authorImage
-                    : `${config.API_URL.replace("/api/v1", "")}/storage/${
-                        blog.authorImage
-                      }`,
-                }}
-              />
-            ))
+            currentBlogs.map((blog) => {
+              try {
+                return (
+                  <BlogCard
+                    key={blog.id}
+                    blog={{
+                      ...blog,
+                      image:
+                        blog.image && blog.image.startsWith("http")
+                          ? blog.image
+                          : blog.image
+                          ? `${config.API_URL.replace("/api/v1", "")}/storage/${
+                              blog.image
+                            }`
+                          : "/test.jpg",
+                      authorImage:
+                        blog.authorImage && blog.authorImage.startsWith("http")
+                          ? blog.authorImage
+                          : blog.authorImage
+                          ? `${config.API_URL.replace("/api/v1", "")}/storage/${
+                              blog.authorImage
+                            }`
+                          : "/user1.png",
+                    }}
+                  />
+                );
+              } catch (error) {
+                console.error("Error rendering blog card:", error);
+                return null;
+              }
+            })
           ) : (
             <div className="no-blogs-message">
               <h3>No articles found</h3>
@@ -156,32 +186,38 @@ const BlogPage = () => {
           )}
         </div>
 
-        {filteredBlogs.length > blogsPerPage && (
+        {filteredBlogs.length > blogsPerPage && totalPages > 1 && (
           <div className="pagination">
             <button
               className="pagination-btn"
-              disabled={currentPage === 1}
-              onClick={() => paginate(currentPage - 1)}
+              disabled={safeCurrentPage === 1}
+              onClick={() => paginate(safeCurrentPage - 1)}
+              aria-label="Previous page"
             >
               <i className="fa-solid fa-chevron-left"></i>
             </button>
 
-            {Array.from({ length: totalPages }, (_, i) => (
-              <button
-                key={i}
-                className={`pagination-btn ${
-                  currentPage === i + 1 ? "active" : ""
-                }`}
-                onClick={() => paginate(i + 1)}
-              >
-                {i + 1}
-              </button>
-            ))}
+            {Array.from({ length: totalPages }, (_, i) => {
+              const pageNum = i + 1;
+              return (
+                <button
+                  key={i}
+                  className={`pagination-btn ${
+                    safeCurrentPage === pageNum ? "active" : ""
+                  }`}
+                  onClick={() => paginate(pageNum)}
+                  aria-label={`Go to page ${pageNum}`}
+                >
+                  {pageNum}
+                </button>
+              );
+            })}
 
             <button
               className="pagination-btn"
-              disabled={currentPage === totalPages}
-              onClick={() => paginate(currentPage + 1)}
+              disabled={safeCurrentPage === totalPages}
+              onClick={() => paginate(safeCurrentPage + 1)}
+              aria-label="Next page"
             >
               <i className="fa-solid fa-chevron-right"></i>
             </button>
