@@ -29,6 +29,12 @@
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin-left: 0;
+  transition: all 0.3s ease;
+}
+
+.off-plan-featured-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* Conteneur pour les cartes de droite */
@@ -48,6 +54,12 @@
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.off-plan-right-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* Conteneur pour les petites cartes en bas à droite */
@@ -67,6 +79,12 @@
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   height: 100%;
+  transition: all 0.3s ease;
+}
+
+.off-plan-small-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .off-plan-image-container {
@@ -149,6 +167,58 @@
   opacity: 0.9;
 }
 
+.project-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 10px 0;
+  color: #FFD700;
+}
+
+.project-details {
+  display: flex;
+  gap: 15px;
+  margin: 10px 0 15px 0;
+  flex-wrap: wrap;
+}
+
+.project-details span {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.project-details i {
+  font-size: 1rem;
+}
+
+/* Small card content */
+.off-plan-content.small {
+  padding: 15px;
+}
+
+.project-title-small {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.project-location-small {
+  font-size: 0.85rem;
+  margin: 0 0 8px 0;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.project-price-small {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #FFD700;
+}
+
 .enquire-btn {
   background-color: white;
   color: #333;
@@ -158,10 +228,11 @@
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  border-radius: 4px;
 }
 
 .enquire-btn:hover {
-  background-color: #f8c12c;
+  background-color: #800020;
   color: white;
 }
 
@@ -197,8 +268,14 @@
 .off-plan-second-grid .project-card {
   background: #fff;
   border-radius: 8px;
+  transition: all 0.3s ease;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.off-plan-second-grid .project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .off-plan-second-grid .project-card .off-plan-image-container {

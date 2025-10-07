@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./OffPlanGrid.css";
 import ds from "../../assets/off-plans/ds.png";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import config from "../../config";
 
 const OffPlanGrid = () => {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -64,7 +66,9 @@ const OffPlanGrid = () => {
   // Helper function to get image URL
   const getImageUrl = (pictures) => {
     if (!pictures || pictures.length === 0) return "";
-    return pictures[0];
+    return pictures[0].startsWith('http')
+      ? pictures[0]
+      : `${config.API_URL.replace("/api/v1", "")}/storage/${pictures[0]}`;
   };
 
   return (
@@ -74,14 +78,21 @@ const OffPlanGrid = () => {
       <div className="off-plan-featured-grid">
         {/* Grande carte à gauche */}
         {projects[0] && (
-          <div className="off-plan-featured-card">
+          <div 
+            className="off-plan-featured-card"
+            onClick={() => navigate(`/property/${projects[0].id}`)}
+            style={{ cursor: 'pointer' }}
+          >
             <div className="off-plan-image-container">
               <img
                 src={getImageUrl(projects[0].pictures)}
                 alt={projects[0].name}
                 className="off-plan-image"
               />
-              <div className="bookmark-icon">
+              <div 
+                className="bookmark-icon"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <i className="far fa-bookmark"></i>
               </div>
               <div className="off-plan-content">
@@ -92,7 +103,15 @@ const OffPlanGrid = () => {
                 </p>
                 <p className="project-type">{projects[0].type}</p>
                 <p className="project-location">{projects[0].location}</p>
-                <button className="enquire-btn">ENQUIRE NOW</button>
+                <button 
+                  className="enquire-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/property/${projects[0].id}`);
+                  }}
+                >
+                  ENQUIRE NOW
+                </button>
               </div>
             </div>
           </div>
@@ -102,20 +121,46 @@ const OffPlanGrid = () => {
         <div className="off-plan-right-cards">
           {/* Carte en haut à droite */}
           {projects[1] && (
-            <div className="off-plan-right-card">
+            <div 
+              className="off-plan-right-card"
+              onClick={() => navigate(`/property/${projects[1].id}`)}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="off-plan-image-container">
                 <img
                   src={getImageUrl(projects[1].pictures)}
                   alt={projects[1].name}
                   className="off-plan-image"
                 />
-                <div className="bookmark-icon">
+                <div 
+                  className="bookmark-icon"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <i className="far fa-bookmark"></i>
                 </div>
                 <div className="off-plan-content">
                   <h3 className="project-title">{projects[1].name}</h3>
+                  <p className="project-developer">
+                    By: {projects[1].developer || "Developer Name"}
+                  </p>
                   <p className="project-type">{projects[1].type}</p>
                   <p className="project-location">{projects[1].location}</p>
+                  {projects[1].price && (
+                    <p className="project-price">
+                      From AED {parseFloat(projects[1].price).toLocaleString()}
+                    </p>
+                  )}
+                  <div className="project-details">
+                    {projects[1].bedrooms && (
+                      <span><i className="fa-solid fa-bed"></i> {projects[1].bedrooms} Beds</span>
+                    )}
+                    {projects[1].bathrooms && (
+                      <span><i className="fa-solid fa-bath"></i> {projects[1].bathrooms} Baths</span>
+                    )}
+                    {projects[1].area && (
+                      <span><i className="fa-solid fa-ruler-combined"></i> {projects[1].area} sqft</span>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -124,15 +169,34 @@ const OffPlanGrid = () => {
           {/* Cartes en bas à droite */}
           <div className="off-plan-bottom-cards">
             {projects.slice(2, 4).map((project) => (
-              <div key={project.id} className="off-plan-small-card">
+              <div 
+                key={project.id} 
+                className="off-plan-small-card"
+                onClick={() => navigate(`/property/${project.id}`)}
+                style={{ cursor: 'pointer' }}
+              >
                 <div className="off-plan-image-container">
                   <img
                     src={getImageUrl(project.pictures)}
                     alt={project.name}
                     className="off-plan-image"
                   />
-                  <div className="bookmark-icon">
+                  <div 
+                    className="bookmark-icon"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <i className="far fa-bookmark"></i>
+                  </div>
+                  <div className="off-plan-content small">
+                    <h4 className="project-title-small">{project.name}</h4>
+                    <p className="project-location-small">
+                      <i className="fa-solid fa-location-dot"></i> {project.location}
+                    </p>
+                    {project.price && (
+                      <p className="project-price-small">
+                        AED {parseFloat(project.price).toLocaleString()}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -146,7 +210,11 @@ const OffPlanGrid = () => {
         <div className="left-column">
           {/* Carte projet en haut */}
           {projects[4] && (
-            <div className="project-card">
+            <div 
+              className="project-card"
+              onClick={() => navigate(`/property/${projects[4].id}`)}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="off-plan-image-container">
                 <img
                   src={getImageUrl(projects[4].pictures)}
@@ -161,7 +229,15 @@ const OffPlanGrid = () => {
                   </p>
                   <p className="project-type">{projects[4].type}</p>
                   <p className="project-location">{projects[4].location}</p>
-                  <button className="enquire-btn">LEARN MORE</button>
+                  <button 
+                    className="enquire-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/property/${projects[4].id}`);
+                    }}
+                  >
+                    LEARN MORE
+                  </button>
                 </div>
               </div>
             </div>
@@ -170,6 +246,7 @@ const OffPlanGrid = () => {
           {/* PropertyCard en bas */}
           {projects[5] && (
             <PropertyCard
+              id={projects[5].id}
               image={getImageUrl(projects[5].pictures)}
               title={projects[5].name}
               price={projects[5].price}
@@ -192,6 +269,7 @@ const OffPlanGrid = () => {
         {projects.slice(6, 12).map((project) => (
           <PropertyCard
             key={project.id}
+            id={project.id}
             image={getImageUrl(project.pictures)}
             title={project.name}
             price={project.price}
