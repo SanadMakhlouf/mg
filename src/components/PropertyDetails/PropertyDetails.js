@@ -421,6 +421,8 @@ const PropertyDetails = () => {
           </div>
         </div>
       </div>
+
+      {/* Off-plan specific sections moved to OffPlanDetails */}
     </div>
   );
 };

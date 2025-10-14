@@ -80,7 +80,7 @@ const OffPlanGrid = () => {
         {projects[0] && (
           <div
             className="off-plan-featured-card"
-            onClick={() => navigate(`/property/${projects[0].id}`)}
+            onClick={() => navigate(`/off-plan/${projects[0].id}`)}
             style={{ cursor: "pointer" }}
           >
             <div className="off-plan-image-container">
@@ -123,7 +123,7 @@ const OffPlanGrid = () => {
           {projects[1] && (
             <div
               className="off-plan-right-card"
-              onClick={() => navigate(`/property/${projects[1].id}`)}
+              onClick={() => navigate(`/off-plan/${projects[1].id}`)}
               style={{ cursor: "pointer" }}
             >
               <div className="off-plan-image-container">
@@ -181,7 +181,7 @@ const OffPlanGrid = () => {
               <div
                 key={project.id}
                 className="off-plan-small-card"
-                onClick={() => navigate(`/property/${project.id}`)}
+                onClick={() => navigate(`/off-plan/${project.id}`)}
                 style={{ cursor: "pointer" }}
               >
                 <div className="off-plan-image-container">
@@ -222,7 +222,7 @@ const OffPlanGrid = () => {
           {projects[4] && (
             <div
               className="project-card"
-              onClick={() => navigate(`/property/${projects[4].id}`)}
+              onClick={() => navigate(`/off-plan/${projects[4].id}`)}
               style={{ cursor: "pointer" }}
             >
               <div className="off-plan-image-container">
