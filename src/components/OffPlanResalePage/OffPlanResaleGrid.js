@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./OffPlanGrid.css";
+import "./OffPlanResaleGrid.css";
 import ds from "../../assets/off-plans/ds.png";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import config from "../../config";
 
-const OffPlanGrid = () => {
+const OffPlanResaleGrid = () => {
   const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ const OffPlanGrid = () => {
     const fetchProjects = async () => {
       try {
         const response = await fetch(
-          `${config.API_URL}/ready-projects/category/off-plans`
+          `${config.API_URL}/ready-projects/category/off-plans-resale` // replace with resale endpoint later
         );
 
         if (!response.ok) {
@@ -63,7 +63,6 @@ const OffPlanGrid = () => {
     );
   }
 
-  // Helper function to get image URL
   const getImageUrl = (pictures) => {
     if (!pictures || pictures.length === 0) return "";
     return pictures[0].startsWith("http")
@@ -73,10 +72,9 @@ const OffPlanGrid = () => {
 
   return (
     <div className="off-plan-projects-section">
-      <h2 className="section-title">OFF PLAN PROJECTS</h2>
+      <h2 className="section-title">OFF PLAN RESALE PROJECTS</h2>
 
       <div className="off-plan-featured-grid">
-        {/* Grande carte à gauche */}
         {projects[0] && (
           <div
             className="off-plan-featured-card"
@@ -117,9 +115,7 @@ const OffPlanGrid = () => {
           </div>
         )}
 
-        {/* Conteneur pour les cartes de droite */}
         <div className="off-plan-right-cards">
-          {/* Carte en haut à droite */}
           {projects[1] && (
             <div
               className="off-plan-right-card"
@@ -175,7 +171,6 @@ const OffPlanGrid = () => {
             </div>
           )}
 
-          {/* Cartes en bas à droite */}
           <div className="off-plan-bottom-cards">
             {projects.slice(2, 4).map((project) => (
               <div
@@ -215,10 +210,8 @@ const OffPlanGrid = () => {
         </div>
       </div>
 
-      {/* Nouvelle section */}
       <div className="off-plan-second-grid">
         <div className="left-column">
-          {/* Carte projet en haut */}
           {projects[4] && (
             <div
               className="project-card"
@@ -253,7 +246,6 @@ const OffPlanGrid = () => {
             </div>
           )}
 
-          {/* PropertyCard en bas */}
           {projects[5] && (
             <PropertyCard
               id={projects[5].id}
@@ -268,13 +260,11 @@ const OffPlanGrid = () => {
           )}
         </div>
 
-        {/* Image à droite */}
         <div className="right-column">
           <img src={ds} alt="Development" className="full-height-image" />
         </div>
       </div>
 
-      {/* Grille de cartes 2x3 */}
       <div className="property-cards-grid">
         {projects.slice(6, 12).map((project) => (
           <PropertyCard
@@ -294,4 +284,4 @@ const OffPlanGrid = () => {
   );
 };
 
-export default OffPlanGrid;
+export default OffPlanResaleGrid;

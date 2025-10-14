@@ -2,7 +2,7 @@ import React from "react";
 import "./OffPlanResale.css";
 import OffPlanHero from "../OffPlanPage/OffPlanHero";
 import OffPlanBanner from "../OffPlanPage/OffPlanBanner";
-import OffPlanGrid from "../OffPlanPage/OffPlanGrid";
+import OffPlanResaleGrid from "./OffPlanResaleGrid";
 import OffPlanContact from "../OffPlanPage/OffPlanContact";
 
 const OffPlanResale = () => {
@@ -11,7 +11,7 @@ const OffPlanResale = () => {
       <OffPlanHero />
       <div className="off-plan-container">
         <OffPlanBanner />
-        <OffPlanGrid />
+        <OffPlanResaleGrid />
         <OffPlanContact />
       </div>
     </div>
