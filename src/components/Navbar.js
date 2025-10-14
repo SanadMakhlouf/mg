@@ -79,10 +79,10 @@ const Navbar = () => {
                   RENT
                 </Link>
                 <Link
-                  to="/off-plan-properties"
+                  to="/off-plan-properties-resale"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  OFF PLANS
+                  OFF PLANS RESALE
                 </Link>
               </div>
             </div>
@@ -96,7 +96,11 @@ const Navbar = () => {
           <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>
             BLOG
           </Link>
-          <Link to="/interactive-map" onClick={() => setIsMobileMenuOpen(false)} className="beta-link">
+          <Link
+            to="/interactive-map"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="beta-link"
+          >
             MAP <span className="beta-badge">BETA</span>
           </Link>
           <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>

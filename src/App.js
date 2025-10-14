@@ -9,6 +9,7 @@ import About from "./components/AboutPage/About";
 import ListYour from "./components/ListYourPage/ListYour";
 import ReadyProjects from "./components/ReadyProjectsPage/ReadyProjects";
 import OffPlan from "./components/OffPlanPage/OffPlan";
+import OffPlanResale from "./components/OffPlanResalePage/OffPlanResale";
 import Services from "./components/ServicesPage/Services";
 import PropertyDetails from "./components/PropertyDetails/PropertyDetails";
 import BlogPage from "./components/BlogPage/BlogPage";
@@ -33,6 +34,10 @@ function App() {
           <Route path="/list-your-property" element={<ListYour />} />
           <Route path="/ready-projects" element={<ReadyProjects />} />
           <Route path="/off-plan-properties" element={<OffPlan />} />
+          <Route
+            path="/off-plan-properties-resale"
+            element={<OffPlanResale />}
+          />
           <Route path="/property/:id" element={<PropertyDetails />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
