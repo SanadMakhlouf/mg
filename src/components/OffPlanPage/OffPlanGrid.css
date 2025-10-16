@@ -137,7 +137,7 @@ body.page-offplan-details .navbar {
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 20px;
+  padding: 3px 16px;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
   color: white;
   z-index: 1;
