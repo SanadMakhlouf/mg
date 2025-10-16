@@ -37,6 +37,14 @@ const OffPlanDetails = () => {
     fetchProject();
   }, [id, navigate]);
 
+  // Force solid navbar background on this page only
+  useEffect(() => {
+    document.body.classList.add("page-offplan-details");
+    return () => {
+      document.body.classList.remove("page-offplan-details");
+    };
+  }, []);
+
   const images = project?.pictures?.length ? project.pictures : ["/test.jpg"];
   // Prefer explicit pdf_url from API; otherwise fall back to brochure field if present
   const brochureUrl = (() => {

@@ -76,6 +76,11 @@
   color: #333;
 }
 
+/* OffPlanDetails header spacing */
+.property-details-header {
+  margin-top: 35px;
+}
+
 .location {
   color: #666;
   margin-bottom: 1rem;
