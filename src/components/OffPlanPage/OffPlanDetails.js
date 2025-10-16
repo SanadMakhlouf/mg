@@ -38,11 +38,22 @@ const OffPlanDetails = () => {
   }, [id, navigate]);
 
   const images = project?.pictures?.length ? project.pictures : ["/test.jpg"];
-  const brochureUrl = project?.brochure
-    ? project.brochure.startsWith("http")
-      ? project.brochure
-      : `${config.API_URL.replace("/api/v1", "")}/storage/${project.brochure}`
-    : null;
+  // Prefer explicit pdf_url from API; otherwise fall back to brochure field if present
+  const brochureUrl = (() => {
+    if (project?.pdf_url) {
+      return project.pdf_url.startsWith("http")
+        ? project.pdf_url
+        : `${config.API_URL.replace("/api/v1", "")}/storage/${project.pdf_url}`;
+    }
+    if (project?.brochure) {
+      return project.brochure.startsWith("http")
+        ? project.brochure
+        : `${config.API_URL.replace("/api/v1", "")}/storage/${
+            project.brochure
+          }`;
+    }
+    return null;
+  })();
 
   if (loading) {
     return (
@@ -84,17 +95,19 @@ const OffPlanDetails = () => {
             <p>{project.description || "No description available."}</p>
           </div>
 
-          <div className="property-brochure">
-            <a
-              href={brochureUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="contact-agent-btn"
-              download
-            >
-              Download Brochure (PDF)
-            </a>
-          </div>
+          {brochureUrl && (
+            <div className="property-brochure">
+              <a
+                href={brochureUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-agent-btn"
+                download
+              >
+                Download Brochure (PDF)
+              </a>
+            </div>
+          )}
         </div>
       </div>
 
