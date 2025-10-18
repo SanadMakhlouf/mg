@@ -43,9 +43,9 @@ const ProjectsGrid = () => {
     description:
       "We are here to help you find your dream property with personalized service and expert advice. Our team is dedicated to understanding your needs and preferences.",
     contactInfo: [
-      { icon: "/loca.png", text: "123 Sheikh Zayed Road, Dubai, UAE" },
-      { icon: "/ime.png", text: "info@mgreal.com" },
-      { icon: "/phone.png", text: "+971 50 123 4567" },
+      { icon: "/loca.png", text: "Office 55, Baynunah Tower 2, Al Hosn, Abu Dhabi" },
+      { icon: "/ime.png", text: "info@meridiangroup.ae" },
+      { icon: "/phone.png", text: "+971 50 607 030" },
       { icon: "/time.png", text: "Mon-Sat: 9am - 6pm" },
     ],
   };

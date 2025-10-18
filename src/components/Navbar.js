@@ -17,9 +17,41 @@ const Navbar = () => {
       }
     };
 
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    const handleClickOutside = (e) => {
+      if (isMobileMenuOpen && !e.target.closest('.navbar-container')) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("keydown", handleEscape);
+    document.addEventListener("click", handleClickOutside);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
 
   const togglePropertiesDropdown = () => {
     setShowPropertiesDropdown(!showPropertiesDropdown);
@@ -48,6 +80,11 @@ const Navbar = () => {
         {/* Navigation Links */}
         <div
           className={`navbar-links ${isMobileMenuOpen ? "mobile-open" : ""}`}
+          onClick={(e) => {
+            if (e.target.classList.contains('navbar-links')) {
+              setIsMobileMenuOpen(false);
+            }
+          }}
         >
           <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
             HOME
@@ -101,7 +138,7 @@ const Navbar = () => {
             onClick={() => setIsMobileMenuOpen(false)}
             className="beta-link"
           >
-            MAP <span className="beta-badge">BETA</span>
+            MAP <span className="beta-badge">COMING SOON</span>
           </Link>
           <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
             CONTACT

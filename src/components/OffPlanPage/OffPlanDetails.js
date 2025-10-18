@@ -5,9 +5,10 @@ import config from "../../config";
 import ImageCarousel from "../PropertyDetails/ImageCarousel";
 import GetInTouchSection from "../GetInTouchSection";
 import MapSection from "../MapSection";
+import SEO from "../SEO";
 
 const OffPlanDetails = () => {
-  const { id } = useParams();
+  const { id, name } = useParams();
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -82,7 +83,42 @@ const OffPlanDetails = () => {
   if (!project) return null;
 
   return (
-    <div className="off-plan-projects-section">
+    <>
+      <SEO
+        title={`${project.name} - Off-Plan Property in ${project.location} | Meridian Group`}
+        description={`${project.name} off-plan property in ${project.location}. ${project.price ? `Starting from ${parseFloat(project.price).toLocaleString()} AED.` : ''} ${project.description || 'Premium off-plan development by Meridian Group.'}`}
+        keywords={`${project.name}, off-plan property, ${project.location}, Abu Dhabi real estate, pre-construction, Meridian Group, property investment`}
+        url={`https://meridiangroup.ae/off-plan/${id}/${name}`}
+        image={images && images.length > 0 ? images[0] : 'https://meridiangroup.ae/og-image.jpg'}
+        type="article"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "RealEstateListing",
+          "name": project.name,
+          "description": project.description || `${project.name} off-plan property in ${project.location}`,
+          "url": `https://meridiangroup.ae/off-plan/${id}/${name}`,
+          "image": images || [],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": project.location,
+            "addressRegion": "Abu Dhabi",
+            "addressCountry": "AE"
+          },
+          "offers": project.price ? {
+            "@type": "Offer",
+            "price": project.price,
+            "priceCurrency": "AED",
+            "availability": "https://schema.org/PreOrder"
+          } : undefined,
+          "additionalProperty": "Off-Plan",
+          "provider": {
+            "@type": "RealEstateAgent",
+            "name": "Meridian Group",
+            "url": "https://meridiangroup.ae"
+          }
+        }}
+      />
+      <div className="off-plan-projects-section">
       <div className="property-details-header">
         <h1>{project.name}</h1>
         <div className="property-location-details">
@@ -96,7 +132,7 @@ const OffPlanDetails = () => {
         </div>
         <div className="property-info-details">
           <div className="property-price-details">
-            {project.price && <h2>{project.price} AED</h2>}
+            {project.price && <h2>{parseFloat(project.price).toLocaleString()} AED</h2>}
           </div>
           <div className="property-description">
             <h3>Description</h3>
@@ -122,6 +158,7 @@ const OffPlanDetails = () => {
       <GetInTouchSection />
       <MapSection />
     </div>
+    </>
   );
 };
 

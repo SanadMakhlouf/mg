@@ -127,6 +127,7 @@ const LastPropertiesSection = () => {
                 sqft={property.area || "N/A"}
                 location={property.location || "Dubai, UAE"}
                 isHotDeal={property.category === "off-plans"}
+                permitNumber={property.permit_number}
               />
             ))}
           </Slider>

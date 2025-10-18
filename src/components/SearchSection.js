@@ -108,7 +108,7 @@ const SearchSection = () => {
                 value={searchParams.minBathrooms}
                 onChange={handleInputChange}
               >
-                <option value="">Min. Bathrooms</option>
+                <option value="">Min. Bath</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3+</option>
@@ -120,7 +120,7 @@ const SearchSection = () => {
                 value={searchParams.maxBathrooms}
                 onChange={handleInputChange}
               >
-                <option value="">Max. Bathrooms</option>
+                <option value="">Max. Bath</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -136,7 +136,7 @@ const SearchSection = () => {
                 value={searchParams.minBedrooms}
                 onChange={handleInputChange}
               >
-                <option value="">Min. Bedrooms</option>
+                <option value="">Min. Bed</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3+</option>
@@ -148,7 +148,7 @@ const SearchSection = () => {
                 value={searchParams.maxBedrooms}
                 onChange={handleInputChange}
               >
-                <option value="">Max. Bedrooms</option>
+                <option value="">Max. Bed</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

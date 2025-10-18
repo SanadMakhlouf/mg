@@ -69,15 +69,15 @@ const GetInTouchSection = () => {
             <div className="info-item">
               <img src="/phone.png" alt="phone" />
               <div>
-                <p>(+97) 150907039</p>
-                <p>(+97) 150907039</p>
+                <p>(+97) 150607030</p>
+                <p>(+97) 150607030</p>
               </div>
             </div>
             <div className="info-item">
               <img src="/ime.png" alt="email" />
               <div>
-                <p>info@meridiagroup.ae</p>
-                <p>info@domain.com</p>
+                <p>info@meridiangroup.ae</p>
+                <p>info@meridiangroup.ae</p>
               </div>
             </div>
             <div className="info-item">
@@ -142,7 +142,7 @@ const GetInTouchSection = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="info@meridiagroup.ae"
+                placeholder="info@meridiangroup.ae"
                 required
               />
             </div>
@@ -154,7 +154,7 @@ const GetInTouchSection = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="+97150907039"
+                placeholder="+97150607030"
                 required
               />
             </div>

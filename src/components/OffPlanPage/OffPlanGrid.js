@@ -63,6 +63,11 @@ const OffPlanGrid = () => {
     );
   }
 
+  // Helper function to create SEO-friendly slug
+  const createSlug = (name) => {
+    return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  };
+
   // Helper function to get image URL
   const getImageUrl = (pictures) => {
     if (!pictures || pictures.length === 0) return "";
@@ -80,7 +85,7 @@ const OffPlanGrid = () => {
         {projects[0] && (
           <div
             className="off-plan-featured-card"
-            onClick={() => navigate(`/off-plan/${projects[0].id}`)}
+            onClick={() => navigate(`/off-plan/${projects[0].id}/${createSlug(projects[0].name)}`)}
             style={{ cursor: "pointer" }}
           >
             <div className="off-plan-image-container">
@@ -123,7 +128,7 @@ const OffPlanGrid = () => {
           {projects[1] && (
             <div
               className="off-plan-right-card"
-              onClick={() => navigate(`/off-plan/${projects[1].id}`)}
+              onClick={() => navigate(`/off-plan/${projects[1].id}/${createSlug(projects[1].name)}`)}
               style={{ cursor: "pointer" }}
             >
               <div className="off-plan-image-container">
@@ -181,7 +186,7 @@ const OffPlanGrid = () => {
               <div
                 key={project.id}
                 className="off-plan-small-card"
-                onClick={() => navigate(`/off-plan/${project.id}`)}
+                onClick={() => navigate(`/off-plan/${project.id}/${createSlug(project.name)}`)}
                 style={{ cursor: "pointer" }}
               >
                 <div className="off-plan-image-container">
@@ -222,7 +227,7 @@ const OffPlanGrid = () => {
           {projects[4] && (
             <div
               className="project-card"
-              onClick={() => navigate(`/off-plan/${projects[4].id}`)}
+              onClick={() => navigate(`/off-plan/${projects[4].id}/${createSlug(projects[4].name)}`)}
               style={{ cursor: "pointer" }}
             >
               <div className="off-plan-image-container">

@@ -61,7 +61,7 @@ const Hero = () => {
         </h1>
         <div style={{ display: "flex", gap: "20px", marginBottom: "3rem" }}>
           <Link
-            to="/ready-projects"
+            to="/off-plan-properties"
             style={{
               cursor: "pointer",
               padding: "12px 40px",
@@ -86,7 +86,7 @@ const Hero = () => {
               e.target.style.borderColor = "#800020";
             }}
           >
-            READY PROJECTS
+            OFF PLAN PROJECTS
           </Link>
           <Link
             to="/about"
@@ -119,16 +119,16 @@ const Hero = () => {
         </div>
         <div className="hero-states">
           <div className="hero-state">
-            <h2>100+</h2>
-            <p>Properties</p>
+            <h2>50+</h2>
+            <p>Properties Sold</p>
           </div>
           <div className="hero-state">
-            <h2>100+</h2>
-            <p>Properties</p>
+            <h2>5+</h2>
+            <p>Years Experience</p>
           </div>
           <div className="hero-state">
-            <h2>100+</h2>
-            <p>Properties</p>
+            <h2>100%</h2>
+            <p>Client Satisfaction</p>
           </div>
         </div>
       </div>

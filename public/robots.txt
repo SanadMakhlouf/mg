@@ -1,3 +1,23 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://meridiangroup.ae/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow admin areas (if any)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Allow important pages
+Allow: /property/
+Allow: /off-plan/
+Allow: /buy/
+Allow: /rent/
+Allow: /about/
+Allow: /contact/
+Allow: /services/
+Allow: /blog/

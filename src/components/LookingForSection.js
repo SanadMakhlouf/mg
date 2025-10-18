@@ -15,9 +15,8 @@ const LookingForSection = () => {
         <div className="section-header">
           <h2>WHAT ARE YOU LOOKING FOR?</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris.
+            Discover your perfect property in Abu Dhabi. From modern apartments to luxury villas, 
+            we offer a comprehensive range of real estate solutions tailored to your needs.
           </p>
         </div>
 

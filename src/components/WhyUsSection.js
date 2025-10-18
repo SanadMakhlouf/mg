@@ -34,20 +34,6 @@ const WhyUsSection = () => {
               {/* You'll need to add actual avatar images here */}
               <img src={avatar} alt="avatar" />
             </div>
-            <div className="stats-numbers">
-              <div className="stat">
-                <h3>10M</h3>
-                <p>Happy Buyers</p>
-              </div>
-              <div className="stat">
-                <h3>100K</h3>
-                <p>Client Review</p>
-              </div>
-              <div className="stat">
-                <h3>4.6</h3>
-                <p>Positive Rating</p>
-              </div>
-            </div>
           </div>
 
           <div className="features-list">

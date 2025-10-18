@@ -8,8 +8,8 @@ const MapSection = () => {
         <span className="subtitle">Our Location</span>
         <h2>Where to find us</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna.
+          Visit our office in the heart of Abu Dhabi for personalized real estate services. 
+          Our experienced team is ready to help you with all your property needs.
         </p>
 
         <div className="contact-details">
@@ -24,16 +24,16 @@ const MapSection = () => {
           <div className="detail-item">
             <img src={process.env.PUBLIC_URL + "/phone.png"} alt="phone" />
             <div>
-              <p>(+97) 150907039</p>
-              <p>(+97) 150907039</p>
+              <p>(+97) 150607030</p>
+              <p>(+97) 150607030</p>
             </div>
           </div>
 
           <div className="detail-item">
             <img src={process.env.PUBLIC_URL + "/ime.png"} alt="email" />
             <div>
-              <p>info@meridiagroup.ae</p>
-              <p>info@domain.com</p>
+              <p>info@meridiangroup.ae</p>
+              <p>info@meridiangroup.ae</p>
             </div>
           </div>
 

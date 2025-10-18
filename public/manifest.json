@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Meridian Group",
+  "name": "Meridian Group - Premier Real Estate in Abu Dhabi",
+  "description": "Discover premium real estate opportunities in Abu Dhabi with Meridian Group. Expert property services for buying, renting, and investing.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +21,10 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#800020",
+  "background_color": "#ffffff",
+  "categories": ["business", "real-estate", "property"],
+  "lang": "en",
+  "scope": "/",
+  "orientation": "portrait-primary"
 }

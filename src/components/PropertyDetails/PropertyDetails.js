@@ -3,9 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./PropertyDetails.css";
 import config from "../../config";
 import ImageCarousel from "./ImageCarousel";
+import SEO from "../SEO";
 
 const PropertyDetails = () => {
-  const { id } = useParams();
+  const { id, name } = useParams();
   const navigate = useNavigate();
   const [property, setProperty] = useState(null);
   const [agentDetails, setAgentDetails] = useState(null);
@@ -16,12 +17,12 @@ const PropertyDetails = () => {
   const defaultAgent = {
     name: "Where to find us",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.",
+      "Contact our experienced real estate professionals for personalized assistance with your property needs.",
     location: "Al Hisn, Baynunah Tower, Office 93",
-    phone: "(+97) 150907039",
-    phone2: "(+97) 150907039",
-    email: "info@meridiagroup.ae",
-    email2: "info@domain.com",
+    phone: "(+97) 150607030",
+    phone2: "(+97) 150607030",
+    email: "info@meridiangroup.ae",
+    email2: "info@meridiangroup.ae",
     hours: "Open: 04:00 am - Closed: 07:00 pm",
     image: "/user1.png",
   };
@@ -192,7 +193,49 @@ const PropertyDetails = () => {
       : ["/test.jpg"];
 
   return (
-    <div className="property-details-page">
+    <>
+      <SEO
+        title={`${property.name} - ${property.location} | Meridian Group Real Estate`}
+        description={`${property.name} in ${property.location}. ${property.bedrooms} bed, ${property.bathrooms} bath property for ${property.listing_type === 'sale' ? 'sale' : 'rent'} at ${parseFloat(property.price).toLocaleString()} AED. Contact Meridian Group for more details.`}
+        keywords={`${property.name}, ${property.location}, ${property.type}, ${property.bedrooms} bedroom, ${property.bathrooms} bathroom, ${property.listing_type === 'sale' ? 'property for sale' : 'property for rent'}, Abu Dhabi real estate, Meridian Group`}
+        url={`https://meridiangroup.ae/property/${id}/${name}`}
+        image={property.pictures && property.pictures.length > 0 ? property.pictures[0] : 'https://meridiangroup.ae/og-image.jpg'}
+        type="article"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "RealEstateListing",
+          "name": property.name,
+          "description": property.description || `${property.name} in ${property.location}`,
+          "url": `https://meridiangroup.ae/property/${id}/${name}`,
+          "image": property.pictures && property.pictures.length > 0 ? property.pictures : [],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": property.location,
+            "addressRegion": "Abu Dhabi",
+            "addressCountry": "AE"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": property.price,
+            "priceCurrency": "AED",
+            "availability": "https://schema.org/InStock"
+          },
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": property.area,
+            "unitCode": "SQF"
+          },
+          "numberOfRooms": property.bedrooms,
+          "numberOfBathroomsTotal": property.bathrooms,
+          "additionalProperty": property.type,
+          "provider": {
+            "@type": "RealEstateAgent",
+            "name": "Meridian Group",
+            "url": "https://meridiangroup.ae"
+          }
+        }}
+      />
+      <div className="property-details-page">
       <div className="property-details-container">
         <div className="property-details-header">
           <h1>{property.name}</h1>
@@ -211,26 +254,32 @@ const PropertyDetails = () => {
 
           <div className="property-info-details">
             <div className="property-price-details">
-              <h2>{property.price} AED</h2>
+              <h2>{parseFloat(property.price).toLocaleString()} AED</h2>
             </div>
 
             <div className="property-features">
               <div className="feature">
                 <i className="fa-solid fa-bed"></i>
-                <span>{property.bedrooms || 0} Bedrooms</span>
+                <span>{property.bedrooms || 0} Bed</span>
               </div>
               <div className="feature">
                 <i className="fa-solid fa-bath"></i>
-                <span>{property.bathrooms || 0} Bathrooms</span>
+                <span>{property.bathrooms || 0} Bath</span>
               </div>
               <div className="feature">
                 <i className="fa-solid fa-ruler-combined"></i>
-                <span>{property.area || 0} Square Ft</span>
+                <span>{property.area || 0} Sq Ft</span>
               </div>
               <div className="feature">
                 <i className="fa-solid fa-building"></i>
                 <span>{property.type || "Property"}</span>
               </div>
+              {property.permit_number && (
+                <div className="feature">
+                  <i className="fa-solid fa-certificate"></i>
+                  <span>Permit: {property.permit_number}</span>
+                </div>
+              )}
             </div>
 
             <div className="property-description">
@@ -424,6 +473,7 @@ const PropertyDetails = () => {
 
       {/* Off-plan specific sections moved to OffPlanDetails */}
     </div>
+    </>
   );
 };
 

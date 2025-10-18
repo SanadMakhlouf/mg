@@ -189,6 +189,7 @@ const PropertiesSection = ({ filterParams }) => {
                   baths={property.bathrooms}
                   sqft={property.area}
                   location={property.location}
+                  permitNumber={property.permit_number}
                 />
               ))
             )}

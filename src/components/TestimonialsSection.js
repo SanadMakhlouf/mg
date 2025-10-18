@@ -6,28 +6,28 @@ const TestimonialsSection = () => {
 
   const testimonials = [
     {
-      name: "FULL NAME",
-      role: "LOREM IPSUM DOLOR SIT",
-      rating: 4,
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. Ut enim ad minim veniam, quis nostrud ut enim ad minim veniam, quis nostrud ut enim ad minim veniam, quis nostrud",
+      name: "Sarah Ahmed",
+      role: "Property Owner",
+      rating: 5,
+      text: "Meridian Group made our property search seamless and stress-free. Their team's expertise and dedication helped us find our dream home in Abu Dhabi. Highly recommended for anyone looking to buy or sell property.",
     },
     {
-      name: "FULL NAME",
-      role: "ROLE OR SOMETHING",
+      name: "Mohammed Al-Rashid",
+      role: "Real Estate Investor",
       rating: 5,
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      text: "Professional service and excellent market knowledge. The team guided us through the entire investment process with transparency and integrity.",
     },
     {
-      name: "FULL NAME",
-      role: "ROLE OR SOMETHING",
+      name: "Fatima Hassan",
+      role: "First-time Buyer",
       rating: 5,
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      text: "As first-time buyers, we were nervous about the process. Meridian Group's team made everything clear and supported us every step of the way.",
     },
     {
-      name: "FULL NAME",
-      role: "ROLE OR SOMETHING",
+      name: "Ahmed Khalil",
+      role: "Property Developer",
       rating: 5,
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      text: "Outstanding service and deep understanding of the Abu Dhabi market. Their insights and recommendations have been invaluable for our projects.",
     },
   ];
 

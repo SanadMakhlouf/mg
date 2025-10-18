@@ -65,7 +65,7 @@ const PopularDevelopersSection = () => {
       id: 1,
       name: "SHEIKH ZAYED GRAND MOSQUE",
       image: "/hero-bg.jpg",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      description: "Discover the architectural marvel and spiritual heart of Abu Dhabi",
       tag: "sheikh-zayed",
     },
     {
