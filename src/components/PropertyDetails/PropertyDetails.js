@@ -375,6 +375,12 @@ const PropertyDetails = () => {
                           </a>
                         )}
                       </div>
+                      <button 
+                        className="contact-agent-btn"
+                        onClick={() => navigate("/contact")}
+                      >
+                        <i className="fa-solid fa-paper-plane"></i> Contact Agent
+                      </button>
                     </>
                   ) : (
                     // Affichage des informations de contact de l'agence
@@ -404,19 +410,12 @@ const PropertyDetails = () => {
                         </div>
                       </div>
 
-                      <div className="agent-contact-buttons">
-                        <button className="email-btn">
-                          <i className="fa-solid fa-envelope"></i>
-                          Email
-                        </button>
-                        <button className="call-btn">
-                          <i className="fa-solid fa-phone"></i>
-                          Call
-                        </button>
-                        <button className="whatsapp-btn">
-                          <i className="fab fa-whatsapp"></i>
-                        </button>
-                      </div>
+                      <button 
+                        className="contact-agent-btn"
+                        onClick={() => navigate("/contact")}
+                      >
+                        <i className="fa-solid fa-paper-plane"></i> Contact Us
+                      </button>
                     </>
                   )}
                 </div>

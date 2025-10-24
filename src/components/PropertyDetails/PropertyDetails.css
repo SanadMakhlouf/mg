@@ -1,9 +1,18 @@
+.property-details-page {
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .property-details-container {
   max-width: 100%;
+  width: 100%;
   margin: 0;
   padding: 0 1rem;
   position: relative;
-  padding-top: 120px; /* Augmenté pour avoir plus d'espace sous la bande colorée */
+  padding-top: 120px;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Style pour la navbar sur cette page */
@@ -72,6 +81,9 @@
   border-radius: 10px;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
   max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .property-images {
@@ -500,6 +512,11 @@
   margin-top: 1rem;
   transition: all 0.3s ease;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-sizing: border-box;
 }
 
 .contact-agent-btn:hover {
@@ -603,27 +620,37 @@
 
 @media (max-width: 768px) {
   .property-details-container {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
     padding-top: 100px;
+    overflow-x: hidden;
   }
 
   .property-details-header {
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
     margin-bottom: 1.5rem;
   }
 
   .property-details-header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 1.3;
+    word-wrap: break-word;
   }
 
   .property-main-content {
     padding: 1rem;
     margin-bottom: 1.5rem;
+    gap: 1.5rem;
+    overflow-x: hidden;
+  }
+
+  .property-price-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
 
   .property-price-details h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .property-features {
@@ -633,8 +660,8 @@
   }
 
   .feature {
-    justify-content: center;
-    padding: 0.5rem;
+    justify-content: flex-start;
+    padding: 0.8rem;
     background-color: #f8f9fa;
     border-radius: 6px;
   }
@@ -647,12 +674,21 @@
 
   .agent-image {
     margin: 0 auto;
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .agent-info {
+    width: 100%;
   }
 
   .agent-info h4 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+  }
+
+  .agent-info p {
+    justify-content: center;
+    font-size: 0.95rem;
   }
 
   .property-actions {
@@ -696,37 +732,52 @@
     font-size: 1.3rem;
     text-align: center;
   }
+
+  .contact-agent-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 576px) {
   .property-details-container {
     padding: 0 0.5rem;
     padding-top: 90px;
+    overflow-x: hidden;
   }
 
   .property-details-header {
-    padding: 1rem;
+    padding: 1rem 0.5rem;
     margin-bottom: 1rem;
   }
 
   .property-details-header h1 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    word-wrap: break-word;
   }
 
   .property-location-details {
     font-size: 0.9rem;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.3rem;
   }
 
   .property-main-content {
     padding: 0.8rem;
     margin-bottom: 1rem;
+    gap: 1rem;
+    overflow-x: hidden;
+  }
+
+  .property-price-details {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
   }
 
   .property-price-details h2 {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     text-align: center;
   }
 
@@ -736,7 +787,7 @@
   }
 
   .feature {
-    padding: 0.4rem;
+    padding: 0.6rem;
     font-size: 0.9rem;
   }
 
@@ -751,21 +802,25 @@
   }
 
   .agent-image {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
   }
 
   .agent-info h4 {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .agent-job-title {
     font-size: 0.9rem;
   }
 
-  .contact-agent-btn {
-    padding: 0.6rem 1.2rem;
+  .agent-info p {
     font-size: 0.9rem;
+  }
+
+  .contact-agent-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
     width: 100%;
   }
 
@@ -785,12 +840,21 @@
 
   .agent-social-media {
     gap: 0.8rem;
+    justify-content: center;
   }
 
   .agent-social-media .social-icon {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     font-size: 1rem;
+  }
+
+  .contact-info-item h5 {
+    font-size: 0.95rem;
+  }
+
+  .contact-info-item p {
+    font-size: 0.9rem;
   }
 }
 
