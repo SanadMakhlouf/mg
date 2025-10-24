@@ -242,46 +242,62 @@ const PropertyDetails = () => {
         </div>
 
         <div className="property-main-content">
-          <div className="property-images">
-            <ImageCarousel images={propertyImages} alt={property.name} />
-            {isHotDeal && (
-              <div className="hot-deal-badge-details">HOT DEAL</div>
-            )}
-          </div>
-
-          <div className="property-info-details">
-            <div className="property-price-details">
-              <h2>
-                {parseFloat(property.price) > 0 
-                  ? `${parseFloat(property.price).toLocaleString()} AED`
-                  : 'Price on Request'
-                }
-              </h2>
+          {/* Left Column - Main Content */}
+          <div className="property-main-left">
+            <div className="property-images">
+              <ImageCarousel images={propertyImages} alt={property.name} />
+              {isHotDeal && (
+                <div className="hot-deal-badge-details">HOT DEAL</div>
+              )}
             </div>
 
-            <div className="property-features">
-              <div className="feature">
-                <i className="fa-solid fa-bed"></i>
-                <span>{property.bedrooms || 0} Bed</span>
-              </div>
-              <div className="feature">
-                <i className="fa-solid fa-bath"></i>
-                <span>{property.bathrooms || 0} Bath</span>
-              </div>
-              <div className="feature">
-                <i className="fa-solid fa-ruler-combined"></i>
-                <span>{parseFloat(property.area) > 0 ? `${property.area} Sq Ft` : 'Area TBD'}</span>
-              </div>
-              <div className="feature">
-                <i className="fa-solid fa-building"></i>
-                <span>{property.type || "Property"}</span>
-              </div>
-              {property.permit_number && (
-                <div className="feature">
-                  <i className="fa-solid fa-certificate"></i>
-                  <span>Permit: {property.permit_number}</span>
+            <div className="property-price-section">
+              <div className="property-price-details">
+                <h2>
+                  {parseFloat(property.price) > 0 
+                    ? `${parseFloat(property.price).toLocaleString()} AED`
+                    : 'Price on Request'
+                  }
+                </h2>
+                <div className="property-action-buttons">
+                  <button className="save-btn">
+                    <i className="fa-solid fa-heart"></i>
+                  </button>
+                  <button className="share-btn">
+                    <i className="fa-solid fa-share"></i>
+                  </button>
                 </div>
-              )}
+              </div>
+              
+              <div className="property-address">
+                <i className="fa-solid fa-location-dot"></i>
+                {property.location}
+              </div>
+
+              <div className="property-features">
+                <div className="feature">
+                  <i className="fa-solid fa-bed"></i>
+                  <span>{property.bedrooms || 0} Beds</span>
+                </div>
+                <div className="feature">
+                  <i className="fa-solid fa-bath"></i>
+                  <span>{property.bathrooms || 0} Baths</span>
+                </div>
+                <div className="feature">
+                  <i className="fa-solid fa-ruler-combined"></i>
+                  <span>{parseFloat(property.area) > 0 ? `${property.area} sqft` : 'Area TBD'}</span>
+                </div>
+                <div className="feature">
+                  <i className="fa-solid fa-building"></i>
+                  <span>{property.type || "Property"}</span>
+                </div>
+                {property.permit_number && (
+                  <div className="feature">
+                    <i className="fa-solid fa-certificate"></i>
+                    <span>Permit: {property.permit_number}</span>
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className="property-description">
@@ -292,13 +308,128 @@ const PropertyDetails = () => {
                   __html: property.description 
                     ? property.description
                         .replace(/&lt;br\s*\/?&gt;/gi, '<br>')
+                        .replace(/<br\s*\/?>/gi, '<br>')
                         .replace(/&amp;/g, '&')
                         .replace(/&quot;/g, '"')
                         .replace(/&#39;/g, "'")
                         .replace(/&nbsp;/g, ' ')
+                        .replace(/&lt;/g, '<')
+                        .replace(/&gt;/g, '>')
                     : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`
                 }}
               />
+            </div>
+          </div>
+
+          {/* Right Column - Sidebar */}
+          <div className="property-sidebar">
+            {propertyImages.length > 0 && (
+              <div className="sidebar-image-gallery">
+                {propertyImages.slice(0, 3).map((image, index) => (
+                  <div key={index} className="sidebar-thumbnail-wrapper">
+                    <img
+                      src={image}
+                      alt={`${property.name} - ${index + 1}`}
+                      className="sidebar-thumbnail"
+                    />
+                    {index === 2 && propertyImages.length > 3 && (
+                      <div className="thumbnail-overlay total-count-overlay">
+                        <i className="fa-solid fa-camera"></i> {propertyImages.length}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="property-agent-section">
+              <h3>{property.agent ? "Property Agent" : "Contact Information"}</h3>
+              <div className="agent-card">
+                <div className="agent-image">
+                  <img src={agent.image} alt={agent.name} />
+                </div>
+                <div className="agent-info">
+                  <h4>{agent.name}</h4>
+
+                  {property.agent ? (
+                    // Affichage des informations de l'agent si disponible
+                    <>
+                      {agent.job_title && (
+                        <p className="agent-job-title">{agent.job_title}</p>
+                      )}
+                      {agent.phone && (
+                        <p>
+                          <i className="fa-solid fa-phone"></i> {agent.phone}
+                        </p>
+                      )}
+                      {agent.email && (
+                        <p>
+                          <i className="fa-solid fa-envelope"></i> {agent.email}
+                        </p>
+                      )}
+                      <div className="agent-social-media">
+                        {agent.facebook && (
+                          <a href={agent.facebook} target="_blank" rel="noopener noreferrer">
+                            <i className="fab fa-facebook"></i>
+                          </a>
+                        )}
+                        {agent.instagram && (
+                          <a href={agent.instagram} target="_blank" rel="noopener noreferrer">
+                            <i className="fab fa-instagram"></i>
+                          </a>
+                        )}
+                        {agent.linkedin && (
+                          <a href={agent.linkedin} target="_blank" rel="noopener noreferrer">
+                            <i className="fab fa-linkedin"></i>
+                          </a>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    // Affichage des informations de contact de l'agence
+                    <>
+                      <p className="agency-description">{agent.description}</p>
+
+                      <div className="contact-info-group">
+                        <div className="contact-info-item">
+                          <h5>
+                            <i className="fa-solid fa-location-dot"></i> Location
+                          </h5>
+                          <p>{agent.location}</p>
+                        </div>
+
+                        <div className="contact-info-item">
+                          <h5>
+                            <i className="fa-solid fa-phone"></i> Phone
+                          </h5>
+                          <p>{agent.phone}</p>
+                        </div>
+
+                        <div className="contact-info-item">
+                          <h5>
+                            <i className="fa-solid fa-envelope"></i> Email
+                          </h5>
+                          <p>{agent.email}</p>
+                        </div>
+                      </div>
+
+                      <div className="agent-contact-buttons">
+                        <button className="email-btn">
+                          <i className="fa-solid fa-envelope"></i>
+                          Email
+                        </button>
+                        <button className="call-btn">
+                          <i className="fa-solid fa-phone"></i>
+                          Call
+                        </button>
+                        <button className="whatsapp-btn">
+                          <i className="fab fa-whatsapp"></i>
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>

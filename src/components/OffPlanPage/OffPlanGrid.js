@@ -16,7 +16,7 @@ const OffPlanGrid = () => {
       try {
         // Use the new advanced search API for off-plan properties
         const response = await fetch(
-          `${config.API_URL}/properties/search/advanced?category=off-plan&listing_type=sale`
+          `${config.API_URL}/properties/search/advanced?category=off-plans`
         );
 
         if (!response.ok) {

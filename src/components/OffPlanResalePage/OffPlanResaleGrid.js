@@ -14,10 +14,13 @@ const OffPlanResaleGrid = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        // Use the new advanced search API for off-plan resale properties
-        const response = await fetch(
-          `${config.API_URL}/properties/search/advanced?category=off-plan-resale&listing_type=sale`
-        );
+        setLoading(true);
+        
+        // Clean URL without listing_type parameter
+        const apiUrl = `${config.API_URL}/properties/search/advanced?category=off-plans-resale`;
+        console.log('Fetching from:', apiUrl); // Debug log
+        
+        const response = await fetch(apiUrl);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -100,9 +103,7 @@ const OffPlanResaleGrid = () => {
               <div className="off-plan-content">
                 <h3 className="project-title">{projects[0].name}</h3>
                 <h4 className="project-subtitle">{projects[0].name}</h4>
-                <p className="project-developer">
-                  By: {projects[0].developer || "Developer Name"}
-                </p>
+                
                 <p className="project-type">{projects[0].type}</p>
                 <p className="project-location">{projects[0].location}</p>
                 <button
@@ -144,9 +145,7 @@ const OffPlanResaleGrid = () => {
                 </div>
                 <div className="off-plan-content">
                   <h3 className="project-title">{projects[1].name}</h3>
-                  <p className="project-developer">
-                    By: {projects[1].developer || "Developer Name"}
-                  </p>
+                 
                   <p className="project-type">{projects[1].type}</p>
                   <p className="project-location">{projects[1].location}</p>
                   {projects[1].price && (
@@ -241,9 +240,7 @@ const OffPlanResaleGrid = () => {
                 <div className="off-plan-content">
                   <h3 className="project-title">{projects[4].name}</h3>
                   <h4 className="project-subtitle">{projects[4].name}</h4>
-                  <p className="project-developer">
-                    By: {projects[4].developer || "Developer Name"}
-                  </p>
+                 
                   <p className="project-type">{projects[4].type}</p>
                   <p className="project-location">{projects[4].location}</p>
                   <button

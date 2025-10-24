@@ -14,7 +14,7 @@ const ProjectsGrid = () => {
       try {
         // Use the new advanced search API for ready projects
         const response = await fetch(
-          `${config.API_URL}/properties/search/advanced?category=ready-project&listing_type=sale`
+          `${config.API_URL}/properties/search/advanced?category=ready-project`
         );
 
         if (!response.ok) {
