@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import "./GetInTouchSection.css";
+import config from "../config";
 
 const GetInTouchSection = () => {
   const [formData, setFormData] = useState({
-    fullName: "",
+    full_name: "",
     email: "",
-    phone: "",
+    mobile_number: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,32 +19,61 @@ const GetInTouchSection = () => {
       ...prevData,
       [name]: value,
     }));
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: null
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
+    setErrors({});
 
     try {
-      // You can replace this with an actual API endpoint
-      // For now, we'll simulate a successful submission after a delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      console.log("Form submitted:", formData);
-      // Reset form after successful submission
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        message: "",
+      const response = await fetch(`${config.API_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
       });
-      setSubmitStatus({ success: true, message: "Message sent successfully!" });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Show success message
+        setSubmitStatus({ 
+          success: true, 
+          message: result.message || "Thank you for your message! We will get back to you soon." 
+        });
+        // Reset form after successful submission
+        setFormData({
+          full_name: "",
+          email: "",
+          mobile_number: "",
+          message: "",
+        });
+      } else {
+        // Show validation errors
+        if (result.errors) {
+          setErrors(result.errors);
+        }
+        setSubmitStatus({
+          success: false,
+          message: result.message || "Please check the form for errors and try again.",
+        });
+      }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error('Contact form error:', error);
       setSubmitStatus({
         success: false,
-        message: "Failed to send message. Please try again.",
+        message: "Failed to submit your message. Please try again later.",
       });
     } finally {
       setIsSubmitting(false);
@@ -118,36 +149,47 @@ const GetInTouchSection = () => {
               <label>FULL NAME *</label>
               <input
                 type="text"
-                name="fullName"
-                value={formData.fullName}
+                name="full_name"
+                value={formData.full_name}
                 onChange={handleChange}
                 placeholder="Mohamed Al Mansoori"
                 required
+                className={errors.full_name ? 'error' : ''}
               />
+              {errors.full_name && (
+                <span className="field-error">{errors.full_name[0]}</span>
+              )}
             </div>
 
             <div className="form-group">
-              <label>EMAIL ADDRESS *</label>
+              <label>EMAIL ADDRESS</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="info@meridiangroup.ae"
-                required
+                className={errors.email ? 'error' : ''}
               />
+              {errors.email && (
+                <span className="field-error">{errors.email[0]}</span>
+              )}
             </div>
 
             <div className="form-group">
               <label>MOBILE NUMBER *</label>
               <input
                 type="tel"
-                name="phone"
-                value={formData.phone}
+                name="mobile_number"
+                value={formData.mobile_number}
                 onChange={handleChange}
                 placeholder="+97150607030"
                 required
+                className={errors.mobile_number ? 'error' : ''}
               />
+              {errors.mobile_number && (
+                <span className="field-error">{errors.mobile_number[0]}</span>
+              )}
             </div>
 
             <div className="form-group">
@@ -158,7 +200,11 @@ const GetInTouchSection = () => {
                 onChange={handleChange}
                 placeholder="Message"
                 required
+                className={errors.message ? 'error' : ''}
               ></textarea>
+              {errors.message && (
+                <span className="field-error">{errors.message[0]}</span>
+              )}
             </div>
 
             <button
