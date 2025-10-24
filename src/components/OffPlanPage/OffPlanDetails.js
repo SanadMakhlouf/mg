@@ -234,36 +234,101 @@ const OffPlanDetails = () => {
 
             {/* Agent Section */}
             <div className="agent-section">
-              <h3>Contact Agent</h3>
-              <div className="agent-info">
-                <div className="agent-avatar">
+              <div className="agent-content">
+                <div className="agent-image">
                   <img 
                     src={project.agent?.photo_url || "/Avatar.png"} 
                     alt={project.agent?.name || "Agent"} 
                   />
                 </div>
-                <div className="agent-details">
+                <div className="agent-info">
                   <h4>{project.agent?.name || "Meridian Group"}</h4>
-                  <p>{project.agent?.job_title || "Real Estate Agent"}</p>
-                  <div className="agent-contact">
-                    <p><i className="fa-solid fa-phone"></i> +971 586830401</p>
-                    <p><i className="fa-solid fa-envelope"></i> info@meridiangroup.ae</p>
-                  </div>
+                  
+                  {project.agent ? (
+                    // Display agent information if available
+                    <>
+                      {project.agent.job_title && (
+                        <p className="agent-job-title">{project.agent.job_title}</p>
+                      )}
+                      <p>
+                        <i className="fa-solid fa-phone"></i> +971 586830401
+                      </p>
+                      <p>
+                        <i className="fa-solid fa-envelope"></i> info@meridiangroup.ae
+                      </p>
+                      <div className="agent-social-media">
+                        <a
+                          href="#"
+                          className="social-icon"
+                          aria-label="Facebook"
+                        >
+                          <i className="fa-brands fa-facebook"></i>
+                        </a>
+                        <a
+                          href="#"
+                          className="social-icon"
+                          aria-label="LinkedIn"
+                        >
+                          <i className="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a
+                          href="#"
+                          className="social-icon"
+                          aria-label="Twitter"
+                        >
+                          <i className="fa-brands fa-twitter"></i>
+                        </a>
+                        <a
+                          href="#"
+                          className="social-icon"
+                          aria-label="Instagram"
+                        >
+                          <i className="fa-brands fa-instagram"></i>
+                        </a>
+                        <a
+                          href="https://wa.me/971586830401"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="social-icon"
+                          aria-label="WhatsApp"
+                        >
+                          <i className="fa-brands fa-whatsapp"></i>
+                        </a>
+                      </div>
+                      <button className="contact-agent-btn">Contact Agent</button>
+                    </>
+                  ) : (
+                    // Display agency contact information
+                    <>
+                      <p className="agency-description">Real Estate Agent</p>
+
+                      <div className="contact-info-group">
+                        <div className="contact-info-item">
+                          <h5>
+                            <i className="fa-solid fa-location-dot"></i> Location
+                          </h5>
+                          <p>Al Hisn, Baynunah Tower 2, Office 402, Abu Dhabi</p>
+                        </div>
+
+                        <div className="contact-info-item">
+                          <h5>
+                            <i className="fa-solid fa-phone"></i> Phone
+                          </h5>
+                          <p>+971 586830401</p>
+                        </div>
+
+                        <div className="contact-info-item">
+                          <h5>
+                            <i className="fa-solid fa-envelope"></i> Email
+                          </h5>
+                          <p>info@meridiangroup.ae</p>
+                        </div>
+                      </div>
+
+                      <button className="contact-agent-btn">Contact Us</button>
+                    </>
+                  )}
                 </div>
-              </div>
-              <div className="agent-contact-buttons">
-                <a href="mailto:info@meridiangroup.ae" className="email-btn">
-                  <i className="fa-solid fa-envelope"></i>
-                  Email
-                </a>
-                <a href="tel:+971586830401" className="call-btn">
-                  <i className="fa-solid fa-phone"></i>
-                  Call
-                </a>
-                <a href="https://wa.me/971586830401" target="_blank" rel="noopener noreferrer" className="whatsapp-btn">
-                  <i className="fa-brands fa-whatsapp"></i>
-                  WhatsApp
-                </a>
               </div>
             </div>
           </div>

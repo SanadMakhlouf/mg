@@ -349,124 +349,154 @@
 }
 
 .agent-section {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
+  background: linear-gradient(135deg, #2c5282 0%, #1a365d 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(44, 82, 130, 0.3);
+  margin-top: 2rem;
 }
 
-.agent-section h3 {
-  color: #2c5282;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
-.agent-info {
+.agent-content {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  align-items: flex-start;
+  gap: 1.5rem;
 }
 
-.agent-avatar {
-  width: 60px;
-  height: 60px;
+.agent-image {
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   overflow: hidden;
+  border: 4px solid white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   flex-shrink: 0;
 }
 
-.agent-avatar img {
+.agent-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.agent-details h4 {
-  margin: 0 0 0.25rem 0;
-  color: #333;
-  font-size: 1.1rem;
+.agent-info {
+  flex: 1;
+}
+
+.agent-info h4 {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 0.8rem;
   font-weight: bold;
 }
 
-.agent-details p {
-  margin: 0 0 0.5rem 0;
-  color: #666;
-  font-size: 0.9rem;
+.agent-job-title {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
 }
 
-.agent-contact p {
-  margin: 0.25rem 0;
-  font-size: 0.85rem;
-  color: #555;
+.agency-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.agent-info p {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin: 0.5rem 0;
+  color: white;
+  font-size: 1rem;
 }
 
-.agent-contact i {
-  color: #2c5282;
-  width: 12px;
+.agent-info p i {
+  color: rgba(255, 255, 255, 0.8);
+  width: 16px;
+  text-align: center;
 }
 
-.agent-contact i.fa-phone {
-  color: #2c5282;
-}
-
-.agent-contact i.fa-envelope {
-  color: #2c5282;
-}
-
-.agent-contact-buttons {
+.agent-social-media {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
 }
 
-.email-btn, .call-btn, .whatsapp-btn {
+.social-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.7rem;
-  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
   text-decoration: none;
-  font-weight: 500;
   transition: all 0.3s ease;
-  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.email-btn {
-  background: #e3f2fd;
-  color: #1976d2;
-  border: 1px solid #bbdefb;
+.social-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.email-btn:hover {
-  background: #1976d2;
+.social-icon i {
+  font-size: 1.2rem;
+}
+
+.contact-info-group {
+  margin: 1.5rem 0;
+}
+
+.contact-info-item {
+  margin-bottom: 1rem;
+}
+
+.contact-info-item h5 {
   color: white;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
 }
 
-.call-btn {
-  background: #f3e5f5;
-  color: #7b1fa2;
-  border: 1px solid #e1bee7;
+.contact-info-item h5 i {
+  color: rgba(255, 255, 255, 0.8);
+  width: 16px;
 }
 
-.call-btn:hover {
-  background: #7b1fa2;
+.contact-info-item p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.contact-agent-btn {
+  background-color: white;
+  color: #2c5282;
+  border: 2px solid white;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.contact-agent-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
   color: white;
-}
-
-.whatsapp-btn {
-  background: #e8f5e8;
-  color: #25d366;
-  border: 1px solid #c8e6c9;
-}
-
-.whatsapp-btn:hover {
-  background: #25d366;
-  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -499,12 +529,28 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .agent-info {
+  .agent-content {
     flex-direction: column;
     text-align: center;
   }
 
-  .agent-contact-buttons {
-    flex-direction: row;
+  .agent-image {
+    margin: 0 auto;
+    width: 70px;
+    height: 70px;
+  }
+
+  .agent-info h4 {
+    font-size: 1.1rem;
+  }
+
+  .agent-job-title {
+    font-size: 0.9rem;
+  }
+
+  .contact-agent-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    width: 100%;
   }
 }
