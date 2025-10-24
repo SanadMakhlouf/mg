@@ -13,7 +13,7 @@ const ImageCarousel = ({ images, alt }) => {
 
   const prevImage = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex + 1
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 

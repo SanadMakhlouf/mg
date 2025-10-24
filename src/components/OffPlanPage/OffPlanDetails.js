@@ -212,33 +212,13 @@ const OffPlanDetails = () => {
 
           {/* Right Column - Sidebar */}
           <div className="property-sidebar">
-            {/* Sidebar Image Gallery */}
-            {images.length > 0 && (
-              <div className="sidebar-image-gallery">
-                {images.slice(0, 3).map((image, index) => (
-                  <div key={index} className="sidebar-thumbnail-wrapper">
-                    <img
-                      src={image}
-                      alt={`${project.name} - ${index + 1}`}
-                      className="sidebar-thumbnail"
-                    />
-                    {index === 2 && images.length > 3 && (
-                      <div className="thumbnail-overlay total-count-overlay">
-                        <i className="fa-solid fa-camera"></i> {images.length}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-
             {/* Agent Section */}
             <div className="agent-section">
               <div className="agent-content">
                 <div className="agent-image">
                   <img 
-                    src={project.agent?.photo_url || "/Avatar.png"} 
-                    alt={project.agent?.name || "Agent"} 
+                    src={project.agent?.photo_url || "/logo192.png"} 
+                    alt={project.agent?.name || "Meridian Group"} 
                   />
                 </div>
                 <div className="agent-info">

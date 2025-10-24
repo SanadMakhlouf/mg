@@ -15,13 +15,13 @@ const PropertyDetails = () => {
 
   // Données par défaut pour l'agent si aucun agent n'est associé
   const defaultAgent = {
-    name: "Where to find us",
+    name: "Meridian Group",
     description:
       "Contact our experienced real estate professionals for personalized assistance with your property needs.",
     location: "Al Hisn, Baynunah Tower, Office 93",
     phone: "(+97) 150607030",
     email: "info@meridiangroup.ae",
-    image: "/user1.png",
+    image: "/logo192.png", // Use Meridian logo
   };
 
   // Listes d'équipements par défaut basées sur le type de propriété
@@ -159,10 +159,10 @@ const PropertyDetails = () => {
   // Créer un agent par défaut si aucun n'est fourni ou si l'agent est null
   const agent = property.agent
     ? {
-        name: property.agent.name || "",
+        name: property.agent.name || "Meridian Group",
         phone: property.agent.phone || "",
         email: property.agent.email || "",
-        image: property.agent.photo_url || "/user1.png",
+        image: property.agent.photo_url || "/logo192.png", // Use Meridian logo as fallback
         job_title: property.agent.job_title || "",
         social_media: agentDetails?.social_media || {}, // Utiliser uniquement les réseaux sociaux de agentDetails
         has_contact_info: !!(property.agent.phone || property.agent.email),
@@ -333,25 +333,6 @@ const PropertyDetails = () => {
 
           {/* Right Column - Sidebar */}
           <div className="property-sidebar">
-            {propertyImages.length > 0 && (
-              <div className="sidebar-image-gallery">
-                {propertyImages.slice(0, 3).map((image, index) => (
-                  <div key={index} className="sidebar-thumbnail-wrapper">
-                    <img
-                      src={image}
-                      alt={`${property.name} - ${index + 1}`}
-                      className="sidebar-thumbnail"
-                    />
-                    {index === 2 && propertyImages.length > 3 && (
-                      <div className="thumbnail-overlay total-count-overlay">
-                        <i className="fa-solid fa-camera"></i> {propertyImages.length}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-
             <div className="property-agent-section">
               <h3>{property.agent ? "Property Agent" : "Contact Information"}</h3>
               <div className="agent-card">
@@ -440,175 +421,6 @@ const PropertyDetails = () => {
                   )}
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="property-agent-section">
-          <h3>{property.agent ? "Property Agent" : "Contact Information"}</h3>
-          <div className="agent-card">
-            <div className="agent-image">
-              <img src={agent.image} alt={agent.name} />
-            </div>
-            <div className="agent-info">
-              <h4>{agent.name}</h4>
-
-              {property.agent ? (
-                // Affichage des informations de l'agent si disponible
-                <>
-                  {agent.job_title && (
-                    <p className="agent-job-title">{agent.job_title}</p>
-                  )}
-                  {agent.phone && (
-                    <p>
-                      <i className="fa-solid fa-phone"></i> {agent.phone}
-                    </p>
-                  )}
-                  {agent.email && (
-                    <p>
-                      <i className="fa-solid fa-envelope"></i> {agent.email}
-                    </p>
-                  )}
-                  <div className="agent-social-media">
-                    {!agent.social_media ||
-                    !Object.keys(agent.social_media).length ? (
-                      <>
-                        <a
-                          href="#"
-                          className="social-icon"
-                          aria-label="Facebook"
-                        >
-                          <i className="fa-brands fa-facebook"></i>
-                        </a>
-                        <a
-                          href="#"
-                          className="social-icon"
-                          aria-label="LinkedIn"
-                        >
-                          <i className="fa-brands fa-linkedin"></i>
-                        </a>
-                        <a
-                          href="#"
-                          className="social-icon"
-                          aria-label="Twitter"
-                        >
-                          <i className="fa-brands fa-twitter"></i>
-                        </a>
-                        <a
-                          href="#"
-                          className="social-icon"
-                          aria-label="Instagram"
-                        >
-                          <i className="fa-brands fa-instagram"></i>
-                        </a>
-                        <a
-                          href="#"
-                          className="social-icon"
-                          aria-label="WhatsApp"
-                        >
-                          <i className="fa-brands fa-whatsapp"></i>
-                        </a>
-                      </>
-                    ) : (
-                      <>
-                        {agent.social_media.facebook && (
-                          <a
-                            href={agent.social_media.facebook}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="social-icon"
-                            aria-label="Facebook"
-                          >
-                            <i className="fa-brands fa-facebook"></i>
-                          </a>
-                        )}
-                        {agent.social_media.linkedin && (
-                          <a
-                            href={agent.social_media.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="social-icon"
-                            aria-label="LinkedIn"
-                          >
-                            <i className="fa-brands fa-linkedin"></i>
-                          </a>
-                        )}
-                        {agent.social_media.twitter && (
-                          <a
-                            href={agent.social_media.twitter}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="social-icon"
-                            aria-label="Twitter"
-                          >
-                            <i className="fa-brands fa-twitter"></i>
-                          </a>
-                        )}
-                        {agent.social_media.instagram && (
-                          <a
-                            href={agent.social_media.instagram}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="social-icon"
-                            aria-label="Instagram"
-                          >
-                            <i className="fa-brands fa-instagram"></i>
-                          </a>
-                        )}
-                        {agent.social_media.whatsapp && (
-                          <a
-                            href={`https://wa.me/${agent.social_media.whatsapp}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="social-icon"
-                            aria-label="WhatsApp"
-                          >
-                            <i className="fa-brands fa-whatsapp"></i>
-                          </a>
-                        )}
-                      </>
-                    )}
-                  </div>
-                  {agent.has_contact_info && (
-                    <button className="contact-agent-btn">Contact Agent</button>
-                  )}
-                </>
-              ) : (
-                // Affichage des informations de contact de l'agence
-                <>
-                  <p className="agency-description">{agent.description}</p>
-
-                  <div className="contact-info-group">
-                    <div className="contact-info-item">
-                      <h5>
-                        <i className="fa-solid fa-location-dot"></i> Location
-                      </h5>
-                      <p>{agent.location}</p>
-                    </div>
-
-                    <div className="contact-info-item">
-                      <h5>
-                        <i className="fa-solid fa-phone"></i> Phone
-                      </h5>
-                      <p>{agent.phone}</p>
-                    </div>
-
-                    <div className="contact-info-item">
-                      <h5>
-                        <i className="fa-solid fa-envelope"></i> Email
-                      </h5>
-                      <p>{agent.email}</p>
-                    </div>
-                  </div>
-
-                  <button
-                    className="contact-agent-btn"
-                    onClick={() => navigate("/contact")}
-                  >
-                    Contact Us
-                  </button>
-                </>
-              )}
             </div>
           </div>
         </div>
