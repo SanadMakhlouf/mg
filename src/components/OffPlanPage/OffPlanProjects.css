@@ -105,6 +105,370 @@
   font-size: 0.9rem;
 }
 
+/* Property Details Styles for OffPlanDetails */
+.property-details-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0 1rem;
+  position: relative;
+  padding-top: 120px;
+}
+
+.property-details-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+.property-details-header h1 {
+  font-size: 2.5rem;
+  color: #2c5282;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.property-location-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.property-location-details i {
+  color: #2c5282;
+}
+
+.property-main-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  max-width: 100%;
+}
+
+.property-main-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.property-images {
+  position: relative;
+}
+
+.property-price-section {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.property-price-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.property-price-details h2 {
+  color: #2c5282;
+  font-size: 2rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+.property-action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.save-btn, .share-btn {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #666;
+}
+
+.save-btn:hover, .share-btn:hover {
+  background: #2c5282;
+  color: white;
+  border-color: #2c5282;
+}
+
+.property-address {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.property-address i {
+  color: #2c5282;
+}
+
+.property-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.feature-item i {
+  color: #2c5282;
+  font-size: 1.2rem;
+}
+
+.feature-item i.fa-bed {
+  color: #2c5282;
+}
+
+.feature-item i.fa-bath {
+  color: #2c5282;
+}
+
+.feature-item i.fa-ruler-combined {
+  color: #2c5282;
+}
+
+.feature-item span {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.property-description {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.property-description h3 {
+  color: #2c5282;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.property-description div {
+  line-height: 1.6;
+  color: #555;
+}
+
+.property-brochure {
+  margin-top: 1rem;
+}
+
+.property-brochure .contact-agent-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #2c5282;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  font-weight: 500;
+}
+
+.property-brochure .contact-agent-btn:hover {
+  background: #1a365d;
+}
+
+.property-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar-image-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.sidebar-thumbnail-wrapper {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.sidebar-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.thumbnail-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.total-count-overlay {
+  background: rgba(44, 82, 130, 0.9);
+}
+
+.agent-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.agent-section h3 {
+  color: #2c5282;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.agent-info {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.agent-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.agent-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.agent-details h4 {
+  margin: 0 0 0.25rem 0;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.agent-details p {
+  margin: 0 0 0.5rem 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.agent-contact p {
+  margin: 0.25rem 0;
+  font-size: 0.85rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.agent-contact i {
+  color: #2c5282;
+  width: 12px;
+}
+
+.agent-contact i.fa-phone {
+  color: #2c5282;
+}
+
+.agent-contact i.fa-envelope {
+  color: #2c5282;
+}
+
+.agent-contact-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.email-btn, .call-btn, .whatsapp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.email-btn {
+  background: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #bbdefb;
+}
+
+.email-btn:hover {
+  background: #1976d2;
+  color: white;
+}
+
+.call-btn {
+  background: #f3e5f5;
+  color: #7b1fa2;
+  border: 1px solid #e1bee7;
+}
+
+.call-btn:hover {
+  background: #7b1fa2;
+  color: white;
+}
+
+.whatsapp-btn {
+  background: #e8f5e8;
+  color: #25d366;
+  border: 1px solid #c8e6c9;
+}
+
+.whatsapp-btn:hover {
+  background: #25d366;
+  color: white;
+}
+
 @media (max-width: 768px) {
   .off-plan-projects {
     padding: 2rem 1rem;
@@ -112,5 +476,35 @@
 
   .off-plan-projects-grid {
     grid-template-columns: 1fr;
+  }
+
+  .property-main-content {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .property-details-header h1 {
+    font-size: 2rem;
+  }
+
+  .property-price-details h2 {
+    font-size: 1.5rem;
+  }
+
+  .property-features {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar-image-gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .agent-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .agent-contact-buttons {
+    flex-direction: row;
   }
 }

@@ -307,8 +307,18 @@ const PropertyDetails = () => {
                 dangerouslySetInnerHTML={{
                   __html: property.description 
                     ? property.description
+                        // Decode HTML entities first
+                        .replace(/&amp;lt;/g, '<')
+                        .replace(/&amp;gt;/g, '>')
+                        .replace(/&amp;amp;/g, '&')
+                        .replace(/&amp;quot;/g, '"')
+                        .replace(/&amp;#039;/g, "'")
+                        .replace(/&amp;nbsp;/g, ' ')
+                        // Then handle line breaks
                         .replace(/&lt;br\s*\/?&gt;/gi, '<br>')
                         .replace(/<br\s*\/?>/gi, '<br>')
+                        .replace(/&amp;lt;br\s*\/?&amp;gt;/gi, '<br>')
+                        // Clean up any remaining entities
                         .replace(/&amp;/g, '&')
                         .replace(/&quot;/g, '"')
                         .replace(/&#39;/g, "'")
