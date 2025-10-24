@@ -27,22 +27,38 @@ const SearchSection = () => {
   };
 
   const handleSearch = () => {
-    // Create query string from search parameters
+    // Create query string from search parameters using new API format
     const queryParams = new URLSearchParams();
 
-    // Only add parameters that have values
-    Object.entries(searchParams).forEach(([key, value]) => {
-      if (value && value.trim() !== "") {
-        queryParams.append(key, value.trim());
-      }
-    });
-
-    // If no parameters are set but location is entered, use that as the main search parameter
+    // Map frontend parameters to API parameters
     if (searchParams.location && searchParams.location.trim() !== "") {
-      queryParams.set("location", searchParams.location.trim());
+      queryParams.append("location", searchParams.location.trim());
     }
 
-    // Navigate to the appropriate page based on the active tab
+    if (searchParams.propertyType) {
+      queryParams.append("type", searchParams.propertyType);
+    }
+
+    if (searchParams.minBathrooms) {
+      queryParams.append("min_bathrooms", searchParams.minBathrooms);
+    }
+
+    if (searchParams.maxBathrooms) {
+      queryParams.append("max_bathrooms", searchParams.maxBathrooms);
+    }
+
+    if (searchParams.minBedrooms) {
+      queryParams.append("min_bedrooms", searchParams.minBedrooms);
+    }
+
+    if (searchParams.maxBedrooms) {
+      queryParams.append("max_bedrooms", searchParams.maxBedrooms);
+    }
+
+    // Set listing type based on active tab
+    queryParams.append("listing_type", activeTab === "rental" ? "rent" : "sale");
+
+    // Navigate to the appropriate page with new API parameters
     if (activeTab === "rental") {
       navigate(`/rent?${queryParams.toString()}`);
     } else {

@@ -18,16 +18,68 @@ const PropertiesSection = ({ filterParams }) => {
       try {
         setLoading(true);
 
-        // Build the API URL with query parameters based on filterParams
-        let apiUrl = `${config.API_URL}/properties/type/rent`;
+        // Build the API URL using the new advanced search endpoint
+        let apiUrl = `${config.API_URL}/properties/search/advanced`;
 
-        // Add query parameters if they exist
+        // Create query parameters for the new API
         const queryParams = new URLSearchParams();
+        
+        // Set listing type to rent for rent page
+        queryParams.append("listing_type", "rent");
 
-        // We'll do all filtering client-side for more flexibility
-        // Don't send any parameters to the API
+        // Add filter parameters if they exist
+        if (filterParams) {
+          if (filterParams.location && filterParams.location.trim() !== "") {
+            queryParams.append("location", filterParams.location.trim());
+          }
 
-        // Add query parameters to the URL if any exist
+          if (filterParams.propertyType) {
+            queryParams.append("type", filterParams.propertyType);
+          }
+
+          if (filterParams.minBathrooms) {
+            queryParams.append("min_bathrooms", filterParams.minBathrooms);
+          }
+
+          if (filterParams.maxBathrooms) {
+            queryParams.append("max_bathrooms", filterParams.maxBathrooms);
+          }
+
+          if (filterParams.minBedrooms) {
+            queryParams.append("min_bedrooms", filterParams.minBedrooms);
+          }
+
+          if (filterParams.maxBedrooms) {
+            queryParams.append("max_bedrooms", filterParams.maxBedrooms);
+          }
+
+          if (filterParams.minArea) {
+            queryParams.append("min_area", filterParams.minArea);
+          }
+
+          if (filterParams.maxArea) {
+            queryParams.append("max_area", filterParams.maxArea);
+          }
+
+          if (filterParams.minPrice) {
+            queryParams.append("min_price", filterParams.minPrice);
+          }
+
+          if (filterParams.maxPrice) {
+            queryParams.append("max_price", filterParams.maxPrice);
+          }
+
+          // Handle completion status for rent properties
+          if (filterParams.completionStatus) {
+            if (filterParams.completionStatus === "ready") {
+              queryParams.append("category", "ready-project");
+            } else if (filterParams.completionStatus === "off-plan") {
+              queryParams.append("category", "off-plan");
+            }
+          }
+        }
+
+        // Add query parameters to URL
         const queryString = queryParams.toString();
         if (queryString) {
           apiUrl += `?${queryString}`;
@@ -46,104 +98,7 @@ const PropertiesSection = ({ filterParams }) => {
             ? result.data
             : [result.data];
 
-          // Apply client-side filtering
-          if (filterParams) {
-            // Filter by location
-            if (filterParams.location && filterParams.location.trim() !== "") {
-              const locationSearch = filterParams.location.toLowerCase().trim();
-              propertiesData = propertiesData.filter((property) => {
-                // Check if property has location and if it contains the search term
-                return (
-                  property.location &&
-                  property.location.toLowerCase().includes(locationSearch)
-                );
-              });
-            }
-
-            // Filter by completion status
-            if (filterParams.completionStatus) {
-              propertiesData = propertiesData.filter(
-                (property) =>
-                  property.completionStatus === filterParams.completionStatus
-              );
-            }
-
-            // Filter by property type
-            if (filterParams.propertyType) {
-              propertiesData = propertiesData.filter((property) => {
-                // Check if property has type and if it matches the filter
-                return (
-                  property.type &&
-                  property.type.toLowerCase() ===
-                    filterParams.propertyType.toLowerCase()
-                );
-              });
-            }
-
-            // Filter by min bathrooms
-            if (filterParams.minBathrooms) {
-              const minBaths = parseInt(filterParams.minBathrooms);
-              propertiesData = propertiesData.filter(
-                (property) => property.bathrooms >= minBaths
-              );
-            }
-
-            // Filter by max bathrooms
-            if (filterParams.maxBathrooms) {
-              const maxBaths = parseInt(filterParams.maxBathrooms);
-              propertiesData = propertiesData.filter(
-                (property) => property.bathrooms <= maxBaths
-              );
-            }
-
-            // Filter by min bedrooms
-            if (filterParams.minBedrooms) {
-              const minBeds = parseInt(filterParams.minBedrooms);
-              propertiesData = propertiesData.filter(
-                (property) => property.bedrooms >= minBeds
-              );
-            }
-
-            // Filter by max bedrooms
-            if (filterParams.maxBedrooms) {
-              const maxBeds = parseInt(filterParams.maxBedrooms);
-              propertiesData = propertiesData.filter(
-                (property) => property.bedrooms <= maxBeds
-              );
-            }
-
-            // Filter by min area
-            if (filterParams.minArea) {
-              const minArea = parseInt(filterParams.minArea);
-              propertiesData = propertiesData.filter(
-                (property) => property.area >= minArea
-              );
-            }
-
-            // Filter by max area
-            if (filterParams.maxArea) {
-              const maxArea = parseInt(filterParams.maxArea);
-              propertiesData = propertiesData.filter(
-                (property) => property.area <= maxArea
-              );
-            }
-
-            // Filter by min price
-            if (filterParams.minPrice) {
-              const minPrice = parseInt(filterParams.minPrice);
-              propertiesData = propertiesData.filter(
-                (property) => property.price >= minPrice
-              );
-            }
-
-            // Filter by max price
-            if (filterParams.maxPrice) {
-              const maxPrice = parseInt(filterParams.maxPrice);
-              propertiesData = propertiesData.filter(
-                (property) => property.price <= maxPrice
-              );
-            }
-          }
+          // Properties are already filtered by the API
 
           setProperties(propertiesData);
         } else {

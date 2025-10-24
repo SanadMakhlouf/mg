@@ -12,8 +12,9 @@ const ProjectsGrid = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
+        // Use the new advanced search API for ready projects
         const response = await fetch(
-          `${config.API_URL}/ready-projects/category/ready-project`
+          `${config.API_URL}/properties/search/advanced?category=ready-project&listing_type=sale`
         );
 
         if (!response.ok) {
@@ -22,8 +23,8 @@ const ProjectsGrid = () => {
 
         const result = await response.json();
 
-        if (result.status === "success" && result.data && result.data.data) {
-          setProjects(result.data.data);
+        if (result.success && result.data) {
+          setProjects(result.data);
         } else {
           setError("Failed to fetch projects");
         }

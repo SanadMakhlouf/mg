@@ -14,8 +14,9 @@ const OffPlanGrid = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
+        // Use the new advanced search API for off-plan properties
         const response = await fetch(
-          `${config.API_URL}/ready-projects/category/off-plans`
+          `${config.API_URL}/properties/search/advanced?category=off-plan&listing_type=sale`
         );
 
         if (!response.ok) {
@@ -24,8 +25,8 @@ const OffPlanGrid = () => {
 
         const result = await response.json();
 
-        if (result.status === "success" && result.data && result.data.data) {
-          setProjects(result.data.data);
+        if (result.success && result.data) {
+          setProjects(result.data);
         } else {
           setError("Failed to fetch projects");
         }
