@@ -378,7 +378,8 @@ const InteractiveMap = () => {
   // Navigate to property details
   const viewPropertyDetails = () => {
     if (selectedProperty) {
-      navigate(`/property/${selectedProperty.id}`);
+      const slug = selectedProperty.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      navigate(`/property/${selectedProperty.id}/${slug}`);
     }
   };
 

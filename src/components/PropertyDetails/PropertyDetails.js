@@ -20,10 +20,7 @@ const PropertyDetails = () => {
       "Contact our experienced real estate professionals for personalized assistance with your property needs.",
     location: "Al Hisn, Baynunah Tower, Office 93",
     phone: "(+97) 150607030",
-    phone2: "(+97) 150607030",
     email: "info@meridiangroup.ae",
-    email2: "info@meridiangroup.ae",
-    hours: "Open: 04:00 am - Closed: 07:00 pm",
     image: "/user1.png",
   };
 
@@ -154,7 +151,7 @@ const PropertyDetails = () => {
   }
 
   // Déterminer si c'est un "hot deal" basé sur la catégorie
-  const isHotDeal = property.category === "off-plans";
+  const isHotDeal = property.category === "off-plan";
 
   // Obtenir les équipements par défaut basés sur le type de propriété
   const amenities = defaultAmenities[property.type] || defaultAmenities.default;
@@ -254,7 +251,12 @@ const PropertyDetails = () => {
 
           <div className="property-info-details">
             <div className="property-price-details">
-              <h2>{parseFloat(property.price).toLocaleString()} AED</h2>
+              <h2>
+                {parseFloat(property.price) > 0 
+                  ? `${parseFloat(property.price).toLocaleString()} AED`
+                  : 'Price on Request'
+                }
+              </h2>
             </div>
 
             <div className="property-features">
@@ -268,7 +270,7 @@ const PropertyDetails = () => {
               </div>
               <div className="feature">
                 <i className="fa-solid fa-ruler-combined"></i>
-                <span>{property.area || 0} Sq Ft</span>
+                <span>{parseFloat(property.area) > 0 ? `${property.area} Sq Ft` : 'Area TBD'}</span>
               </div>
               <div className="feature">
                 <i className="fa-solid fa-building"></i>
@@ -284,10 +286,19 @@ const PropertyDetails = () => {
 
             <div className="property-description">
               <h3>Description</h3>
-              <p>
-                {property.description ||
-                  `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`}
-              </p>
+              <div 
+                className="description-content"
+                dangerouslySetInnerHTML={{
+                  __html: property.description 
+                    ? property.description
+                        .replace(/&lt;br\s*\/?&gt;/gi, '<br>')
+                        .replace(/&amp;/g, '&')
+                        .replace(/&quot;/g, '"')
+                        .replace(/&#39;/g, "'")
+                        .replace(/&nbsp;/g, ' ')
+                    : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`
+                }}
+              />
             </div>
           </div>
         </div>
@@ -439,7 +450,6 @@ const PropertyDetails = () => {
                         <i className="fa-solid fa-phone"></i> Phone
                       </h5>
                       <p>{agent.phone}</p>
-                      <p>{agent.phone2}</p>
                     </div>
 
                     <div className="contact-info-item">
@@ -447,14 +457,6 @@ const PropertyDetails = () => {
                         <i className="fa-solid fa-envelope"></i> Email
                       </h5>
                       <p>{agent.email}</p>
-                      <p>{agent.email2}</p>
-                    </div>
-
-                    <div className="contact-info-item">
-                      <h5>
-                        <i className="fa-solid fa-clock"></i> Working Hours
-                      </h5>
-                      <p>{agent.hours}</p>
                     </div>
                   </div>
 

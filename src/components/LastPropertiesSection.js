@@ -126,7 +126,7 @@ const LastPropertiesSection = () => {
                 baths={property.bathrooms || "N/A"}
                 sqft={property.area || "N/A"}
                 location={property.location || "Dubai, UAE"}
-                isHotDeal={property.category === "off-plans"}
+                isHotDeal={property.category === "off-plan"}
                 permitNumber={property.permit_number}
               />
             ))}

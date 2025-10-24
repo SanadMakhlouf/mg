@@ -77,7 +77,8 @@ const ProjectsGrid = () => {
   // Fonction pour générer une carte de projet
   const ProjectCard = ({ project, size = "" }) => {
     const handleClick = () => {
-      navigate(`/property/${project.id}`);
+      const slug = project.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      navigate(`/property/${project.id}/${slug}`);
     };
 
     return (

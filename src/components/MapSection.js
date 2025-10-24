@@ -25,7 +25,6 @@ const MapSection = () => {
             <img src={process.env.PUBLIC_URL + "/phone.png"} alt="phone" />
             <div>
               <p>(+97) 150607030</p>
-              <p>(+97) 150607030</p>
             </div>
           </div>
 
@@ -33,20 +32,16 @@ const MapSection = () => {
             <img src={process.env.PUBLIC_URL + "/ime.png"} alt="email" />
             <div>
               <p>info@meridiangroup.ae</p>
-              <p>info@meridiangroup.ae</p>
-            </div>
-          </div>
-
-          <div className="detail-item">
-            <img src={process.env.PUBLIC_URL + "/time.png"} alt="time" />
-            <div>
-              <p>Open: 04:00 am</p>
-              <p>Closed: 07:00 pm</p>
             </div>
           </div>
         </div>
 
-        <button className="search-maps-btn">SEARCH ON MAPS</button>
+        <button 
+          className="search-maps-btn"
+          onClick={() => window.open('https://share.google/o1rVfnflSbTSKhd8t', '_blank')}
+        >
+          SEARCH ON MAPS
+        </button>
       </div>
     </section>
   );

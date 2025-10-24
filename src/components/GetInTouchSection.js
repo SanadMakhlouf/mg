@@ -70,21 +70,12 @@ const GetInTouchSection = () => {
               <img src="/phone.png" alt="phone" />
               <div>
                 <p>(+97) 150607030</p>
-                <p>(+97) 150607030</p>
               </div>
             </div>
             <div className="info-item">
               <img src="/ime.png" alt="email" />
               <div>
                 <p>info@meridiangroup.ae</p>
-                <p>info@meridiangroup.ae</p>
-              </div>
-            </div>
-            <div className="info-item">
-              <img src="/time.png" alt="time" />
-              <div>
-                <p>Open: 04:00 am</p>
-                <p>Closed: 07:00 pm</p>
               </div>
             </div>
           </div>

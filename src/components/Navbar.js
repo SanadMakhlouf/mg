@@ -119,7 +119,7 @@ const Navbar = () => {
                   to="/off-plan-properties-resale"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  OFF PLANS RESALE
+                  OFF PLAN RESALE
                 </Link>
               </div>
             </div>
@@ -133,13 +133,6 @@ const Navbar = () => {
           <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>
             BLOG
           </Link>
-          <Link
-            to="/interactive-map"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="beta-link"
-          >
-            MAP <span className="beta-badge">COMING SOON</span>
-          </Link>
           <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
             CONTACT
           </Link>
@@ -148,7 +141,7 @@ const Navbar = () => {
             className="list-property-btn"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            OFF PLANS
+            OFF PLAN
           </Link>
           {/* Investment Plan button hidden temporarily */}
           {/* <button className="investment-plan-btn">INVESTMENT PLAN</button> */}

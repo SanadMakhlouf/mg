@@ -78,7 +78,10 @@ const OffPlanResaleGrid = () => {
         {projects[0] && (
           <div
             className="off-plan-featured-card"
-            onClick={() => navigate(`/property/${projects[0].id}`)}
+            onClick={() => {
+              const slug = projects[0].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+              navigate(`/property/${projects[0].id}/${slug}`);
+            }}
             style={{ cursor: "pointer" }}
           >
             <div className="off-plan-image-container">
@@ -105,7 +108,8 @@ const OffPlanResaleGrid = () => {
                   className="enquire-btn"
                   onClick={(e) => {
                     e.stopPropagation();
-                    navigate(`/property/${projects[0].id}`);
+                    const slug = projects[0].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                    navigate(`/property/${projects[0].id}/${slug}`);
                   }}
                 >
                   ENQUIRE NOW
@@ -119,7 +123,10 @@ const OffPlanResaleGrid = () => {
           {projects[1] && (
             <div
               className="off-plan-right-card"
-              onClick={() => navigate(`/property/${projects[1].id}`)}
+              onClick={() => {
+                const slug = projects[1].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                navigate(`/property/${projects[1].id}/${slug}`);
+              }}
               style={{ cursor: "pointer" }}
             >
               <div className="off-plan-image-container">
@@ -176,7 +183,10 @@ const OffPlanResaleGrid = () => {
               <div
                 key={project.id}
                 className="off-plan-small-card"
-                onClick={() => navigate(`/property/${project.id}`)}
+                onClick={() => {
+                  const slug = project.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                  navigate(`/property/${project.id}/${slug}`);
+                }}
                 style={{ cursor: "pointer" }}
               >
                 <div className="off-plan-image-container">
@@ -215,7 +225,10 @@ const OffPlanResaleGrid = () => {
           {projects[4] && (
             <div
               className="project-card"
-              onClick={() => navigate(`/property/${projects[4].id}`)}
+              onClick={() => {
+                const slug = projects[4].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                navigate(`/property/${projects[4].id}/${slug}`);
+              }}
               style={{ cursor: "pointer" }}
             >
               <div className="off-plan-image-container">
@@ -236,7 +249,8 @@ const OffPlanResaleGrid = () => {
                     className="enquire-btn"
                     onClick={(e) => {
                       e.stopPropagation();
-                      navigate(`/property/${projects[4].id}`);
+                      const slug = projects[4].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                      navigate(`/property/${projects[4].id}/${slug}`);
                     }}
                   >
                     LEARN MORE

@@ -112,7 +112,8 @@ const OffPlanGrid = () => {
                   className="enquire-btn"
                   onClick={(e) => {
                     e.stopPropagation();
-                    navigate(`/property/${projects[0].id}`);
+                    const slug = projects[0].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                    navigate(`/property/${projects[0].id}/${slug}`);
                   }}
                 >
                   ENQUIRE NOW
@@ -248,7 +249,8 @@ const OffPlanGrid = () => {
                     className="enquire-btn"
                     onClick={(e) => {
                       e.stopPropagation();
-                      navigate(`/property/${projects[4].id}`);
+                      const slug = projects[4].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                      navigate(`/property/${projects[4].id}/${slug}`);
                     }}
                   >
                     LEARN MORE
