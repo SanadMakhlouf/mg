@@ -5,12 +5,12 @@
 }
 
 .property-details-container {
-  max-width: 100%;
+  max-width: 1400px;
   width: 100%;
-  margin: 0;
+  margin: 0 auto;
   padding: 0 1rem;
   position: relative;
-  padding-top: 120px;
+  padding-top: 100px;
   overflow-x: hidden;
   box-sizing: border-box;
 }
@@ -48,15 +48,15 @@
 }
 
 .property-details-header {
-  margin-bottom: 2rem;
-  background-color: #f8f9fa;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .property-details-header h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #333;
   margin-bottom: 0.5rem;
   font-weight: 600;
@@ -73,17 +73,27 @@
 
 .property-main-content {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  background-color: transparent;
+}
+
+.property-main-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   background-color: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-  max-width: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.property-sidebar {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .property-images {
@@ -117,16 +127,16 @@
 }
 
 .property-price-details h2 {
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: #800020;
   margin: 0;
 }
 
 .property-features {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  padding: 1.5rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  padding: 1rem 0;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
@@ -134,21 +144,29 @@
 .feature {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
+  gap: 0.5rem;
+  padding: 0.6rem;
   background-color: #f8f9fa;
-  border-radius: 8px;
+  border-radius: 6px;
   transition: all 0.3s ease;
+  min-width: 0;
 }
 
 .feature:hover {
   background-color: #e9ecef;
-  transform: translateY(-2px);
 }
 
 .feature i {
   color: #800020;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.feature span {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Left Column Styles */
@@ -312,37 +330,38 @@
   background-color: #128C7E;
 }
 
-.property-description h3,
-.property-amenities h3 {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 1rem;
-}
-
-.property-description p {
-  line-height: 1.6;
-  color: #555;
-}
-
 .description-content {
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: #555;
   margin-bottom: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .description-content br {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   display: block;
 }
 
 .description-content p {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .description-content strong {
   font-weight: 600;
   color: #333;
+}
+
+.property-description h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.property-description {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .property-amenities ul {
@@ -364,34 +383,33 @@
 }
 
 .property-agent-section {
-  margin: 2rem 0;
-  padding: 2.5rem;
+  padding: 1.5rem;
   background-color: #800020;
-  border-radius: 12px;
+  border-radius: 8px;
   color: white;
 }
 
 .property-agent-section h3 {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   color: white;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   font-weight: bold;
 }
 
 .agent-card {
   display: flex;
-  gap: 2.5rem;
-  align-items: center;
+  gap: 1.5rem;
+  align-items: flex-start;
 }
 
 .agent-image {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   overflow: hidden;
-  border: 4px solid white;
+  border: 3px solid white;
   flex-shrink: 0;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .agent-image img {
@@ -405,18 +423,20 @@
 }
 
 .agent-info h4 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: white;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem;
   font-weight: bold;
+  word-wrap: break-word;
 }
 
 .agent-job-title {
   color: rgba(255, 255, 255, 0.9);
   font-style: italic;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
+  word-wrap: break-word;
 }
 
 .agent-social-media {
@@ -459,25 +479,29 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin: 0.5rem 0;
+  margin: 0.4rem 0;
   color: white;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .agency-description {
   margin-bottom: 1.5rem;
   line-height: 1.6;
   color: white;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .contact-info-group {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .contact-info-item {
@@ -485,31 +509,33 @@
 }
 
 .contact-info-item h5 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: white;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 .contact-info-item p {
-  margin: 0.25rem 0;
+  margin: 0.2rem 0;
   display: block;
   color: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
+  font-size: 0.9rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .contact-agent-btn {
   background-color: white;
   color: #800020;
   border: 2px solid white;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   transition: all 0.3s ease;
   width: 100%;
   display: flex;
@@ -522,7 +548,6 @@
 .contact-agent-btn:hover {
   background-color: rgba(255, 255, 255, 0.1);
   color: white;
-  transform: translateY(-2px);
 }
 
 .property-actions {
@@ -589,216 +614,139 @@
   margin-top: 1rem;
 }
 
+/* Desktop Layout - Everything in one column */
+@media (min-width: 992px) {
+  .property-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .property-main-left {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+  }
+
+  .property-sidebar {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+  }
+
+  .contact-info-group {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .property-agent-section {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .agent-card {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 1.5rem;
+  }
+
+  .agent-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .agent-info {
+    flex: 1;
+  }
+
+  .agent-info p {
+    justify-content: flex-start;
+  }
+}
+
 /* Responsive Design Improvements */
 @media (max-width: 1200px) {
   .property-details-container {
-    max-width: 100%;
-    padding: 0 1.5rem;
+    padding: 0 1rem;
   }
 }
 
 @media (max-width: 992px) {
   .property-main-content {
+    flex-direction: column;
+  }
+  
+  .contact-info-group {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
-
-  .property-amenities ul {
-    grid-template-columns: 1fr;
-  }
-
-  .property-features {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .feature {
-    min-width: 120px;
   }
 }
 
 @media (max-width: 768px) {
   .property-details-container {
-    padding: 0 0.5rem;
-    padding-top: 100px;
-    overflow-x: hidden;
+    padding: 0 0.75rem;
+    padding-top: 90px;
   }
 
   .property-details-header {
-    padding: 1.5rem 1rem;
-    margin-bottom: 1.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
   }
 
   .property-details-header h1 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     line-height: 1.3;
-    word-wrap: break-word;
   }
 
   .property-main-content {
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    gap: 1.5rem;
-    overflow-x: hidden;
-  }
-
-  .property-price-details {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 1rem;
   }
 
+  .property-main-left {
+    padding: 1rem;
+    gap: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .property-sidebar {
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .property-sidebar {
+    order: -1;
+  }
+
   .property-price-details h2 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 
   .property-features {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-    padding: 1rem 0;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 0.75rem 0;
   }
 
   .feature {
-    justify-content: flex-start;
-    padding: 0.8rem;
-    background-color: #f8f9fa;
-    border-radius: 6px;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .feature i {
+    font-size: 0.9rem;
   }
 
   .agent-card {
     flex-direction: column;
     text-align: center;
     gap: 1rem;
-  }
-
-  .agent-image {
-    margin: 0 auto;
-    width: 80px;
-    height: 80px;
-  }
-
-  .agent-info {
-    width: 100%;
-  }
-
-  .agent-info h4 {
-    font-size: 1.2rem;
-  }
-
-  .agent-info p {
-    justify-content: center;
-    font-size: 0.95rem;
-  }
-
-  .property-actions {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .action-btn {
-    padding: 0.8rem;
-    font-size: 0.9rem;
-  }
-
-  .contact-info-group {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .contact-info-item {
-    text-align: center;
-  }
-
-  .contact-info-item h5 {
-    justify-content: center;
-  }
-
-  .contact-info-item p {
-    display: flex;
-    justify-content: center;
-  }
-
-  .agency-description {
-    text-align: center;
-  }
-
-  .property-agent-section {
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-  }
-
-  .property-agent-section h3 {
-    font-size: 1.3rem;
-    text-align: center;
-  }
-
-  .contact-agent-btn {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .property-details-container {
-    padding: 0 0.5rem;
-    padding-top: 90px;
-    overflow-x: hidden;
-  }
-
-  .property-details-header {
-    padding: 1rem 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .property-details-header h1 {
-    font-size: 1.5rem;
-    word-wrap: break-word;
-  }
-
-  .property-location-details {
-    font-size: 0.9rem;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-  }
-
-  .property-main-content {
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    gap: 1rem;
-    overflow-x: hidden;
-  }
-
-  .property-price-details {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-  }
-
-  .property-price-details h2 {
-    font-size: 1.3rem;
-    text-align: center;
-  }
-
-  .property-features {
-    gap: 0.6rem;
-    padding: 0.8rem 0;
-  }
-
-  .feature {
-    padding: 0.6rem;
-    font-size: 0.9rem;
-  }
-
-  .feature i {
-    font-size: 1rem;
-  }
-
-  .property-description h3,
-  .property-amenities h3 {
-    font-size: 1.3rem;
-    text-align: center;
   }
 
   .agent-image {
@@ -811,96 +759,98 @@
   }
 
   .agent-job-title {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .agent-info p {
-    font-size: 0.9rem;
-  }
-
-  .contact-agent-btn {
-    padding: 0.7rem 1.2rem;
-    font-size: 0.95rem;
-    width: 100%;
-  }
-
-  .action-btn {
-    padding: 0.7rem;
     font-size: 0.85rem;
+    justify-content: center;
   }
 
   .property-agent-section {
     padding: 1rem;
-    margin: 1rem 0;
   }
 
   .property-agent-section h3 {
     font-size: 1.2rem;
   }
 
-  .agent-social-media {
-    gap: 0.8rem;
-    justify-content: center;
-  }
-
-  .agent-social-media .social-icon {
-    width: 32px;
-    height: 32px;
-    font-size: 1rem;
-  }
-
-  .contact-info-item h5 {
-    font-size: 0.95rem;
-  }
-
-  .contact-info-item p {
+  .contact-agent-btn {
+    padding: 0.7rem;
     font-size: 0.9rem;
   }
-}
 
-@media (max-width: 480px) {
-  .property-details-header h1 {
-    font-size: 1.6rem;
-  }
-
-  .property-price-details h2 {
-    font-size: 1.4rem;
-  }
-
-  .property-features {
-    gap: 0.5rem;
-  }
-
-  .feature {
-    padding: 0.3rem;
-    font-size: 0.85rem;
-  }
-
-  .property-description h3,
-  .property-amenities h3 {
+  .property-description h3 {
     font-size: 1.2rem;
   }
 
+  .description-content {
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .property-description {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 576px) {
+  .property-details-container {
+    padding: 0 0.5rem;
+    padding-top: 80px;
+  }
+
+  .property-details-header {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .property-details-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .property-main-left,
+  .property-sidebar {
+    padding: 0.75rem;
+  }
+
+  .property-price-details h2 {
+    font-size: 1.25rem;
+  }
+
+  .property-features {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .feature {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .property-agent-section {
+    padding: 0.75rem;
+  }
+
+  .property-agent-section h3 {
+    font-size: 1.1rem;
+  }
+
   .agent-image {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
 
   .agent-info h4 {
-    font-size: 0.95rem;
-  }
-
-  .agent-job-title {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 
   .contact-agent-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-  }
-
-  .action-btn {
     padding: 0.6rem;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 }

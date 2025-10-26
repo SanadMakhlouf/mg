@@ -102,7 +102,7 @@ const PropertiesSection = ({ filterParams }) => {
   return (
     <div className="properties-section">
       <div className="properties-header">
-        <h2>Property for Buy</h2>
+        <h2>Properties for Sale</h2>
       </div>
       <div className="properties-grid">
         {loading ? (

@@ -49,7 +49,7 @@ const TestimonialsSection = () => {
             <h2>
               WHAT <span className="text-gray">OUR</span>
               <br />
-              <span className="text-gray">CUSTOMERS</span> SAYS
+              <span className="text-gray">CUSTOMERS</span> SAY
             </h2>
           </div>
           <div className="testimonials-photos">
