@@ -83,13 +83,12 @@ const GetInTouchSection = () => {
     <section className="get-in-touch">
       <div className="get-in-touch-container">
         <div className="left-section">
-          <span className="keep-close">KEEP CLOSE</span>
+          <span className="keep-close">We're Here for You</span>
           <h2>Get In Touch</h2>
           <p>
-            We are here to help you sell or rent out your property as fast as
-            possible with 100% transparency, keeping you informed with
-            up-to-date market trends that may affect your property’s sale or
-            rental value.
+            Connect with Meridian Group's expert team for fast, transparent property transactions. 
+            We leverage up-to-date market insights and industry expertise to optimize your property's 
+            sale or rental value. Your success is our commitment.
           </p>
 
           <div className="contact-info">
@@ -131,8 +130,8 @@ const GetInTouchSection = () => {
         </div>
 
         <div className="right-section">
-          <h2>Your Details</h2>
-          <p>How Can We Assist You ?</p>
+          <h2>Send Us a Message</h2>
+          <p>Let's discuss how we can help you today</p>
 
           <form className="contact-form" onSubmit={handleSubmit}>
             {submitStatus && (

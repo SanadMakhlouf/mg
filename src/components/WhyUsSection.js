@@ -24,9 +24,7 @@ const WhyUsSection = () => {
                 <span className="colored-text">REAL ESTATE</span> PARTNER
               </h2>
               <p className="why-us-description">
-                Meridian Group partners with Abu Dhabi's top developers and
-                agencies to deliver 100% verified listings—so you invest with
-                confidence in a market built on transparency.
+                Meridian Group connects you with Abu Dhabi's most prestigious developers and trusted agencies, ensuring every listing is 100% verified. Invest confidently in a transparent market where your success is our priority.
               </p>
             </div>
 
@@ -40,22 +38,22 @@ const WhyUsSection = () => {
             <div className="feature-item">
               <img src={money} alt="money" />
               <div className="feature-text">
-                <h4>Most Appreciated Projects</h4>
-                <p>Highest Capital Appreciation And Rental Income Projects.</p>
+                <h4>Top Appreciating Projects</h4>
+                <p>Discover investment opportunities with the highest capital appreciation and rental income potential in Abu Dhabi.</p>
               </div>
             </div>
             <div className="feature-item">
               <img src={home} alt="home" />
               <div className="feature-text">
                 <h4>Premium Rental Units</h4>
-                <p>Best Units Available In The Market</p>
+                <p>Access the finest rental properties with exceptional quality, prime locations, and outstanding amenities.</p>
               </div>
             </div>
             <div className="feature-item">
               <img src={chart} alt="chart" />
               <div className="feature-text">
-                <h4>We Tailor Your Investment Plan</h4>
-                <p>Observe The Growth Of Your Capital.</p>
+                <h4>Tailored Investment Strategies</h4>
+                <p>We craft personalized investment plans that align with your financial goals, ensuring sustainable capital growth.</p>
               </div>
             </div>
           </div>

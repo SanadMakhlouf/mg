@@ -11,9 +11,9 @@ const OffPlanContact = () => {
     <section className="off-plan-contact">
       <div className="contact-content">
         <div className="contact-text">
-          <h2>OUR EXPERTS</h2>
-          <h3>WILL HELP YOU</h3>
-          <p>Feel free to contact us any time, we are online 24/7</p>
+          <h2>Talk to Our Experts</h2>
+          <h3>We're Here to Help</h3>
+          <p>Our off-plan property specialists are ready to guide you through every step of your investment journey. Get expert advice today.</p>
         </div>
         <form onSubmit={handleSubmit} className="off-plan-contact-form">
           <div className="off-plan-form-group">

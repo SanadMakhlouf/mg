@@ -5,11 +5,12 @@ const MapSection = () => {
   return (
     <section className="map-section">
       <div className="location-card">
-        <span className="subtitle">Our Location</span>
-        <h2>Where to find us</h2>
+        <span className="subtitle">Visit Us</span>
+        <h2>Find Our Office</h2>
         <p>
-          Visit our office in the heart of Abu Dhabi for personalized real estate services. 
-          Our experienced team is ready to help you with all your property needs.
+          Located in the heart of Abu Dhabi at Baynunah Tower, our office is your gateway to exceptional real estate 
+          services. Schedule a consultation with our experienced team—we're here to help you find your perfect property 
+          or maximize your investment returns.
         </p>
 
         <div className="contact-details">

@@ -91,7 +91,7 @@ const SearchSection = () => {
                 name="location"
                 value={searchParams.location}
                 onChange={handleInputChange}
-                placeholder="Search City, Region Or Address"
+                placeholder="Search by city, community, or address"
                 onKeyPress={(e) => {
                   if (e.key === "Enter") {
                     handleSearch();

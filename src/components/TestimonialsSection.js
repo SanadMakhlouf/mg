@@ -9,25 +9,25 @@ const TestimonialsSection = () => {
       name: "Sarah Ahmed",
       role: "Property Owner",
       rating: 5,
-      text: "Meridian Group made our property search seamless and stress-free. Their team's expertise and dedication helped us find our dream home in Abu Dhabi. Highly recommended for anyone looking to buy or sell property.",
+      text: "Meridian Group transformed our property journey completely. Their expert team navigated the Abu Dhabi market with incredible skill, finding us a home that exceeded all expectations. The level of dedication and professionalism is unmatched—they're the best in the business.",
     },
     {
       name: "Mohammed Al-Rashid",
       role: "Real Estate Investor",
       rating: 5,
-      text: "Professional service and excellent market knowledge. The team guided us through the entire investment process with transparency and integrity.",
+      text: "Working with Meridian Group was a game-changer for our investment portfolio. Their deep market expertise and strategic insights helped us make confident decisions. The transparent approach and commitment to our success built genuine trust throughout the entire process.",
     },
     {
       name: "Fatima Hassan",
       role: "First-time Buyer",
       rating: 5,
-      text: "As first-time buyers, we were nervous about the process. Meridian Group's team made everything clear and supported us every step of the way.",
+      text: "As first-time buyers, we were anxious about navigating the property market. Meridian Group's team became our trusted advisors—explaining every detail, answering every question, and ensuring we made the perfect decision. Their support made all the difference.",
     },
     {
       name: "Ahmed Khalil",
       role: "Property Developer",
       rating: 5,
-      text: "Outstanding service and deep understanding of the Abu Dhabi market. Their insights and recommendations have been invaluable for our projects.",
+      text: "Exceptional partnership with Meridian Group. Their profound understanding of Abu Dhabi's real estate landscape and strategic recommendations have been instrumental in our project's success. They don't just sell properties—they create value.",
     },
   ];
 

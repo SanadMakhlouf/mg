@@ -157,9 +157,9 @@ const PopularDevelopersSection = () => {
         <div className="developers-header">
           <div className="header-content">
             <h2>
-              POPULAR <span className="text-gray">AREAS</span> IN
+              Explore <span className="text-gray">Popular</span> Areas in
               <br />
-              ABU DHABI
+              Abu Dhabi
             </h2>
             <div className="carousel-controls-popular">
               <button onClick={prevSlide} className="control-btn prev">
@@ -319,7 +319,7 @@ const PopularDevelopersSection = () => {
 
         <div className="explore-more">
           <Link to="/blog" className="explore-more-btn">
-            EXPLORE MORE AREAS
+            Discover More Locations
           </Link>
         </div>
       </div>

@@ -6,15 +6,15 @@ import "./Hero.css";
 const carouselData = [
   {
     image: `${process.env.PUBLIC_URL}/hero-bgg.jpg`,
-    title: "Where Trust, Integrity\nand Professionalism\nMeet!",
+    title: "Your Trusted Partner\nin Abu Dhabi\nReal Estate",
   },
   {
     image: `${process.env.PUBLIC_URL}/here-bg2.jpg`,
-    title: "Discover Your\nDream Home\nToday",
+    title: "Discover Your\nPerfect Property\nin Abu Dhabi",
   },
   {
     image: `${process.env.PUBLIC_URL}/test.jpg`,
-    title: "Luxury Living\nRedefined\nfor You",
+    title: "Premium Properties\nExceptional Results\nGuaranteed",
   },
 ];
 

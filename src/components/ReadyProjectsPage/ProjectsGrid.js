@@ -40,9 +40,9 @@ const ProjectsGrid = () => {
 
   // Section d'information sur la recherche de propriétés
   const findPropertyInfo = {
-    title: "Find Property For Your Family!",
+    title: "Find Your Perfect Family Home",
     description:
-      "We are here to help you find your dream property with personalized service and expert advice. Our team is dedicated to understanding your needs and preferences.",
+      "Let our expert team guide you to your ideal property. We combine personalized service with deep market knowledge to understand exactly what your family needs and deliver exceptional results.",
     contactInfo: [
       { icon: "/loca.png", text: "Office 55, Baynunah Tower 2, Al Hosn, Abu Dhabi" },
       { icon: "/ime.png", text: "info@meridiangroup.ae" },
@@ -120,7 +120,7 @@ const ProjectsGrid = () => {
           </div>
 
           <div className="find-property-card">
-            <span className="keep-close">KEEP CLOSE AND</span>
+            <span className="keep-close">Connect With Us</span>
             <h3>{findPropertyInfo.title}</h3>
             <p>{findPropertyInfo.description}</p>
             <div className="contact-info">
@@ -132,7 +132,7 @@ const ProjectsGrid = () => {
               ))}
             </div>
             <div className="divider"></div>
-            <button className="contact-btn">CONTACT US</button>
+            <button className="contact-btn">Get Expert Advice</button>
           </div>
         </div>
 

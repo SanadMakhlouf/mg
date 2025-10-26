@@ -6,7 +6,7 @@ const ListYourForm = () => {
     <div className="list-your-form-section">
       <div className="list-your-form-container">
         <div className="form-left">
-          <p className="keep-close">KEEP CLOSE</p>
+          <p className="keep-close">List Your Property</p>
           <h2>Your Details</h2>
 
           <form className="list-your-form">
@@ -26,15 +26,14 @@ const ListYourForm = () => {
         </div>
 
         <div className="form-right">
-          <h2>Sell or Rent Out your Property in Abu Dhabi</h2>
+          <h2>Maximize Your Property's Value</h2>
           <p>
-            We are here to help you sell or rent out your property as fast as
-            possible with 100% transparency, keeping you informed with
-            up-to-date market trends that may affect your property's sale or
-            rental value.
+            Partner with Meridian Group to sell or rent your property quickly and profitably. 
+            Our strategic approach combines extensive market knowledge with personalized service, 
+            ensuring you receive the best possible returns while staying informed throughout the entire process.
           </p>
           <p className="highlight-text">
-            We help our clients evaluate and sell their properties!
+            Expert valuation, professional marketing, and proven results—your property deserves the best.
           </p>
         </div>
       </div>

@@ -13,10 +13,11 @@ const LookingForSection = () => {
     <section className="looking-for-section">
       <div className="looking-for-container">
         <div className="section-header">
-          <h2>WHAT ARE YOU LOOKING FOR?</h2>
+          <h2>What Are You Looking For?</h2>
           <p>
-            Discover your perfect property in Abu Dhabi. From modern apartments to luxury villas, 
-            we offer a comprehensive range of real estate solutions tailored to your needs.
+            From contemporary apartments in prime neighborhoods to luxurious villas with stunning views, 
+            we curate exceptional properties across Abu Dhabi. Whether you're buying, renting, or investing, 
+            we find the perfect real estate solution that matches your lifestyle and goals.
           </p>
         </div>
 

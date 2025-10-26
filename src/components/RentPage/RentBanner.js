@@ -4,7 +4,7 @@ import "./RentBanner.css";
 const RentBanner = () => {
   return (
     <div className="rent-banner">
-      <h2>Find Your Dream Rental Property</h2>
+      <h2>Discover Exceptional Rental Properties in Abu Dhabi</h2>
     </div>
   );
 };

@@ -102,10 +102,10 @@ const Footer = () => {
           </div>
 
           <div className="footer-column">
-            <h3>Say Hello ?</h3>
+            <h3>Contact Us</h3>
             <ul>
               <li>
-                <ScrollToTopLink to="/support">Need Support ?</ScrollToTopLink>
+                <ScrollToTopLink to="/contact">Get in Touch</ScrollToTopLink>
               </li>
               <li>
                 <a href="mailto:info@meridiangroup.ae">info@meridiangroup.ae</a>
