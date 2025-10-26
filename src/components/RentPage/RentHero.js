@@ -5,7 +5,7 @@ const RentHero = () => {
   return (
     <div className="rent-hero">
       <div className="rent-hero-content">
-        <h1>RENT</h1>
+        <h1>Rent</h1>
         <div className="rent-hero-breadcrumb">
           <span>Home</span>
           <span>/</span>

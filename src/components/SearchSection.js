@@ -114,7 +114,7 @@ const SearchSection = () => {
               </select>
             </div>
             <button className="search-btn" onClick={handleSearch}>
-              SEARCH
+              Search
             </button>
           </div>
           <div className="search-row">

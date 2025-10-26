@@ -83,16 +83,16 @@ const Footer = () => {
           </div>
 
           <div className="footer-column">
-            <h3>Ressources</h3>
+            <h3>Resources</h3>
             <ul>
               <li>
-                <ScrollToTopLink to="/rent">Rent A Proprety</ScrollToTopLink>
+                <ScrollToTopLink to="/rent">Rent A Property</ScrollToTopLink>
               </li>
               <li>
-                <ScrollToTopLink to="/buy">Buy A Proprety</ScrollToTopLink>
+                <ScrollToTopLink to="/buy">Buy A Property</ScrollToTopLink>
               </li>
               <li>
-                <ScrollToTopLink to="/sell">Sell A Proprety</ScrollToTopLink>
+                <ScrollToTopLink to="/sell">Sell A Property</ScrollToTopLink>
               </li>
               {/* Investment Plan button hidden temporarily */}
               {/* <li>

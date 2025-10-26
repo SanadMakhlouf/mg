@@ -21,7 +21,7 @@ const About = () => {
                 services, we serve as a dedicated agency for both leasing and
                 selling properties, ensuring seamless transactions for all our
                 clients. Beyond mere transactions, we take pride in our property
-                management division, where we go above and beyond to preserveand
+                management division, where we go above and beyond to preserve and
                 enhance the lifespan and quality of each property. This includes
                 rigorous maintenance and attention to detail, ultimately
                 attracting discerning tenants and optimizing revenue for

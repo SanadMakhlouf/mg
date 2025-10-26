@@ -76,7 +76,7 @@ const OffPlanResaleGrid = () => {
 
   return (
     <div className="off-plan-projects-section">
-      <h2 className="section-title">OFF PLAN RESALE PROJECTS</h2>
+      <h2 className="section-title">Off Plan Resale Projects</h2>
 
       <div className="off-plan-featured-grid">
         {projects[0] && (

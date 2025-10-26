@@ -79,7 +79,7 @@ const OffPlanGrid = () => {
 
   return (
     <div className="off-plan-projects-section">
-      <h2 className="section-title">OFF PLAN PROJECTS</h2>
+      <h2 className="section-title">Off Plan Projects</h2>
 
       <div className="off-plan-featured-grid">
         {/* Grande carte à gauche */}

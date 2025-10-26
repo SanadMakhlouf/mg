@@ -65,7 +65,7 @@ const Rent = () => {
         <RentBanner />
         <div className="rent-search-section">
           <div className="search-header">
-            <h3>RENT</h3>
+            <h3>Rent</h3>
           </div>
           <div className="search-filters">
             <div className="filter-row">
@@ -98,7 +98,7 @@ const Rent = () => {
                     }}
                   />
                   <button className="search-button" onClick={handleSearch}>
-                    SEARCH
+                    Search
                   </button>
                 </div>
               </div>

@@ -6,7 +6,7 @@ import "./Hero.css";
 const carouselData = [
   {
     image: `${process.env.PUBLIC_URL}/hero-bgg.jpg`,
-    title: "Where Trust, Integrity\nAnd Professionalism\nMeet!",
+    title: "Where Trust, Integrity\nand Professionalism\nMeet!",
   },
   {
     image: `${process.env.PUBLIC_URL}/here-bg2.jpg`,
@@ -14,7 +14,7 @@ const carouselData = [
   },
   {
     image: `${process.env.PUBLIC_URL}/test.jpg`,
-    title: "Luxury Living\nRedefined\nFor You",
+    title: "Luxury Living\nRedefined\nfor You",
   },
 ];
 

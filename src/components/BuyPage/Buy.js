@@ -59,7 +59,7 @@ const Buy = () => {
         <BuyBanner />
         <div className="buy-search-section">
           <div className="search-header">
-            <h3>BUY</h3>
+            <h3>Buy</h3>
           </div>
           <div className="search-filters">
             <div className="filter-row">
@@ -79,7 +79,7 @@ const Buy = () => {
                     }}
                   />
                   <button className="search-button" onClick={handleSearch}>
-                    SEARCH
+                    Search
                   </button>
                 </div>
               </div>

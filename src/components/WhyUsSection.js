@@ -24,9 +24,9 @@ const WhyUsSection = () => {
                 <span className="colored-text">REAL ESTATE</span> PARTNER
               </h2>
               <p className="why-us-description">
-                MG REAL ESTATE PARTNERS WITH ABU DHABI'S TOP DEVELOPERS AND
-                AGENCIES TO DELIVER 100% VERIFIED LISTINGS—SO YOU INVEST WITH
-                CONFIDENCE IN A MARKET BUILT ON TRANSPARENCY.
+                Meridian Group partners with Abu Dhabi's top developers and
+                agencies to deliver 100% verified listings—so you invest with
+                confidence in a market built on transparency.
               </p>
             </div>
 

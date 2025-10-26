@@ -40,7 +40,7 @@ const ProjectsGrid = () => {
 
   // Section d'information sur la recherche de propriétés
   const findPropertyInfo = {
-    title: "Find Proprety For your Fam!",
+    title: "Find Property For Your Family!",
     description:
       "We are here to help you find your dream property with personalized service and expert advice. Our team is dedicated to understanding your needs and preferences.",
     contactInfo: [
@@ -104,7 +104,7 @@ const ProjectsGrid = () => {
 
   return (
     <div className="projects-section">
-      <h2 className="section-title">READY Projects</h2>
+      <h2 className="section-title">Ready Projects</h2>
 
       <div className="projects-grid">
         {/* Première rangée */}
