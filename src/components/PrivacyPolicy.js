@@ -122,7 +122,7 @@ const PrivacyPolicy = () => {
             </p>
             <div className="contact-info">
               <p><strong>Email:</strong> info@meridiangroup.ae</p>
-              <p><strong>Phone:</strong> (+97) 150607030</p>
+              <p><strong>Phone:</strong> +971 586830401</p>
               <p><strong>Address:</strong> Office 55, Baynunah Tower 2, Al Hosn, Abu Dhabi</p>
             </div>
           </section>

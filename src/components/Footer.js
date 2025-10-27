@@ -110,7 +110,7 @@ const Footer = () => {
               <li>
                 <a href="mailto:info@meridiangroup.ae">info@meridiangroup.ae</a>
               </li>
-              <li className="phone-number">(+97) 150607030</li>
+              <li className="phone-number">+971 586830401</li>
             </ul>
           </div>
 

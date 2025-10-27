@@ -17,15 +17,15 @@ const MapSection = () => {
           <div className="detail-item">
             <img src={process.env.PUBLIC_URL + "/loca.png"} alt="location" />
             <div>
-              <p>Al Hisn, Baynunah Tower</p>
-              <p>Office 93</p>
+              <p>Al Hisn, Baynunah Tower 2 , Office 402 , Abu dhabi</p>
+              
             </div>
           </div>
 
           <div className="detail-item">
             <img src={process.env.PUBLIC_URL + "/phone.png"} alt="phone" />
             <div>
-              <p>(+97) 150607030</p>
+              <p>(+97) 586830401</p>
             </div>
           </div>
 

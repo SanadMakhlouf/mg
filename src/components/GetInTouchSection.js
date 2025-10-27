@@ -94,12 +94,12 @@ const GetInTouchSection = () => {
           <div className="contact-info">
             <div className="info-item">
               <img src="/loca.png" alt="location" />
-              <p>Al Hisn, Baynunah Tower 2, Office 93</p>
+              <p>Al Hisn, Baynunah Tower 2 , Office 402 , Abu Dhabi</p>
             </div>
             <div className="info-item">
               <img src="/phone.png" alt="phone" />
               <div>
-                <p>(+97) 150607030</p>
+                <p>(+971)586830401</p>
               </div>
             </div>
             <div className="info-item">
