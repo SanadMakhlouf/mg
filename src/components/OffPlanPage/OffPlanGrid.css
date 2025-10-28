@@ -389,23 +389,36 @@ body.page-offplan-details .navbar {
 @media (max-width: 992px) {
   .off-plan-featured-grid {
     grid-template-columns: 1fr;
+    padding: 20px 0;
   }
 
   .off-plan-featured-card,
   .off-plan-right-cards {
     height: auto;
+    margin-bottom: 20px;
+  }
+
+  .off-plan-featured-card {
+    padding-bottom: 20px;
   }
 
   .off-plan-right-card {
     height: 240px;
+    margin-bottom: 20px;
   }
 
   .off-plan-bottom-cards {
     height: 240px;
+    gap: 20px;
+  }
+
+  .off-plan-small-card {
+    margin-bottom: 20px;
   }
 
   .off-plan-second-grid {
     flex-direction: column;
+    padding: 20px 0;
   }
 
   .off-plan-second-grid .left-column.full-width {
@@ -420,5 +433,6 @@ body.page-offplan-details .navbar {
   .property-cards-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+    padding: 20px;
   }
 }
