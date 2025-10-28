@@ -281,13 +281,12 @@ const OffPlanGrid = ({ filterParams = {} }) => {
         </div>
       </div>
 
-      {/* Nouvelle section */}
-      <div className="off-plan-second-grid">
-        <div className="left-column">
-          {/* Carte projet en haut */}
+      {/* Second featured grid */}
+      {projects.length > 4 && (
+        <div className="off-plan-featured-grid" style={{ marginTop: '40px' }}>
           {projects[4] && (
             <div
-              className="project-card"
+              className="off-plan-featured-card"
               onClick={() => navigate(`/off-plan/${projects[4].id}/${createSlug(projects[4].name)}`)}
               style={{ cursor: "pointer" }}
             >
@@ -297,6 +296,12 @@ const OffPlanGrid = ({ filterParams = {} }) => {
                   alt={projects[4].name}
                   className="off-plan-image"
                 />
+                <div
+                  className="bookmark-icon"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <i className="far fa-bookmark"></i>
+                </div>
                 <div className="off-plan-content">
                   <h3 className="project-title">{projects[4].name}</h3>
                   <h4 className="project-subtitle">{projects[4].name}</h4>
@@ -320,25 +325,105 @@ const OffPlanGrid = ({ filterParams = {} }) => {
             </div>
           )}
 
-          {/* PropertyCard en bas */}
-          {projects[5] && (
-            <PropertyCard
-              id={projects[5].id}
-              image={getImageUrl(projects[5].pictures)}
-              title={projects[5].name}
-              price={projects[5].price}
-              beds={projects[5].bedrooms}
-              baths={projects[5].bathrooms}
-              sqft={projects[5].area}
-              location={projects[5].location}
-            />
-          )}
+          <div className="off-plan-right-cards">
+            {projects[5] && (
+              <div
+                className="off-plan-right-card"
+                onClick={() => navigate(`/off-plan/${projects[5].id}/${createSlug(projects[5].name)}`)}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="off-plan-image-container">
+                  <img
+                    src={getImageUrl(projects[5].pictures)}
+                    alt={projects[5].name}
+                    className="off-plan-image"
+                  />
+                  <div
+                    className="bookmark-icon"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <i className="far fa-bookmark"></i>
+                  </div>
+                  <div className="off-plan-content">
+                    <h3 className="project-title">{projects[5].name}</h3>
+                    <p className="project-developer">
+                      By: {projects[5].developer || "Developer Name"}
+                    </p>
+                    <p className="project-type">{projects[5].type}</p>
+                    <p className="project-location">{projects[5].location}</p>
+                    {projects[5].price && (
+                      <p className="project-price">
+                        From AED {parseFloat(projects[5].price).toLocaleString()}
+                      </p>
+                    )}
+                    <div className="project-details">
+                      {projects[5].bedrooms && (
+                        <span>
+                          <i className="fa-solid fa-bed"></i>{" "}
+                          {projects[5].bedrooms} Beds
+                        </span>
+                      )}
+                      {projects[5].bathrooms && (
+                        <span>
+                          <i className="fa-solid fa-bath"></i>{" "}
+                          {projects[5].bathrooms} Baths
+                        </span>
+                      )}
+                      {projects[5].area && (
+                        <span>
+                          <i className="fa-solid fa-ruler-combined"></i>{" "}
+                          {projects[5].area} sqft
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="off-plan-bottom-cards">
+              {projects.slice(6, 8).map((project) => (
+                <div
+                  key={project.id}
+                  className="off-plan-small-card"
+                  onClick={() => navigate(`/off-plan/${project.id}/${createSlug(project.name)}`)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className="off-plan-image-container">
+                    <img
+                      src={getImageUrl(project.pictures)}
+                      alt={project.name}
+                      className="off-plan-image"
+                    />
+                    <div
+                      className="bookmark-icon"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <i className="far fa-bookmark"></i>
+                    </div>
+                    <div className="off-plan-content small">
+                      <h4 className="project-title-small">{project.name}</h4>
+                      <p className="project-location-small">
+                        <i className="fa-solid fa-location-dot"></i>{" "}
+                        {project.location}
+                      </p>
+                      {project.price && (
+                        <p className="project-price-small">
+                          AED {parseFloat(project.price).toLocaleString()}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Grille de cartes 2x3 */}
       <div className="property-cards-grid">
-        {projects.slice(6, 12).map((project) => (
+        {projects.slice(8).map((project) => (
           <PropertyCard
             key={project.id}
             id={project.id}

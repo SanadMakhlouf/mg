@@ -259,6 +259,17 @@ body.page-offplan-details .navbar {
   gap: 20px;
 }
 
+.off-plan-second-grid .left-column.full-width {
+  flex: none;
+  max-width: 100%;
+  width: 100%;
+}
+
+.off-plan-second-grid:has(.left-column.full-width) {
+  display: block;
+  width: 100%;
+}
+
 .off-plan-second-grid .right-column {
   flex: 1;
   height: 100%;
@@ -279,6 +290,11 @@ body.page-offplan-details .navbar {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.off-plan-second-grid .left-column.full-width .project-card {
+  width: 100%;
+  max-width: 100%;
+}
+
 .off-plan-second-grid .project-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -287,12 +303,35 @@ body.page-offplan-details .navbar {
 .off-plan-second-grid .project-card .off-plan-image-container {
   position: relative;
   height: 400px;
+  width: 100%;
 }
 
 .off-plan-second-grid .project-card .off-plan-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.off-plan-second-grid .left-column.full-width .property-card {
+  max-width: 100%;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.off-plan-second-grid .left-column.full-width > * {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.off-plan-second-grid .left-column.full-width .project-card .off-plan-image-container {
+  width: 100%;
+}
+
+.off-plan-second-grid .left-column.full-width .project-card .off-plan-image {
+  width: 100%;
+  max-width: 100%;
 }
 
 .off-plan-second-grid .project-card .off-plan-content {
@@ -367,6 +406,11 @@ body.page-offplan-details .navbar {
 
   .off-plan-second-grid {
     flex-direction: column;
+  }
+
+  .off-plan-second-grid .left-column.full-width {
+    width: 100%;
+    max-width: 100%;
   }
 
   .off-plan-second-grid .right-column {

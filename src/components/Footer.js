@@ -133,7 +133,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>Copyright© 2024 MERIDIAN GROUP. All Rights Reserved</p>
+        <p>Copyright© 2025 MERIDIAN GROUP. All Rights Reserved</p>
         <div className="footer-bottom-links">
           <ScrollToTopLink to="/privacy">Privacy Policy</ScrollToTopLink>
           <ScrollToTopLink to="/terms">Terms & Conditions</ScrollToTopLink>
