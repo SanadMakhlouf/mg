@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./OffPlanResaleGrid.css";
-import ds from "../../assets/off-plans/ds.png";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import config from "../../config";
 
-const OffPlanResaleGrid = () => {
+const OffPlanResaleGrid = ({ filterParams = {} }) => {
   const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,8 +15,54 @@ const OffPlanResaleGrid = () => {
       try {
         setLoading(true);
         
-        // Clean URL without listing_type parameter
-        const apiUrl = `${config.API_URL}/properties/search/advanced?category=off-plans-resale`;
+        // Build query parameters
+        const queryParams = new URLSearchParams();
+        queryParams.append("category", "off-plans-resale");
+
+        // Add filter parameters if they exist
+        if (filterParams) {
+          if (filterParams.location && filterParams.location.trim() !== "") {
+            queryParams.append("location", filterParams.location.trim());
+          }
+
+          if (filterParams.propertyType) {
+            queryParams.append("type", filterParams.propertyType);
+          }
+
+          if (filterParams.minBathrooms) {
+            queryParams.append("min_bathrooms", filterParams.minBathrooms);
+          }
+
+          if (filterParams.maxBathrooms) {
+            queryParams.append("max_bathrooms", filterParams.maxBathrooms);
+          }
+
+          if (filterParams.minBedrooms) {
+            queryParams.append("min_bedrooms", filterParams.minBedrooms);
+          }
+
+          if (filterParams.maxBedrooms) {
+            queryParams.append("max_bedrooms", filterParams.maxBedrooms);
+          }
+
+          if (filterParams.minArea) {
+            queryParams.append("min_area", filterParams.minArea);
+          }
+
+          if (filterParams.maxArea) {
+            queryParams.append("max_area", filterParams.maxArea);
+          }
+
+          if (filterParams.minPrice) {
+            queryParams.append("min_price", filterParams.minPrice);
+          }
+
+          if (filterParams.maxPrice) {
+            queryParams.append("max_price", filterParams.maxPrice);
+          }
+        }
+        
+        const apiUrl = `${config.API_URL}/properties/search/advanced?${queryParams.toString()}`;
         console.log('Fetching from:', apiUrl); // Debug log
         
         const response = await fetch(apiUrl);
@@ -41,7 +86,19 @@ const OffPlanResaleGrid = () => {
     };
 
     fetchProjects();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    filterParams?.location,
+    filterParams?.propertyType,
+    filterParams?.minBathrooms,
+    filterParams?.maxBathrooms,
+    filterParams?.minBedrooms,
+    filterParams?.maxBedrooms,
+    filterParams?.minArea,
+    filterParams?.maxArea,
+    filterParams?.minPrice,
+    filterParams?.maxPrice,
+  ]);
 
   if (loading) {
     return (
@@ -270,10 +327,6 @@ const OffPlanResaleGrid = () => {
               location={projects[5].location}
             />
           )}
-        </div>
-
-        <div className="right-column">
-          <img src={ds} alt="Development" className="full-height-image" />
         </div>
       </div>
 

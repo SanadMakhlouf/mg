@@ -113,16 +113,36 @@ const GetInTouchSection = () => {
           <div className="social-links">
             <h3>FOLLOW US</h3>
             <div className="social-icons">
-              <a href="#" aria-label="Facebook">
+              <a 
+                href="https://www.facebook.com/p/Meridian-Group-61555497801970/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
                 <img src="/fb.png" alt="Facebook" />
               </a>
-              <a href="#" aria-label="Instagram">
+              <a 
+                href="https://www.instagram.com/meridiangroupuae/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
                 <img src="/insta.png" alt="Instagram" />
               </a>
-              <a href="#" aria-label="Twitter">
+              <a 
+                href="https://twitter.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+              >
                 <img src="/x.png" alt="Twitter" />
               </a>
-              <a href="#" aria-label="WhatsApp">
+              <a 
+                href="https://wa.me/971586830401" 
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+              >
                 <img src="/whats.png" alt="WhatsApp" />
               </a>
             </div>

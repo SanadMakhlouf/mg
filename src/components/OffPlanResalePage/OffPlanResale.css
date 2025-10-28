@@ -1,2 +1,155 @@
 /* For now, reuse the same classes used by OffPlan to keep identical styling */
 @import url("../OffPlanPage/OffPlan.css");
+
+/* Search Section Styles */
+.off-plan-search-section {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.search-header {
+  background-color: #460014;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.search-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.search-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.filter-row {
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.filter-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-group label {
+  font-size: 14px;
+  color: #333;
+}
+
+.filter-group select,
+.filter-group input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #666;
+  background-color: white;
+}
+
+.location-group {
+  flex: 2;
+}
+
+.search-input-container {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input-container input {
+  flex: 1;
+}
+
+.search-button {
+  background-color: #460014;
+  color: white;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.search-button:hover {
+  background-color: #2d000d;
+}
+
+@media (max-width: 992px) {
+  .filter-row {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .filter-group {
+    flex: 0 0 calc(50% - 8px);
+    min-width: calc(50% - 8px);
+  }
+
+  .location-group {
+    flex: 0 0 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .off-plan-search-section {
+    padding: 15px;
+  }
+
+  .filter-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .filter-group {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .search-input-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .search-button {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .location-group {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .off-plan-search-section {
+    padding: 12px;
+  }
+
+  .search-header h3 {
+    font-size: 14px;
+  }
+
+  .filter-group label {
+    font-size: 13px;
+  }
+
+  .filter-group select,
+  .filter-group input {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+}

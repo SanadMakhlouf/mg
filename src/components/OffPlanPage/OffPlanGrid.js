@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./OffPlanGrid.css";
-import ds from "../../assets/off-plans/ds.png";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import config from "../../config";
 
-const OffPlanGrid = () => {
+const OffPlanGrid = ({ filterParams = {} }) => {
   const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,10 +13,58 @@ const OffPlanGrid = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
+        setLoading(true);
+        
+        // Build query parameters
+        const queryParams = new URLSearchParams();
+        queryParams.append("category", "off-plans");
+
+        // Add filter parameters if they exist
+        if (filterParams) {
+          if (filterParams.location && filterParams.location.trim() !== "") {
+            queryParams.append("location", filterParams.location.trim());
+          }
+
+          if (filterParams.propertyType) {
+            queryParams.append("type", filterParams.propertyType);
+          }
+
+          if (filterParams.minBathrooms) {
+            queryParams.append("min_bathrooms", filterParams.minBathrooms);
+          }
+
+          if (filterParams.maxBathrooms) {
+            queryParams.append("max_bathrooms", filterParams.maxBathrooms);
+          }
+
+          if (filterParams.minBedrooms) {
+            queryParams.append("min_bedrooms", filterParams.minBedrooms);
+          }
+
+          if (filterParams.maxBedrooms) {
+            queryParams.append("max_bedrooms", filterParams.maxBedrooms);
+          }
+
+          if (filterParams.minArea) {
+            queryParams.append("min_area", filterParams.minArea);
+          }
+
+          if (filterParams.maxArea) {
+            queryParams.append("max_area", filterParams.maxArea);
+          }
+
+          if (filterParams.minPrice) {
+            queryParams.append("min_price", filterParams.minPrice);
+          }
+
+          if (filterParams.maxPrice) {
+            queryParams.append("max_price", filterParams.maxPrice);
+          }
+        }
+
         // Use the new advanced search API for off-plan properties
-        const response = await fetch(
-          `${config.API_URL}/properties/search/advanced?category=off-plans`
-        );
+        const apiUrl = `${config.API_URL}/properties/search/advanced?${queryParams.toString()}`;
+        const response = await fetch(apiUrl);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -38,7 +85,19 @@ const OffPlanGrid = () => {
     };
 
     fetchProjects();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    filterParams?.location,
+    filterParams?.propertyType,
+    filterParams?.minBathrooms,
+    filterParams?.maxBathrooms,
+    filterParams?.minBedrooms,
+    filterParams?.maxBedrooms,
+    filterParams?.minArea,
+    filterParams?.maxArea,
+    filterParams?.minPrice,
+    filterParams?.maxPrice,
+  ]);
 
   if (loading) {
     return (
@@ -274,11 +333,6 @@ const OffPlanGrid = () => {
               location={projects[5].location}
             />
           )}
-        </div>
-
-        {/* Image à droite */}
-        <div className="right-column">
-          <img src={ds} alt="Development" className="full-height-image" />
         </div>
       </div>
 

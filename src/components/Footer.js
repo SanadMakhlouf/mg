@@ -24,16 +24,18 @@ const Footer = () => {
           <img src={logo} alt="MG" className="footer-logo" />
           <div className="social-icons">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/p/Meridian-Group-61555497801970/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Facebook"
             >
               <img src="/fb-footer.png" alt="Facebook" />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/meridiangroupuae/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Instagram"
             >
               <img src="/insta-footer.png" alt="Instagram" />
             </a>
@@ -41,20 +43,23 @@ const Footer = () => {
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="X (Twitter)"
             >
               <img src="/x-footer.png" alt="X" />
             </a>
             <a
-              href="https://whatsapp.com"
+              href="https://wa.me/971586830401"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="WhatsApp"
             >
               <img src="/whats-footer.png" alt="WhatsApp" />
             </a>
             <a
-              href="https://tiktok.com"
+              href="https://www.tiktok.com/@meridian_group"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="TikTok"
             >
               <img src="/tk-footer.png" alt="TikTok" />
             </a>
