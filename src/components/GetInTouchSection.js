@@ -130,14 +130,6 @@ const GetInTouchSection = () => {
                 <img src="/insta.png" alt="Instagram" />
               </a>
               <a 
-                href="https://twitter.com" 
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Twitter"
-              >
-                <img src="/x.png" alt="Twitter" />
-              </a>
-              <a 
                 href="https://wa.me/971586830401" 
                 target="_blank"
                 rel="noopener noreferrer"

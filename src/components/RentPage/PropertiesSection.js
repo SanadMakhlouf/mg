@@ -4,7 +4,6 @@ import buyBanner2 from "../../assets/buy-banner2.png";
 import logo from "../../assets/logo.png";
 import rent from "../../assets/rent.png";
 import rent2 from "../../assets/rent2.png";
-import rent3 from "../../assets/rent3.jpg";
 import config from "../../config";
 import "./RentPropertiesSection.css";
 
@@ -118,10 +117,6 @@ const PropertiesSection = ({ filterParams }) => {
     <div className="rent-properties-section">
       <div className="rent-properties-header">
         <h2>Property for Rent</h2>
-        <button className="map-button">
-          <i className="fa-solid fa-map-location-dot"></i>
-          Go to Map
-        </button>
       </div>
       <div className="rent-properties-content">
         <div className="rent-properties-left">
@@ -153,12 +148,6 @@ const PropertiesSection = ({ filterParams }) => {
         <div className="rent-properties-right">
           <div className="ad-banner full-image">
             <img src={rent2} alt="Group Meridian" className="full-banner-img" />
-          </div>
-          <div
-            className="ad-banner square-banner"
-            style={{ backgroundImage: `url(${rent3})` }}
-          >
-            <h3>Yasirland</h3>
           </div>
           <div className="ad-banner full-image">
             <img

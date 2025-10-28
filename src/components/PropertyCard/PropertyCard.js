@@ -38,7 +38,7 @@ const PropertyCard = ({
         )}
       </div>
       <div className="property-details">
-        <div className="property-info">
+        <div className="property-info-grid">
           <div className="info-item-l">
             <span>
               {beds} <i className="fa-solid fa-bed"></i>

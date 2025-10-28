@@ -62,9 +62,10 @@
   margin-top: auto;
 }
 
-.property-info {
-  display: flex;
-  justify-content: space-between;
+.property-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
 }
@@ -75,6 +76,9 @@
   margin-bottom: 1rem;
   word-break: break-word;
   overflow-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .property-location i {
@@ -82,21 +86,22 @@
 }
 
 .permit-number {
-  font-size: 10px;
+  font-size: 9px;
   color: #800020;
-  margin-top: 0.5rem;
-  padding: 0.3rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   background-color: rgba(128, 0, 32, 0.1);
   border-radius: 4px;
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
   font-weight: 600;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 .permit-number i {
   color: #800020;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .info-item-l {

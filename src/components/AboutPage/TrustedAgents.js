@@ -102,9 +102,6 @@ const TrustedAgents = () => {
                   <a href="#" aria-label="LinkedIn">
                     <i className="fab fa-linkedin-in"></i>
                   </a>
-                  <a href="#" aria-label="Twitter">
-                    <i className="fab fa-twitter"></i>
-                  </a>
                   <a href="#" aria-label="Email">
                     <i className="fas fa-envelope"></i>
                   </a>
@@ -139,9 +136,6 @@ const TrustedAgents = () => {
                 <div className="social-icons">
                   <a href="#" aria-label="LinkedIn">
                     <i className="fab fa-linkedin-in"></i>
-                  </a>
-                  <a href="#" aria-label="Twitter">
-                    <i className="fab fa-twitter"></i>
                   </a>
                   <a href="#" aria-label="Email">
                     <i className="fas fa-envelope"></i>
@@ -192,9 +186,6 @@ const TrustedAgents = () => {
                           <a href="#" aria-label="LinkedIn">
                             <i className="fab fa-linkedin-in"></i>
                           </a>
-                          <a href="#" aria-label="Twitter">
-                            <i className="fab fa-twitter"></i>
-                          </a>
                           <a href="#" aria-label="Instagram">
                             <i className="fab fa-instagram"></i>
                           </a>
@@ -222,16 +213,6 @@ const TrustedAgents = () => {
                               aria-label="LinkedIn"
                             >
                               <i className="fab fa-linkedin-in"></i>
-                            </a>
-                          )}
-                          {agent.social_media.twitter && (
-                            <a
-                              href={agent.social_media.twitter}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label="Twitter"
-                            >
-                              <i className="fab fa-twitter"></i>
                             </a>
                           )}
                           {agent.social_media.instagram && (

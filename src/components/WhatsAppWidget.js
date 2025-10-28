@@ -5,7 +5,7 @@ const WhatsAppWidget = () => {
   const [isHovered, setIsHovered] = useState(false);
   
   // WhatsApp number (remove spaces, parentheses, and format for WhatsApp)
-  const phoneNumber = "97150607030"; // Your number formatted for WhatsApp
+  const phoneNumber = "971586830401"; // Your number formatted for WhatsApp
   const message = "Hello! I'm interested in learning more about your properties.";
   
   const handleClick = () => {

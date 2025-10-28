@@ -40,14 +40,6 @@ const Footer = () => {
               <img src="/insta-footer.png" alt="Instagram" />
             </a>
             <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="X (Twitter)"
-            >
-              <img src="/x-footer.png" alt="X" />
-            </a>
-            <a
               href="https://wa.me/971586830401"
               target="_blank"
               rel="noopener noreferrer"
