@@ -7,6 +7,7 @@
   padding: 1.5rem 2rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
+  background: transparent;
 }
 
 .navbar-container {
@@ -16,23 +17,23 @@
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(70, 0, 20, 0.85);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 60px;
   padding: 1rem 2rem;
   pointer-events: all;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar.scrolled .navbar-container {
   background: rgba(70, 0, 20, 0.95);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
   padding: 0.8rem 2rem;
 }
 
@@ -129,6 +130,10 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   text-transform: uppercase;
+}
+
+.navbar-links a.list-property-btn {
+  color: #000000 !important;
 }
 
 .navbar-links a:not(.list-property-btn):hover,
@@ -254,10 +259,11 @@
 }
 
 .list-property-btn {
-  background: linear-gradient(135deg, #800020, #a00030);
-  color: white;
-  box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #fff, #f0f0f0);
+  color: #000000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(128, 0, 32, 0.2);
+  font-weight: 700;
 }
 
 .list-property-btn::before {
@@ -273,8 +279,9 @@
 
 .list-property-btn:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(128, 0, 32, 0.5);
-  background: linear-gradient(135deg, #a00030, #c00040);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+  color: #800020;
 }
 
 .list-property-btn:hover::before {

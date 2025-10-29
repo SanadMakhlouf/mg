@@ -236,13 +236,19 @@ const PropertyDetails = () => {
         }}
       />
       <div className="property-details-page">
-      <div className="property-details-container">
-        <div className="property-details-header">
-          <h1>{property.name}</h1>
-          <div className="property-location-details">
-            <i className="fa-solid fa-location-dot"></i> {property.location}
+        <div className="property-details-container">
+          {/* Back to Search Button */}
+          <button onClick={() => navigate(-1)} className="back-to-search">
+            <i className="fa-solid fa-arrow-left"></i>
+            Back to search
+          </button>
+
+          <div className="property-details-header">
+            <h1>{property.name}</h1>
+            <div className="property-location-details">
+              <i className="fa-solid fa-location-dot"></i> {property.location}
+            </div>
           </div>
-        </div>
 
         <div className="property-main-content">
           {/* Left Column - Main Content */}

@@ -13,6 +13,9 @@
 
 .left-section {
   flex: 1;
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
 }
 
 .keep-close {
@@ -105,6 +108,9 @@
 
 .right-section {
   flex: 1;
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
 }
 
 .right-section h2 {
