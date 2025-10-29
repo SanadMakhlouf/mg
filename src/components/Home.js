@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "./Hero";
 import SearchSection from "./SearchSection";
 import WhyUsSection from "./WhyUsSection";
@@ -9,8 +9,33 @@ import PopularDevelopersSection from "./PopularDevelopersSection";
 import GetInTouchSection from "./GetInTouchSection";
 import MapSection from "./MapSection";
 import SEO from "./SEO";
+import "./Home.css";
 
 const Home = () => {
+  useEffect(() => {
+    // Add scroll-triggered animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections for animation
+    const sections = document.querySelectorAll('.home-section');
+    sections.forEach(section => observer.observe(section));
+
+    return () => {
+      sections.forEach(section => observer.unobserve(section));
+    };
+  }, []);
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -40,16 +65,30 @@ const Home = () => {
         structuredData={structuredData}
       />
       <Hero />
+      <SearchSection />
       <div className="container">
-        <SearchSection />
-        <WhyUsSection />
-        <LookingForSection />
+        <div className="home-section">
+          <WhyUsSection />
+        </div>
+        <div className="home-section">
+          <LookingForSection />
+        </div>
       </div>
-      <LastPropertiesSection />
-      <TestimonialsSection />
-      <PopularDevelopersSection />
-      <GetInTouchSection />
-      <MapSection />
+      <div className="home-section">
+        <LastPropertiesSection />
+      </div>
+      <div className="home-section">
+        <TestimonialsSection />
+      </div>
+      <div className="home-section">
+        <PopularDevelopersSection />
+      </div>
+      <div className="home-section">
+        <GetInTouchSection />
+      </div>
+      <div className="home-section">
+        <MapSection />
+      </div>
     </>
   );
 };

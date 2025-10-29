@@ -129,16 +129,16 @@ const PopularDevelopersSection = () => {
           <div className="developers-header">
             <div className="header-content">
               <h2>
-                POPULAR <span className="text-gray">AREAS</span> IN
+                LATEST <span className="text-gray">BLOGS</span> AND
                 <br />
-                ABU DHABI
+                NEWS
               </h2>
             </div>
           </div>
           <div className="loading-container">
             <div className="loading-spinner">
               <i className="fas fa-spinner fa-spin"></i>
-              <p>Loading popular areas...</p>
+              <p>Loading blogs...</p>
             </div>
           </div>
         </div>
@@ -157,9 +157,9 @@ const PopularDevelopersSection = () => {
         <div className="developers-header">
           <div className="header-content">
             <h2>
-              Explore <span className="text-gray">Popular</span> Areas in
+              Latest <span className="text-gray">Blogs</span> and
               <br />
-              Abu Dhabi
+              News
             </h2>
             <div className="carousel-controls-popular">
               <button onClick={prevSlide} className="control-btn prev">
@@ -319,7 +319,7 @@ const PopularDevelopersSection = () => {
 
         <div className="explore-more">
           <Link to="/blog" className="explore-more-btn">
-            Discover More Locations
+            Read More Blogs
           </Link>
         </div>
       </div>

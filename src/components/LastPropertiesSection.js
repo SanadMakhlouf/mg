@@ -63,11 +63,16 @@ const LastPropertiesSection = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 300, // Faster animation (reduced from 500)
     slidesToShow: 3,
     slidesToScroll: 1,
     centerMode: false,
     centerPadding: "0px",
+    swipe: true, // Enable swipe
+    touchMove: true, // Enable touch move
+    draggable: true, // Enable dragging with mouse
+    accessibility: true, // Enable keyboard navigation
+    swipeToSlide: true, // Allow swiping to multiple slides
     responsive: [
       {
         breakpoint: 1024,
@@ -76,6 +81,10 @@ const LastPropertiesSection = () => {
           slidesToScroll: 1,
           centerMode: false,
           centerPadding: "0px",
+          swipe: true,
+          touchMove: true,
+          draggable: true,
+          speed: 300,
         },
       },
       {
@@ -85,6 +94,12 @@ const LastPropertiesSection = () => {
           slidesToScroll: 1,
           centerMode: false,
           centerPadding: "0px",
+          swipe: true,
+          touchMove: true,
+          draggable: true,
+          swipeToSlide: true,
+          speed: 200, // Even faster on mobile
+          easing: 'ease', // Smoother easing
         },
       },
     ],

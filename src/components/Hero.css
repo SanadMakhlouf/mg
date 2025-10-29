@@ -46,6 +46,18 @@
   color: white;
   z-index: 3;
   padding-top: 60px;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-content h1 {
@@ -56,6 +68,7 @@
   line-height: 1.2;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   letter-spacing: -0.02em;
+  animation: fadeInUp 1s ease-out 0.2s both;
 }
 
 .hero-buttons {
@@ -102,12 +115,19 @@
 .hero-states {
   display: flex;
   gap: 1rem;
+  animation: fadeInUp 1s ease-out 0.4s both;
 }
 
 .hero-state {
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
 }
+
+.hero-state:nth-child(1) { animation-delay: 0.6s; }
+.hero-state:nth-child(2) { animation-delay: 0.7s; }
+.hero-state:nth-child(3) { animation-delay: 0.8s; }
 
 @media (max-width: 1024px) {
   .hero {

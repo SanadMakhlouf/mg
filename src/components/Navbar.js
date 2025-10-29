@@ -81,12 +81,14 @@ const Navbar = () => {
         <div
           className={`navbar-links ${isMobileMenuOpen ? "mobile-open" : ""}`}
           onClick={(e) => {
-            if (e.target.classList.contains('navbar-links')) {
+            // Close menu when clicking on navbar-links itself or any link
+            if (e.target.tagName === 'A' || e.target.classList.contains('navbar-links')) {
               setIsMobileMenuOpen(false);
+              setShowPropertiesDropdown(false);
             }
           }}
         >
-          <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link to="/">
             HOME
           </Link>
           <div className="dropdown-container">
@@ -109,37 +111,33 @@ const Navbar = () => {
                   showPropertiesDropdown ? "show" : ""
                 }`}
               >
-                <Link to="/buy" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link to="/buy">
                   BUY
                 </Link>
-                <Link to="/rent" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link to="/rent">
                   RENT
                 </Link>
-                <Link
-                  to="/off-plan-properties-resale"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
+                <Link to="/off-plan-properties-resale">
                   OFF PLAN RESALE
                 </Link>
               </div>
             </div>
           </div>
-          <Link to="/services" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link to="/services">
             SERVICES
           </Link>
-          <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link to="/about">
             ABOUT US
           </Link>
-          <Link to="/blog" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link to="/blog">
             BLOG
           </Link>
-          <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link to="/contact">
             CONTACT
           </Link>
           <Link
             to="/off-plan-properties"
             className="list-property-btn"
-            onClick={() => setIsMobileMenuOpen(false)}
           >
             OFF PLAN
           </Link>
