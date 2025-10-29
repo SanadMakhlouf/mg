@@ -67,8 +67,9 @@ const Rent = () => {
           <div className="search-filters">
             <div className="filter-row">
               <div className="filter-group">
-                <label>Completion Status</label>
+                <label htmlFor="rent-completionStatus">Completion Status</label>
                 <select
+                  id="rent-completionStatus"
                   name="completionStatus"
                   value={filterParams.completionStatus}
                   onChange={handleFilterChange}
@@ -103,8 +104,9 @@ const Rent = () => {
 
             <div className="filter-row">
               <div className="filter-group">
-                <label>Property Type</label>
+                <label htmlFor="rent-propertyType">Property Type</label>
                 <select
+                  id="rent-propertyType"
                   name="propertyType"
                   value={filterParams.propertyType}
                   onChange={handleFilterChange}
@@ -118,8 +120,9 @@ const Rent = () => {
                 </select>
               </div>
               <div className="filter-group">
-                <label>Min. Bathrooms</label>
+                <label htmlFor="rent-minBathrooms">Min. Bathrooms</label>
                 <select
+                  id="rent-minBathrooms"
                   name="minBathrooms"
                   value={filterParams.minBathrooms}
                   onChange={handleFilterChange}
@@ -131,8 +134,9 @@ const Rent = () => {
                 </select>
               </div>
               <div className="filter-group">
-                <label>Max. Bathrooms</label>
+                <label htmlFor="rent-maxBathrooms">Max. Bathrooms</label>
                 <select
+                  id="rent-maxBathrooms"
                   name="maxBathrooms"
                   value={filterParams.maxBathrooms}
                   onChange={handleFilterChange}
@@ -144,8 +148,9 @@ const Rent = () => {
                 </select>
               </div>
               <div className="filter-group">
-                <label>Min. Bedrooms</label>
+                <label htmlFor="rent-minBedrooms">Min. Bedrooms</label>
                 <select
+                  id="rent-minBedrooms"
                   name="minBedrooms"
                   value={filterParams.minBedrooms}
                   onChange={handleFilterChange}
@@ -157,8 +162,9 @@ const Rent = () => {
                 </select>
               </div>
               <div className="filter-group">
-                <label>Max. Bedrooms</label>
+                <label htmlFor="rent-maxBedrooms">Max. Bedrooms</label>
                 <select
+                  id="rent-maxBedrooms"
                   name="maxBedrooms"
                   value={filterParams.maxBedrooms}
                   onChange={handleFilterChange}
@@ -173,8 +179,9 @@ const Rent = () => {
 
             <div className="filter-row">
               <div className="filter-group">
-                <label>Min. Area</label>
+                <label htmlFor="rent-minArea">Min. Area</label>
                 <select
+                  id="rent-minArea"
                   name="minArea"
                   value={filterParams.minArea}
                   onChange={handleFilterChange}
@@ -186,8 +193,9 @@ const Rent = () => {
                 </select>
               </div>
               <div className="filter-group">
-                <label>Max. Area</label>
+                <label htmlFor="rent-maxArea">Max. Area</label>
                 <select
+                  id="rent-maxArea"
                   name="maxArea"
                   value={filterParams.maxArea}
                   onChange={handleFilterChange}

@@ -73,8 +73,10 @@ const PropertyCard = ({
             e.stopPropagation();
             setShowShareMenu(!showShareMenu);
           }}
+          aria-label="Share property"
+          aria-expanded={showShareMenu}
         >
-          <i className="fa-solid fa-share-nodes"></i>
+          <i className="fa-solid fa-share-nodes" aria-hidden="true"></i>
         </button>
         
         {showShareMenu && (
@@ -90,32 +92,37 @@ const PropertyCard = ({
               <button
                 className="share-menu-option whatsapp"
                 onClick={(e) => handleShare("whatsapp", e)}
+                aria-label="Share on WhatsApp"
               >
-                <i className="fa-brands fa-whatsapp"></i>
+                <i className="fa-brands fa-whatsapp" aria-hidden="true"></i>
               </button>
               <button
                 className="share-menu-option facebook"
                 onClick={(e) => handleShare("facebook", e)}
+                aria-label="Share on Facebook"
               >
-                <i className="fa-brands fa-facebook"></i>
+                <i className="fa-brands fa-facebook" aria-hidden="true"></i>
               </button>
               <button
                 className="share-menu-option twitter"
                 onClick={(e) => handleShare("twitter", e)}
+                aria-label="Share on Twitter"
               >
-                <i className="fa-brands fa-x-twitter"></i>
+                <i className="fa-brands fa-x-twitter" aria-hidden="true"></i>
               </button>
               <button
                 className="share-menu-option email"
                 onClick={(e) => handleShare("email", e)}
+                aria-label="Share via Email"
               >
-                <i className="fa-solid fa-envelope"></i>
+                <i className="fa-solid fa-envelope" aria-hidden="true"></i>
               </button>
               <button
                 className="share-menu-option copy"
                 onClick={(e) => copyLink(e)}
+                aria-label={copied ? "Link copied" : "Copy link"}
               >
-                <i className={`fa-solid ${copied ? "fa-check" : "fa-link"}`}></i>
+                <i className={`fa-solid ${copied ? "fa-check" : "fa-link"}`} aria-hidden="true"></i>
               </button>
             </div>
           </>
@@ -133,29 +140,33 @@ const PropertyCard = ({
         <div className="property-info-grid">
           <div className="info-item-l">
             <span>
-              {beds} <i className="fa-solid fa-bed"></i>
+              {beds} <i className="fa-solid fa-bed" aria-hidden="true"></i>
             </span>
-            <span style={{ color: "#A8A8A8" }}>Bed</span>
+            <span style={{ color: "#666" }}>Bed</span>
           </div>
           <div className="info-item-l">
             <span>
-              {baths} <i className="fa-solid fa-bath"></i>
+              {baths} <i className="fa-solid fa-bath" aria-hidden="true"></i>
             </span>
-            <span style={{ color: "#A8A8A8" }}>Bath</span>
+            <span style={{ color: "#666" }}>Bath</span>
           </div>
           <div className="info-item-l">
             <span>
-              {sqft} <i className="fa-solid fa-ruler-combined"></i>
+              {sqft} <i className="fa-solid fa-ruler-combined" aria-hidden="true"></i>
             </span>
-            <span style={{ color: "#A8A8A8" }}>Sq Ft</span>
+            <span style={{ color: "#666" }}>Sq Ft</span>
           </div>
         </div>
         <div className="property-title-price">
           <h3 className="property-title">{title}</h3>
           <div className="price-container">
             <p className="property-price">{parseFloat(price).toLocaleString()} AED</p>
-            <button className="view-details-btn" onClick={handleViewDetails}>
-              <i className="fa-solid fa-arrow-right"></i>
+            <button 
+              className="view-details-btn" 
+              onClick={handleViewDetails}
+              aria-label={`View details for ${title}`}
+            >
+              <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
             </button>
           </div>
         </div>

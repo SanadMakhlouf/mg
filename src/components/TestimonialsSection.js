@@ -244,14 +244,24 @@ const TestimonialsSection = () => {
           </div>
 
           <div className="carousel-controls">
-            <button onClick={prevReview} className="carousel-btn prev">
-              <i className="fa-solid fa-chevron-left"></i>
+            <button 
+              onClick={prevReview} 
+              className="carousel-btn prev"
+              aria-label="Previous review"
+            >
+              <i className="fa-solid fa-chevron-left" aria-hidden="true"></i>
             </button>
             <div className="carousel-dots">
-              <span className="dot-counter">{currentIndex + 1} / {reviews.length}</span>
+              <span className="dot-counter" aria-live="polite" aria-atomic="true">
+                {currentIndex + 1} / {reviews.length}
+              </span>
             </div>
-            <button onClick={nextReview} className="carousel-btn next">
-              <i className="fa-solid fa-chevron-right"></i>
+            <button 
+              onClick={nextReview} 
+              className="carousel-btn next"
+              aria-label="Next review"
+            >
+              <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </button>
           </div>
         </div>

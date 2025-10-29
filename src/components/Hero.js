@@ -59,59 +59,27 @@ const Hero = () => {
             </React.Fragment>
           ))}
         </h1>
-        <div style={{ display: "flex", gap: "20px", marginBottom: "3rem" }}>
+        <div className="hero-buttons">
           <Link
             to="/off-plan-properties"
+            className="explore-btn"
             style={{
-              cursor: "pointer",
-              padding: "12px 40px",
-              fontSize: "16px",
-              fontWeight: "500",
-              borderRadius: "4px",
-              minWidth: "120px",
-              textAlign: "center",
-              background: "#800020",
-              color: "white",
-              border: "2px solid #800020",
-              transition: "all 0.3s ease",
               textDecoration: "none",
               display: "inline-block",
-            }}
-            onMouseOver={(e) => {
-              e.target.style.background = "transparent";
-              e.target.style.borderColor = "white";
-            }}
-            onMouseOut={(e) => {
-              e.target.style.background = "#800020";
-              e.target.style.borderColor = "#800020";
+              position: "relative",
+              zIndex: "1",
             }}
           >
             OFF PLAN PROJECTS
           </Link>
           <Link
             to="/about"
+            className="about-btn"
             style={{
-              cursor: "pointer",
-              padding: "12px 40px",
-              fontSize: "16px",
-              fontWeight: "500",
-              borderRadius: "4px",
-              minWidth: "120px",
-              textAlign: "center",
-              background: "transparent",
-              color: "white",
-              border: "2px solid white",
-              transition: "all 0.3s ease",
               textDecoration: "none",
               display: "inline-block",
-            }}
-            onMouseOver={(e) => {
-              e.target.style.background = "#800020";
-              e.target.style.borderColor = "#800020";
-            }}
-            onMouseOut={(e) => {
-              e.target.style.background = "transparent";
-              e.target.style.borderColor = "white";
+              position: "relative",
+              zIndex: "1",
             }}
           >
             ABOUT US

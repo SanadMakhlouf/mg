@@ -81,8 +81,9 @@ const Buy = () => {
                 </div>
               </div>
               <div className="filter-group">
-                <label>Property Type</label>
+                <label htmlFor="buy-propertyType">Property Type</label>
                 <select
+                  id="buy-propertyType"
                   name="propertyType"
                   value={filterParams.propertyType}
                   onChange={handleFilterChange}
@@ -99,8 +100,9 @@ const Buy = () => {
 
             <div className="filter-row">
               <div className="filter-group">
-                <label>Min. Bathrooms</label>
+                <label htmlFor="buy-minBathrooms">Min. Bathrooms</label>
                 <select
+                  id="buy-minBathrooms"
                   name="minBathrooms"
                   value={filterParams.minBathrooms}
                   onChange={handleFilterChange}
@@ -112,8 +114,9 @@ const Buy = () => {
                 </select>
               </div>
               <div className="filter-group">
-                <label>Max. Bathrooms</label>
+                <label htmlFor="buy-maxBathrooms">Max. Bathrooms</label>
                 <select
+                  id="buy-maxBathrooms"
                   name="maxBathrooms"
                   value={filterParams.maxBathrooms}
                   onChange={handleFilterChange}
@@ -125,8 +128,9 @@ const Buy = () => {
                 </select>
               </div>
               <div className="filter-group">
-                <label>Min. Bedrooms</label>
+                <label htmlFor="buy-minBedrooms">Min. Bedrooms</label>
                 <select
+                  id="buy-minBedrooms"
                   name="minBedrooms"
                   value={filterParams.minBedrooms}
                   onChange={handleFilterChange}
@@ -138,8 +142,9 @@ const Buy = () => {
                 </select>
               </div>
               <div className="filter-group">
-                <label>Max. Bedrooms</label>
+                <label htmlFor="buy-maxBedrooms">Max. Bedrooms</label>
                 <select
+                  id="buy-maxBedrooms"
                   name="maxBedrooms"
                   value={filterParams.maxBedrooms}
                   onChange={handleFilterChange}
@@ -154,8 +159,9 @@ const Buy = () => {
 
             <div className="filter-row">
               <div className="filter-group">
-                <label>Min. Area</label>
+                <label htmlFor="buy-minArea">Min. Area</label>
                 <select
+                  id="buy-minArea"
                   name="minArea"
                   value={filterParams.minArea}
                   onChange={handleFilterChange}
@@ -167,8 +173,9 @@ const Buy = () => {
                 </select>
               </div>
               <div className="filter-group">
-                <label>Max. Area</label>
+                <label htmlFor="buy-maxArea">Max. Area</label>
                 <select
+                  id="buy-maxArea"
                   name="maxArea"
                   value={filterParams.maxArea}
                   onChange={handleFilterChange}

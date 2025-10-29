@@ -100,10 +100,13 @@ const SearchSection = () => {
               />
             </div>
             <div className="search-field">
+              <label htmlFor="propertyType" className="sr-only">Property Type</label>
               <select
+                id="propertyType"
                 name="propertyType"
                 value={searchParams.propertyType}
                 onChange={handleInputChange}
+                aria-label="Property Type"
               >
                 <option value="">Property Type</option>
                 <option value="apartment">Apartment</option>
@@ -119,10 +122,13 @@ const SearchSection = () => {
           </div>
           <div className="search-row">
             <div className="search-field">
+              <label htmlFor="minBathrooms" className="sr-only">Minimum Bathrooms</label>
               <select
+                id="minBathrooms"
                 name="minBathrooms"
                 value={searchParams.minBathrooms}
                 onChange={handleInputChange}
+                aria-label="Minimum Bathrooms"
               >
                 <option value="">Min. Bath</option>
                 <option value="1">1</option>
@@ -131,10 +137,13 @@ const SearchSection = () => {
               </select>
             </div>
             <div className="search-field">
+              <label htmlFor="maxBathrooms" className="sr-only">Maximum Bathrooms</label>
               <select
+                id="maxBathrooms"
                 name="maxBathrooms"
                 value={searchParams.maxBathrooms}
                 onChange={handleInputChange}
+                aria-label="Maximum Bathrooms"
               >
                 <option value="">Max. Bath</option>
                 <option value="1">1</option>
@@ -147,10 +156,13 @@ const SearchSection = () => {
           </div>
           <div className="search-row">
             <div className="search-field">
+              <label htmlFor="minBedrooms" className="sr-only">Minimum Bedrooms</label>
               <select
+                id="minBedrooms"
                 name="minBedrooms"
                 value={searchParams.minBedrooms}
                 onChange={handleInputChange}
+                aria-label="Minimum Bedrooms"
               >
                 <option value="">Min. Bed</option>
                 <option value="1">1</option>
@@ -159,10 +171,13 @@ const SearchSection = () => {
               </select>
             </div>
             <div className="search-field">
+              <label htmlFor="maxBedrooms" className="sr-only">Maximum Bedrooms</label>
               <select
+                id="maxBedrooms"
                 name="maxBedrooms"
                 value={searchParams.maxBedrooms}
                 onChange={handleInputChange}
+                aria-label="Maximum Bedrooms"
               >
                 <option value="">Max. Bed</option>
                 <option value="1">1</option>
