@@ -126,7 +126,15 @@ const PropertiesSection = ({ filterParams }) => {
             ) : error ? (
               <p>{error}</p>
             ) : properties.length === 0 ? (
-              <p>No properties found</p>
+              <div className="no-properties-found">
+                <p>No properties found matching your criteria</p>
+                <button 
+                  className="explore-all-btn"
+                  onClick={() => window.location.href = "/rent"}
+                >
+                  Explore All Properties
+                </button>
+              </div>
             ) : (
               properties.map((property) => (
                 <PropertyCard
@@ -157,9 +165,6 @@ const PropertiesSection = ({ filterParams }) => {
             />
           </div>
         </div>
-      </div>
-      <div className="journey-banner">
-        <img src={buyBanner2} alt="Your journey, our expertise" />
       </div>
     </div>
   );

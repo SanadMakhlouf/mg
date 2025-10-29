@@ -182,8 +182,139 @@
   transform: translateX(5px);
 }
 
+/* Share Button Styles */
+.property-card-share {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 10;
+}
+
+.share-icon-btn {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.share-icon-btn:hover {
+  background: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.share-icon-btn i {
+  color: #800020;
+  font-size: 16px;
+}
+
+.share-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.property-share-menu {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background: white;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  gap: 8px;
+  z-index: 1000;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.share-menu-option {
+  background: transparent;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.share-menu-option:hover {
+  transform: scale(1.15);
+}
+
+.share-menu-option i {
+  font-size: 18px;
+}
+
+.share-menu-option.whatsapp i {
+  color: #25D366;
+}
+
+.share-menu-option.facebook i {
+  color: #1877F2;
+}
+
+.share-menu-option.twitter i {
+  color: #000000;
+}
+
+.share-menu-option.email i {
+  color: #EA4335;
+}
+
+.share-menu-option.copy i {
+  color: #666;
+}
+
+.share-menu-option.copy:hover i {
+  color: #800020;
+}
+
 @media (max-width: 1024px) {
   .property-card {
     padding: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .property-share-menu {
+    left: auto;
+    right: 0;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px;
+  }
+  
+  .share-menu-option {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .share-menu-option i {
+    font-size: 16px;
   }
 }

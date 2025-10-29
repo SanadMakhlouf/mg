@@ -4,6 +4,8 @@ import "./PropertyDetails.css";
 import config from "../../config";
 import ImageCarousel from "./ImageCarousel";
 import SEO from "../SEO";
+import ShareButtons from "../ShareButtons";
+import ScheduleViewingPopup from "../ScheduleViewingPopup";
 
 const PropertyDetails = () => {
   const { id, name } = useParams();
@@ -12,6 +14,7 @@ const PropertyDetails = () => {
   const [agentDetails, setAgentDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showScheduleViewing, setShowScheduleViewing] = useState(false);
 
   // Données par défaut pour l'agent si aucun agent n'est associé
   const defaultAgent = {
@@ -259,14 +262,21 @@ const PropertyDetails = () => {
                     : 'Price on Request'
                   }
                 </h2>
-                <div className="property-action-buttons">
-                  <button className="save-btn">
-                    <i className="fa-solid fa-heart"></i>
-                  </button>
-                  <button className="share-btn">
-                    <i className="fa-solid fa-share"></i>
-                  </button>
-                </div>
+              </div>
+              
+              <div className="property-action-buttons-row">
+                <button 
+                  className="schedule-viewing-btn"
+                  onClick={() => setShowScheduleViewing(true)}
+                >
+                  <i className="fa-solid fa-calendar-check"></i>
+                  <span>Schedule Viewing</span>
+                </button>
+                <ShareButtons 
+                  propertyId={property.id}
+                  propertyName={property.name}
+                  propertyUrl={window.location.href}
+                />
               </div>
               
               <div className="property-address">
@@ -426,6 +436,15 @@ const PropertyDetails = () => {
       </div>
 
       {/* Off-plan specific sections moved to OffPlanDetails */}
+      
+      {/* Schedule Viewing Popup */}
+      {showScheduleViewing && (
+        <ScheduleViewingPopup
+          onClose={() => setShowScheduleViewing(false)}
+          propertyId={property.id}
+          propertyName={property.name}
+        />
+      )}
     </div>
     </>
   );

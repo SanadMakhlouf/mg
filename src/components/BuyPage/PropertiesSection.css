@@ -84,6 +84,35 @@
   gap: 30px;
 }
 
+.no-properties-found {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.no-properties-found p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.explore-all-btn {
+  background: linear-gradient(135deg, #800020 0%, #460014 100%);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.explore-all-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(128, 0, 32, 0.3);
+}
+
 @media (max-width: 1024px) {
   .properties-grid {
     grid-template-columns: repeat(2, 1fr);

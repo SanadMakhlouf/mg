@@ -9,33 +9,30 @@ import "./Rent.css";
 
 const Rent = () => {
   const location = useLocation();
-  const [filterParams, setFilterParams] = useState({
-    completionStatus: "",
-    location: "",
-    propertyType: "",
-    minBathrooms: "",
-    maxBathrooms: "",
-    minBedrooms: "",
-    maxBedrooms: "",
-    minArea: "",
-    maxArea: "",
-    minPrice: "",
-    maxPrice: "",
-  });
-
-  // Extract search parameters from URL when component mounts
-  useEffect(() => {
+  
+  // Initialize filterParams from URL immediately
+  const getInitialFilterParams = () => {
     const queryParams = new URLSearchParams(location.search);
-    const newFilterParams = { ...filterParams };
+    return {
+      completionStatus: queryParams.get("completionStatus") || "",
+      location: queryParams.get("location") || "",
+      propertyType: queryParams.get("propertyType") || "",
+      minBathrooms: queryParams.get("minBathrooms") || "",
+      maxBathrooms: queryParams.get("maxBathrooms") || "",
+      minBedrooms: queryParams.get("minBedrooms") || "",
+      maxBedrooms: queryParams.get("maxBedrooms") || "",
+      minArea: queryParams.get("minArea") || "",
+      maxArea: queryParams.get("maxArea") || "",
+      minPrice: queryParams.get("minPrice") || "",
+      maxPrice: queryParams.get("maxPrice") || "",
+    };
+  };
 
-    // Update filter parameters from URL query parameters
-    for (const [key, value] of queryParams.entries()) {
-      if (key in newFilterParams) {
-        newFilterParams[key] = value;
-      }
-    }
+  const [filterParams, setFilterParams] = useState(getInitialFilterParams);
 
-    setFilterParams(newFilterParams);
+  // Update filterParams when URL changes
+  useEffect(() => {
+    setFilterParams(getInitialFilterParams());
   }, [location.search]);
 
   // Handle filter changes

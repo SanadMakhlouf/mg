@@ -207,6 +207,40 @@
   border-color: #800020;
 }
 
+.property-action-buttons-row {
+  display: flex;
+  gap: 15px;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.schedule-viewing-btn {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #800020 0%, #460014 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.schedule-viewing-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(128, 0, 32, 0.3);
+}
+
+.schedule-viewing-btn i {
+  font-size: 18px;
+}
+
 .property-address {
   display: flex;
   align-items: center;
