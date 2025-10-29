@@ -12,7 +12,7 @@ const LookingForSection = () => {
   return (
     <section className="looking-for-section">
       <div className="looking-for-container">
-        <div className="section-header">
+        <div className="section-header fade-scale">
           <h2>What Are You Looking For?</h2>
           <p>
             From contemporary apartments in prime neighborhoods to luxurious villas with stunning views, 
@@ -21,7 +21,7 @@ const LookingForSection = () => {
           </p>
         </div>
 
-        <div className="cards-container">
+        <div className="cards-container stagger-children">
           <div className="card">
             <div className="card-content">
               <div className="card-image">

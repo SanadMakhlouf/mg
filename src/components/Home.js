@@ -13,26 +13,48 @@ import "./Home.css";
 
 const Home = () => {
   useEffect(() => {
-    // Add scroll-triggered animations
+    // Add scroll-triggered animations with enhanced options
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      threshold: 0.15,
+      rootMargin: '0px 0px -100px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-in');
+          // Optionally unobserve after animation to improve performance
+          // observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
     // Observe all sections for animation
-    const sections = document.querySelectorAll('.home-section');
+    const sections = document.querySelectorAll('.home-section, .fade-scale, .slide-left, .slide-right, .stagger-children');
     sections.forEach(section => observer.observe(section));
+
+    // Add parallax effect on scroll (subtle)
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.pageYOffset;
+          const parallaxItems = document.querySelectorAll('.parallax-item');
+          parallaxItems.forEach((item, index) => {
+            const speed = 0.5 + (index * 0.1);
+            item.style.transform = `translateY(${scrolled * speed * 0.1}px)`;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       sections.forEach(section => observer.unobserve(section));
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 

@@ -82,7 +82,7 @@ const GetInTouchSection = () => {
   return (
     <section className="get-in-touch">
       <div className="get-in-touch-container">
-        <div className="left-section">
+        <div className="left-section slide-left">
           <span className="keep-close">We're Here for You</span>
           <h2>Get In Touch</h2>
           <p>
@@ -141,7 +141,7 @@ const GetInTouchSection = () => {
           </div>
         </div>
 
-        <div className="right-section">
+        <div className="right-section slide-right">
           <h2>Send Us a Message</h2>
           <p>Let's discuss how we can help you today</p>
 

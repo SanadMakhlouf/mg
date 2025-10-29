@@ -194,7 +194,7 @@ const TestimonialsSection = () => {
   return (
     <section className="testimonials-section">
       <div className="testimonials-container">
-        <div className="testimonials-header">
+        <div className="testimonials-header fade-scale">
           <h2>
             WHAT <span className="text-gray">OUR</span>
             <br />
@@ -202,7 +202,7 @@ const TestimonialsSection = () => {
           </h2>
         </div>
 
-        <div className="reviews-center-layout">
+        <div className="reviews-center-layout slide-right">
           <div 
             className="reviews-prev-next"
             ref={carouselRef}

@@ -154,7 +154,7 @@ const PopularDevelopersSection = () => {
   return (
     <section className="popular-developers-section">
       <div className="developers-container">
-        <div className="developers-header">
+        <div className="developers-header fade-scale">
           <div className="header-content">
             <h2>
               Latest <span className="text-gray">Blogs</span> and

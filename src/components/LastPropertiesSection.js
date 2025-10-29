@@ -107,13 +107,13 @@ const LastPropertiesSection = () => {
 
   return (
     <section className="last-properties-section">
-      <div className="last-properties-header">
+      <div className="last-properties-header fade-scale">
         <h2>Featured Properties</h2>
         <Link to="/buy" className="view-all-btn">
           Explore All Properties
         </Link>
       </div>
-      <div className="carousel-container">
+      <div className="carousel-container stagger-children">
         {loading ? (
           <div className="loading-container">
             <p>Loading properties...</p>

@@ -11,7 +11,7 @@ const WhyUsSection = () => {
     <section className="why-us-section">
       <div className="why-us-container">
         <div className="stats-container">
-          <div className="stats-group">
+          <div className="stats-group slide-left">
             <div className="why-us-header">
               <h2>
                 <span className="city-name">
@@ -34,7 +34,7 @@ const WhyUsSection = () => {
             </div>
           </div>
 
-          <div className="features-list">
+          <div className="features-list stagger-children">
             <div className="feature-item">
               <img src={money} alt="money" />
               <div className="feature-text">
