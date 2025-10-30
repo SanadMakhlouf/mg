@@ -9,6 +9,7 @@ import PopularDevelopersSection from "./PopularDevelopersSection";
 import GetInTouchSection from "./GetInTouchSection";
 import MapSection from "./MapSection";
 import SEO from "./SEO";
+import HomeOffPlanSection from "./HomeOffPlanSection";
 import "./Home.css";
 
 const Home = () => {
@@ -86,6 +87,9 @@ const Home = () => {
       />
       <Hero />
       <SearchSection />
+      
+      {/* Off Plan Resale Properties Section */}
+      <HomeOffPlanSection />
       
       {/* Premium Stats Banner */}
       <section className="home-section premium-stats-banner">

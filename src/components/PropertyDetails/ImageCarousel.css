@@ -1,41 +1,53 @@
-.image-carousel {
+/* Bayut Style Image Carousel - Main Image Left, Vertical Thumbnails Right */
+.image-carousel-bayut {
   width: 100%;
   margin: 0 auto;
 }
 
-.carousel-main {
-  position: relative;
+.carousel-layout-bayut {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
   width: 100%;
   height: 65vh;
   min-height: 500px;
   max-height: 800px;
+}
+
+.carousel-main-bayut {
+  position: relative;
+  flex: 1;
+  width: 50%;
+  min-width: 0;
+  height: 100%;
   overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: none;
   background: #000;
 }
 
-.main-image {
+.main-image-bayut {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  display: block;
 }
 
-.main-image:hover {
+.main-image-bayut:hover {
   transform: scale(1.02);
 }
 
-.zoom-btn {
+.carousel-btn-bayut {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border: none;
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -43,18 +55,91 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 3;
-  color: #3F0316;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.zoom-btn:hover {
+.carousel-btn-bayut:hover {
   background: rgba(255, 255, 255, 1);
-  transform: scale(1.1);
+  transform: translateY(-50%) scale(1.1);
   box-shadow: 0 6px 20px rgba(63, 3, 22, 0.3);
 }
 
-.zoom-btn i {
+.prev-btn-bayut {
+  left: 20px;
+}
+
+.next-btn-bayut {
+  right: 20px;
+}
+
+.carousel-btn-bayut i {
   font-size: 18px;
+  color: #3F0316;
+  font-weight: 600;
+}
+
+/* Vertical Thumbnails on Right */
+.carousel-thumbnails-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+  width: 50%;
+  min-width: 0;
+  height: 100%;
+}
+
+.thumbnail-vertical {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  height: 0;
+  border-radius: 0;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  box-shadow: none;
+  background: #000;
+}
+
+.thumbnail-vertical img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail-vertical:hover {
+  opacity: 0.8;
+}
+
+.thumbnail-vertical:hover img {
+  transform: scale(1.05);
+}
+
+.thumbnail-vertical.active {
+  opacity: 0.9;
+}
+
+.thumbnail-counter-overlay {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 2;
+}
+
+.thumbnail-counter-overlay i {
+  font-size: 11px;
 }
 
 /* Zoom Modal */
@@ -162,196 +247,79 @@
   color: #333;
 }
 
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 3;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.carousel-btn:hover {
-  background: rgba(255, 255, 255, 1);
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 20px rgba(63, 3, 22, 0.3);
-}
-
-.prev-btn {
-  left: 20px;
-}
-
-.next-btn {
-  right: 20px;
-}
-
-.carousel-btn i {
-  font-size: 18px;
-  color: #3F0316;
-  font-weight: 600;
-}
-
-.image-counter {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  color: #3F0316;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 600;
-  z-index: 3;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.carousel-thumbnails {
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
-  padding: 0;
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(63, 3, 22, 0.3) transparent;
-  padding-bottom: 5px;
-}
-
-.carousel-thumbnails::-webkit-scrollbar {
-  height: 8px;
-}
-
-.carousel-thumbnails::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
-}
-
-.carousel-thumbnails::-webkit-scrollbar-thumb {
-  background: rgba(63, 3, 22, 0.4);
-  border-radius: 10px;
-}
-
-.carousel-thumbnails::-webkit-scrollbar-thumb:hover {
-  background: rgba(63, 3, 22, 0.6);
-}
-
-.thumbnail {
-  width: 120px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 3px solid transparent;
-  flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.thumbnail:hover {
-  transform: translateY(-4px) scale(1.05);
-  border-color: #3F0316;
-  box-shadow: 0 6px 20px rgba(63, 3, 22, 0.3);
-}
-
-.thumbnail.active {
-  border-color: #3F0316;
-  box-shadow: 0 6px 25px rgba(63, 3, 22, 0.4);
-  transform: translateY(-2px);
-}
-
-/* Responsive design */
+/* Responsive Design */
 @media (max-width: 1200px) {
-  .carousel-main {
+  .carousel-layout-bayut {
     height: 60vh;
     min-height: 450px;
+  }
+  
+  .carousel-main-bayut,
+  .carousel-thumbnails-vertical {
+    width: 50%;
   }
 }
 
 @media (max-width: 992px) {
-  .carousel-main {
+  .carousel-layout-bayut {
+    flex-direction: column;
+    gap: 0;
+    height: auto;
+    min-height: auto;
+    max-height: none;
+  }
+
+  .carousel-main-bayut {
+    width: 100%;
     height: 50vh;
     min-height: 400px;
+    border-radius: 0;
   }
-  
-  .thumbnail {
+
+  .carousel-thumbnails-vertical {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    padding-bottom: 5px;
+  }
+
+  .thumbnail-vertical {
     width: 100px;
     height: 75px;
-  }
-}
-
-@media (max-width: 768px) {
-  .carousel-main {
-    height: 45vh;
-    min-height: 350px;
-    border-radius: 10px;
+    flex: 0 0 auto;
+    flex-shrink: 0;
   }
 
-  .carousel-btn {
+  .carousel-btn-bayut {
     width: 42px;
     height: 42px;
   }
 
-  .carousel-btn i {
+  .carousel-btn-bayut i {
     font-size: 16px;
   }
 
-  .prev-btn {
+  .prev-btn-bayut {
     left: 15px;
   }
 
-  .next-btn {
+  .next-btn-bayut {
     right: 15px;
-  }
-
-  .thumbnail {
-    width: 80px;
-    height: 60px;
-  }
-
-  .carousel-thumbnails {
-    gap: 10px;
-    margin-top: 15px;
-  }
-
-  .zoom-btn {
-    width: 42px;
-    height: 42px;
-    top: 15px;
-    right: 15px;
-  }
-
-  .zoom-btn i {
-    font-size: 16px;
-  }
-  
-  .image-counter {
-    bottom: 15px;
-    right: 15px;
-    padding: 6px 12px;
-    font-size: 13px;
   }
 }
 
 @media (max-width: 576px) {
-  .carousel-main {
+  .carousel-main-bayut {
     height: 40vh;
     min-height: 300px;
-    border-radius: 8px;
+    border-radius: 0;
   }
 
-  .thumbnail {
-    width: 70px;
-    height: 52px;
+  .thumbnail-vertical {
+    width: 80px;
   }
 
   .zoom-modal {
@@ -385,14 +353,13 @@
 }
 
 @media (max-width: 360px) {
-  .carousel-main {
+  .carousel-main-bayut {
     height: 35vh;
     min-height: 250px;
   }
 
-  .thumbnail {
-    width: 60px;
-    height: 45px;
+  .thumbnail-vertical {
+    width: 70px;
   }
 
   .zoom-carousel-btn {

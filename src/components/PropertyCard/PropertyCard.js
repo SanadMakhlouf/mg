@@ -129,7 +129,7 @@ const PropertyCard = ({
         )}
       </div>
       <div className="property-details">
-        <div className="property-location">
+      <div className="property-location">
           <div>
             <i className="fa-solid fa-location-dot"></i>
             <span>{location}</span>
@@ -138,8 +138,8 @@ const PropertyCard = ({
             <span className="permit-number">
               <i className="fa-solid fa-certificate"></i> Permit: {permitNumber}
             </span>
-          )}
-        </div>
+        )}
+      </div>
         <div className="property-info-grid">
           <div className="info-item-l">
             <span>

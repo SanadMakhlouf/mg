@@ -31,57 +31,68 @@ const ImageCarousel = ({ images, alt }) => {
 
   if (!images || images.length === 0) {
     return (
-      <div className="image-carousel">
-        <div className="carousel-main">
-          <img src="/test.jpg" alt={alt} className="main-image" onClick={toggleZoom} />
+      <div className="image-carousel-bayut">
+        <div className="carousel-layout-bayut">
+          <div className="carousel-main-bayut">
+            <img src="/test.jpg" alt={alt} className="main-image-bayut" onClick={toggleZoom} />
+          </div>
         </div>
       </div>
     );
   }
 
+  // Show first 3 thumbnails vertically
+  const displayThumbnails = images.slice(0, Math.min(images.length, 3));
+  const remainingCount = images.length > 3 ? images.length - 3 : 0;
+
   return (
-    <div className="image-carousel">
-      <div className="carousel-main">
-        <img
-          src={images[currentIndex]}
-          alt={`${alt} - Image ${currentIndex + 1}`}
-          className={`main-image ${isZoomed ? 'zoomed' : ''}`}
-          onClick={toggleZoom}
-        />
+    <div className="image-carousel-bayut">
+      <div className="carousel-layout-bayut">
+        {/* Main Image on Left */}
+        <div className="carousel-main-bayut">
+          <img
+            src={images[currentIndex]}
+            alt={`${alt} - Image ${currentIndex + 1}`}
+            className="main-image-bayut"
+            onClick={toggleZoom}
+          />
 
-        {images.length > 1 && (
-          <>
-            <button className="carousel-btn prev-btn" onClick={prevImage}>
-              <i className="fa-solid fa-chevron-left"></i>
-            </button>
-            <button className="carousel-btn next-btn" onClick={nextImage}>
-              <i className="fa-solid fa-chevron-right"></i>
-            </button>
-
-            <div className="image-counter">
-              {currentIndex + 1} / {images.length}
-            </div>
-          </>
-        )}
-
-        <button className="zoom-btn" onClick={toggleZoom}>
-          <i className="fa-solid fa-magnifying-glass-plus"></i>
-        </button>
-      </div>
-
-      {images.length > 1 && (
-        <div className="carousel-thumbnails">
-          {images.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={`${alt} thumbnail ${index + 1}`}
-              className={`thumbnail ${index === currentIndex ? "active" : ""}`}
-              onClick={() => goToImage(index)}
-            />
-          ))}
+          {images.length > 1 && (
+            <>
+              <button className="carousel-btn-bayut prev-btn-bayut" onClick={prevImage}>
+                <i className="fa-solid fa-chevron-left"></i>
+              </button>
+              <button className="carousel-btn-bayut next-btn-bayut" onClick={nextImage}>
+                <i className="fa-solid fa-chevron-right"></i>
+              </button>
+            </>
+          )}
         </div>
-      )}
+
+        {/* Vertical Thumbnails on Right */}
+        {images.length > 1 && (
+          <div className="carousel-thumbnails-vertical">
+            {displayThumbnails.map((image, index) => (
+              <div
+                key={index}
+                className={`thumbnail-vertical ${index === currentIndex ? "active" : ""}`}
+                onClick={() => goToImage(index)}
+              >
+                <img
+                  src={image}
+                  alt={`${alt} thumbnail ${index + 1}`}
+                />
+                {index === 2 && remainingCount > 0 && (
+                  <div className="thumbnail-counter-overlay">
+                    <i className="fa-solid fa-camera"></i>
+                    <span>{remainingCount}</span>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
       {/* Zoom Modal */}
       {isZoomed && (

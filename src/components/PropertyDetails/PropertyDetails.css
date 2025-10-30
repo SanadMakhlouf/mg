@@ -101,7 +101,7 @@ body .list-property-btn:hover {
 .main-image-container {
   position: relative;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
 }
 

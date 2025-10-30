@@ -59,7 +59,7 @@ const Hero = () => {
         <div className={`hero-text-wrapper ${isLoaded ? "loaded" : ""}`}>
           <h1 className="hero-title-clean">
             {carouselData[currentSlide].title}
-          </h1>
+        </h1>
           <h2 className="hero-subtitle-clean">
             {carouselData[currentSlide].subtitle}
           </h2>
@@ -72,11 +72,11 @@ const Hero = () => {
             <Link to="/off-plan-properties" className="hero-btn hero-btn-primary">
               Explore Properties
               <i className="fa-solid fa-arrow-right"></i>
-            </Link>
+          </Link>
             <Link to="/about" className="hero-btn hero-btn-secondary">
               Our Story
               <i className="fa-solid fa-play"></i>
-            </Link>
+          </Link>
           </div>
 
           <div className="hero-stats-clean">
@@ -91,7 +91,7 @@ const Hero = () => {
             <div className="hero-stat-item">
               <span className="stat-number">100%</span>
               <span className="stat-label">Client Satisfaction</span>
-            </div>
+          </div>
           </div>
         </div>
       </div>

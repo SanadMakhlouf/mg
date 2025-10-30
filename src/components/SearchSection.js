@@ -96,21 +96,21 @@ const SearchSection = ({ defaultTab = null, hideTabs = false, title = "Find Your
         <div className="search-header">
           {!hideTitle && <h2 className="search-title">{title}</h2>}
           {!hideTabs && (
-            <div className="search-tabs">
-            <button
-              className={`tab ${activeTab === "rental" ? "active" : ""}`}
-              onClick={() => handleTabChange("rental")}
-            >
+        <div className="search-tabs">
+          <button
+            className={`tab ${activeTab === "rental" ? "active" : ""}`}
+            onClick={() => handleTabChange("rental")}
+          >
               <i className="fa-solid fa-key"></i>
               <span>RENTAL</span>
-            </button>
-            <button
-              className={`tab ${activeTab === "sales" ? "active" : ""}`}
-              onClick={() => handleTabChange("sales")}
-            >
+          </button>
+          <button
+            className={`tab ${activeTab === "sales" ? "active" : ""}`}
+            onClick={() => handleTabChange("sales")}
+          >
               <i className="fa-solid fa-hand-holding-dollar"></i>
               <span>SALES</span>
-            </button>
+          </button>
           </div>
           )}
         </div>
@@ -208,35 +208,35 @@ const SearchSection = ({ defaultTab = null, hideTabs = false, title = "Find Your
                 Bathrooms
               </label>
               <div className="filter-inputs">
-                <select
-                  id="minBathrooms"
-                  name="minBathrooms"
-                  value={searchParams.minBathrooms}
-                  onChange={handleInputChange}
+              <select
+                id="minBathrooms"
+                name="minBathrooms"
+                value={searchParams.minBathrooms}
+                onChange={handleInputChange}
                   className="filter-select"
-                  aria-label="Minimum Bathrooms"
-                >
+                aria-label="Minimum Bathrooms"
+              >
                   <option value="">Min</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3+</option>
-                </select>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3+</option>
+              </select>
                 <span className="filter-separator">to</span>
-                <select
-                  id="maxBathrooms"
-                  name="maxBathrooms"
-                  value={searchParams.maxBathrooms}
-                  onChange={handleInputChange}
+              <select
+                id="maxBathrooms"
+                name="maxBathrooms"
+                value={searchParams.maxBathrooms}
+                onChange={handleInputChange}
                   className="filter-select"
-                  aria-label="Maximum Bathrooms"
-                >
+                aria-label="Maximum Bathrooms"
+              >
                   <option value="">Max</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4+</option>
-                </select>
-              </div>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4+</option>
+              </select>
+            </div>
             </div>
           </div>
         </div>
