@@ -58,18 +58,53 @@
 .social-icons a {
   line-height: 0;
   font-size: 0;
-  margin-right: -5px; /* Rapproche les icônes */
+  margin-right: -5px;
+  background: #3F0316 !important;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #3F0316;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-icons a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1;
 }
 
 .social-icons img {
   width: 30px;
   height: 30px;
-  transition: opacity 0.3s;
-  display: block; /* Enlève l'espace blanc sous l'image */
+  transition: all 0.3s ease;
+  display: block;
+  filter: brightness(0) invert(1);
+  position: relative;
+  z-index: 2;
+}
+
+.social-icons a:hover {
+  background: rgba(63, 3, 22, 0.9) !important;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 24px rgba(63, 3, 22, 0.5);
 }
 
 .social-icons a:hover img {
-  opacity: 0.8;
+  filter: brightness(0) invert(1);
+  opacity: 1;
 }
 
 .footer-links {

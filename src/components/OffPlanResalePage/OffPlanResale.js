@@ -5,6 +5,7 @@ import OffPlanHero from "../OffPlanPage/OffPlanHero";
 import OffPlanBanner from "../OffPlanPage/OffPlanBanner";
 import OffPlanResaleGrid from "./OffPlanResaleGrid";
 import OffPlanContact from "../OffPlanPage/OffPlanContact";
+import SearchSection from "../SearchSection";
 
 const OffPlanResale = () => {
   const location = useLocation();
@@ -53,11 +54,12 @@ const OffPlanResale = () => {
   return (
     <div className="off-plan-page">
       <OffPlanHero />
+      <SearchSection defaultTab="sales" hideTabs={true} title="Find Your Perfect Off-Plan Resale Property" />
       <div className="off-plan-container">
         <OffPlanBanner />
         
         {/* Search Section */}
-        <div className="off-plan-search-section">
+        <div className="off-plan-search-section" style={{ display: 'none' }}>
           <div className="search-header">
             <h3>Off Plan Resale Properties</h3>
           </div>

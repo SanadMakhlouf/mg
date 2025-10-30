@@ -20,7 +20,7 @@ const OffPlanDetails = () => {
     name: "Meridian Group",
     description:
       "Contact our experienced real estate professionals for personalized assistance with your property needs.",
-    location: "Al Hisn, Baynunah Tower 2 , Office 402 , Abu dhabi, Office 93",
+    location: "Al Hisn, Baynunah Tower 2, Office 402, Abu Dhabi",
     phone: "+971 586830401",
     email: "info@meridiangroup.ae",
     image: "/logo192.png",

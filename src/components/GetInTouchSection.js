@@ -94,18 +94,24 @@ const GetInTouchSection = () => {
           <div className="contact-info">
             <div className="info-item">
               <img src="/loca.png" alt="location" />
-              <p>Al Hisn, Baynunah Tower 2 , Office 402 , Abu Dhabi</p>
+              <p>Al Hisn, Baynunah Tower 2, Office 402, Abu Dhabi</p>
             </div>
             <div className="info-item">
               <img src="/phone.png" alt="phone" />
               <div>
-                <p>(+971)586830401</p>
+                <p>+971 586830401</p>
               </div>
             </div>
             <div className="info-item">
               <img src="/ime.png" alt="email" />
               <div>
                 <p>info@meridiangroup.ae</p>
+              </div>
+            </div>
+            <div className="info-item">
+              <img src="/time.png" alt="working hours" />
+              <div>
+                <p>Open 09:00 AM to 6:00 PM</p>
               </div>
             </div>
           </div>

@@ -421,7 +421,7 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: #3F0316 !important;
   backdrop-filter: blur(10px);
   color: #fff;
   display: flex;
@@ -429,18 +429,38 @@
   justify-content: center;
   text-decoration: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid #3F0316;
+  position: relative;
+  overflow: hidden;
+}
+
+.agent-card .social-icons a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1;
 }
 
 .agent-card .social-icons a:hover {
-  background: linear-gradient(135deg, #800020, #a00030);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(63, 3, 22, 0.9) !important;
+  border-color: #3F0316;
   transform: translateY(-4px) scale(1.15);
-  box-shadow: 0 8px 24px rgba(128, 0, 32, 0.5);
+  box-shadow: 0 8px 24px rgba(63, 3, 22, 0.5);
 }
 
 .agent-card .social-icons a i {
   font-size: 1.1rem;
+  position: relative;
+  z-index: 2;
+  color: #ffffff !important;
+  filter: none !important;
 }
 
 .loading-container,

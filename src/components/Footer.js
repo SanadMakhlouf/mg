@@ -108,17 +108,16 @@ const Footer = () => {
                 <a href="mailto:info@meridiangroup.ae">info@meridiangroup.ae</a>
               </li>
               <li className="phone-number">+971 586830401</li>
+              <li>Open 09:00 AM to 6:00 PM</li>
             </ul>
           </div>
 
           <div className="footer-column">
             <h3>Address</h3>
             <p>
-              Office 55, Baynunah Tower 2,
+              Al Hisn, Baynunah Tower 2,
               <br />
-              Al Hosn, Abu Dhabi
-              <br />
-              0000
+              Office 402, Abu Dhabi
             </p>
           </div>
         </div>

@@ -44,10 +44,10 @@ const ProjectsGrid = () => {
     description:
       "Let our expert team guide you to your ideal property. We combine personalized service with deep market knowledge to understand exactly what your family needs and deliver exceptional results.",
     contactInfo: [
-      { icon: "/loca.png", text: "Office 55, Baynunah Tower 2, Al Hosn, Abu Dhabi" },
+      { icon: "/loca.png", text: "Al Hisn, Baynunah Tower 2, Office 402, Abu Dhabi" },
       { icon: "/ime.png", text: "info@meridiangroup.ae" },
-      { icon: "/phone.png", text: "+971 50 607 030" },
-      { icon: "/time.png", text: "Mon-Sat: 9am - 6pm" },
+      { icon: "/phone.png", text: "+971 586830401" },
+      { icon: "/time.png", text: "Open 09:00 AM to 6:00 PM" },
     ],
   };
 

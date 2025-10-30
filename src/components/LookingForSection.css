@@ -15,7 +15,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 80% 20%, rgba(128, 0, 32, 0.03) 0%, transparent 50%);
+  background: radial-gradient(circle at 80% 20%, rgba(63, 3, 22, 0.03) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -73,7 +73,7 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(250, 250, 250, 0.95));
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(128, 0, 32, 0.1);
+  border: 1px solid rgba(63, 3, 22, 0.1);
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
@@ -89,15 +89,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(128, 0, 32, 0.05) 0%, transparent 100%);
+  background: linear-gradient(135deg, rgba(63, 3, 22, 0.05) 0%, transparent 100%);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
 .card:hover {
   transform: translateY(-16px) scale(1.02);
-  box-shadow: 0 24px 64px rgba(128, 0, 32, 0.2);
-  border-color: rgba(128, 0, 32, 0.3);
+  box-shadow: 0 24px 64px rgba(63, 3, 22, 0.2);
+  border-color: rgba(63, 3, 22, 0.3);
 }
 
 .card:hover::before {
@@ -111,7 +111,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #800020, #a00030);
+  background: linear-gradient(90deg, #3F0316, rgba(63, 3, 22, 0.9));
   transform: scaleX(0);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -134,11 +134,11 @@
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #800020, #a00030);
+  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.9));
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 12px 32px rgba(128, 0, 32, 0.3);
+  box-shadow: 0 12px 32px rgba(63, 3, 22, 0.3);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -158,7 +158,7 @@
 
 .card:hover .card-image {
   transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 16px 48px rgba(128, 0, 32, 0.4);
+  box-shadow: 0 16px 48px rgba(63, 3, 22, 0.4);
 }
 
 .card:hover .card-image::before {
@@ -368,7 +368,7 @@
   transform: translateY(-10px) scale(1.02);
   box-shadow: 0 16px 56px rgba(70, 0, 20, 0.2);
   background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(128, 0, 32, 0.3);
+  border-color: rgba(63, 3, 22, 0.3);
 }
 
 .card::after {

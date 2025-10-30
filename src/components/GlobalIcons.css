@@ -1,0 +1,171 @@
+/* Global Icon Styling - Dark Red Circles with White Icons */
+.social-icons a,
+.agent-card .social-icons a,
+.share-icon-btn,
+.property-card-share .share-icon-btn,
+.share-menu-option,
+.whatsapp-widget-btn {
+  background: #3F0316 !important;
+  border: 2px solid #3F0316 !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-icons a::before,
+.agent-card .social-icons a::before,
+.share-icon-btn::before,
+.share-menu-option::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1;
+}
+
+.social-icons a i,
+.social-icons a img,
+.agent-card .social-icons a i,
+.share-icon-btn i,
+.share-menu-option i {
+  position: relative;
+  z-index: 2;
+  filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
+}
+
+/* Hover effects */
+.social-icons a:hover,
+.agent-card .social-icons a:hover {
+  background: #3F0316 !important;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 24px rgba(63, 3, 22, 0.5);
+}
+
+.social-icons a:hover img,
+.social-icons a:hover i,
+.agent-card .social-icons a:hover i {
+  filter: brightness(0) invert(1);
+}
+
+/* Footer icons */
+.footer .social-icons a {
+  background: #3F0316 !important;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  border: 2px solid #3F0316;
+  transition: all 0.3s ease;
+}
+
+.footer .social-icons a img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
+}
+
+.footer .social-icons a:hover {
+  background: rgba(63, 3, 22, 0.9) !important;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 24px rgba(63, 3, 22, 0.5);
+}
+
+.footer .social-icons a:hover img {
+  filter: brightness(0) invert(1);
+}
+
+/* GetInTouchSection icons */
+.get-in-touch .social-icons a {
+  background: #3F0316 !important;
+  border: 2px solid #3F0316 !important;
+}
+
+.get-in-touch .social-icons a img {
+  filter: brightness(0) invert(1) !important;
+}
+
+.get-in-touch .social-icons a:hover img {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* Property card share icons */
+.property-card-share .share-icon-btn {
+  background: #3F0316 !important;
+  border: 2px solid #3F0316 !important;
+}
+
+.property-card-share .share-icon-btn i {
+  color: #ffffff !important;
+  filter: none !important;
+}
+
+.property-share-menu .share-menu-option {
+  background: #3F0316 !important;
+  border: 2px solid #3F0316 !important;
+}
+
+.property-share-menu .share-menu-option i {
+  color: #ffffff !important;
+  filter: none !important;
+}
+
+/* WhatsApp Widget */
+.whatsapp-widget-btn {
+  background: #3F0316 !important;
+  border: 2px solid #3F0316 !important;
+}
+
+.whatsapp-widget-btn i {
+  color: #ffffff !important;
+  filter: none !important;
+}
+
+/* Service icons */
+.service-icon {
+  background: #3F0316 !important;
+}
+
+.service-icon i {
+  color: #ffffff !important;
+  filter: none !important;
+}
+
+/* Feature icons */
+.feature-icon-wrapper {
+  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.9)) !important;
+}
+
+.feature-icon-wrapper i {
+  color: #ffffff !important;
+  filter: none !important;
+}
+
+/* Stat icons */
+.stat-icon-luxury {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1)) !important;
+}
+
+.stat-icon-luxury i {
+  color: #ffffff !important;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3)) !important;
+}
+
+/* Card icons */
+.card-image {
+  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.9)) !important;
+}
+
+.card-image img {
+  filter: brightness(0) invert(1) !important;
+}
+

@@ -17,15 +17,14 @@ const MapSection = () => {
           <div className="detail-item">
             <img src={process.env.PUBLIC_URL + "/loca.png"} alt="location" />
             <div>
-              <p>Al Hisn, Baynunah Tower 2 , Office 402 , Abu dhabi</p>
-              
+              <p>Al Hisn, Baynunah Tower 2, Office 402, Abu Dhabi</p>
             </div>
           </div>
 
           <div className="detail-item">
             <img src={process.env.PUBLIC_URL + "/phone.png"} alt="phone" />
             <div>
-              <p>(+97) 586830401</p>
+              <p>+971 586830401</p>
             </div>
           </div>
 
@@ -33,6 +32,13 @@ const MapSection = () => {
             <img src={process.env.PUBLIC_URL + "/ime.png"} alt="email" />
             <div>
               <p>info@meridiangroup.ae</p>
+            </div>
+          </div>
+
+          <div className="detail-item">
+            <img src={process.env.PUBLIC_URL + "/time.png"} alt="working hours" />
+            <div>
+              <p>Open 09:00 AM to 6:00 PM</p>
             </div>
           </div>
         </div>

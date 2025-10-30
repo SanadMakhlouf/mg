@@ -20,7 +20,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(70, 0, 20, 0.75) 0%, rgba(128, 0, 32, 0.6) 50%, rgba(70, 0, 20, 0.75) 100%);
+  background: linear-gradient(135deg, rgba(70, 0, 20, 0.75) 0%, rgba(63, 3, 22, 0.6) 50%, rgba(70, 0, 20, 0.75) 100%);
   z-index: 1;
 }
 
@@ -31,7 +31,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 50% 50%, rgba(128, 0, 32, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(63, 3, 22, 0.3) 0%, transparent 70%);
   z-index: 1;
   pointer-events: none;
 }
@@ -52,7 +52,7 @@
 }
 
 .subtitle {
-  color: #800020;
+  color: #3F0316;
   font-weight: 700;
   font-size: 0.9rem;
   display: inline-flex;
@@ -69,7 +69,7 @@
   display: block;
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #800020, #a00030);
+  background: linear-gradient(90deg, #3F0316, rgba(63, 3, 22, 0.9));
   border-radius: 2px;
 }
 
@@ -106,14 +106,14 @@
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  border: 1px solid rgba(128, 0, 32, 0.1);
+  border: 1px solid rgba(63, 3, 22, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .detail-item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(128, 0, 32, 0.15);
-  border-color: rgba(128, 0, 32, 0.2);
+  box-shadow: 0 8px 24px rgba(63, 3, 22, 0.15);
+  border-color: rgba(63, 3, 22, 0.2);
 }
 
 .detail-item img {
@@ -122,7 +122,7 @@
   object-fit: contain;
   flex-shrink: 0;
   margin-top: 0.25rem;
-  filter: drop-shadow(0 2px 8px rgba(128, 0, 32, 0.2));
+  filter: drop-shadow(0 2px 8px rgba(63, 3, 22, 0.2));
 }
 
 .detail-item div {
@@ -146,7 +146,7 @@
 
 .search-maps-btn {
   width: 100%;
-  background: linear-gradient(135deg, #800020, #a00030);
+  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.9));
   color: white;
   border: none;
   padding: 1.25rem 2rem;
@@ -161,7 +161,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  box-shadow: 0 8px 24px rgba(128, 0, 32, 0.3);
+  box-shadow: 0 8px 24px rgba(63, 3, 22, 0.3);
 }
 
 .search-maps-btn::after {
@@ -171,9 +171,9 @@
 }
 
 .search-maps-btn:hover {
-  background: linear-gradient(135deg, #a00030, #c00040);
+  background: linear-gradient(135deg, rgba(63, 3, 22, 0.9), #c00040);
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(128, 0, 32, 0.4);
+  box-shadow: 0 12px 32px rgba(63, 3, 22, 0.4);
 }
 
 .search-maps-btn:hover::after {
