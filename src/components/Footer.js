@@ -22,6 +22,9 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-left">
           <img src={logo} alt="MG" className="footer-logo" />
+          <p>
+            Your trusted partner in Abu Dhabi real estate. We connect you with premium properties and exceptional service.
+          </p>
           <div className="social-icons">
             <a
               href="https://www.facebook.com/p/Meridian-Group-61555497801970/"

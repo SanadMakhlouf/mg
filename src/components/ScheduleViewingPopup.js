@@ -137,7 +137,6 @@ const ScheduleViewingPopup = ({ onClose, propertyId, propertyName }) => {
         });
       }
     } catch (error) {
-      console.error("Schedule viewing error:", error);
       setSubmitStatus({
         success: false,
         message: "Failed to submit request. Please try again later.",
@@ -156,32 +155,39 @@ const ScheduleViewingPopup = ({ onClose, propertyId, propertyName }) => {
   return (
     <div className="schedule-viewing-overlay" onClick={onClose}>
       <div className="schedule-viewing-popup" onClick={(e) => e.stopPropagation()}>
+        {/* Background Image */}
+        <div 
+          className="schedule-popup-bg-image"
+          style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/media/abu-dhabi.jpg)` }}
+        ></div>
+        <div className="schedule-popup-overlay"></div>
+
         <button className="schedule-close-btn" onClick={onClose}>
           <i className="fa-solid fa-times"></i>
         </button>
 
         <div className="schedule-content">
-          <div className="schedule-icon">
-            <i className="fa-solid fa-calendar-check"></i>
+          <div className="schedule-header-section">
+            <div className="schedule-icon">
+              <i className="fa-solid fa-calendar-check"></i>
+            </div>
+
+            <h2 className="schedule-title">Schedule a Viewing</h2>
+            <p className="schedule-subtitle">
+              Experience {propertyName} in person. Our luxury real estate specialists will provide you with an exclusive, personalized tour showcasing every detail of this premium property.
+            </p>
           </div>
 
-          <h2 className="schedule-title">Schedule a Viewing</h2>
-          <p className="schedule-subtitle">
-            Book a personalized tour of {propertyName}. Our expert agents will
-            guide you through every detail.
-          </p>
-
-          {submitStatus && (
-            <div
-              className={`schedule-status ${
-                submitStatus.success ? "success" : "error"
-              }`}
-            >
-              {submitStatus.message}
-            </div>
-          )}
-
           <form onSubmit={handleSubmit} className="schedule-form">
+            {submitStatus && (
+              <div
+                className={`schedule-status ${
+                  submitStatus.success ? "success" : "error"
+                }`}
+              >
+                {submitStatus.message}
+              </div>
+            )}
             <div className="schedule-form-group">
               <label>Full Name *</label>
               <input

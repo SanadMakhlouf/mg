@@ -58,7 +58,6 @@ const OffPlanDetails = () => {
 
           // If an agent is associated, fetch their details
           if (data.data.agent?.id) {
-            console.log("Fetching agent details for ID:", data.data.agent.id);
             try {
               const agentResponse = await fetch(
                 `${config.API_URL}/agents/${data.data.agent.id}`,
@@ -73,32 +72,20 @@ const OffPlanDetails = () => {
 
               if (!agentResponse.ok) {
                 const errorText = await agentResponse.text();
-                console.error("Agent response not OK:", {
-                  status: agentResponse.status,
-                  statusText: agentResponse.statusText,
-                  errorText,
-                });
                 throw new Error(`HTTP error! status: ${agentResponse.status}`);
               }
 
               const agentData = await agentResponse.json();
-              console.log("Agent API response:", agentData);
 
               if (agentData.status === "success" && agentData.data) {
-                console.log("Setting agent details:", agentData.data);
                 const socialMedia = agentData.data.social_media || {};
                 setAgentDetails({
                   ...agentData.data,
                   social_media: socialMedia,
                 });
-              } else {
-                console.error(
-                  "Agent API returned unexpected format:",
-                  agentData
-                );
               }
             } catch (err) {
-              console.error("Error fetching agent details:", err);
+              // Error fetching agent details
             }
           }
         } else {
@@ -106,7 +93,7 @@ const OffPlanDetails = () => {
           setTimeout(() => navigate("/off-plan-properties"), 2000);
         }
       } catch (err) {
-        console.error("Error fetching property details:", err);
+        // Error fetching property details
         setError(`Error fetching property details: ${err.message}`);
       } finally {
         setLoading(false);
@@ -176,20 +163,6 @@ const OffPlanDetails = () => {
         has_contact_info: !!(property.agent.phone || property.agent.email),
       }
     : defaultAgent;
-
-  // Debug logs for social media data
-  console.log("Social media from agentDetails:", agentDetails?.social_media);
-
-  // Debug logs for agent data
-  console.log("Property agent data:", property.agent);
-  console.log("Agent details data:", agentDetails);
-  console.log("Final agent object:", agent);
-
-  // Display agent details in console
-  console.log("Agent details from API:", agentDetails);
-
-  // Display social media links in console
-  console.log("Agent social media links:", property.agent?.social_media);
 
   // Prepare images for carousel
   const propertyImages =

@@ -32,8 +32,8 @@ const BlogCarousel = () => {
           }));
           setBlogs(formattedBlogs);
         }
-      } catch (err) {
-        console.error("Error fetching blogs:", err);
+        } catch (err) {
+        // Error fetching blogs
       } finally {
         setLoading(false);
       }

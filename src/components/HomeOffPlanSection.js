@@ -29,8 +29,8 @@ const HomeOffPlanSection = () => {
         if (result.success && result.data) {
           setProjects(result.data.slice(0, 4)); // Ensure only 4
         }
-      } catch (err) {
-        console.error("Error fetching projects:", err);
+        } catch (err) {
+        // Error fetching projects
       } finally {
         setLoading(false);
       }

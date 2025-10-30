@@ -134,14 +134,36 @@
 
 /* Force single card on mobile */
 @media (max-width: 768px) {
+  .carousel-container {
+    padding: 0 1rem;
+    overflow: visible;
+  }
+  
   .carousel-container .slick-slide {
-    display: block !important;
     width: 100% !important;
+    padding: 0 10px;
   }
   
   .carousel-container .slick-slide > div {
-    width: calc(100% - 2rem) !important;
-    margin: 0 auto !important;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .carousel-container .property-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .carousel-container .slick-list {
+    margin: 0;
+    overflow: visible;
+  }
+  
+  .carousel-container .slick-track {
+    display: flex;
+    align-items: stretch;
   }
 }
 

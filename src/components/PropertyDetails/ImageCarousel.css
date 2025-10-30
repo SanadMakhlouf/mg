@@ -82,18 +82,41 @@
 .carousel-thumbnails-vertical {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 2px;
   flex: 1;
   width: 50%;
   min-width: 0;
   height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(63, 3, 22, 0.5) transparent;
+}
+
+.carousel-thumbnails-vertical::-webkit-scrollbar {
+  width: 6px;
+}
+
+.carousel-thumbnails-vertical::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.carousel-thumbnails-vertical::-webkit-scrollbar-thumb {
+  background: rgba(63, 3, 22, 0.5);
+  border-radius: 3px;
+}
+
+.carousel-thumbnails-vertical::-webkit-scrollbar-thumb:hover {
+  background: rgba(63, 3, 22, 0.8);
 }
 
 .thumbnail-vertical {
   position: relative;
   width: 100%;
-  flex: 1;
-  height: 0;
+  flex: 0 0 auto;
+  height: auto;
+  min-height: 120px;
+  max-height: 150px;
   border-radius: 0;
   overflow: hidden;
   cursor: pointer;
@@ -101,6 +124,7 @@
   border: none;
   box-shadow: none;
   background: #000;
+  margin-bottom: 2px;
 }
 
 .thumbnail-vertical img {
@@ -119,7 +143,9 @@
 }
 
 .thumbnail-vertical.active {
-  opacity: 0.9;
+  opacity: 1;
+  border: 2px solid #3F0316;
+  box-shadow: 0 0 0 2px rgba(63, 3, 22, 0.3);
 }
 
 .thumbnail-counter-overlay {

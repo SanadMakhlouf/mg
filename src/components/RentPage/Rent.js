@@ -49,7 +49,6 @@ const Rent = () => {
   const handleSearch = () => {
     // Here you would implement the actual filtering logic
     // For now, we'll just log the filter parameters
-    console.log("Filtering properties with:", filterParams);
 
     // You could call an API or filter local data here
   };

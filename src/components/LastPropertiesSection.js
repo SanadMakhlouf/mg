@@ -40,7 +40,6 @@ const LastPropertiesSection = () => {
           setError("Failed to fetch properties data");
         }
       } catch (err) {
-        console.error("Error fetching properties:", err);
         setError(`Error fetching properties: ${err.message}`);
       } finally {
         setLoading(false);
@@ -63,28 +62,18 @@ const LastPropertiesSection = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 300, // Faster animation (reduced from 500)
+    speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    centerMode: false,
-    centerPadding: "0px",
-    swipe: true, // Enable swipe
-    touchMove: true, // Enable touch move
-    draggable: true, // Enable dragging with mouse
-    accessibility: true, // Enable keyboard navigation
-    swipeToSlide: true, // Allow swiping to multiple slides
+    swipe: true,
+    touchMove: true,
+    draggable: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          centerMode: false,
-          centerPadding: "0px",
-          swipe: true,
-          touchMove: true,
-          draggable: true,
-          speed: 300,
         },
       },
       {
@@ -92,14 +81,6 @@ const LastPropertiesSection = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: false,
-          centerPadding: "0px",
-          swipe: true,
-          touchMove: true,
-          draggable: true,
-          swipeToSlide: true,
-          speed: 200, // Even faster on mobile
-          easing: 'ease', // Smoother easing
         },
       },
     ],

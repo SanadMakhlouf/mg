@@ -46,7 +46,6 @@ const Buy = () => {
   // Handle search button click
   const handleSearch = () => {
     // Here you would implement the actual filtering logic
-    console.log("Filtering properties with:", filterParams);
   };
 
   return (

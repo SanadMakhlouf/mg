@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./ImageCarousel.css";
 
 const ImageCarousel = ({ images, alt }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
+  const thumbnailRefs = useRef([]);
+  const thumbnailsContainerRef = useRef(null);
 
   const nextImage = () => {
     setCurrentIndex((prevIndex) =>
@@ -20,6 +22,27 @@ const ImageCarousel = ({ images, alt }) => {
   const goToImage = (index) => {
     setCurrentIndex(index);
   };
+
+  // Auto-scroll active thumbnail into view
+  useEffect(() => {
+    if (thumbnailRefs.current[currentIndex] && thumbnailsContainerRef.current) {
+      const thumbnailElement = thumbnailRefs.current[currentIndex];
+      const container = thumbnailsContainerRef.current;
+      
+      const thumbnailTop = thumbnailElement.offsetTop;
+      const thumbnailHeight = thumbnailElement.offsetHeight;
+      const containerTop = container.scrollTop;
+      const containerHeight = container.clientHeight;
+      
+      // Check if thumbnail is out of view
+      if (thumbnailTop < containerTop || thumbnailTop + thumbnailHeight > containerTop + containerHeight) {
+        container.scrollTo({
+          top: thumbnailTop - containerHeight / 2 + thumbnailHeight / 2,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [currentIndex]);
 
   const toggleZoom = () => {
     setIsZoomed(!isZoomed);
@@ -40,10 +63,6 @@ const ImageCarousel = ({ images, alt }) => {
       </div>
     );
   }
-
-  // Show first 3 thumbnails vertically
-  const displayThumbnails = images.slice(0, Math.min(images.length, 3));
-  const remainingCount = images.length > 3 ? images.length - 3 : 0;
 
   return (
     <div className="image-carousel-bayut">
@@ -69,12 +88,13 @@ const ImageCarousel = ({ images, alt }) => {
           )}
         </div>
 
-        {/* Vertical Thumbnails on Right */}
+        {/* Vertical Thumbnails on Right - Show All */}
         {images.length > 1 && (
-          <div className="carousel-thumbnails-vertical">
-            {displayThumbnails.map((image, index) => (
+          <div className="carousel-thumbnails-vertical" ref={thumbnailsContainerRef}>
+            {images.map((image, index) => (
               <div
                 key={index}
+                ref={(el) => (thumbnailRefs.current[index] = el)}
                 className={`thumbnail-vertical ${index === currentIndex ? "active" : ""}`}
                 onClick={() => goToImage(index)}
               >
@@ -82,12 +102,6 @@ const ImageCarousel = ({ images, alt }) => {
                   src={image}
                   alt={`${alt} thumbnail ${index + 1}`}
                 />
-                {index === 2 && remainingCount > 0 && (
-                  <div className="thumbnail-counter-overlay">
-                    <i className="fa-solid fa-camera"></i>
-                    <span>{remainingCount}</span>
-                  </div>
-                )}
               </div>
             ))}
           </div>

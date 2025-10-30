@@ -70,7 +70,7 @@ const GetInTouchSection = () => {
         });
       }
     } catch (error) {
-      console.error('Contact form error:', error);
+      // Contact form error
       setSubmitStatus({
         success: false,
         message: "Failed to submit your message. Please try again later.",

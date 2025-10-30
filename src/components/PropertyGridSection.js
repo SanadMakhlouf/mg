@@ -54,8 +54,8 @@ const PropertyGridSection = () => {
           // Take up to 9 types
           setPropertyTypes(typesArray.slice(0, 9));
         }
-      } catch (err) {
-        console.error("Error fetching properties:", err);
+        } catch (err) {
+        // Error fetching properties
       } finally {
         setLoading(false);
       }

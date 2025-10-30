@@ -63,7 +63,6 @@ const NewsletterPopup = ({ onClose }) => {
         });
       }
     } catch (error) {
-      console.error("Newsletter subscription error:", error);
       setSubmitStatus({
         success: false,
         message: "Failed to subscribe. Please try again later.",
@@ -80,20 +79,28 @@ const NewsletterPopup = ({ onClose }) => {
   return (
     <div className="newsletter-popup-overlay" onClick={onClose}>
       <div className="newsletter-popup" onClick={(e) => e.stopPropagation()}>
+        {/* Background Image */}
+        <div 
+          className="newsletter-popup-bg-image"
+          style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/media/Al reem Island.jpg)` }}
+        ></div>
+        <div className="newsletter-popup-overlay"></div>
+
         <button className="newsletter-close-btn" onClick={onClose}>
           <i className="fa-solid fa-times"></i>
         </button>
 
         <div className="newsletter-content">
-          <div className="newsletter-icon">
-            <i className="fa-solid fa-envelope-circle-check"></i>
-          </div>
+          <div className="newsletter-header-section">
+            <div className="newsletter-icon">
+              <i className="fa-solid fa-envelope-circle-check"></i>
+            </div>
 
-          <h2 className="newsletter-title">Stay Connected</h2>
-          <p className="newsletter-subtitle">
-            Get exclusive access to the latest properties, market insights, and
-            special offers delivered straight to your inbox.
-          </p>
+            <h2 className="newsletter-title">Stay Connected</h2>
+            <p className="newsletter-subtitle">
+              Join our exclusive community and receive first access to premium properties, insider market insights, and exclusive offers before they're available to the public.
+            </p>
+          </div>
 
           {submitStatus && (
             <div

@@ -48,7 +48,6 @@ const OffPlan = () => {
 
   // Handle search button click
   const handleSearch = () => {
-    console.log("Filtering properties with:", filterParams);
   };
 
   return (

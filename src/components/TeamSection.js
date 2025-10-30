@@ -43,8 +43,8 @@ const TeamSection = () => {
 
           setAgents(formattedAgents);
         }
-      } catch (err) {
-        console.error("Error fetching agents:", err);
+        } catch (err) {
+        // Error fetching agents
       } finally {
         setLoading(false);
       }

@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { useState, useEffect } from "react";
 import LoadingScreen from "./components/LoadingScreen";
-import NewsletterPopup from "./components/NewsletterPopup";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Buy from "./components/BuyPage/Buy";
@@ -28,16 +27,11 @@ import WhatsAppWidget from "./components/WhatsAppWidget";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [showNewsletter, setShowNewsletter] = useState(false);
 
   useEffect(() => {
     // Simulate loading time
     const timer = setTimeout(() => {
       setLoading(false);
-      // Show newsletter popup after loading completes
-      setTimeout(() => {
-        setShowNewsletter(true);
-      }, 1000);
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -47,7 +41,6 @@ function App() {
     <HelmetProvider>
       <Router>
         {loading && <LoadingScreen />}
-        {showNewsletter && <NewsletterPopup onClose={() => setShowNewsletter(false)} />}
         <ScrollToTop />
         <div className="App">
           <Navbar />
