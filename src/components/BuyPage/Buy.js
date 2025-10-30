@@ -5,6 +5,7 @@ import BuyHero from "./BuyHero";
 import BuyBanner from "./BuyBanner";
 import PropertiesSection from "./PropertiesSection";
 import SearchSection from "../SearchSection";
+import SEO from "../SEO";
 import "./Buy.css";
 
 const Buy = () => {
@@ -50,6 +51,13 @@ const Buy = () => {
 
   return (
     <div className="buy-page">
+      <SEO
+        title="Buy Properties in Abu Dhabi | Meridian Group Real Estate"
+        description="Browse premium properties for sale in Abu Dhabi. Find luxury apartments, villas, and commercial properties with Meridian Group's expert real estate services."
+        keywords="properties for sale Abu Dhabi, buy apartments Abu Dhabi, villas for sale, real estate Abu Dhabi, property investment UAE"
+        url="https://meridiangroup.ae/buy"
+        image="https://meridiangroup.ae/logo.png"
+      />
       <Navbar />
       <BuyHero />
       <SearchSection defaultTab="sales" hideTabs={false} />

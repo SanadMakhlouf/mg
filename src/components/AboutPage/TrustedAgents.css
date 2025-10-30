@@ -224,35 +224,19 @@
 /* Trusted Agents Section */
 .trusted-agents-section {
   padding: 8rem 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(128, 0, 32, 0.7) 100%);
-  background-image: url("../../assets/about-us/trusted-bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
   position: relative;
   overflow: hidden;
 }
 
 .trusted-agents-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(128, 0, 32, 0.5) 50%, rgba(0, 0, 0, 0.7) 100%);
-  z-index: 1;
-}
-
-.trusted-agents-section::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 50% 50%, rgba(128, 0, 32, 0.3) 0%, transparent 70%);
-  z-index: 1;
+  background: radial-gradient(circle at 50% 50%, rgba(128, 0, 32, 0.03) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -273,7 +257,7 @@
 .trusted-agents-section .section-title .subtitle {
   display: block;
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: #800020;
   margin-bottom: 1rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -285,11 +269,10 @@
   font-family: "Times New Roman", serif;
   font-size: 3.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #1a1a1a;
   margin: 0;
   letter-spacing: -0.02em;
   line-height: 1.1;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .trusted-agents-section .section-title h2::after {
@@ -300,7 +283,7 @@
   bottom: 0;
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.7));
+  background: linear-gradient(90deg, #800020, #a00030);
   border-radius: 2px;
 }
 
@@ -311,15 +294,14 @@
 }
 
 .agent-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(250, 250, 250, 0.95));
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border-radius: 24px;
   overflow: hidden;
   text-align: center;
   padding: 2.5rem 2rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(128, 0, 32, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -327,6 +309,7 @@
   height: 100%;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
 }
 
 .agent-card::before {
@@ -334,22 +317,22 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 4px;
   height: 100%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  background: linear-gradient(180deg, #800020, #a00030);
+  transform: scaleY(0);
+  transition: transform 0.5s ease;
 }
 
 .agent-card:hover {
   transform: translateY(-16px) scale(1.02);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(250, 250, 250, 0.98));
+  border-color: rgba(128, 0, 32, 0.3);
+  box-shadow: 0 24px 64px rgba(128, 0, 32, 0.2);
 }
 
 .agent-card:hover::before {
-  opacity: 1;
+  transform: scaleY(1);
 }
 
 .agent-image {
@@ -358,8 +341,8 @@
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 2rem;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 12px 32px rgba(128, 0, 32, 0.4);
+  border: 4px solid rgba(128, 0, 32, 0.1);
+  box-shadow: 0 12px 32px rgba(128, 0, 32, 0.15);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 1;
@@ -367,8 +350,8 @@
 
 .agent-card:hover .agent-image {
   transform: scale(1.1);
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 16px 48px rgba(128, 0, 32, 0.5);
+  border-color: rgba(128, 0, 32, 0.3);
+  box-shadow: 0 16px 48px rgba(128, 0, 32, 0.25);
 }
 
 .agent-image img {
@@ -383,23 +366,24 @@
 }
 
 .agent-card h3 {
-  color: #fff;
+  color: #1a1a1a;
   font-family: "Poppins", sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   width: 100%;
   position: relative;
   z-index: 1;
 }
 
 .agent-card p {
-  color: rgba(255, 255, 255, 0.9);
+  color: #800020;
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
   margin-bottom: 2rem;
-  font-weight: 400;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   width: 100%;
   position: relative;
   z-index: 1;
@@ -412,7 +396,7 @@
   margin-top: auto;
   padding-top: 1.5rem;
   width: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(128, 0, 32, 0.1);
   position: relative;
   z-index: 1;
 }
@@ -468,14 +452,14 @@
 .no-agents-message {
   text-align: center;
   padding: 4rem 2rem;
-  color: #fff;
+  color: #1a1a1a;
 }
 
 .loading-container p,
 .error-container p,
 .no-agents-message p {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: #666;
 }
 
 @media (max-width: 1200px) {

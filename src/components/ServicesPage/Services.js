@@ -1,4 +1,5 @@
 import React from "react";
+import SEO from "../SEO";
 import "./Services.css";
 
 const Services = () => {
@@ -26,7 +27,15 @@ const Services = () => {
   ];
 
   return (
-    <div className="services-page">
+    <>
+      <SEO
+        title="Our Services | Meridian Group Real Estate Abu Dhabi"
+        description="Comprehensive real estate services in Abu Dhabi including property management, valuation, listing, and investment consultation."
+        keywords="property management Abu Dhabi, real estate services UAE, property valuation, investment consultation Abu Dhabi"
+        url="https://meridiangroup.ae/services"
+        image="https://meridiangroup.ae/logo.png"
+      />
+      <div className="services-page">
       <div className="services-hero">
         <div className="services-hero-content">
           <h1>Our Services</h1>
@@ -55,6 +64,7 @@ const Services = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

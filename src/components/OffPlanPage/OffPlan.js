@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import SEO from "../SEO";
 import "./OffPlan.css";
 import OffPlanHero from "./OffPlanHero";
 import OffPlanBanner from "./OffPlanBanner";
@@ -51,7 +52,15 @@ const OffPlan = () => {
   };
 
   return (
-    <div className="off-plan-page">
+    <>
+      <SEO
+        title="Off-Plan Properties in Abu Dhabi | Meridian Group"
+        description="Discover premium off-plan properties in Abu Dhabi. Invest in upcoming developments and secure your future with Meridian Group's expert guidance."
+        keywords="off-plan properties Abu Dhabi, off-plan investment UAE, new developments Abu Dhabi, pre-construction properties"
+        url="https://meridiangroup.ae/off-plan-properties"
+        image="https://meridiangroup.ae/logo.png"
+      />
+      <div className="off-plan-page">
       <OffPlanHero />
       <SearchSection defaultTab="sales" hideTabs={true} title="Find Your Perfect Off-Plan Property" />
       <div className="off-plan-container">
@@ -211,6 +220,7 @@ const OffPlan = () => {
         <OffPlanContact />
       </div>
     </div>
+    </>
   );
 };
 

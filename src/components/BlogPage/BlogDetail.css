@@ -320,18 +320,23 @@
 }
 
 .popular-tag {
-  background-color: #eee;
-  color: #555;
-  padding: 0.4rem 0.8rem;
+  background-color: #f5f5f5;
+  color: #3F0316;
+  padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.85rem;
+  font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
+  border: 1px solid rgba(63, 3, 22, 0.1);
 }
 
 .popular-tag:hover {
-  background-color: #800020;
-  color: white;
+  background-color: #3F0316;
+  color: #ffffff;
+  border-color: #3F0316;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(63, 3, 22, 0.2);
 }
 
 .contact-section {

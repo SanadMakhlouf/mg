@@ -1,9 +1,18 @@
 import React from "react";
+import SEO from "./SEO";
 import "./PrivacyPolicy.css";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="privacy-policy-page">
+    <>
+      <SEO
+        title="Privacy Policy | Meridian Group Real Estate"
+        description="Read Meridian Group's privacy policy. Learn how we protect and handle your personal information when you use our real estate services in Abu Dhabi."
+        keywords="privacy policy Meridian Group, data protection UAE, privacy policy Abu Dhabi real estate"
+        url="https://meridiangroup.ae/privacy"
+        image="https://meridiangroup.ae/logo.png"
+      />
+      <div className="privacy-policy-page">
       <div className="privacy-policy-container">
         <div className="privacy-policy-header">
           <h1>Privacy Policy</h1>
@@ -130,6 +139,7 @@ const PrivacyPolicy = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

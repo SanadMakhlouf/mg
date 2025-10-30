@@ -1,9 +1,18 @@
 import React from "react";
+import SEO from "./SEO";
 import "./TermsConditions.css";
 
 const TermsConditions = () => {
   return (
-    <div className="terms-conditions-page">
+    <>
+      <SEO
+        title="Terms and Conditions | Meridian Group Real Estate"
+        description="Read Meridian Group's terms and conditions for using our real estate services in Abu Dhabi. Understand our policies and service agreements."
+        keywords="terms and conditions Meridian Group, real estate terms UAE, service agreement Abu Dhabi"
+        url="https://meridiangroup.ae/terms"
+        image="https://meridiangroup.ae/logo.png"
+      />
+      <div className="terms-conditions-page">
       <div className="terms-conditions-container">
         <div className="terms-conditions-header">
           <h1>Terms and Conditions</h1>
@@ -130,6 +139,7 @@ const TermsConditions = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

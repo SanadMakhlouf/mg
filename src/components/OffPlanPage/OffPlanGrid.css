@@ -115,21 +115,6 @@ body.page-offplan-details .navbar {
   object-position: center 20%; /* Ajustement pour mieux cadrer l'image principale */
 }
 
-/* Icône de signet */
-.bookmark-icon {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 2;
-}
 
 /* Contenu sur l'image */
 .off-plan-content {
@@ -177,7 +162,7 @@ body.page-offplan-details .navbar {
   font-size: 1.1rem;
   font-weight: 700;
   margin: 10px 0;
-  color: #ffd700;
+  color: #3F0316;
 }
 
 .project-details {
@@ -222,7 +207,7 @@ body.page-offplan-details .navbar {
   font-size: 1rem;
   font-weight: 700;
   margin: 0;
-  color: #ffd700;
+  color: #3F0316;
 }
 
 .enquire-btn {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import SEO from "../SEO";
 import "./BlogDetail.css";
 import config from "../../config";
 
@@ -131,7 +132,16 @@ const BlogDetail = () => {
   }
 
   return (
-    <div className="blog-detail-container">
+    <>
+      <SEO
+        title={blog ? `${blog.title} | Meridian Group Blog` : "Blog Article | Meridian Group"}
+        description={blog ? (blog.excerpt || blog.content?.substring(0, 160) + "...") : "Read real estate insights and articles from Meridian Group."}
+        keywords={blog && blog.tags ? blog.tags.join(", ") : "real estate blog, Abu Dhabi property, real estate news"}
+        url={`https://meridiangroup.ae/blog/${id}`}
+        image={blog?.image || "https://meridiangroup.ae/logo.png"}
+        type="article"
+      />
+      <div className="blog-detail-container">
       <div className="blog-detail-header">
         <div className="blog-detail-image">
           <img src={blog.image} alt={blog.title} />
@@ -254,21 +264,34 @@ const BlogDetail = () => {
           <div className="sidebar-section">
             <h3>Popular Tags</h3>
             <div className="popular-tags">
-              <Link to="/blog?tag=luxury" className="popular-tag">
-                Luxury
-              </Link>
-              <Link to="/blog?tag=investment" className="popular-tag">
-                Investment
-              </Link>
-              <Link to="/blog?tag=abu-dhabi" className="popular-tag">
-                Abu Dhabi
-              </Link>
-              <Link to="/blog?tag=off-plan" className="popular-tag">
-                Off-Plan
-              </Link>
-              <Link to="/blog?tag=real-estate" className="popular-tag">
-                Real Estate
-              </Link>
+              {blog.tags && blog.tags.length > 0 ? (
+                blog.tags.slice(0, 8).map((tag, index) => (
+                  <Link key={index} to={`/blog?tag=${encodeURIComponent(tag)}`} className="popular-tag">
+                    {tag}
+                  </Link>
+                ))
+              ) : (
+                <>
+                  <Link to="/blog?tag=investment" className="popular-tag">
+                    Investment
+                  </Link>
+                  <Link to="/blog?tag=luxury real estate" className="popular-tag">
+                    Luxury Real Estate
+                  </Link>
+                  <Link to="/blog?tag=market trends" className="popular-tag">
+                    Market Trends
+                  </Link>
+                  <Link to="/blog?tag=home pricing" className="popular-tag">
+                    Home Pricing
+                  </Link>
+                  <Link to="/blog?tag=real estate agent" className="popular-tag">
+                    Real Estate Agent
+                  </Link>
+                  <Link to="/blog?tag=mortgage" className="popular-tag">
+                    Mortgage
+                  </Link>
+                </>
+              )}
             </div>
           </div>
 
@@ -288,6 +311,7 @@ const BlogDetail = () => {
         </Link>
       </div>
     </div>
+    </>
   );
 };
 

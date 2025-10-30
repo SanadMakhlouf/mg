@@ -1,1 +1,7 @@
 @import url("../OffPlanPage/OffPlanGrid.css");
+
+/* Override price colors for Off-Plan Resale to white */
+.off-plan-projects-section .project-price,
+.off-plan-projects-section .project-price-small {
+  color: #ffffff !important;
+}

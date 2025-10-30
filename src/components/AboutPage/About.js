@@ -1,4 +1,5 @@
 import React from "react";
+import SEO from "../SEO";
 import AboutHero from "./AboutHero";
 import TrustedAgents from "./TrustedAgents";
 import "./About.css";
@@ -7,8 +8,16 @@ import aboutUsImage from "../../assets/about-us/about-us.jpg";
 import aboutUsImage2 from "../../assets/about-us/hero-bgg.jpg";
 const About = () => {
   return (
-    <div className="about-page">
-      <AboutHero />
+    <>
+      <SEO
+        title="About Meridian Group | Premier Real Estate Agency in Abu Dhabi"
+        description="Learn about Meridian Group, Abu Dhabi's trusted real estate partner. Discover our mission, values, and expert team dedicated to exceptional property services."
+        keywords="Meridian Group about, real estate company Abu Dhabi, property management Abu Dhabi, real estate agents UAE"
+        url="https://meridiangroup.ae/about"
+        image="https://meridiangroup.ae/logo.png"
+      />
+      <div className="about-page">
+        <AboutHero />
 
       <section className="meridian-group">
         <div className="container">
@@ -80,6 +89,7 @@ const About = () => {
 
       <TrustedAgents />
     </div>
+    </>
   );
 };
 

@@ -151,12 +151,6 @@ const OffPlanResaleGrid = ({ filterParams = {} }) => {
                 alt={projects[0].name}
                 className="off-plan-image"
               />
-              <div
-                className="bookmark-icon"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <i className="far fa-bookmark"></i>
-              </div>
               <div className="off-plan-content">
                 <h3 className="project-title">{projects[0].name}</h3>
                 <h4 className="project-subtitle">{projects[0].name}</h4>
@@ -194,12 +188,6 @@ const OffPlanResaleGrid = ({ filterParams = {} }) => {
                   alt={projects[1].name}
                   className="off-plan-image"
                 />
-                <div
-                  className="bookmark-icon"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <i className="far fa-bookmark"></i>
-                </div>
                 <div className="off-plan-content">
                   <h3 className="project-title">{projects[1].name}</h3>
                  
@@ -295,12 +283,6 @@ const OffPlanResaleGrid = ({ filterParams = {} }) => {
                   alt={projects[4].name}
                   className="off-plan-image"
                 />
-                <div
-                  className="bookmark-icon"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <i className="far fa-bookmark"></i>
-                </div>
                 <div className="off-plan-content">
                   <h3 className="project-title">{projects[4].name}</h3>
                   <h4 className="project-subtitle">{projects[4].name}</h4>

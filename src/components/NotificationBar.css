@@ -6,7 +6,7 @@
 }
 
 .notification-bar {
-  background: #1a3a5f;
+  background: #3F0316;
   width: 100%;
   padding: 0;
   position: relative;
@@ -19,7 +19,7 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: #4a9fb8;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .notification-content {
@@ -36,7 +36,7 @@
 }
 
 .notification-pill {
-  background: #4a9fb8;
+  background: rgba(255, 255, 255, 0.2);
   color: #ffffff;
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -51,7 +51,7 @@
 }
 
 .notification-link {
-  color: #7ab8d0;
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: color 0.3s ease;

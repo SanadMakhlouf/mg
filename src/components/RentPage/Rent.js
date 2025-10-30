@@ -6,6 +6,7 @@ import RentBanner from "./RentBanner";
 import WelcomeSection from "./WelcomeSection";
 import PropertiesSection from "./PropertiesSection";
 import SearchSection from "../SearchSection";
+import SEO from "../SEO";
 import "./Rent.css";
 
 const Rent = () => {
@@ -55,6 +56,13 @@ const Rent = () => {
 
   return (
     <div className="rent-page">
+      <SEO
+        title="Rent Properties in Abu Dhabi | Meridian Group Real Estate"
+        description="Find premium rental properties in Abu Dhabi. Browse apartments, villas, and commercial spaces available for rent with Meridian Group."
+        keywords="rent properties Abu Dhabi, apartments for rent, villas for rent Abu Dhabi, rental properties UAE"
+        url="https://meridiangroup.ae/rent"
+        image="https://meridiangroup.ae/logo.png"
+      />
       <Navbar />
       <RentHero />
       <SearchSection defaultTab="rental" hideTabs={false} />

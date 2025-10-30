@@ -152,7 +152,7 @@
 
 .search-input::placeholder,
 .search-select option:first-child {
-  color: #999 !important;
+  color: #666 !important;
 }
 
 .search-input,
@@ -305,7 +305,7 @@
 }
 
 .filter-separator {
-  color: #999;
+  color: #666;
   font-size: 0.85rem;
   font-weight: 500;
   white-space: nowrap;

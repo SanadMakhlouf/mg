@@ -65,13 +65,13 @@ const OffPlanDetails = () => {
               );
 
               if (agentResponse.ok) {
-                const agentData = await agentResponse.json();
-                if (agentData.status === "success" && agentData.data) {
-                  const socialMedia = agentData.data.social_media || {};
-                  setAgentDetails({
-                    ...agentData.data,
-                    social_media: socialMedia,
-                  });
+              const agentData = await agentResponse.json();
+              if (agentData.status === "success" && agentData.data) {
+                const socialMedia = agentData.data.social_media || {};
+                setAgentDetails({
+                  ...agentData.data,
+                  social_media: socialMedia,
+                });
                 }
               }
             } catch (err) {
@@ -142,7 +142,7 @@ const OffPlanDetails = () => {
 
   // Get default amenities based on property type
   const amenities = defaultAmenities[property.type] || defaultAmenities.default;
-  
+
   // Mock off-plan data (can be replaced with API data later)
   const offPlanData = {
     developer: property.developer || "Emaar Properties",
@@ -252,7 +252,7 @@ const OffPlanDetails = () => {
         }}
       />
       <div className="property-details-page">
-        <div className="property-details-container">
+      <div className="property-details-container">
           {/* Breadcrumb */}
           <button className="back-to-search" onClick={() => navigate(-1)}>
             <i className="fa-solid fa-arrow-left"></i>
@@ -279,16 +279,16 @@ const OffPlanDetails = () => {
                 <span>Request video</span>
               </button>
             </div>
-          </div>
+            </div>
 
           {/* Price and Key Info Section */}
           <div className="property-price-header">
             <div className="price-header-left">
               <h1 className="property-price-large">
-                {parseFloat(property.price) > 0 
-                  ? `${parseFloat(property.price).toLocaleString()} AED`
-                  : 'Price on Request'
-                }
+                  {parseFloat(property.price) > 0 
+                    ? `${parseFloat(property.price).toLocaleString()} AED`
+                    : 'Price on Request'
+                  }
               </h1>
               <p className="property-full-address">
                 {property.name}, {property.location}
@@ -323,7 +323,7 @@ const OffPlanDetails = () => {
               <div className="off-plan-header">
                 <div className="off-plan-badges">
                   <span className={`off-plan-status-badge ${offPlanData.status.toLowerCase().replace(/\s+/g, '-')}`}>
-                    <i className="fa-solid fa-building"></i>
+                  <i className="fa-solid fa-building"></i>
                     {offPlanData.status}
                   </span>
                   <span className="off-plan-installment-badge">
@@ -438,35 +438,35 @@ const OffPlanDetails = () => {
                 )}
                 {property.type && <span>{property.type}</span>}
                 {property.category && <span>{property.category}</span>}
-              </div>
+            </div>
 
               {/* Description */}
               <div className="property-description-section description-desktop">
                 <h3>About This Property</h3>
-                <div 
+              <div 
                   className="description-text"
-                  dangerouslySetInnerHTML={{
-                    __html: property.description 
-                      ? property.description
-                          .replace(/&amp;lt;/g, '<')
-                          .replace(/&amp;gt;/g, '>')
-                          .replace(/&amp;amp;/g, '&')
-                          .replace(/&amp;quot;/g, '"')
-                          .replace(/&amp;#039;/g, "'")
-                          .replace(/&amp;nbsp;/g, ' ')
-                          .replace(/&lt;br\s*\/?&gt;/gi, '<br>')
-                          .replace(/<br\s*\/?>/gi, '<br>')
-                          .replace(/&amp;lt;br\s*\/?&amp;gt;/gi, '<br>')
-                          .replace(/&amp;/g, '&')
-                          .replace(/&quot;/g, '"')
-                          .replace(/&#39;/g, "'")
-                          .replace(/&nbsp;/g, ' ')
-                          .replace(/&lt;/g, '<')
-                          .replace(/&gt;/g, '>')
-                      : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`
-                  }}
-                />
-              </div>
+                dangerouslySetInnerHTML={{
+                  __html: property.description 
+                    ? property.description
+                        .replace(/&amp;lt;/g, '<')
+                        .replace(/&amp;gt;/g, '>')
+                        .replace(/&amp;amp;/g, '&')
+                        .replace(/&amp;quot;/g, '"')
+                        .replace(/&amp;#039;/g, "'")
+                        .replace(/&amp;nbsp;/g, ' ')
+                        .replace(/&lt;br\s*\/?&gt;/gi, '<br>')
+                        .replace(/<br\s*\/?>/gi, '<br>')
+                        .replace(/&amp;lt;br\s*\/?&amp;gt;/gi, '<br>')
+                        .replace(/&amp;/g, '&')
+                        .replace(/&quot;/g, '"')
+                        .replace(/&#39;/g, "'")
+                        .replace(/&nbsp;/g, ' ')
+                        .replace(/&lt;/g, '<')
+                        .replace(/&gt;/g, '>')
+                    : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`
+                }}
+              />
+            </div>
 
               {/* Amenities Section */}
               {amenities && amenities.length > 0 && (
@@ -531,21 +531,21 @@ const OffPlanDetails = () => {
               </div>
 
               {/* Brochure Download */}
-              {brochureUrl && (
-                <div className="property-brochure-section">
-                  <a
-                    href={brochureUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="brochure-download-btn"
-                    download
-                  >
-                    <i className="fa-solid fa-download"></i>
-                    Download Brochure (PDF)
-                  </a>
-                </div>
-              )}
-            </div>
+            {brochureUrl && (
+              <div className="property-brochure-section">
+                <a
+                  href={brochureUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="brochure-download-btn"
+                  download
+                >
+                  <i className="fa-solid fa-download"></i>
+                  Download Brochure (PDF)
+                </a>
+              </div>
+            )}
+          </div>
 
             {/* Right Column - Agent Sidebar */}
             <div className="property-sidebar-right">
@@ -566,13 +566,13 @@ const OffPlanDetails = () => {
                     )}
                   </div>
                   
-                  {agent.job_title && (
-                    <p className="agent-job-title">{agent.job_title}</p>
-                  )}
+                      {agent.job_title && (
+                        <p className="agent-job-title">{agent.job_title}</p>
+                      )}
 
                   {!property.agent && (
                     <p className="agent-description">{agent.description}</p>
-                  )}
+                      )}
 
                   {/* Social Media Links */}
                   {property.agent && agent.social_media && Object.keys(agent.social_media).length > 0 && (
@@ -608,8 +608,8 @@ const OffPlanDetails = () => {
                           aria-label="LinkedIn"
                         >
                           <i className="fa-brands fa-linkedin"></i>
-                        </a>
-                      )}
+                          </a>
+                        )}
                       {agent.social_media.whatsapp && (
                         <a 
                           href={agent.social_media.whatsapp}
@@ -619,8 +619,8 @@ const OffPlanDetails = () => {
                           aria-label="WhatsApp"
                         >
                           <i className="fa-brands fa-whatsapp"></i>
-                        </a>
-                      )}
+                          </a>
+                        )}
                       {agent.social_media.twitter && (
                         <a 
                           href={agent.social_media.twitter}
@@ -630,8 +630,8 @@ const OffPlanDetails = () => {
                           aria-label="Twitter"
                         >
                           <i className="fa-brands fa-twitter"></i>
-                        </a>
-                      )}
+                          </a>
+                        )}
                     </div>
                   )}
 
@@ -780,8 +780,8 @@ const OffPlanDetails = () => {
                           <span className="insight-value">Off-Plan</span>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                        </div>
+                      </div>
 
                   {/* Quick Actions Card */}
                   <div className="quick-actions-card">
@@ -850,12 +850,12 @@ const OffPlanDetails = () => {
                       <div className="trust-badge-item">
                         <i className="fa-solid fa-check-circle"></i>
                         <span>Trusted Broker</span>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
             {/* Description Section - Mobile Position (After Agent) */}
             <div className="property-description-section description-mobile">
@@ -894,7 +894,7 @@ const OffPlanDetails = () => {
             propertyName={property.name}
           />
         )}
-      </div>
+    </div>
     </>
   );
 };

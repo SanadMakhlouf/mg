@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SEO from '../SEO';
 import WebScene from '@arcgis/core/WebScene';
 import SceneView from '@arcgis/core/views/SceneView';
 import Basemap from '@arcgis/core/Basemap';
@@ -310,11 +311,11 @@ const InteractiveMap = () => {
       z: 0
     };
 
-    // Different colors for different property types
+    // Different colors for different property types (using burgundy brand colors)
     const colorMap = {
-      sale: [255, 69, 0],      // Red-Orange for Sale
-      rental: [30, 144, 255],  // Dodger Blue for Rental
-      offplan: [50, 205, 50]   // Lime Green for Off-Plan
+      sale: [63, 3, 22],        // Burgundy #3F0316 for Sale
+      rental: [80, 20, 40],     // Darker burgundy shade for Rental
+      offplan: [100, 10, 30]    // Dark burgundy shade for Off-Plan
     };
 
     const symbol = new PointSymbol3D({
@@ -613,7 +614,15 @@ const InteractiveMap = () => {
   };
 
   return (
-    <div className="interactive-map-page">
+    <>
+      <SEO
+        title="Interactive Property Map | Meridian Group Abu Dhabi"
+        description="Explore properties on an interactive 3D map of Abu Dhabi. Browse available properties by location with Meridian Group's advanced mapping tool."
+        keywords="property map Abu Dhabi, interactive map UAE, real estate map, property locations Abu Dhabi"
+        url="https://meridiangroup.ae/interactive-map"
+        image="https://meridiangroup.ae/logo.png"
+      />
+      <div className="interactive-map-page">
       {/* Header */}
       <div className="map-header">
         <button className="back-btn" onClick={() => navigate(-1)}>
@@ -878,6 +887,7 @@ const InteractiveMap = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

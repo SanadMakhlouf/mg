@@ -21,7 +21,7 @@
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 60px;
+  border-radius: 20px;
   padding: 1rem 2rem;
   pointer-events: all;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);

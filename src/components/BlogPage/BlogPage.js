@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import SEO from "../SEO";
 import BlogHero from "./BlogHero";
 import BlogCard from "./BlogCard";
 import "./BlogPage.css";
@@ -120,7 +121,15 @@ const BlogPage = () => {
   }
 
   return (
-    <div className="blog-page">
+    <>
+      <SEO
+        title={tagFilter ? `${tagFilter} Articles | Meridian Group Blog` : "Real Estate Blog | Meridian Group Abu Dhabi"}
+        description={tagFilter ? `Explore articles about ${tagFilter} in Abu Dhabi's real estate market.` : "Stay updated with the latest insights, trends, and news in Abu Dhabi's real estate market from Meridian Group."}
+        keywords={tagFilter ? `${tagFilter}, real estate Abu Dhabi, property investment` : "real estate blog Abu Dhabi, property news UAE, real estate insights, property investment tips"}
+        url={`https://meridiangroup.ae/blog${tagFilter ? `?tag=${tagFilter}` : ''}`}
+        image="https://meridiangroup.ae/logo.png"
+      />
+      <div className="blog-page">
       <BlogHero
         title={tagFilter ? `Posts Tagged: ${tagFilter}` : "Our Blog"}
         subtitle={
@@ -225,6 +234,7 @@ const BlogPage = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

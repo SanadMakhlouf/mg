@@ -84,9 +84,6 @@ const HomeOffPlanSection = () => {
                   src={getImageUrl(project.pictures)}
                   alt={project.name}
                 />
-                <div className="home-property-bookmark">
-                  <i className="far fa-bookmark"></i>
-                </div>
               </div>
               
               <div className="home-property-content">
