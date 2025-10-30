@@ -128,33 +128,36 @@ const PropertyCard = ({
           </>
         )}
       </div>
-      <div className="property-location">
-        <i className="fa-solid fa-location-dot"></i> {location}
-        {permitNumber && (
-          <div className="permit-number">
-            <i className="fa-solid fa-certificate"></i> Permit: {permitNumber}
-          </div>
-        )}
-      </div>
       <div className="property-details">
+        <div className="property-location">
+          <div>
+            <i className="fa-solid fa-location-dot"></i>
+            <span>{location}</span>
+          </div>
+          {permitNumber && (
+            <span className="permit-number">
+              <i className="fa-solid fa-certificate"></i> Permit: {permitNumber}
+            </span>
+          )}
+        </div>
         <div className="property-info-grid">
           <div className="info-item-l">
             <span>
               {beds} <i className="fa-solid fa-bed" aria-hidden="true"></i>
             </span>
-            <span style={{ color: "#666" }}>Bed</span>
+            <span>Bed</span>
           </div>
           <div className="info-item-l">
             <span>
               {baths} <i className="fa-solid fa-bath" aria-hidden="true"></i>
             </span>
-            <span style={{ color: "#666" }}>Bath</span>
+            <span>Bath</span>
           </div>
           <div className="info-item-l">
             <span>
               {sqft} <i className="fa-solid fa-ruler-combined" aria-hidden="true"></i>
             </span>
-            <span style={{ color: "#666" }}>Sq Ft</span>
+            <span>Sq Ft</span>
           </div>
         </div>
         <div className="property-title-price">

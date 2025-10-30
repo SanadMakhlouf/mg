@@ -5,6 +5,7 @@ import RentHero from "./RentHero";
 import RentBanner from "./RentBanner";
 import WelcomeSection from "./WelcomeSection";
 import PropertiesSection from "./PropertiesSection";
+import SearchSection from "../SearchSection";
 import "./Rent.css";
 
 const Rent = () => {
@@ -57,10 +58,11 @@ const Rent = () => {
     <div className="rent-page">
       <Navbar />
       <RentHero />
+      <SearchSection defaultTab="rental" hideTabs={false} />
       <WelcomeSection />
       <div className="rent-container">
         <RentBanner />
-        <div className="rent-search-section">
+        <div className="rent-search-section" style={{ display: 'none' }}>
           <div className="search-header">
             <h3>Rent</h3>
           </div>

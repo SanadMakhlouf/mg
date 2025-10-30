@@ -6,49 +6,55 @@
 .carousel-main {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 70vh;
+  min-height: 600px;
+  max-height: 900px;
   overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  background: #000;
 }
 
 .main-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
 .main-image:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 .zoom-btn {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  background: rgba(0, 0, 0, 0.7);
+  top: 25px;
+  right: 25px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 2;
-  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 3;
+  color: #800020;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .zoom-btn:hover {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(255, 255, 255, 1);
   transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(128, 0, 32, 0.3);
 }
 
 .zoom-btn i {
-  font-size: 16px;
+  font-size: 20px;
 }
 
 /* Zoom Modal */
@@ -82,8 +88,8 @@
 
 .close-zoom-btn {
   position: absolute;
-  top: -50px;
-  right: 0;
+  top: 10px;
+  right: 10px;
   background: rgba(255, 255, 255, 0.9);
   border: none;
   width: 40px;
@@ -95,6 +101,14 @@
   cursor: pointer;
   transition: all 0.3s ease;
   color: #333;
+  z-index: 1001;
+}
+
+@media (min-width: 768px) {
+  .close-zoom-btn {
+    top: -50px;
+    right: 0;
+  }
 }
 
 .close-zoom-btn:hover {
@@ -126,11 +140,21 @@
 }
 
 .zoom-carousel-btn.prev-btn {
-  left: -60px;
+  left: 10px;
 }
 
 .zoom-carousel-btn.next-btn {
-  right: -60px;
+  right: 10px;
+}
+
+@media (min-width: 768px) {
+  .zoom-carousel-btn.prev-btn {
+    left: -60px;
+  }
+
+  .zoom-carousel-btn.next-btn {
+    right: -60px;
+  }
 }
 
 .zoom-carousel-btn i {
@@ -142,122 +166,228 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border: none;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 2;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 3;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-btn:hover {
   background: rgba(255, 255, 255, 1);
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 6px 30px rgba(128, 0, 32, 0.3);
 }
 
 .prev-btn {
-  left: 15px;
+  left: 25px;
 }
 
 .next-btn {
-  right: 15px;
+  right: 25px;
 }
 
 .carousel-btn i {
-  font-size: 18px;
-  color: #333;
+  font-size: 22px;
+  color: #800020;
+  font-weight: 600;
 }
 
 .image-counter {
   position: absolute;
-  bottom: 15px;
-  right: 15px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 500;
-  z-index: 2;
+  bottom: 25px;
+  right: 25px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  color: #800020;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  z-index: 3;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .carousel-thumbnails {
   display: flex;
-  gap: 10px;
-  margin-top: 15px;
-  padding: 0 5px;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 0;
   overflow-x: auto;
   scrollbar-width: thin;
-  scrollbar-color: #ddd transparent;
+  scrollbar-color: rgba(128, 0, 32, 0.3) transparent;
+  padding-bottom: 5px;
 }
 
 .carousel-thumbnails::-webkit-scrollbar {
-  height: 6px;
+  height: 8px;
 }
 
 .carousel-thumbnails::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
 }
 
 .carousel-thumbnails::-webkit-scrollbar-thumb {
-  background: #ddd;
-  border-radius: 3px;
+  background: rgba(128, 0, 32, 0.4);
+  border-radius: 10px;
+}
+
+.carousel-thumbnails::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 0, 32, 0.6);
 }
 
 .thumbnail {
-  width: 80px;
-  height: 60px;
+  width: 120px;
+  height: 90px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 3px solid transparent;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .thumbnail:hover {
-  transform: scale(1.05);
-  border-color: #007bff;
+  transform: translateY(-4px) scale(1.05);
+  border-color: #800020;
+  box-shadow: 0 6px 20px rgba(128, 0, 32, 0.3);
 }
 
 .thumbnail.active {
-  border-color: #007bff;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+  border-color: #800020;
+  box-shadow: 0 6px 25px rgba(128, 0, 32, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Responsive design */
+@media (max-width: 1200px) {
+  .carousel-main {
+    height: 60vh;
+    min-height: 500px;
+  }
+}
+
 @media (max-width: 992px) {
   .carousel-main {
-    height: 350px;
+    height: 50vh;
+    min-height: 450px;
+  }
+  
+  .thumbnail {
+    width: 100px;
+    height: 75px;
   }
 }
 
 @media (max-width: 768px) {
   .carousel-main {
-    height: 250px;
+    height: 45vh;
+    min-height: 400px;
+    border-radius: 16px;
   }
 
   .carousel-btn {
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
   }
 
   .carousel-btn i {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .prev-btn {
-    left: 5px;
+    left: 15px;
   }
 
   .next-btn {
+    right: 15px;
+  }
+
+  .thumbnail {
+    width: 80px;
+    height: 60px;
+  }
+
+  .carousel-thumbnails {
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .zoom-btn {
+    width: 45px;
+    height: 45px;
+    top: 15px;
+    right: 15px;
+  }
+
+  .zoom-btn i {
+    font-size: 18px;
+  }
+  
+  .image-counter {
+    bottom: 15px;
+    right: 15px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-main {
+    height: 40vh;
+    min-height: 350px;
+    border-radius: 12px;
+  }
+
+  .thumbnail {
+    width: 70px;
+    height: 52px;
+  }
+
+  .zoom-modal {
+    padding: 1rem;
+  }
+
+  .zoom-content {
+    max-width: 95vw;
+    max-height: 85vh;
+  }
+
+  .zoom-carousel-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .zoom-carousel-btn.prev-btn {
+    left: 5px;
+  }
+
+  .zoom-carousel-btn.next-btn {
     right: 5px;
+  }
+
+  .close-zoom-btn {
+    width: 35px;
+    height: 35px;
+    top: 5px;
+    right: 5px;
+  }
+}
+
+@media (max-width: 360px) {
+  .carousel-main {
+    height: 35vh;
+    min-height: 300px;
   }
 
   .thumbnail {
@@ -265,27 +395,12 @@
     height: 45px;
   }
 
-  .carousel-thumbnails {
-    gap: 8px;
-  }
-
-  .zoom-btn {
+  .zoom-carousel-btn {
     width: 35px;
     height: 35px;
   }
 
-  .zoom-btn i {
+  .zoom-carousel-btn i {
     font-size: 14px;
-  }
-}
-
-@media (max-width: 576px) {
-  .carousel-main {
-    height: 220px;
-  }
-
-  .thumbnail {
-    width: 50px;
-    height: 38px;
   }
 }

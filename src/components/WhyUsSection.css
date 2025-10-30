@@ -113,12 +113,22 @@
   display: flex;
   align-items: flex-start;
   gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
 .feature-item:hover {
-  transform: translateX(10px);
+  transform: translateX(10px) translateY(-4px);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-color: rgba(128, 0, 32, 0.2);
 }
 
 .feature-item:hover img {

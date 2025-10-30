@@ -4,6 +4,7 @@ import Navbar from "../Navbar";
 import BuyHero from "./BuyHero";
 import BuyBanner from "./BuyBanner";
 import PropertiesSection from "./PropertiesSection";
+import SearchSection from "../SearchSection";
 import "./Buy.css";
 
 const Buy = () => {
@@ -52,9 +53,10 @@ const Buy = () => {
     <div className="buy-page">
       <Navbar />
       <BuyHero />
+      <SearchSection defaultTab="sales" hideTabs={false} />
       <div className="buy-container">
         <BuyBanner />
-        <div className="buy-search-section">
+        <div className="buy-search-section" style={{ display: 'none' }}>
           <div className="search-header">
             <h3>Buy</h3>
           </div>
