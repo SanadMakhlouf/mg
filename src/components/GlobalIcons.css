@@ -150,15 +150,7 @@
   filter: none !important;
 }
 
-/* Stat icons */
-.stat-icon-luxury {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1)) !important;
-}
-
-.stat-icon-luxury i {
-  color: #ffffff !important;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3)) !important;
-}
+/* Stat icons - Managed in Home.css */
 
 /* Card icons */
 .card-image {

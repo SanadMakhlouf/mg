@@ -1,0 +1,237 @@
+.blog-carousel-section {
+  padding: 5rem 0;
+  background: #ffffff;
+  position: relative;
+}
+
+.blog-carousel-section .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 6rem;
+}
+
+.blog-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.blog-carousel {
+  display: flex;
+  gap: 1.5rem;
+  overflow: hidden;
+  flex: 1;
+  scroll-behavior: smooth;
+}
+
+.blog-carousel-card {
+  flex: 0 0 calc(25% - 1.125rem);
+  min-width: 0;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.blog-carousel-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(63, 3, 22, 0.15);
+}
+
+.blog-card-content-section {
+  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.95));
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+}
+
+.blog-card-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.blog-card-description {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.blog-card-image-section {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.blog-card-image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.blog-carousel-card:hover .blog-card-image-section img {
+  transform: scale(1.1);
+}
+
+.blog-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(63, 3, 22, 0.3) 100%);
+  pointer-events: none;
+}
+
+.blog-carousel-arrow {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #3F0316;
+  color: #3F0316;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(63, 3, 22, 0.15);
+  z-index: 2;
+}
+
+.blog-carousel-arrow:hover {
+  background: #3F0316;
+  color: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(63, 3, 22, 0.25);
+}
+
+.blog-carousel-arrow i {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 1200px) {
+  .blog-carousel-card {
+    flex: 0 0 calc(33.333% - 1rem);
+  }
+
+  .blog-carousel-arrow.prev-arrow {
+    left: -20px;
+  }
+
+  .blog-carousel-arrow.next-arrow {
+    right: -20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .blog-carousel-section .container {
+    padding: 0 4rem;
+  }
+
+  .blog-carousel-card {
+    flex: 0 0 calc(50% - 0.75rem);
+  }
+
+  .blog-card-content-section {
+    padding: 1.5rem;
+    min-height: 180px;
+  }
+
+  .blog-card-image-section {
+    height: 200px;
+  }
+
+  .blog-carousel-arrow.prev-arrow {
+    left: -15px;
+  }
+
+  .blog-carousel-arrow.next-arrow {
+    right: -15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-carousel-section {
+    padding: 4rem 0;
+  }
+
+  .blog-carousel-section .container {
+    padding: 0 2rem;
+  }
+
+  .blog-carousel-wrapper {
+    gap: 0.5rem;
+  }
+
+  .blog-carousel-card {
+    flex: 0 0 calc(50% - 0.75rem);
+  }
+
+  .blog-card-content-section {
+    padding: 1.25rem;
+    min-height: 160px;
+  }
+
+  .blog-card-title {
+    font-size: 1.125rem;
+  }
+
+  .blog-card-description {
+    font-size: 0.875rem;
+  }
+
+  .blog-card-image-section {
+    height: 180px;
+  }
+
+  .blog-carousel-arrow {
+    width: 42px;
+    height: 42px;
+    position: relative;
+    transform: none;
+  }
+
+  .blog-carousel-arrow.prev-arrow {
+    left: 0;
+  }
+
+  .blog-carousel-arrow.next-arrow {
+    right: 0;
+  }
+
+  .blog-carousel-arrow i {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-carousel-section .container {
+    padding: 0 1.5rem;
+  }
+
+  .blog-carousel-card {
+    flex: 0 0 100%;
+  }
+
+  .blog-carousel {
+    gap: 1rem;
+  }
+}
+

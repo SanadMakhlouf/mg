@@ -10,6 +10,7 @@ import GetInTouchSection from "./GetInTouchSection";
 import MapSection from "./MapSection";
 import SEO from "./SEO";
 import HomeOffPlanSection from "./HomeOffPlanSection";
+import BlogCarousel from "./BlogCarousel";
 import "./Home.css";
 
 const Home = () => {
@@ -96,7 +97,7 @@ const Home = () => {
         <div className="stats-banner-container">
           <div className="stat-item-luxury">
             <div className="stat-icon-luxury">
-              <i className="fa-solid fa-handshake"></i>
+              <i className="fa-solid fa-handshake-angle"></i>
             </div>
             <div className="stat-content-luxury">
               <div className="stat-number-luxury">500+</div>
@@ -105,7 +106,7 @@ const Home = () => {
           </div>
           <div className="stat-item-luxury">
             <div className="stat-icon-luxury">
-              <i className="fa-solid fa-building"></i>
+              <i className="fa-solid fa-building-columns"></i>
             </div>
             <div className="stat-content-luxury">
               <div className="stat-number-luxury">1000+</div>
@@ -114,7 +115,7 @@ const Home = () => {
           </div>
           <div className="stat-item-luxury">
             <div className="stat-icon-luxury">
-              <i className="fa-solid fa-trophy"></i>
+              <i className="fa-solid fa-award"></i>
             </div>
             <div className="stat-content-luxury">
               <div className="stat-number-luxury">15+</div>
@@ -123,7 +124,7 @@ const Home = () => {
           </div>
           <div className="stat-item-luxury">
             <div className="stat-icon-luxury">
-              <i className="fa-solid fa-star"></i>
+              <i className="fa-solid fa-medal"></i>
             </div>
             <div className="stat-content-luxury">
               <div className="stat-number-luxury">98%</div>
@@ -146,46 +147,8 @@ const Home = () => {
         <LastPropertiesSection />
       </div>
       
-      {/* Premium Features Section */}
-      <section className="home-section premium-features-section">
-        <div className="premium-features-container">
-          <div className="features-header-luxury">
-            <span className="features-subtitle">Why Choose Us</span>
-            <h2>Unmatched Excellence</h2>
-            <p>Experience the difference of working with Abu Dhabi's premier real estate experts</p>
-          </div>
-          <div className="features-grid-luxury">
-            <div className="feature-card-luxury">
-              <div className="feature-icon-wrapper">
-                <i className="fa-solid fa-shield-halved"></i>
-              </div>
-              <h3>100% Verified</h3>
-              <p>Every property is thoroughly vetted and verified for authenticity and compliance</p>
-            </div>
-            <div className="feature-card-luxury">
-              <div className="feature-icon-wrapper">
-                <i className="fa-solid fa-clock"></i>
-              </div>
-              <h3>24/7 Support</h3>
-              <p>Round-the-clock assistance for all your real estate needs and inquiries</p>
-            </div>
-            <div className="feature-card-luxury">
-              <div className="feature-icon-wrapper">
-                <i className="fa-solid fa-chart-line"></i>
-              </div>
-              <h3>Market Insights</h3>
-              <p>Data-driven expertise to help you make informed investment decisions</p>
-            </div>
-            <div className="feature-card-luxury">
-              <div className="feature-icon-wrapper">
-                <i className="fa-solid fa-users"></i>
-              </div>
-              <h3>Expert Team</h3>
-              <p>Experienced professionals dedicated to your success and satisfaction</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Blog Carousel Section */}
+      <BlogCarousel />
 
       <div className="home-section">
         <TestimonialsSection />

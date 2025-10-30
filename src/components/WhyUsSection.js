@@ -14,14 +14,11 @@ const WhyUsSection = () => {
           <div className="stats-group slide-left">
             <div className="why-us-header">
               <h2>
-                <span className="city-name">
-                  ABU DHABI'S{" "}
-                  <span className="colored-text">
-                    MOST <br />{" "}
-                  </span>
-                </span>
-                <span>TRUSTED </span>
-                <span className="colored-text">REAL ESTATE</span> PARTNER
+                <span className="city-name">ABU DHABI'S </span>
+                <span className="colored-text">MOST TRUSTED</span>
+                <br />
+                <span className="colored-text">REAL ESTATE</span>{" "}
+                <span>PARTNER</span>
               </h2>
               <p className="why-us-description">
                 Meridian Group connects you with Abu Dhabi's most prestigious developers and trusted agencies, ensuring every listing is 100% verified. Invest confidently in a transparent market where your success is our priority.
