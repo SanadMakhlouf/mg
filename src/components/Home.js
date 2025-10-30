@@ -23,8 +23,6 @@ const Home = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-in');
-          // Optionally unobserve after animation to improve performance
-          // observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
@@ -88,6 +86,49 @@ const Home = () => {
       />
       <Hero />
       <SearchSection />
+      
+      {/* Premium Stats Banner */}
+      <section className="home-section premium-stats-banner">
+        <div className="stats-banner-container">
+          <div className="stat-item-luxury">
+            <div className="stat-icon-luxury">
+              <i className="fa-solid fa-handshake"></i>
+            </div>
+            <div className="stat-content-luxury">
+              <div className="stat-number-luxury">500+</div>
+              <div className="stat-label-luxury">Happy Clients</div>
+            </div>
+          </div>
+          <div className="stat-item-luxury">
+            <div className="stat-icon-luxury">
+              <i className="fa-solid fa-building"></i>
+            </div>
+            <div className="stat-content-luxury">
+              <div className="stat-number-luxury">1000+</div>
+              <div className="stat-label-luxury">Properties Listed</div>
+            </div>
+          </div>
+          <div className="stat-item-luxury">
+            <div className="stat-icon-luxury">
+              <i className="fa-solid fa-trophy"></i>
+            </div>
+            <div className="stat-content-luxury">
+              <div className="stat-number-luxury">15+</div>
+              <div className="stat-label-luxury">Years Experience</div>
+            </div>
+          </div>
+          <div className="stat-item-luxury">
+            <div className="stat-icon-luxury">
+              <i className="fa-solid fa-star"></i>
+            </div>
+            <div className="stat-content-luxury">
+              <div className="stat-number-luxury">98%</div>
+              <div className="stat-label-luxury">Satisfaction Rate</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="container">
         <div className="home-section">
           <WhyUsSection />
@@ -96,18 +137,64 @@ const Home = () => {
           <LookingForSection />
         </div>
       </div>
+      
       <div className="home-section">
         <LastPropertiesSection />
       </div>
+      
+      {/* Premium Features Section */}
+      <section className="home-section premium-features-section">
+        <div className="premium-features-container">
+          <div className="features-header-luxury">
+            <span className="features-subtitle">Why Choose Us</span>
+            <h2>Unmatched Excellence</h2>
+            <p>Experience the difference of working with Abu Dhabi's premier real estate experts</p>
+          </div>
+          <div className="features-grid-luxury">
+            <div className="feature-card-luxury">
+              <div className="feature-icon-wrapper">
+                <i className="fa-solid fa-shield-halved"></i>
+              </div>
+              <h3>100% Verified</h3>
+              <p>Every property is thoroughly vetted and verified for authenticity and compliance</p>
+            </div>
+            <div className="feature-card-luxury">
+              <div className="feature-icon-wrapper">
+                <i className="fa-solid fa-clock"></i>
+              </div>
+              <h3>24/7 Support</h3>
+              <p>Round-the-clock assistance for all your real estate needs and inquiries</p>
+            </div>
+            <div className="feature-card-luxury">
+              <div className="feature-icon-wrapper">
+                <i className="fa-solid fa-chart-line"></i>
+              </div>
+              <h3>Market Insights</h3>
+              <p>Data-driven expertise to help you make informed investment decisions</p>
+            </div>
+            <div className="feature-card-luxury">
+              <div className="feature-icon-wrapper">
+                <i className="fa-solid fa-users"></i>
+              </div>
+              <h3>Expert Team</h3>
+              <p>Experienced professionals dedicated to your success and satisfaction</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="home-section">
         <TestimonialsSection />
       </div>
+      
       <div className="home-section">
         <PopularDevelopersSection />
       </div>
+      
       <div className="home-section">
         <GetInTouchSection />
       </div>
+      
       <div className="home-section">
         <MapSection />
       </div>
