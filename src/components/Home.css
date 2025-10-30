@@ -218,9 +218,9 @@
 }
 
 .stats-banner-container {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 6rem;
+  padding: 0 3rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
@@ -637,9 +637,11 @@
 
 /* Container */
 .container {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 6rem;
+  padding: 0 3rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Parallax effect container */
@@ -812,7 +814,11 @@ html {
 
 @media (max-width: 1200px) {
   .container {
-    padding: 0 4rem;
+    padding: 0 2.5rem;
+  }
+
+  .stats-banner-container {
+    padding: 0 2.5rem;
   }
 }
 

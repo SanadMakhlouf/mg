@@ -5,9 +5,9 @@
 }
 
 .blog-carousel-section .container {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 6rem;
+  padding: 0 3rem;
 }
 
 .blog-carousel-wrapper {
@@ -113,12 +113,23 @@
   flex-shrink: 0;
   box-shadow: 0 4px 12px rgba(63, 3, 22, 0.15);
   z-index: 2;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.blog-carousel-arrow.prev-arrow {
+  left: -25px;
+}
+
+.blog-carousel-arrow.next-arrow {
+  right: -25px;
 }
 
 .blog-carousel-arrow:hover {
   background: #3F0316;
   color: #ffffff;
-  transform: scale(1.1);
+  transform: translateY(-50%) scale(1.1);
   box-shadow: 0 6px 20px rgba(63, 3, 22, 0.25);
 }
 
@@ -137,6 +148,10 @@
 
   .blog-carousel-arrow.next-arrow {
     right: -20px;
+  }
+
+  .blog-carousel-arrow:hover {
+    transform: translateY(-50%) scale(1.1);
   }
 }
 
@@ -164,6 +179,10 @@
 
   .blog-carousel-arrow.next-arrow {
     right: -15px;
+  }
+
+  .blog-carousel-arrow:hover {
+    transform: translateY(-50%) scale(1.1);
   }
 }
 

@@ -4,33 +4,92 @@ import "./Hero.css";
 
 const carouselData = [
   {
-    image: `${process.env.PUBLIC_URL}/hero-bgg.jpg`,
+    image: `${process.env.PUBLIC_URL}/media/abu-dhabi.jpg`,
     title: "Premium Properties",
     subtitle: "Exceptional Results",
   },
   {
-    image: `${process.env.PUBLIC_URL}/here-bg2.jpg`,
+    image: `${process.env.PUBLIC_URL}/media/Al reem Island.jpg`,
     title: "Discover Your",
     subtitle: "Perfect Property",
   },
   {
-    image: `${process.env.PUBLIC_URL}/test.jpg`,
+    image: `${process.env.PUBLIC_URL}/media/Al Fahid-02.jpg`,
     title: "Your Trusted Partner",
     subtitle: "in Abu Dhabi Real Estate",
   },
-];
+  {
+    image: `${process.env.PUBLIC_URL}/media/Abu Dhabi 5.jpg`,
+    title: "Luxury Living",
+    subtitle: "In Abu Dhabi",
+  },
+  {
+    image: `${process.env.PUBLIC_URL}/media/Abu Dhabi 4.jpg`,
+    title: "Exclusive Real Estate",
+    subtitle: "Premium Locations",
+  },
+  {
+    image: `${process.env.PUBLIC_URL}/media/Abu Dhabi 3.jpg`,
+    title: "Prime Investment",
+    subtitle: "Opportunities Await",
+  },
+  {
+    image: `${process.env.PUBLIC_URL}/media/ABU DHABI 2.jpg`,
+    title: "Experience Excellence",
+    subtitle: "With Meridian Group",
+  },
+].map(slide => ({
+  ...slide,
+  image: slide.image.replace(/ /g, '%20') // Encode spaces in URLs
+}));
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Preload all images
+  useEffect(() => {
+    const loadImages = async () => {
+      const imagePromises = carouselData.map((slide, index) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            console.log(`Image ${index + 1} loaded:`, slide.image);
+            resolve();
+          };
+          img.onerror = () => {
+            console.error(`Failed to load image ${index + 1}:`, slide.image);
+            reject(new Error(`Failed to load: ${slide.image}`));
+          };
+          img.src = slide.image;
+        });
+      });
+
+      try {
+        await Promise.all(imagePromises);
+        console.log("All images loaded successfully");
+        setImagesLoaded(true);
+        setIsLoaded(true);
+      } catch (error) {
+        console.error("Error loading images:", error);
+        // Still set loaded to true to allow carousel to work
+        setImagesLoaded(true);
+        setIsLoaded(true);
+      }
+    };
+
+    loadImages();
+  }, []);
 
   useEffect(() => {
-    setIsLoaded(true);
+    if (!imagesLoaded) return;
+    
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselData.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [imagesLoaded]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % carouselData.length);
@@ -47,7 +106,7 @@ const Hero = () => {
         <div
           key={`bg-${index}`}
           className={`hero-bg-image ${index === currentSlide ? "active" : ""}`}
-          style={{ backgroundImage: `url(${slide.image})` }}
+          style={{ backgroundImage: `url("${slide.image}")` }}
         />
       ))}
 

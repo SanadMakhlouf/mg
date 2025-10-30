@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import Hero from "./Hero";
 import SearchSection from "./SearchSection";
-import WhyUsSection from "./WhyUsSection";
 import LookingForSection from "./LookingForSection";
 import LastPropertiesSection from "./LastPropertiesSection";
 import TestimonialsSection from "./TestimonialsSection";
-import PopularDevelopersSection from "./PopularDevelopersSection";
 import GetInTouchSection from "./GetInTouchSection";
 import MapSection from "./MapSection";
 import SEO from "./SEO";
 import HomeOffPlanSection from "./HomeOffPlanSection";
 import BlogCarousel from "./BlogCarousel";
+import PropertyGridSection from "./PropertyGridSection";
+import TeamSection from "./TeamSection";
 import "./Home.css";
 
 const Home = () => {
@@ -136,7 +136,10 @@ const Home = () => {
 
       <div className="container">
         <div className="home-section">
-          <WhyUsSection />
+          <PropertyGridSection />
+        </div>
+        <div className="home-section">
+          <TeamSection />
         </div>
         <div className="home-section">
           <LookingForSection />
@@ -152,10 +155,6 @@ const Home = () => {
 
       <div className="home-section">
         <TestimonialsSection />
-      </div>
-      
-      <div className="home-section">
-        <PopularDevelopersSection />
       </div>
       
       <div className="home-section">

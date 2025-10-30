@@ -21,10 +21,13 @@
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
   transform: scale(1.1);
+  z-index: 0;
+  will-change: opacity, transform;
 }
 
 .hero-bg-image.active {
   opacity: 1;
+  z-index: 1;
   transform: scale(1);
   animation: kenBurnsClean 20s ease-out infinite;
 }
