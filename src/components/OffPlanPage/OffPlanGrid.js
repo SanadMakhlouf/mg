@@ -14,10 +14,9 @@ const OffPlanGrid = ({ filterParams = {} }) => {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        
+
         // Build query parameters
         const queryParams = new URLSearchParams();
-        queryParams.append("category", "off-plans");
 
         // Add filter parameters if they exist
         if (filterParams) {
@@ -62,8 +61,11 @@ const OffPlanGrid = ({ filterParams = {} }) => {
           }
         }
 
-        // Use the new advanced search API for off-plan properties
-        const apiUrl = `${config.API_URL}/properties/search/advanced?${queryParams.toString()}`;
+        // Use the ready-projects API for off-plan properties
+        const queryString = queryParams.toString();
+        const apiUrl = `${config.API_URL}/ready-projects/category/off-plans${
+          queryString ? `?${queryString}` : ""
+        }`;
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
@@ -72,10 +74,22 @@ const OffPlanGrid = ({ filterParams = {} }) => {
 
         const result = await response.json();
 
-        if (result.success && result.data) {
+        // Handle different response structures
+        if (result.status === "success" && result.data && result.data.data) {
+          // Laravel paginated response format: { status: "success", data: { data: [...], current_page: 1, ... } }
+          setProjects(Array.isArray(result.data.data) ? result.data.data : []);
+        } else if (result.success && result.data) {
+          // Standard API response format: { success: true, data: [...] }
+          setProjects(Array.isArray(result.data) ? result.data : []);
+        } else if (Array.isArray(result)) {
+          // Direct array response: [...]
+          setProjects(result);
+        } else if (result.data && Array.isArray(result.data)) {
+          // Response with data property: { data: [...] }
           setProjects(result.data);
         } else {
-          setError("Failed to fetch projects");
+          console.error("Unexpected API response format:", result);
+          setError("Failed to fetch projects: Invalid response format");
         }
       } catch (err) {
         setError("Error fetching projects: " + err.message);
@@ -125,7 +139,10 @@ const OffPlanGrid = ({ filterParams = {} }) => {
 
   // Helper function to create SEO-friendly slug
   const createSlug = (name) => {
-    return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
   };
 
   // Helper function to get image URL
@@ -145,7 +162,11 @@ const OffPlanGrid = ({ filterParams = {} }) => {
         {projects[0] && (
           <div
             className="off-plan-featured-card"
-            onClick={() => navigate(`/off-plan/${projects[0].id}/${createSlug(projects[0].name)}`)}
+            onClick={() =>
+              navigate(
+                `/off-plan/${projects[0].id}/${createSlug(projects[0].name)}`
+              )
+            }
             style={{ cursor: "pointer" }}
           >
             <div className="off-plan-image-container">
@@ -166,7 +187,10 @@ const OffPlanGrid = ({ filterParams = {} }) => {
                   className="enquire-btn"
                   onClick={(e) => {
                     e.stopPropagation();
-                    const slug = projects[0].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                    const slug = projects[0].name
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "-")
+                      .replace(/(^-|-$)/g, "");
                     navigate(`/property/${projects[0].id}/${slug}`);
                   }}
                 >
@@ -183,7 +207,11 @@ const OffPlanGrid = ({ filterParams = {} }) => {
           {projects[1] && (
             <div
               className="off-plan-right-card"
-              onClick={() => navigate(`/off-plan/${projects[1].id}/${createSlug(projects[1].name)}`)}
+              onClick={() =>
+                navigate(
+                  `/off-plan/${projects[1].id}/${createSlug(projects[1].name)}`
+                )
+              }
               style={{ cursor: "pointer" }}
             >
               <div className="off-plan-image-container">
@@ -235,7 +263,11 @@ const OffPlanGrid = ({ filterParams = {} }) => {
               <div
                 key={project.id}
                 className="off-plan-small-card"
-                onClick={() => navigate(`/off-plan/${project.id}/${createSlug(project.name)}`)}
+                onClick={() =>
+                  navigate(
+                    `/off-plan/${project.id}/${createSlug(project.name)}`
+                  )
+                }
                 style={{ cursor: "pointer" }}
               >
                 <div className="off-plan-image-container">
@@ -271,11 +303,15 @@ const OffPlanGrid = ({ filterParams = {} }) => {
 
       {/* Second featured grid */}
       {projects.length > 4 && (
-        <div className="off-plan-featured-grid" style={{ marginTop: '40px' }}>
+        <div className="off-plan-featured-grid" style={{ marginTop: "40px" }}>
           {projects[4] && (
             <div
               className="off-plan-featured-card"
-              onClick={() => navigate(`/off-plan/${projects[4].id}/${createSlug(projects[4].name)}`)}
+              onClick={() =>
+                navigate(
+                  `/off-plan/${projects[4].id}/${createSlug(projects[4].name)}`
+                )
+              }
               style={{ cursor: "pointer" }}
             >
               <div className="off-plan-image-container">
@@ -296,7 +332,10 @@ const OffPlanGrid = ({ filterParams = {} }) => {
                     className="enquire-btn"
                     onClick={(e) => {
                       e.stopPropagation();
-                      const slug = projects[4].name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                      const slug = projects[4].name
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]+/g, "-")
+                        .replace(/(^-|-$)/g, "");
                       navigate(`/property/${projects[4].id}/${slug}`);
                     }}
                   >
@@ -311,7 +350,13 @@ const OffPlanGrid = ({ filterParams = {} }) => {
             {projects[5] && (
               <div
                 className="off-plan-right-card"
-                onClick={() => navigate(`/off-plan/${projects[5].id}/${createSlug(projects[5].name)}`)}
+                onClick={() =>
+                  navigate(
+                    `/off-plan/${projects[5].id}/${createSlug(
+                      projects[5].name
+                    )}`
+                  )
+                }
                 style={{ cursor: "pointer" }}
               >
                 <div className="off-plan-image-container">
@@ -335,7 +380,8 @@ const OffPlanGrid = ({ filterParams = {} }) => {
                     <p className="project-location">{projects[5].location}</p>
                     {projects[5].price && (
                       <p className="project-price">
-                        From AED {parseFloat(projects[5].price).toLocaleString()}
+                        From AED{" "}
+                        {parseFloat(projects[5].price).toLocaleString()}
                       </p>
                     )}
                     <div className="project-details">
@@ -368,7 +414,11 @@ const OffPlanGrid = ({ filterParams = {} }) => {
                 <div
                   key={project.id}
                   className="off-plan-small-card"
-                  onClick={() => navigate(`/off-plan/${project.id}/${createSlug(project.name)}`)}
+                  onClick={() =>
+                    navigate(
+                      `/off-plan/${project.id}/${createSlug(project.name)}`
+                    )
+                  }
                   style={{ cursor: "pointer" }}
                 >
                   <div className="off-plan-image-container">
