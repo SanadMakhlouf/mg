@@ -269,13 +269,13 @@
 }
 
 .send-message-btn {
-  background: linear-gradient(135deg, #561B2B, rgba(63, 3, 22, 0.9));
+  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.9));
   color: white;
   border: none;
   padding: 1.25rem 2.5rem;
   font-size: 1rem;
   font-weight: 600;
-  border-radius: 50px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.5px;
@@ -302,7 +302,7 @@
 }
 
 .send-message-btn:hover {
-  background: linear-gradient(135deg, rgba(63, 3, 22, 0.9), #c00040);
+  background: linear-gradient(135deg, rgba(63, 3, 22, 0.9), rgba(63, 3, 22, 0.8));
   transform: translateY(-3px);
   box-shadow: 0 12px 32px rgba(63, 3, 22, 0.4);
 }

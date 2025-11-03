@@ -13,7 +13,7 @@
 
 /* Make navbar solid only for OffPlanDetails page */
 body.page-offplan-details .navbar {
-  background-color: #460014;
+  background-color: #3f0316;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -115,7 +115,6 @@ body.page-offplan-details .navbar {
   object-position: center 20%; /* Ajustement pour mieux cadrer l'image principale */
 }
 
-
 /* Contenu sur l'image */
 .off-plan-content {
   position: absolute;
@@ -162,7 +161,7 @@ body.page-offplan-details .navbar {
   font-size: 1.1rem;
   font-weight: 700;
   margin: 10px 0;
-  color: #3F0316;
+  color: #3f0316;
 }
 
 .project-details {
@@ -207,7 +206,7 @@ body.page-offplan-details .navbar {
   font-size: 1rem;
   font-weight: 700;
   margin: 0;
-  color: #3F0316;
+  color: #3f0316;
 }
 
 .enquire-btn {
@@ -223,7 +222,7 @@ body.page-offplan-details .navbar {
 }
 
 .enquire-btn:hover {
-  background-color: #800020;
+  background-color: #3f0316;
   color: white;
 }
 
@@ -310,7 +309,10 @@ body.page-offplan-details .navbar {
   box-sizing: border-box;
 }
 
-.off-plan-second-grid .left-column.full-width .project-card .off-plan-image-container {
+.off-plan-second-grid
+  .left-column.full-width
+  .project-card
+  .off-plan-image-container {
   width: 100%;
 }
 

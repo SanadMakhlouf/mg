@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* Brand Identity Variables */
+:root {
+  --brand-color: #3F0316;
+  --brand-color-light: rgba(63, 3, 22, 0.9);
+  --brand-color-dark: rgba(63, 3, 22, 0.8);
+  --button-border-radius: 8px;
+  --font-family-headings: "Times New Roman", serif;
+  --font-family-body: "Poppins", sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;

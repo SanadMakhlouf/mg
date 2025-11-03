@@ -21,8 +21,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #460014;
-  border: 2px solid #460014;
+  color: #3F0316;
+  border: 2px solid #3F0316;
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
@@ -148,7 +148,7 @@
 
 .ad-banner-content {
   padding: 15px;
-  background-color: #460014;
+  background-color: #3F0316;
   color: white;
   flex-grow: 1;
   display: flex;

@@ -21,8 +21,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #460014;
-  border: 2px solid #460014;
+  color: #3F0316;
+  border: 2px solid #3F0316;
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
@@ -97,7 +97,7 @@
 }
 
 .explore-all-btn {
-  background: linear-gradient(135deg, #800020 0%, #460014 100%);
+  background: linear-gradient(135deg, #3F0316 0%, rgba(63, 3, 22, 0.9) 100%);
   color: white;
   border: none;
   padding: 14px 32px;
