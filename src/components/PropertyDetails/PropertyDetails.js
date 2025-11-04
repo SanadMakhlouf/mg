@@ -15,6 +15,7 @@ const PropertyDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showScheduleViewing, setShowScheduleViewing] = useState(false);
+  const [showAgentInfo, setShowAgentInfo] = useState(false);
 
   // ✅ Sticky pour agent-card-bayut (position fixed)
   const agentCardRef = useRef(null);
@@ -34,7 +35,6 @@ const PropertyDetails = () => {
       )
         return;
 
-      const cardRect = agentCardRef.current.getBoundingClientRect();
       const sidebarRect = sidebarRef.current.getBoundingClientRect();
       const priceHeaderRect = priceHeaderRef.current.getBoundingClientRect();
       const triggerPoint = 120; // Point où le fixed s'active (navbar + marge)
@@ -53,33 +53,24 @@ const PropertyDetails = () => {
 
       setIsSticky(shouldBeSticky);
 
-      // Si on doit être sticky, positionner la carte en haut au milieu pour tester
+      // Si on doit être sticky, positionner la carte comme icône flottant en bas à droite
       if (shouldBeSticky) {
-        const sidebarWidth = sidebarRect.width;
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
-        const cardHeight = cardRect.height;
-
-        // Positionner en haut au milieu
+        // Positionner en bas à droite, juste à côté du bouton WhatsApp
         const margin = 20;
-        const top = triggerPoint; // Juste en dessous de la navbar (120px)
+        const whatsappButtonSize = 60; // Taille approximative du bouton WhatsApp
+        const iconSize = 70; // Taille de l'icône flottant
+        const spacing = 15; // Espacement entre WhatsApp et l'icône
 
-        // Calculer la position : centrer horizontalement
-        const maxWidth = 380;
-        const calculatedWidth = Math.min(sidebarWidth, maxWidth);
-        const left = (windowWidth - calculatedWidth) / 2;
-
-        // Si la carte est trop haute pour l'écran, la limiter avec scroll
-        const maxHeight = windowHeight - triggerPoint - margin * 2;
+        // Positionner à gauche du bouton WhatsApp
+        const right = whatsappButtonSize + spacing + margin;
 
         setFixedStyle({
-          width: `${calculatedWidth}px`,
-          left: `${left}px`,
-          right: "auto",
-          top: `${top}px`,
-          bottom: "auto",
-          maxHeight: cardHeight > maxHeight ? `${maxHeight}px` : "none",
-          overflowY: cardHeight > maxHeight ? "auto" : "visible",
+          width: `${iconSize}px`,
+          height: `${iconSize}px`,
+          right: `${right}px`,
+          bottom: `${margin}px`,
+          left: "auto",
+          top: "auto",
         });
       }
     };
@@ -718,6 +709,8 @@ const PropertyDetails = () => {
                 }`}
                 ref={agentCardRef}
                 style={isSticky ? fixedStyle : {}}
+                title={isSticky ? `${agent.name} - Contact Agent` : ""}
+                onClick={isSticky ? () => setShowAgentInfo(true) : undefined}
               >
                 <div className="agent-card-header">
                   <div className="agent-card-banner">
@@ -1102,6 +1095,94 @@ const PropertyDetails = () => {
             propertyId={property.id}
             propertyName={property.name}
           />
+        )}
+
+        {/* Agent Info Popup */}
+        {showAgentInfo && (
+          <div
+            className="agent-info-popup-overlay"
+            onClick={() => setShowAgentInfo(false)}
+          >
+            <div
+              className="agent-info-popup"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="agent-info-close-btn"
+                onClick={() => setShowAgentInfo(false)}
+                aria-label="Close"
+              >
+                <i className="fa-solid fa-times"></i>
+              </button>
+
+              <div className="agent-info-header">
+                <div className="agent-info-avatar">
+                  <img src={agent.photo_url || agent.image} alt={agent.name} />
+                  <div className="agent-info-verified-badge">
+                    <i className="fa-solid fa-check-circle"></i>
+                  </div>
+                </div>
+                <div className="agent-info-title">
+                  <h3>{agent.name}</h3>
+                  {agent.job_title && (
+                    <p className="agent-info-job-title">{agent.job_title}</p>
+                  )}
+                  {property.agent && (
+                    <span className="agent-info-badge">Verified Agent</span>
+                  )}
+                </div>
+              </div>
+
+              {!property.agent && agent.description && (
+                <div className="agent-info-description">
+                  <p>{agent.description}</p>
+                </div>
+              )}
+
+              <div className="agent-info-phone">
+                <div className="agent-info-phone-card">
+                  <div className="agent-info-phone-icon">
+                    <i className="fa-solid fa-phone"></i>
+                  </div>
+                  <div className="agent-info-phone-content">
+                    <span className="agent-info-phone-label">Call Us</span>
+                    <a
+                      href="tel:+971586830401"
+                      className="agent-info-phone-number"
+                    >
+                      +971 586830401
+                    </a>
+                  </div>
+                  <a
+                    href="tel:+971586830401"
+                    className="agent-info-phone-btn"
+                    aria-label="Call +971 586830401"
+                  >
+                    <i className="fa-solid fa-phone"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div className="agent-info-actions">
+                <button
+                  className="agent-info-primary-btn"
+                  onClick={() => {
+                    setShowAgentInfo(false);
+                    setShowScheduleViewing(true);
+                  }}
+                >
+                  <i className="fa-solid fa-calendar-check"></i>
+                  Schedule Viewing
+                </button>
+                <button
+                  className="agent-info-secondary-btn"
+                  onClick={() => setShowAgentInfo(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </>

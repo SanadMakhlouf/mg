@@ -462,6 +462,79 @@ body .list-property-btn:hover {
   z-index: 1000;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
+  border-radius: 50% !important;
+  width: 70px !important;
+  height: 70px !important;
+  overflow: visible !important;
+  cursor: pointer;
+  animation: floatIn 0.5s ease-out;
+}
+
+@keyframes floatIn {
+  from {
+    transform: scale(0) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.agent-card-bayut.agent-card-sticky:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 40px rgba(63, 3, 22, 0.3);
+}
+
+/* Masquer le contenu de la carte en mode icône */
+.agent-card-bayut.agent-card-sticky .agent-card-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.agent-card-bayut.agent-card-sticky .agent-card-banner {
+  display: none;
+}
+
+.agent-card-bayut.agent-card-sticky .agent-photo-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  bottom: auto;
+  transform: none;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+}
+
+.agent-card-bayut.agent-card-sticky .agent-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.agent-card-bayut.agent-card-sticky .agent-card-body {
+  display: none;
+}
+
+/* Badge de notification sur l'icône */
+.agent-card-bayut.agent-card-sticky::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg, #3f0316, rgba(63, 3, 22, 0.9));
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(63, 3, 22, 0.3);
 }
 
 @media (max-width: 1024px) {
@@ -471,8 +544,372 @@ body .list-property-btn:hover {
     right: auto !important;
     bottom: auto !important;
     width: auto !important;
-    max-height: none !important;
+    height: auto !important;
+    border-radius: 12px !important;
     top: 120px !important;
+    animation: none;
+  }
+
+  .agent-card-bayut.agent-card-sticky .agent-card-header {
+    position: relative;
+    border-radius: 0;
+  }
+
+  .agent-card-bayut.agent-card-sticky .agent-card-banner {
+    display: flex;
+  }
+
+  .agent-card-bayut.agent-card-sticky .agent-photo-container {
+    position: absolute;
+    bottom: -40px;
+    transform: translateX(-50%);
+  }
+
+  .agent-card-bayut.agent-card-sticky .agent-card-body {
+    display: block;
+  }
+
+  .agent-card-bayut.agent-card-sticky::after {
+    display: none;
+  }
+}
+
+/* Agent Info Popup */
+.agent-info-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.agent-info-popup {
+  background: #ffffff;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.agent-info-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(63, 3, 22, 0.1);
+  color: #3f0316;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.agent-info-close-btn:hover {
+  background: rgba(63, 3, 22, 0.2);
+  transform: rotate(90deg);
+}
+
+.agent-info-close-btn i {
+  font-size: 1.2rem;
+}
+
+.agent-info-header {
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #3f0316 0%, rgba(63, 3, 22, 0.9) 100%);
+  border-radius: 20px 20px 0 0;
+  position: relative;
+}
+
+.agent-info-avatar {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.agent-info-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 5px solid #ffffff;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.agent-info-verified-badge {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 32px;
+  height: 32px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.agent-info-verified-badge i {
+  color: #3f0316;
+  font-size: 1rem;
+}
+
+.agent-info-title h3 {
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.agent-info-job-title {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.agent-info-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+.agent-info-description {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.agent-info-description p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+.agent-info-phone {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.agent-info-phone-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #3f0316 0%, rgba(63, 3, 22, 0.95) 100%);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(63, 3, 22, 0.3);
+  transition: all 0.3s ease;
+}
+
+.agent-info-phone-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(63, 3, 22, 0.4);
+}
+
+.agent-info-phone-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.agent-info-phone-icon i {
+  font-size: 1.75rem;
+  color: #ffffff;
+}
+
+.agent-info-phone-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.agent-info-phone-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.agent-info-phone-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+.agent-info-phone-number:hover {
+  color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+}
+
+.agent-info-phone-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #3f0316;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.agent-info-phone-btn:hover {
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.agent-info-phone-btn i {
+  font-size: 1.3rem;
+}
+
+.agent-info-actions {
+  padding: 1.5rem 2rem 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.agent-info-primary-btn,
+.agent-info-secondary-btn {
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.agent-info-primary-btn {
+  background: linear-gradient(135deg, #3f0316, rgba(63, 3, 22, 0.9));
+  color: #ffffff;
+}
+
+.agent-info-primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(63, 3, 22, 0.3);
+}
+
+.agent-info-secondary-btn {
+  background: #f0f0f0;
+  color: #3f0316;
+}
+
+.agent-info-secondary-btn:hover {
+  background: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .agent-info-popup-overlay {
+    padding: 1rem;
+  }
+
+  .agent-info-popup {
+    max-width: 100%;
+    border-radius: 16px;
+  }
+
+  .agent-info-header {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .agent-info-avatar img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .agent-info-phone,
+  .agent-info-actions {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .agent-info-phone-card {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .agent-info-phone-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .agent-info-phone-icon i {
+    font-size: 1.5rem;
+  }
+
+  .agent-info-phone-number {
+    font-size: 1.25rem;
+  }
+
+  .agent-info-phone-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .agent-info-phone-btn i {
+    font-size: 1.1rem;
   }
 }
 
