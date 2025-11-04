@@ -35,7 +35,6 @@ const PropertyDetails = () => {
       )
         return;
 
-      const sidebarRect = sidebarRef.current.getBoundingClientRect();
       const priceHeaderRect = priceHeaderRef.current.getBoundingClientRect();
       const triggerPoint = 120; // Point où le fixed s'active (navbar + marge)
 
@@ -43,13 +42,10 @@ const PropertyDetails = () => {
       // La carte devient fixed quand le price-header sort de la vue (son bas est au-dessus du haut de la fenêtre)
       const hasPassedPriceHeader = priceHeaderRect.bottom < triggerPoint;
 
-      // Vérifier si on n'a pas dépassé le conteneur parent
-      // Le fixed doit s'arrêter quand le bas du conteneur parent sort de la vue
-      const containerBottom = sidebarRect.bottom;
-      const isContainerStillVisible = containerBottom > triggerPoint;
-
-      // Activer fixed si on a dépassé le price-header ET que le conteneur est encore visible
-      const shouldBeSticky = hasPassedPriceHeader && isContainerStillVisible;
+      // Garder l'icône visible même si on est à la fin de la page
+      // Une fois qu'on a dépassé le price-header, l'icône reste visible jusqu'à la fin
+      // Activer fixed si on a dépassé le price-header (l'icône reste visible jusqu'à la fin)
+      const shouldBeSticky = hasPassedPriceHeader;
 
       setIsSticky(shouldBeSticky);
 
@@ -60,15 +56,22 @@ const PropertyDetails = () => {
         const whatsappButtonSize = 60; // Taille approximative du bouton WhatsApp
         const iconSize = 70; // Taille de l'icône flottant
         const spacing = 15; // Espacement entre WhatsApp et l'icône
+        const windowWidth = window.innerWidth;
+
+        // Sur mobile, ajuster la position
+        const isMobile = windowWidth <= 768;
+        const mobileMargin = isMobile ? 15 : margin;
+        const mobileIconSize = isMobile ? 60 : iconSize;
+        const mobileSpacing = isMobile ? 10 : spacing;
 
         // Positionner à gauche du bouton WhatsApp
-        const right = whatsappButtonSize + spacing + margin;
+        const right = whatsappButtonSize + mobileSpacing + mobileMargin;
 
         setFixedStyle({
-          width: `${iconSize}px`,
-          height: `${iconSize}px`,
+          width: `${mobileIconSize}px`,
+          height: `${mobileIconSize}px`,
           right: `${right}px`,
-          bottom: `${margin}px`,
+          bottom: `${mobileMargin}px`,
           left: "auto",
           top: "auto",
         });
