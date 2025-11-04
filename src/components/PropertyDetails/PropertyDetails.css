@@ -65,7 +65,7 @@ body .list-property-btn:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #3F0316;
+  color: #3f0316;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
@@ -155,7 +155,7 @@ body .list-property-btn:hover {
   position: absolute;
   top: 20px;
   right: 20px;
-  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.9));
+  background: linear-gradient(135deg, #3f0316, rgba(63, 3, 22, 0.9));
   color: white;
   padding: 8px 16px;
   font-size: 0.75rem;
@@ -223,7 +223,7 @@ body .list-property-btn:hover {
 }
 
 .stat-item i {
-  color: #3F0316;
+  color: #3f0316;
   font-size: 1.1rem;
 }
 
@@ -259,7 +259,7 @@ body .list-property-btn:hover {
   font-weight: 600;
   color: #1a1a1a;
   padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.9));
+  background: linear-gradient(135deg, #3f0316, rgba(63, 3, 22, 0.9));
   color: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(63, 3, 22, 0.2);
@@ -339,7 +339,7 @@ body .list-property-btn:hover {
 
 .info-label {
   font-weight: 600;
-  color: #3F0316;
+  color: #3f0316;
   font-size: 0.95rem;
   display: flex;
   align-items: center;
@@ -347,10 +347,10 @@ body .list-property-btn:hover {
 }
 
 .info-label::before {
-  content: '';
+  content: "";
   width: 4px;
   height: 16px;
-  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.7));
+  background: linear-gradient(135deg, #3f0316, rgba(63, 3, 22, 0.7));
   border-radius: 2px;
 }
 
@@ -391,13 +391,13 @@ body .list-property-btn:hover {
 
 .amenity-item:hover {
   background: #ffffff;
-  border-color: #3F0316;
+  border-color: #3f0316;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(63, 3, 22, 0.1);
 }
 
 .amenity-item i {
-  color: #3F0316;
+  color: #3f0316;
   font-size: 1rem;
 }
 
@@ -411,7 +411,11 @@ body .list-property-btn:hover {
 .property-brochure-section {
   margin-top: 0;
   padding: 1.5rem;
-  background: linear-gradient(135deg, rgba(63, 3, 22, 0.05), rgba(63, 3, 22, 0.02));
+  background: linear-gradient(
+    135deg,
+    rgba(63, 3, 22, 0.05),
+    rgba(63, 3, 22, 0.02)
+  );
   border-radius: 12px;
   border: 1px solid rgba(63, 3, 22, 0.1);
   text-align: center;
@@ -422,7 +426,7 @@ body .list-property-btn:hover {
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.9));
+  background: linear-gradient(135deg, #3f0316, rgba(63, 3, 22, 0.9));
   color: white;
   text-decoration: none;
   border-radius: 8px;
@@ -439,8 +443,7 @@ body .list-property-btn:hover {
 
 /* Agent Sidebar - Bayut Style */
 .property-sidebar-right {
-  position: sticky;
-  top: 140px;
+  position: relative;
   align-self: flex-start;
   height: fit-content;
 }
@@ -451,6 +454,26 @@ body .list-property-btn:hover {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.agent-card-bayut.agent-card-sticky {
+  position: fixed;
+  z-index: 1000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+  .agent-card-bayut.agent-card-sticky {
+    position: sticky;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: auto !important;
+    max-height: none !important;
+    top: 120px !important;
+  }
 }
 
 .agent-card-header {
@@ -458,7 +481,7 @@ body .list-property-btn:hover {
 }
 
 .agent-card-banner {
-  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.9));
+  background: linear-gradient(135deg, #3f0316, rgba(63, 3, 22, 0.9));
   height: 80px;
   display: flex;
   align-items: center;
@@ -563,7 +586,7 @@ body .list-property-btn:hover {
 }
 
 .instagram-btn {
-  background: linear-gradient(135deg, #E4405F, #C13584);
+  background: linear-gradient(135deg, #e4405f, #c13584);
 }
 
 .instagram-btn:hover {
@@ -572,7 +595,7 @@ body .list-property-btn:hover {
 }
 
 .facebook-btn {
-  background: #1877F2;
+  background: #1877f2;
 }
 
 .facebook-btn:hover {
@@ -581,7 +604,7 @@ body .list-property-btn:hover {
 }
 
 .linkedin-btn {
-  background: #0077B5;
+  background: #0077b5;
 }
 
 .linkedin-btn:hover {
@@ -599,7 +622,7 @@ body .list-property-btn:hover {
 }
 
 .twitter-btn {
-  background: #1DA1F2;
+  background: #1da1f2;
 }
 
 .twitter-btn:hover {
@@ -624,14 +647,14 @@ body .list-property-btn:hover {
 }
 
 .contact-info-item i {
-  color: #3F0316;
+  color: #3f0316;
   width: 20px;
 }
 
 .schedule-viewing-btn-bayut {
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.9));
+  background: linear-gradient(135deg, #3f0316, rgba(63, 3, 22, 0.9));
   color: white;
   border: none;
   border-radius: 8px;
@@ -673,7 +696,7 @@ body .list-property-btn:hover {
 }
 
 .quick-contact-title i {
-  color: #3F0316;
+  color: #3f0316;
   font-size: 1.2rem;
 }
 
@@ -697,7 +720,7 @@ body .list-property-btn:hover {
 
 .quick-contact-item:hover {
   background: #ffffff;
-  border-color: #3F0316;
+  border-color: #3f0316;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(63, 3, 22, 0.15);
 }
@@ -769,7 +792,7 @@ body .list-property-btn:hover {
 }
 
 .office-location-title i {
-  color: #3F0316;
+  color: #3f0316;
   font-size: 1.2rem;
 }
 
@@ -794,7 +817,7 @@ body .list-property-btn:hover {
 }
 
 .office-address i {
-  color: #3F0316;
+  color: #3f0316;
   margin-top: 0.2rem;
   flex-shrink: 0;
 }
@@ -818,15 +841,19 @@ body .list-property-btn:hover {
 }
 
 .office-hours-item i {
-  color: #3F0316;
+  color: #3f0316;
 }
 
 .view-map-btn {
   width: 100%;
   padding: 0.875rem 1.25rem;
-  background: linear-gradient(135deg, rgba(63, 3, 22, 0.1), rgba(63, 3, 22, 0.05));
-  color: #3F0316;
-  border: 2px solid #3F0316;
+  background: linear-gradient(
+    135deg,
+    rgba(63, 3, 22, 0.1),
+    rgba(63, 3, 22, 0.05)
+  );
+  color: #3f0316;
+  border: 2px solid #3f0316;
   border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 600;
@@ -840,7 +867,7 @@ body .list-property-btn:hover {
 }
 
 .view-map-btn:hover {
-  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.9));
+  background: linear-gradient(135deg, #3f0316, rgba(63, 3, 22, 0.9));
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(63, 3, 22, 0.3);
@@ -868,7 +895,7 @@ body .list-property-btn:hover {
 }
 
 .property-insights-title i {
-  color: #3F0316;
+  color: #3f0316;
   font-size: 1.2rem;
 }
 
@@ -891,7 +918,7 @@ body .list-property-btn:hover {
 
 .insight-item:hover {
   background: #ffffff;
-  border-color: #3F0316;
+  border-color: #3f0316;
   transform: translateX(4px);
 }
 
@@ -899,7 +926,7 @@ body .list-property-btn:hover {
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #3F0316, rgba(63, 3, 22, 0.9));
+  background: linear-gradient(135deg, #3f0316, rgba(63, 3, 22, 0.9));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -951,7 +978,7 @@ body .list-property-btn:hover {
 }
 
 .quick-actions-title i {
-  color: #3F0316;
+  color: #3f0316;
   font-size: 1.2rem;
 }
 
@@ -976,15 +1003,19 @@ body .list-property-btn:hover {
 }
 
 .quick-action-btn:hover {
-  background: linear-gradient(135deg, rgba(63, 3, 22, 0.1), rgba(63, 3, 22, 0.05));
-  border-color: #3F0316;
+  background: linear-gradient(
+    135deg,
+    rgba(63, 3, 22, 0.1),
+    rgba(63, 3, 22, 0.05)
+  );
+  border-color: #3f0316;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(63, 3, 22, 0.15);
 }
 
 .quick-action-btn i {
   font-size: 1.5rem;
-  color: #3F0316;
+  color: #3f0316;
   transition: all 0.3s ease;
 }
 
@@ -1000,12 +1031,16 @@ body .list-property-btn:hover {
 }
 
 .quick-action-btn:hover span {
-  color: #3F0316;
+  color: #3f0316;
 }
 
 /* Trust Badge Card */
 .trust-badge-card {
-  background: linear-gradient(135deg, rgba(63, 3, 22, 0.05), rgba(63, 3, 22, 0.02));
+  background: linear-gradient(
+    135deg,
+    rgba(63, 3, 22, 0.05),
+    rgba(63, 3, 22, 0.02)
+  );
   border: 1px solid rgba(63, 3, 22, 0.15);
   border-radius: 12px;
   padding: 1.5rem;
@@ -1022,7 +1057,7 @@ body .list-property-btn:hover {
 
 .trust-badge-header i {
   font-size: 1.5rem;
-  color: #3F0316;
+  color: #3f0316;
 }
 
 .trust-badge-header h4 {
@@ -1050,7 +1085,7 @@ body .list-property-btn:hover {
 }
 
 .trust-badge-item i {
-  color: #3F0316;
+  color: #3f0316;
   font-size: 1rem;
 }
 
@@ -1071,7 +1106,7 @@ body .list-property-btn:hover {
     margin-top: 2rem;
     order: 1;
   }
-  
+
   .property-main-content-left {
     order: 2;
   }
@@ -1101,12 +1136,12 @@ body .list-property-btn:hover {
     gap: 1rem;
     flex-wrap: wrap;
   }
-  
+
   .property-content-layout {
     display: flex;
     flex-direction: column;
   }
-  
+
   .property-sidebar-right {
     order: 1;
     margin-top: 0;
@@ -1122,7 +1157,7 @@ body .list-property-btn:hover {
     order: 2;
     margin-bottom: 1.5rem;
   }
-  
+
   .property-main-content-left {
     order: 3;
   }
@@ -1208,13 +1243,13 @@ body .list-property-btn:hover {
 }
 
 .off-plan-info-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 5px;
-  background: linear-gradient(90deg, #3F0316 0%, rgba(63, 3, 22, 0.8) 100%);
+  background: linear-gradient(90deg, #3f0316 0%, rgba(63, 3, 22, 0.8) 100%);
 }
 
 .off-plan-header {
@@ -1244,7 +1279,7 @@ body .list-property-btn:hover {
   font-size: 1rem;
   font-weight: 700;
   color: #ffffff;
-  background: linear-gradient(135deg, #3F0316 0%, rgba(63, 3, 22, 0.95) 100%);
+  background: linear-gradient(135deg, #3f0316 0%, rgba(63, 3, 22, 0.95) 100%);
   box-shadow: 0 4px 16px rgba(63, 3, 22, 0.3);
   transition: all 0.3s ease;
   border: 2px solid rgba(255, 255, 255, 0.1);
@@ -1258,23 +1293,23 @@ body .list-property-btn:hover {
 }
 
 .off-plan-status-badge.under-construction {
-  background: linear-gradient(135deg, #3F0316 0%, rgba(120, 53, 15, 0.9) 100%);
+  background: linear-gradient(135deg, #3f0316 0%, rgba(120, 53, 15, 0.9) 100%);
 }
 
 .off-plan-status-badge.first-installment {
-  background: linear-gradient(135deg, #3F0316 0%, rgba(63, 3, 22, 0.85) 100%);
+  background: linear-gradient(135deg, #3f0316 0%, rgba(63, 3, 22, 0.85) 100%);
 }
 
 .off-plan-status-badge.on-handover {
-  background: linear-gradient(135deg, #3F0316 0%, rgba(63, 3, 22, 0.75) 100%);
+  background: linear-gradient(135deg, #3f0316 0%, rgba(63, 3, 22, 0.75) 100%);
 }
 
 .off-plan-installment-badge {
-  background: linear-gradient(135deg, #3F0316 0%, rgba(85, 15, 55, 0.9) 100%);
+  background: linear-gradient(135deg, #3f0316 0%, rgba(85, 15, 55, 0.9) 100%);
 }
 
 .off-plan-handover-badge {
-  background: linear-gradient(135deg, #3F0316 0%, rgba(63, 3, 22, 0.8) 100%);
+  background: linear-gradient(135deg, #3f0316 0%, rgba(63, 3, 22, 0.8) 100%);
 }
 
 .off-plan-status-badge i,
@@ -1289,7 +1324,11 @@ body .list-property-btn:hover {
   align-items: center;
   gap: 1.25rem;
   padding: 1.5rem 2rem;
-  background: linear-gradient(135deg, rgba(63, 3, 22, 0.05) 0%, rgba(63, 3, 22, 0.02) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(63, 3, 22, 0.05) 0%,
+    rgba(63, 3, 22, 0.02) 100%
+  );
   border-radius: 16px;
   border: 2px solid rgba(63, 3, 22, 0.15);
   box-shadow: 0 4px 12px rgba(63, 3, 22, 0.08);
@@ -1303,7 +1342,7 @@ body .list-property-btn:hover {
 
 .off-plan-developer i {
   font-size: 2.5rem;
-  color: #3F0316;
+  color: #3f0316;
   filter: drop-shadow(0 2px 4px rgba(63, 3, 22, 0.2));
 }
 
@@ -1324,14 +1363,18 @@ body .list-property-btn:hover {
 .developer-name {
   font-size: 1.375rem;
   font-weight: 700;
-  color: #3F0316;
+  color: #3f0316;
   letter-spacing: -0.5px;
 }
 
 .off-plan-progress {
   margin-bottom: 3rem;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(63, 3, 22, 0.03) 0%, rgba(63, 3, 22, 0.01) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(63, 3, 22, 0.03) 0%,
+    rgba(63, 3, 22, 0.01) 100%
+  );
   border-radius: 16px;
   border: 2px solid rgba(63, 3, 22, 0.1);
 }
@@ -1353,7 +1396,7 @@ body .list-property-btn:hover {
 .progress-percentage {
   font-size: 1.75rem;
   font-weight: 800;
-  color: #3F0316;
+  color: #3f0316;
   letter-spacing: -0.5px;
 }
 
@@ -1368,7 +1411,12 @@ body .list-property-btn:hover {
 
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #3F0316 0%, rgba(63, 3, 22, 0.9) 50%, #3F0316 100%);
+  background: linear-gradient(
+    90deg,
+    #3f0316 0%,
+    rgba(63, 3, 22, 0.9) 50%,
+    #3f0316 100%
+  );
   border-radius: 10px;
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(63, 3, 22, 0.4);
@@ -1377,13 +1425,18 @@ body .list-property-btn:hover {
 }
 
 .progress-bar-fill::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
   animation: shimmer 2s infinite;
 }
 
@@ -1413,7 +1466,7 @@ body .list-property-btn:hover {
 }
 
 .payment-plans-title i {
-  color: #3F0316;
+  color: #3f0316;
   font-size: 2rem;
   filter: drop-shadow(0 2px 4px rgba(63, 3, 22, 0.2));
 }
@@ -1436,19 +1489,19 @@ body .list-property-btn:hover {
 }
 
 .payment-plan-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #3F0316 0%, rgba(63, 3, 22, 0.8) 100%);
+  background: linear-gradient(90deg, #3f0316 0%, rgba(63, 3, 22, 0.8) 100%);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
 
 .payment-plan-card:hover {
-  border-color: #3F0316;
+  border-color: #3f0316;
   box-shadow: 0 8px 32px rgba(63, 3, 22, 0.2);
   transform: translateY(-4px);
 }
@@ -1503,7 +1556,7 @@ body .list-property-btn:hover {
 
 .plan-item i {
   font-size: 1.25rem;
-  color: #3F0316;
+  color: #3f0316;
   width: 24px;
   text-align: center;
 }
@@ -1538,7 +1591,7 @@ body .list-property-btn:hover {
 .plan-inquire-btn {
   width: 100%;
   padding: 0.875rem 1.5rem;
-  background: linear-gradient(135deg, #3F0316 0%, rgba(63, 3, 22, 0.9) 100%);
+  background: linear-gradient(135deg, #3f0316 0%, rgba(63, 3, 22, 0.9) 100%);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -1553,7 +1606,11 @@ body .list-property-btn:hover {
 }
 
 .plan-inquire-btn:hover {
-  background: linear-gradient(135deg, rgba(63, 3, 22, 0.9) 0%, rgba(63, 3, 22, 0.8) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(63, 3, 22, 0.9) 0%,
+    rgba(63, 3, 22, 0.8) 100%
+  );
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(63, 3, 22, 0.3);
 }
@@ -1566,7 +1623,7 @@ body .list-property-btn:hover {
 .off-plan-brochure-section {
   text-align: center;
   padding: 3rem 2.5rem;
-  background: linear-gradient(135deg, #3F0316 0%, rgba(63, 3, 22, 0.95) 100%);
+  background: linear-gradient(135deg, #3f0316 0%, rgba(63, 3, 22, 0.95) 100%);
   border-radius: 20px;
   margin-top: 2rem;
   position: relative;
@@ -1574,13 +1631,17 @@ body .list-property-btn:hover {
 }
 
 .off-plan-brochure-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
   animation: rotate 20s linear infinite;
 }
 
@@ -1599,7 +1660,7 @@ body .list-property-btn:hover {
   gap: 1rem;
   padding: 1.25rem 2.5rem;
   background: #ffffff;
-  color: #3F0316;
+  color: #3f0316;
   border: 3px solid #ffffff;
   border-radius: 12px;
   font-size: 1.125rem;

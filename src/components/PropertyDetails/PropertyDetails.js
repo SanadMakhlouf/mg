@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./PropertyDetails.css";
 import config from "../../config";
@@ -15,6 +15,107 @@ const PropertyDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showScheduleViewing, setShowScheduleViewing] = useState(false);
+
+  // ✅ Sticky pour agent-card-bayut (position fixed)
+  const agentCardRef = useRef(null);
+  const sidebarRef = useRef(null);
+  const priceHeaderRef = useRef(null);
+  const [isSticky, setIsSticky] = useState(false);
+  const [fixedStyle, setFixedStyle] = useState({});
+
+  useEffect(() => {
+    if (!property) return;
+
+    const handleScroll = () => {
+      if (
+        !agentCardRef.current ||
+        !sidebarRef.current ||
+        !priceHeaderRef.current
+      )
+        return;
+
+      const cardRect = agentCardRef.current.getBoundingClientRect();
+      const sidebarRect = sidebarRef.current.getBoundingClientRect();
+      const priceHeaderRect = priceHeaderRef.current.getBoundingClientRect();
+      const triggerPoint = 120; // Point où le fixed s'active (navbar + marge)
+
+      // Vérifier si on a dépassé le property-price-header
+      // La carte devient fixed quand le price-header sort de la vue (son bas est au-dessus du haut de la fenêtre)
+      const hasPassedPriceHeader = priceHeaderRect.bottom < triggerPoint;
+
+      // Vérifier si on n'a pas dépassé le conteneur parent
+      // Le fixed doit s'arrêter quand le bas du conteneur parent sort de la vue
+      const containerBottom = sidebarRect.bottom;
+      const isContainerStillVisible = containerBottom > triggerPoint;
+
+      // Activer fixed si on a dépassé le price-header ET que le conteneur est encore visible
+      const shouldBeSticky = hasPassedPriceHeader && isContainerStillVisible;
+
+      setIsSticky(shouldBeSticky);
+
+      // Si on doit être sticky, positionner la carte en haut au milieu pour tester
+      if (shouldBeSticky) {
+        const sidebarWidth = sidebarRect.width;
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        const cardHeight = cardRect.height;
+
+        // Positionner en haut au milieu
+        const margin = 20;
+        const top = triggerPoint; // Juste en dessous de la navbar (120px)
+
+        // Calculer la position : centrer horizontalement
+        const maxWidth = 380;
+        const calculatedWidth = Math.min(sidebarWidth, maxWidth);
+        const left = (windowWidth - calculatedWidth) / 2;
+
+        // Si la carte est trop haute pour l'écran, la limiter avec scroll
+        const maxHeight = windowHeight - triggerPoint - margin * 2;
+
+        setFixedStyle({
+          width: `${calculatedWidth}px`,
+          left: `${left}px`,
+          right: "auto",
+          top: `${top}px`,
+          bottom: "auto",
+          maxHeight: cardHeight > maxHeight ? `${maxHeight}px` : "none",
+          overflowY: cardHeight > maxHeight ? "auto" : "visible",
+        });
+      }
+    };
+
+    // Utiliser requestAnimationFrame pour de meilleures performances
+    let ticking = false;
+    const optimizedScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", optimizedScroll, { passive: true });
+    window.addEventListener(
+      "resize",
+      () => {
+        handleScroll();
+      },
+      { passive: true }
+    );
+
+    // Attendre que le DOM soit complètement rendu
+    const timeoutId = setTimeout(() => {
+      handleScroll();
+    }, 300);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("scroll", optimizedScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [property]);
 
   // Default agent data if no agent is assigned
   const defaultAgent = {
@@ -126,7 +227,9 @@ const PropertyDetails = () => {
       <div className="property-details-container">
         <div className="property-not-found">
           <h2>Property Not Found</h2>
-          <p>The property you are looking for does not exist or has been removed.</p>
+          <p>
+            The property you are looking for does not exist or has been removed.
+          </p>
           <button onClick={() => navigate("/")}>Back to Home</button>
         </div>
       </div>
@@ -135,15 +238,16 @@ const PropertyDetails = () => {
 
   // Determine if it's a "hot deal" based on category
   const isHotDeal = property.category === "off-plan";
-  
+
   // Determine if it's an off-plan property (check category or URL path)
-  const isOffPlan = property.category === "off-plan" || 
-                    property.category === "off-plans" || 
-                    window.location.pathname.includes("/off-plan/");
+  const isOffPlan =
+    property.category === "off-plan" ||
+    property.category === "off-plans" ||
+    window.location.pathname.includes("/off-plan/");
 
   // Get default amenities based on property type
   const amenities = defaultAmenities[property.type] || defaultAmenities.default;
-  
+
   // Mock off-plan data (can be replaced with API data later)
   const offPlanData = {
     developer: property.developer || "Emaar Properties",
@@ -157,43 +261,49 @@ const PropertyDetails = () => {
         downPayment: "10%",
         duringConstruction: "40%",
         onHandover: "50%",
-        description: "Pay 10% booking, 40% during construction, and 50% on handover"
+        description:
+          "Pay 10% booking, 40% during construction, and 50% on handover",
       },
       {
         plan: "Plan 2: Post-Handover Payment Plan",
         downPayment: "20%",
         duringConstruction: "30%",
         onHandover: "50%",
-        description: "Extended payment plan with options up to 5 years post-handover"
+        description:
+          "Extended payment plan with options up to 5 years post-handover",
       },
       {
         plan: "Plan 3: Construction Linked Plan",
         downPayment: "15%",
         duringConstruction: "35%",
         onHandover: "50%",
-        description: "Payments linked to construction milestones"
-      }
-    ]
+        description: "Payments linked to construction milestones",
+      },
+    ],
   };
 
   // Create agent object from API response
-  const agent = property.agent && agentDetails
-    ? {
-        id: agentDetails.id,
-        name: agentDetails.name || property.agent.name || "Meridian Group",
-        job_title: agentDetails.job_title || property.agent.job_title || "",
-        photo_url: agentDetails.photo_url || property.agent.photo_url || "/logo192.png",
-        social_media: agentDetails.social_media || {},
-      }
-    : property.agent
-    ? {
-        id: property.agent.id,
-        name: property.agent.name || "Meridian Group",
-        job_title: property.agent.job_title || "",
-        photo_url: property.agent.photo_url || "/logo192.png",
-        social_media: {},
-      }
-    : defaultAgent;
+  const agent =
+    property.agent && agentDetails
+      ? {
+          id: agentDetails.id,
+          name: agentDetails.name || property.agent.name || "Meridian Group",
+          job_title: agentDetails.job_title || property.agent.job_title || "",
+          photo_url:
+            agentDetails.photo_url ||
+            property.agent.photo_url ||
+            "/logo192.png",
+          social_media: agentDetails.social_media || {},
+        }
+      : property.agent
+      ? {
+          id: property.agent.id,
+          name: property.agent.name || "Meridian Group",
+          job_title: property.agent.job_title || "",
+          photo_url: property.agent.photo_url || "/logo192.png",
+          social_media: {},
+        }
+      : defaultAgent;
 
   // Prepare images for carousel
   const propertyImages =
@@ -206,12 +316,16 @@ const PropertyDetails = () => {
     if (property?.pdf_url) {
       return property.pdf_url.startsWith("http")
         ? property.pdf_url
-        : `${config.API_URL.replace("/api/v1", "")}/storage/${property.pdf_url}`;
+        : `${config.API_URL.replace("/api/v1", "")}/storage/${
+            property.pdf_url
+          }`;
     }
     if (property?.brochure) {
       return property.brochure.startsWith("http")
         ? property.brochure
-        : `${config.API_URL.replace("/api/v1", "")}/storage/${property.brochure}`;
+        : `${config.API_URL.replace("/api/v1", "")}/storage/${
+            property.brochure
+          }`;
     }
     return null;
   })();
@@ -220,34 +334,48 @@ const PropertyDetails = () => {
     <>
       <SEO
         title={`${property.name} - Property in ${property.location} | Meridian Group`}
-        description={`${property.name} property in ${property.location}. ${property.price ? `Starting from ${parseFloat(property.price).toLocaleString()} AED.` : ''} ${property.description || 'Premium property by Meridian Group.'}`}
+        description={`${property.name} property in ${property.location}. ${
+          property.price
+            ? `Starting from ${parseFloat(
+                property.price
+              ).toLocaleString()} AED.`
+            : ""
+        } ${property.description || "Premium property by Meridian Group."}`}
         keywords={`${property.name}, property, ${property.location}, Abu Dhabi real estate, Meridian Group, property investment`}
         url={`https://meridiangroup.ae/property/${id}/${name}`}
-        image={propertyImages && propertyImages.length > 0 ? propertyImages[0] : 'https://meridiangroup.ae/og-image.jpg'}
+        image={
+          propertyImages && propertyImages.length > 0
+            ? propertyImages[0]
+            : "https://meridiangroup.ae/og-image.jpg"
+        }
         type="article"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "RealEstateListing",
-          "name": property.name,
-          "description": property.description || `${property.name} property in ${property.location}`,
-          "url": `https://meridiangroup.ae/property/${id}/${name}`,
-          "image": propertyImages || [],
-          "address": {
+          name: property.name,
+          description:
+            property.description ||
+            `${property.name} property in ${property.location}`,
+          url: `https://meridiangroup.ae/property/${id}/${name}`,
+          image: propertyImages || [],
+          address: {
             "@type": "PostalAddress",
-            "addressLocality": property.location,
-            "addressRegion": "Abu Dhabi",
-            "addressCountry": "AE"
+            addressLocality: property.location,
+            addressRegion: "Abu Dhabi",
+            addressCountry: "AE",
           },
-          "offers": property.price ? {
-            "@type": "Offer",
-            "price": property.price,
-            "priceCurrency": "AED"
-          } : undefined,
-          "provider": {
+          offers: property.price
+            ? {
+                "@type": "Offer",
+                price: property.price,
+                priceCurrency: "AED",
+              }
+            : undefined,
+          provider: {
             "@type": "RealEstateAgent",
-            "name": "Meridian Group",
-            "url": "https://meridiangroup.ae"
-          }
+            name: "Meridian Group",
+            url: "https://meridiangroup.ae",
+          },
         }}
       />
       <div className="property-details-page">
@@ -266,12 +394,15 @@ const PropertyDetails = () => {
                 <div className="hot-deal-badge-details">HOT DEAL</div>
               )}
               {/* Overlay buttons */}
-              <button className="image-overlay-btn map-btn" onClick={() => navigate("/contact")}>
+              <button
+                className="image-overlay-btn map-btn"
+                onClick={() => navigate("/contact")}
+              >
                 <i className="fa-solid fa-map-pin"></i>
                 <span>Map</span>
               </button>
-              <button 
-                className="image-overlay-btn video-btn" 
+              <button
+                className="image-overlay-btn video-btn"
                 onClick={() => setShowScheduleViewing(true)}
               >
                 <i className="fa-solid fa-video"></i>
@@ -281,13 +412,12 @@ const PropertyDetails = () => {
           </div>
 
           {/* Price and Key Info Section */}
-          <div className="property-price-header">
+          <div className="property-price-header" ref={priceHeaderRef}>
             <div className="price-header-left">
               <h1 className="property-price-large">
-                {parseFloat(property.price) > 0 
+                {parseFloat(property.price) > 0
                   ? `${parseFloat(property.price).toLocaleString()} AED`
-                  : 'Price on Request'
-                }
+                  : "Price on Request"}
               </h1>
               <p className="property-full-address">
                 {property.name}, {property.location}
@@ -303,12 +433,16 @@ const PropertyDetails = () => {
                 </div>
                 <div className="stat-item">
                   <i className="fa-solid fa-ruler-combined"></i>
-                  <span>{parseFloat(property.area) > 0 ? `${property.area} sqft` : 'Area TBD'}</span>
+                  <span>
+                    {parseFloat(property.area) > 0
+                      ? `${property.area} sqft`
+                      : "Area TBD"}
+                  </span>
                 </div>
               </div>
             </div>
             <div className="price-header-right">
-              <ShareButtons 
+              <ShareButtons
                 propertyId={property.id}
                 propertyName={property.name}
                 propertyUrl={window.location.href}
@@ -321,7 +455,11 @@ const PropertyDetails = () => {
             <div className="off-plan-info-section">
               <div className="off-plan-header">
                 <div className="off-plan-badges">
-                  <span className={`off-plan-status-badge ${offPlanData.status.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <span
+                    className={`off-plan-status-badge ${offPlanData.status
+                      .toLowerCase()
+                      .replace(/\s+/g, "-")}`}
+                  >
                     <i className="fa-solid fa-building"></i>
                     {offPlanData.status}
                   </span>
@@ -338,19 +476,23 @@ const PropertyDetails = () => {
                   <i className="fa-solid fa-building-circle-check"></i>
                   <div className="developer-info">
                     <span className="developer-label">Developer</span>
-                    <span className="developer-name">{offPlanData.developer}</span>
+                    <span className="developer-name">
+                      {offPlanData.developer}
+                    </span>
                   </div>
                 </div>
               </div>
-              
+
               <div className="off-plan-progress">
                 <div className="progress-header">
                   <span className="progress-label">Construction Progress</span>
-                  <span className="progress-percentage">{offPlanData.constructionProgress}</span>
+                  <span className="progress-percentage">
+                    {offPlanData.constructionProgress}
+                  </span>
                 </div>
                 <div className="progress-bar">
-                  <div 
-                    className="progress-bar-fill" 
+                  <div
+                    className="progress-bar-fill"
                     style={{ width: offPlanData.constructionProgress }}
                   ></div>
                 </div>
@@ -373,27 +515,37 @@ const PropertyDetails = () => {
                         <div className="plan-item">
                           <i className="fa-solid fa-hand-holding-dollar"></i>
                           <div className="plan-item-content">
-                            <span className="plan-item-label">Down Payment</span>
-                            <span className="plan-item-value">{plan.downPayment}</span>
+                            <span className="plan-item-label">
+                              Down Payment
+                            </span>
+                            <span className="plan-item-value">
+                              {plan.downPayment}
+                            </span>
                           </div>
                         </div>
                         <div className="plan-item">
                           <i className="fa-solid fa-hard-hat"></i>
                           <div className="plan-item-content">
-                            <span className="plan-item-label">During Construction</span>
-                            <span className="plan-item-value">{plan.duringConstruction}</span>
+                            <span className="plan-item-label">
+                              During Construction
+                            </span>
+                            <span className="plan-item-value">
+                              {plan.duringConstruction}
+                            </span>
                           </div>
                         </div>
                         <div className="plan-item">
                           <i className="fa-solid fa-key"></i>
                           <div className="plan-item-content">
                             <span className="plan-item-label">On Handover</span>
-                            <span className="plan-item-value">{plan.onHandover}</span>
+                            <span className="plan-item-value">
+                              {plan.onHandover}
+                            </span>
                           </div>
                         </div>
                       </div>
                       <p className="plan-description">{plan.description}</p>
-                      <button 
+                      <button
                         className="plan-inquire-btn"
                         onClick={() => setShowScheduleViewing(true)}
                       >
@@ -407,12 +559,17 @@ const PropertyDetails = () => {
 
               {/* Download Brochure Button */}
               <div className="off-plan-brochure-section">
-                <button 
+                <button
                   className="off-plan-brochure-btn"
                   onClick={() => {
                     // Create a mock PDF or redirect to brochure
-                    const brochureLink = brochureUrl || `${config.API_URL.replace("/api/v1", "")}/storage/brochures/${property.id}.pdf`;
-                    window.open(brochureLink, '_blank');
+                    const brochureLink =
+                      brochureUrl ||
+                      `${config.API_URL.replace(
+                        "/api/v1",
+                        ""
+                      )}/storage/brochures/${property.id}.pdf`;
+                    window.open(brochureLink, "_blank");
                   }}
                 >
                   <i className="fa-solid fa-file-pdf"></i>
@@ -420,7 +577,8 @@ const PropertyDetails = () => {
                   <i className="fa-solid fa-download"></i>
                 </button>
                 <p className="brochure-note">
-                  Get detailed information about this project including floor plans, amenities, and location map.
+                  Get detailed information about this project including floor
+                  plans, amenities, and location map.
                 </p>
               </div>
             </div>
@@ -442,27 +600,27 @@ const PropertyDetails = () => {
               {/* Description */}
               <div className="property-description-section description-desktop">
                 <h3>About This Property</h3>
-                <div 
+                <div
                   className="description-text"
                   dangerouslySetInnerHTML={{
-                    __html: property.description 
+                    __html: property.description
                       ? property.description
-                          .replace(/&amp;lt;/g, '<')
-                          .replace(/&amp;gt;/g, '>')
-                          .replace(/&amp;amp;/g, '&')
+                          .replace(/&amp;lt;/g, "<")
+                          .replace(/&amp;gt;/g, ">")
+                          .replace(/&amp;amp;/g, "&")
                           .replace(/&amp;quot;/g, '"')
                           .replace(/&amp;#039;/g, "'")
-                          .replace(/&amp;nbsp;/g, ' ')
-                          .replace(/&lt;br\s*\/?&gt;/gi, '<br>')
-                          .replace(/<br\s*\/?>/gi, '<br>')
-                          .replace(/&amp;lt;br\s*\/?&amp;gt;/gi, '<br>')
-                          .replace(/&amp;/g, '&')
+                          .replace(/&amp;nbsp;/g, " ")
+                          .replace(/&lt;br\s*\/?&gt;/gi, "<br>")
+                          .replace(/<br\s*\/?>/gi, "<br>")
+                          .replace(/&amp;lt;br\s*\/?&amp;gt;/gi, "<br>")
+                          .replace(/&amp;/g, "&")
                           .replace(/&quot;/g, '"')
                           .replace(/&#39;/g, "'")
-                          .replace(/&nbsp;/g, ' ')
-                          .replace(/&lt;/g, '<')
-                          .replace(/&gt;/g, '>')
-                      : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`
+                          .replace(/&nbsp;/g, " ")
+                          .replace(/&lt;/g, "<")
+                          .replace(/&gt;/g, ">")
+                      : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`,
                   }}
                 />
               </div>
@@ -488,11 +646,15 @@ const PropertyDetails = () => {
                 <div className="info-table">
                   <div className="info-row">
                     <span className="info-label">Type</span>
-                    <span className="info-value">{property.type || "Property"}</span>
+                    <span className="info-value">
+                      {property.type || "Property"}
+                    </span>
                   </div>
                   <div className="info-row">
                     <span className="info-label">Purpose</span>
-                    <span className="info-value">{property.category === "rental" ? "For Rent" : "For Sale"}</span>
+                    <span className="info-value">
+                      {property.category === "rental" ? "For Rent" : "For Sale"}
+                    </span>
                   </div>
                   <div className="info-row">
                     <span className="info-label">Reference no.</span>
@@ -501,7 +663,9 @@ const PropertyDetails = () => {
                   {property.permit_number && (
                     <div className="info-row">
                       <span className="info-label">Permit</span>
-                      <span className="info-value">{property.permit_number}</span>
+                      <span className="info-value">
+                        {property.permit_number}
+                      </span>
                     </div>
                   )}
                   <div className="info-row">
@@ -547,14 +711,24 @@ const PropertyDetails = () => {
             </div>
 
             {/* Right Column - Agent Sidebar */}
-            <div className="property-sidebar-right">
-              <div className="agent-card-bayut">
+            <div className="property-sidebar-right" ref={sidebarRef}>
+              <div
+                className={`agent-card-bayut ${
+                  isSticky ? "agent-card-sticky" : ""
+                }`}
+                ref={agentCardRef}
+                style={isSticky ? fixedStyle : {}}
+              >
                 <div className="agent-card-header">
                   <div className="agent-card-banner">
                     <span className="broker-badge">Verified Broker</span>
                   </div>
                   <div className="agent-photo-container">
-                    <img src={agent.photo_url || agent.image} alt={agent.name} className="agent-photo" />
+                    <img
+                      src={agent.photo_url || agent.image}
+                      alt={agent.name}
+                      className="agent-photo"
+                    />
                   </div>
                 </div>
                 <div className="agent-card-body">
@@ -564,7 +738,7 @@ const PropertyDetails = () => {
                       <span className="agent-blue-badge">Agent</span>
                     )}
                   </div>
-                  
+
                   {agent.job_title && (
                     <p className="agent-job-title">{agent.job_title}</p>
                   )}
@@ -577,7 +751,7 @@ const PropertyDetails = () => {
                   {property.agent && agent.social_media && (
                     <div className="agent-social-buttons">
                       {agent.social_media.instagram && (
-                        <a 
+                        <a
                           href={agent.social_media.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -588,7 +762,7 @@ const PropertyDetails = () => {
                         </a>
                       )}
                       {agent.social_media.facebook && (
-                        <a 
+                        <a
                           href={agent.social_media.facebook}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -599,7 +773,7 @@ const PropertyDetails = () => {
                         </a>
                       )}
                       {agent.social_media.linkedin && (
-                        <a 
+                        <a
                           href={agent.social_media.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -610,7 +784,7 @@ const PropertyDetails = () => {
                         </a>
                       )}
                       {agent.social_media.whatsapp && (
-                        <a 
+                        <a
                           href={agent.social_media.whatsapp}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -621,7 +795,7 @@ const PropertyDetails = () => {
                         </a>
                       )}
                       {agent.social_media.twitter && (
-                        <a 
+                        <a
                           href={agent.social_media.twitter}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -648,7 +822,7 @@ const PropertyDetails = () => {
                     </div>
                   )}
 
-                  <button 
+                  <button
                     className="schedule-viewing-btn-bayut"
                     onClick={() => setShowScheduleViewing(true)}
                   >
@@ -671,19 +845,31 @@ const PropertyDetails = () => {
                     </div>
                     <div className="quick-contact-text">
                       <span className="quick-contact-label">Call Us</span>
-                      <span className="quick-contact-value">+971 586830401</span>
+                      <span className="quick-contact-value">
+                        +971 586830401
+                      </span>
                     </div>
                   </a>
-                  <a href="mailto:info@meridiangroup.ae" className="quick-contact-item">
+                  <a
+                    href="mailto:info@meridiangroup.ae"
+                    className="quick-contact-item"
+                  >
                     <div className="quick-contact-icon email-icon">
                       <i className="fa-solid fa-envelope"></i>
                     </div>
                     <div className="quick-contact-text">
                       <span className="quick-contact-label">Email Us</span>
-                      <span className="quick-contact-value">info@meridiangroup.ae</span>
+                      <span className="quick-contact-value">
+                        info@meridiangroup.ae
+                      </span>
                     </div>
                   </a>
-                  <a href="https://wa.me/971586830401" target="_blank" rel="noopener noreferrer" className="quick-contact-item">
+                  <a
+                    href="https://wa.me/971586830401"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="quick-contact-item"
+                  >
                     <div className="quick-contact-icon whatsapp-icon">
                       <i className="fa-brands fa-whatsapp"></i>
                     </div>
@@ -712,11 +898,16 @@ const PropertyDetails = () => {
                       <span>Mon - Sat: 09:00 AM - 6:00 PM</span>
                     </div>
                   </div>
-                  <button 
+                  <button
                     className="view-map-btn"
                     onClick={() => {
-                      const address = encodeURIComponent("Al Hisn, Baynunah Tower 2, Office 402, Abu Dhabi");
-                      window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+                      const address = encodeURIComponent(
+                        "Al Hisn, Baynunah Tower 2, Office 402, Abu Dhabi"
+                      );
+                      window.open(
+                        `https://www.google.com/maps/search/?api=1&query=${address}`,
+                        "_blank"
+                      );
                     }}
                   >
                     <i className="fa-solid fa-map-pin"></i>
@@ -739,9 +930,16 @@ const PropertyDetails = () => {
                     <div className="insight-content">
                       <span className="insight-label">Listing Date</span>
                       <span className="insight-value">
-                        {property.created_at 
-                          ? new Date(property.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-                          : 'Recently Listed'}
+                        {property.created_at
+                          ? new Date(property.created_at).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              }
+                            )
+                          : "Recently Listed"}
                       </span>
                     </div>
                   </div>
@@ -761,7 +959,9 @@ const PropertyDetails = () => {
                       </div>
                       <div className="insight-content">
                         <span className="insight-label">Permit Number</span>
-                        <span className="insight-value">{property.permit_number}</span>
+                        <span className="insight-value">
+                          {property.permit_number}
+                        </span>
                       </div>
                     </div>
                   )}
@@ -771,7 +971,11 @@ const PropertyDetails = () => {
                     </div>
                     <div className="insight-content">
                       <span className="insight-label">Listing Type</span>
-                      <span className="insight-value">{property.listing_type === 'rental' ? 'For Rent' : 'For Sale'}</span>
+                      <span className="insight-value">
+                        {property.listing_type === "rental"
+                          ? "For Rent"
+                          : "For Sale"}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -784,40 +988,53 @@ const PropertyDetails = () => {
                   Quick Actions
                 </h4>
                 <div className="quick-actions-grid">
-                  <button 
+                  <button
                     className="quick-action-btn"
                     onClick={() => setShowScheduleViewing(true)}
                   >
                     <i className="fa-solid fa-calendar-check"></i>
                     <span>Schedule Viewing</span>
                   </button>
-                  <button 
+                  <button
                     className="quick-action-btn"
                     onClick={() => {
-                      const subject = encodeURIComponent(`Inquiry about ${property.name}`);
-                      const body = encodeURIComponent(`Hello,\n\nI'm interested in ${property.name} located at ${property.location}.\n\nPlease contact me with more information.\n\nThank you!`);
+                      const subject = encodeURIComponent(
+                        `Inquiry about ${property.name}`
+                      );
+                      const body = encodeURIComponent(
+                        `Hello,\n\nI'm interested in ${property.name} located at ${property.location}.\n\nPlease contact me with more information.\n\nThank you!`
+                      );
                       window.location.href = `mailto:info@meridiangroup.ae?subject=${subject}&body=${body}`;
                     }}
                   >
                     <i className="fa-solid fa-envelope"></i>
                     <span>Send Inquiry</span>
                   </button>
-                  <button 
+                  <button
                     className="quick-action-btn"
                     onClick={() => {
-                      const message = encodeURIComponent(`Hi, I'm interested in ${property.name} - ${window.location.href}`);
-                      window.open(`https://wa.me/971586830401?text=${message}`, '_blank');
+                      const message = encodeURIComponent(
+                        `Hi, I'm interested in ${property.name} - ${window.location.href}`
+                      );
+                      window.open(
+                        `https://wa.me/971586830401?text=${message}`,
+                        "_blank"
+                      );
                     }}
                   >
                     <i className="fa-brands fa-whatsapp"></i>
                     <span>WhatsApp</span>
                   </button>
-                  <button 
+                  <button
                     className="quick-action-btn"
                     onClick={() => {
-                      const propertyUrl = encodeURIComponent(window.location.href);
-                      const propertyTitle = encodeURIComponent(`${property.name} - Meridian Group`);
-                      window.open(`https://www.facebook.com/sharer/sharer.php?u=${propertyUrl}`, '_blank');
+                      const propertyUrl = encodeURIComponent(
+                        window.location.href
+                      );
+                      window.open(
+                        `https://www.facebook.com/sharer/sharer.php?u=${propertyUrl}`,
+                        "_blank"
+                      );
                     }}
                   >
                     <i className="fa-brands fa-facebook"></i>
@@ -852,27 +1069,27 @@ const PropertyDetails = () => {
             {/* Description Section - Mobile Position (After Agent) */}
             <div className="property-description-section description-mobile">
               <h3>About This Property</h3>
-              <div 
+              <div
                 className="description-text"
                 dangerouslySetInnerHTML={{
-                  __html: property.description 
+                  __html: property.description
                     ? property.description
-                        .replace(/&amp;lt;/g, '<')
-                        .replace(/&amp;gt;/g, '>')
-                        .replace(/&amp;amp;/g, '&')
+                        .replace(/&amp;lt;/g, "<")
+                        .replace(/&amp;gt;/g, ">")
+                        .replace(/&amp;amp;/g, "&")
                         .replace(/&amp;quot;/g, '"')
                         .replace(/&amp;#039;/g, "'")
-                        .replace(/&amp;nbsp;/g, ' ')
-                        .replace(/&lt;br\s*\/?&gt;/gi, '<br>')
-                        .replace(/<br\s*\/?>/gi, '<br>')
-                        .replace(/&amp;lt;br\s*\/?&amp;gt;/gi, '<br>')
-                        .replace(/&amp;/g, '&')
+                        .replace(/&amp;nbsp;/g, " ")
+                        .replace(/&lt;br\s*\/?&gt;/gi, "<br>")
+                        .replace(/<br\s*\/?>/gi, "<br>")
+                        .replace(/&amp;lt;br\s*\/?&amp;gt;/gi, "<br>")
+                        .replace(/&amp;/g, "&")
                         .replace(/&quot;/g, '"')
                         .replace(/&#39;/g, "'")
-                        .replace(/&nbsp;/g, ' ')
-                        .replace(/&lt;/g, '<')
-                        .replace(/&gt;/g, '>')
-                    : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`
+                        .replace(/&nbsp;/g, " ")
+                        .replace(/&lt;/g, "<")
+                        .replace(/&gt;/g, ">")
+                    : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`,
                 }}
               />
             </div>
