@@ -149,12 +149,13 @@ const TrustedAgents = () => {
 
       {/* Trusted Agents Section */}
       <section id="trusted-agents" className="trusted-agents-section">
+        
+
+        <div className="container">
         <div className="section-title">
           <span className="subtitle">Our Qualified</span>
           <h2>Trusted Agents</h2>
         </div>
-
-        <div className="container">
           {loading ? (
             <div className="loading-container">
               <p>Loading agents...</p>
