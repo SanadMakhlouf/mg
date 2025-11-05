@@ -828,10 +828,10 @@ const InteractiveMap = () => {
               )}
 
               <div className="popup-features">
-                {selectedProperty.beds && (
+                {(selectedProperty.beds !== undefined && selectedProperty.beds !== null) && (
                   <div className="feature-item">
                     <i className="fas fa-bed"></i>
-                    <span>{selectedProperty.beds} Beds</span>
+                    <span>{selectedProperty.beds === 0 || selectedProperty.beds === "0" ? "Studio" : `${selectedProperty.beds} Beds`}</span>
                   </div>
                 )}
                 {selectedProperty.baths && (

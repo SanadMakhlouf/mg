@@ -1781,46 +1781,48 @@ body .list-property-btn:hover {
   padding: 1.125rem 1.75rem;
   border-radius: 12px;
   font-size: 1rem;
-  font-weight: 700;
-  color: #ffffff;
-  background: linear-gradient(135deg, #3f0316 0%, rgba(63, 3, 22, 0.95) 100%);
-  box-shadow: 0 4px 16px rgba(63, 3, 22, 0.3);
+  font-weight: 600;
+  color: #3f0316;
+  background: rgba(63, 3, 22, 0.08);
+  box-shadow: 0 2px 8px rgba(63, 3, 22, 0.08);
   transition: all 0.3s ease;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(63, 3, 22, 0.12);
 }
 
 .off-plan-status-badge:hover,
 .off-plan-installment-badge:hover,
 .off-plan-handover-badge:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(63, 3, 22, 0.4);
+  background: rgba(63, 3, 22, 0.12);
+  box-shadow: 0 4px 12px rgba(63, 3, 22, 0.12);
 }
 
 .off-plan-status-badge.under-construction {
-  background: linear-gradient(135deg, #3f0316 0%, rgba(120, 53, 15, 0.9) 100%);
+  background: rgba(63, 3, 22, 0.08);
 }
 
 .off-plan-status-badge.first-installment {
-  background: linear-gradient(135deg, #3f0316 0%, rgba(63, 3, 22, 0.85) 100%);
+  background: rgba(63, 3, 22, 0.08);
 }
 
 .off-plan-status-badge.on-handover {
-  background: linear-gradient(135deg, #3f0316 0%, rgba(63, 3, 22, 0.75) 100%);
+  background: rgba(63, 3, 22, 0.08);
 }
 
 .off-plan-installment-badge {
-  background: linear-gradient(135deg, #3f0316 0%, rgba(85, 15, 55, 0.9) 100%);
+  background: rgba(63, 3, 22, 0.08);
 }
 
 .off-plan-handover-badge {
-  background: linear-gradient(135deg, #3f0316 0%, rgba(63, 3, 22, 0.8) 100%);
+  background: rgba(63, 3, 22, 0.08);
 }
 
 .off-plan-status-badge i,
 .off-plan-installment-badge i,
 .off-plan-handover-badge i {
   font-size: 1.25rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  color: #3f0316;
+  opacity: 0.8;
 }
 
 .off-plan-developer {

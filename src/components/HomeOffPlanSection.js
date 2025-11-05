@@ -103,10 +103,10 @@ const HomeOffPlanSection = () => {
                   </p>
                 )}
                 <div className="home-property-details">
-                  {project.bedrooms && (
+                  {(project.bedrooms !== undefined && project.bedrooms !== null) && (
                     <span>
                       <i className="fa-solid fa-bed"></i>
-                      {project.bedrooms} Beds
+                      {project.bedrooms === 0 || project.bedrooms === "0" ? "Studio" : `${project.bedrooms} Beds`}
                     </span>
                   )}
                   {project.bathrooms && (

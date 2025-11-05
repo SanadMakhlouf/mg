@@ -217,6 +217,7 @@ const SearchSection = ({ defaultTab = null, hideTabs = false, title = "Find Your
                 aria-label="Minimum Bathrooms"
               >
                   <option value="">Min</option>
+                <option value="0">Studio</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3+</option>
@@ -231,6 +232,7 @@ const SearchSection = ({ defaultTab = null, hideTabs = false, title = "Find Your
                 aria-label="Maximum Bathrooms"
               >
                   <option value="">Max</option>
+                <option value="0">Studio</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

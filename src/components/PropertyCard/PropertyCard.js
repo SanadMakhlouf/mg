@@ -143,9 +143,9 @@ const PropertyCard = ({
         <div className="property-info-grid">
           <div className="info-item-l">
             <span>
-              {beds} <i className="fa-solid fa-bed" aria-hidden="true"></i>
+              {beds === 0 || beds === "0" ? "Studio" : beds} <i className="fa-solid fa-bed" aria-hidden="true"></i>
             </span>
-            <span>Bed</span>
+            <span>{beds === 0 || beds === "0" ? "" : "Bed"}</span>
           </div>
           <div className="info-item-l">
             <span>

@@ -140,40 +140,10 @@ const OffPlanDetails = () => {
   // Determine if it's an off-plan property
   const isOffPlan = true; // Always true for this component
 
-  // Get default amenities based on property type
-  const amenities = defaultAmenities[property.type] || defaultAmenities.default;
-
-  // Mock off-plan data (can be replaced with API data later)
-  const offPlanData = {
-    developer: property.developer || "Emaar Properties",
-    status: property.status || "Under Construction",
-    handoverDate: property.handover_date || "Q4 2026",
-    firstInstallment: "10%",
-    constructionProgress: "45%",
-    paymentPlans: [
-      {
-        plan: "Plan 1: Flexible Payment Plan",
-        downPayment: "10%",
-        duringConstruction: "40%",
-        onHandover: "50%",
-        description: "Pay 10% booking, 40% during construction, and 50% on handover"
-      },
-      {
-        plan: "Plan 2: Post-Handover Payment Plan",
-        downPayment: "20%",
-        duringConstruction: "30%",
-        onHandover: "50%",
-        description: "Extended payment plan with options up to 5 years post-handover"
-      },
-      {
-        plan: "Plan 3: Construction Linked Plan",
-        downPayment: "15%",
-        duringConstruction: "35%",
-        onHandover: "50%",
-        description: "Payments linked to construction milestones"
-      }
-    ]
-  };
+  // Get amenities from API (features_amenities) or fall back to default amenities based on property type
+  const amenities = property.features_amenities && property.features_amenities.length > 0
+    ? property.features_amenities
+    : (defaultAmenities[property.type] || defaultAmenities.default);
 
   // Create agent object from API response
   const agent = property.agent && agentDetails
@@ -296,7 +266,7 @@ const OffPlanDetails = () => {
               <div className="property-key-stats">
                 <div className="stat-item">
                   <i className="fa-solid fa-bed"></i>
-                  <span>{property.bedrooms || 0} Beds</span>
+                  <span>{property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : `${property.bedrooms || 0} Beds`}</span>
                 </div>
                 <div className="stat-item">
                   <i className="fa-solid fa-bath"></i>
@@ -322,108 +292,51 @@ const OffPlanDetails = () => {
             <div className="off-plan-info-section">
               <div className="off-plan-header">
                 <div className="off-plan-badges">
-                  <span className={`off-plan-status-badge ${offPlanData.status.toLowerCase().replace(/\s+/g, '-')}`}>
-                  <i className="fa-solid fa-building"></i>
-                    {offPlanData.status}
-                  </span>
-                  <span className="off-plan-installment-badge">
-                    <i className="fa-solid fa-money-bill-wave"></i>
-                    First Installment: {offPlanData.firstInstallment}
-                  </span>
-                  <span className="off-plan-handover-badge">
-                    <i className="fa-solid fa-calendar-check"></i>
-                    Handover: {offPlanData.handoverDate}
-                  </span>
-                </div>
-                <div className="off-plan-developer">
-                  <i className="fa-solid fa-building-circle-check"></i>
-                  <div className="developer-info">
-                    <span className="developer-label">Developer</span>
-                    <span className="developer-name">{offPlanData.developer}</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="off-plan-progress">
-                <div className="progress-header">
-                  <span className="progress-label">Construction Progress</span>
-                  <span className="progress-percentage">{offPlanData.constructionProgress}</span>
-                </div>
-                <div className="progress-bar">
-                  <div 
-                    className="progress-bar-fill" 
-                    style={{ width: offPlanData.constructionProgress }}
-                  ></div>
-                </div>
-              </div>
-
-              {/* Payment Plans Section */}
-              <div className="off-plan-payment-plans">
-                <h3 className="payment-plans-title">
-                  <i className="fa-solid fa-file-invoice-dollar"></i>
-                  Payment Plans
-                </h3>
-                <div className="payment-plans-grid">
-                  {offPlanData.paymentPlans.map((plan, index) => (
-                    <div key={index} className="payment-plan-card">
-                      <div className="plan-header">
-                        <h4>{plan.plan}</h4>
-                        <span className="plan-badge">Available</span>
-                      </div>
-                      <div className="plan-breakdown">
-                        <div className="plan-item">
-                          <i className="fa-solid fa-hand-holding-dollar"></i>
-                          <div className="plan-item-content">
-                            <span className="plan-item-label">Down Payment</span>
-                            <span className="plan-item-value">{plan.downPayment}</span>
-                          </div>
-                        </div>
-                        <div className="plan-item">
-                          <i className="fa-solid fa-hard-hat"></i>
-                          <div className="plan-item-content">
-                            <span className="plan-item-label">During Construction</span>
-                            <span className="plan-item-value">{plan.duringConstruction}</span>
-                          </div>
-                        </div>
-                        <div className="plan-item">
-                          <i className="fa-solid fa-key"></i>
-                          <div className="plan-item-content">
-                            <span className="plan-item-label">On Handover</span>
-                            <span className="plan-item-value">{plan.onHandover}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="plan-description">{plan.description}</p>
-                      <button 
-                        className="plan-inquire-btn"
-                        onClick={() => setShowScheduleViewing(true)}
-                      >
-                        <i className="fa-solid fa-envelope"></i>
-                        Inquire About This Plan
-                      </button>
-                    </div>
-                  ))}
+                  {property.first_installment && (
+                    <span className="off-plan-installment-badge">
+                      <i className="fa-solid fa-money-bill-wave"></i>
+                      First Installment: {property.first_installment}%
+                    </span>
+                  )}
+                  {property.under_construction && (
+                    <span className="off-plan-status-badge">
+                      <i className="fa-solid fa-building"></i>
+                      Under Construction: {property.under_construction}%
+                    </span>
+                  )}
+                  {property.on_handover && (
+                    <span className="off-plan-handover-badge">
+                      <i className="fa-solid fa-key"></i>
+                      On Handover: {property.on_handover}%
+                    </span>
+                  )}
+                  {property.handover_date && (
+                    <span className="off-plan-handover-badge">
+                      <i className="fa-solid fa-calendar-check"></i>
+                      Handover Date: {property.handover_date}
+                    </span>
+                  )}
                 </div>
               </div>
 
               {/* Download Brochure Button */}
-              <div className="off-plan-brochure-section">
-                <button 
-                  className="off-plan-brochure-btn"
-                  onClick={() => {
-                    // Create a mock PDF or redirect to brochure
-                    const brochureLink = brochureUrl || `${config.API_URL.replace("/api/v1", "")}/storage/brochures/${property.id}.pdf`;
-                    window.open(brochureLink, '_blank');
-                  }}
-                >
-                  <i className="fa-solid fa-file-pdf"></i>
-                  <span>Download Project Brochure</span>
-                  <i className="fa-solid fa-download"></i>
-                </button>
-                <p className="brochure-note">
-                  Get detailed information about this project including floor plans, amenities, and location map.
-                </p>
-              </div>
+              {brochureUrl && (
+                <div className="off-plan-brochure-section">
+                  <button 
+                    className="off-plan-brochure-btn"
+                    onClick={() => {
+                      window.open(brochureUrl, '_blank');
+                    }}
+                  >
+                    <i className="fa-solid fa-file-pdf"></i>
+                    <span>Download Project Brochure</span>
+                    <i className="fa-solid fa-download"></i>
+                  </button>
+                  <p className="brochure-note">
+                    Get detailed information about this project including floor plans, amenities, and location map.
+                  </p>
+                </div>
+              )}
             </div>
           )}
 
@@ -433,8 +346,8 @@ const OffPlanDetails = () => {
             <div className="property-main-content-left">
               {/* Property Type/Features */}
               <div className="property-type-headline">
-                {property.bedrooms && property.bedrooms > 0 && (
-                  <span>{property.bedrooms}BR</span>
+                {(property.bedrooms !== undefined && property.bedrooms !== null) && (
+                  <span>{property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : `${property.bedrooms}BR`}</span>
                 )}
                 {property.type && <span>{property.type}</span>}
                 {property.category && <span>{property.category}</span>}
@@ -463,7 +376,7 @@ const OffPlanDetails = () => {
                         .replace(/&nbsp;/g, ' ')
                         .replace(/&lt;/g, '<')
                         .replace(/&gt;/g, '>')
-                    : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`
+                    : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : `${property.bedrooms} bedrooms`} and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`
                 }}
               />
             </div>
@@ -509,10 +422,10 @@ const OffPlanDetails = () => {
                     <span className="info-label">Location</span>
                     <span className="info-value">{property.location}</span>
                   </div>
-                  {property.bedrooms && (
+                  {(property.bedrooms !== undefined && property.bedrooms !== null) && (
                     <div className="info-row">
                       <span className="info-label">Bedrooms</span>
-                      <span className="info-value">{property.bedrooms}</span>
+                      <span className="info-value">{property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : property.bedrooms}</span>
                     </div>
                   )}
                   {property.bathrooms && (
@@ -880,7 +793,7 @@ const OffPlanDetails = () => {
                         .replace(/&nbsp;/g, ' ')
                         .replace(/&lt;/g, '<')
                         .replace(/&gt;/g, '>')
-                    : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`
+                    : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : `${property.bedrooms} bedrooms`} and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`
                 }}
               />
             </div>

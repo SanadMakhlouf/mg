@@ -199,10 +199,10 @@ const OffPlanResaleGrid = ({ filterParams = {} }) => {
                     </p>
                   )}
                   <div className="project-details">
-                    {projects[1].bedrooms && (
+                    {(projects[1].bedrooms !== undefined && projects[1].bedrooms !== null) && (
                       <span>
                         <i className="fa-solid fa-bed"></i>{" "}
-                        {projects[1].bedrooms} Beds
+                        {projects[1].bedrooms === 0 || projects[1].bedrooms === "0" ? "Studio" : `${projects[1].bedrooms} Beds`}
                       </span>
                     )}
                     {projects[1].bathrooms && (
@@ -337,10 +337,10 @@ const OffPlanResaleGrid = ({ filterParams = {} }) => {
                       </p>
                     )}
                     <div className="project-details">
-                      {projects[5].bedrooms && (
+                      {(projects[5].bedrooms !== undefined && projects[5].bedrooms !== null) && (
                         <span>
                           <i className="fa-solid fa-bed"></i>{" "}
-                          {projects[5].bedrooms} Beds
+                          {projects[5].bedrooms === 0 || projects[5].bedrooms === "0" ? "Studio" : `${projects[5].bedrooms} Beds`}
                         </span>
                       )}
                       {projects[5].bathrooms && (

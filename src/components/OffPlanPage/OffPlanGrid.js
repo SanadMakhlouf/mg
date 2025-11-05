@@ -178,9 +178,11 @@ const OffPlanGrid = ({ filterParams = {} }) => {
               <div className="off-plan-content">
                 <h3 className="project-title">{projects[0].name}</h3>
                 <h4 className="project-subtitle">{projects[0].name}</h4>
-                <p className="project-developer">
-                  By: {projects[0].developer || "Developer Name"}
-                </p>
+                {projects[0].developer && (
+                  <p className="project-developer">
+                    By: {projects[0].developer}
+                  </p>
+                )}
                 <p className="project-type">{projects[0].type}</p>
                 <p className="project-location">{projects[0].location}</p>
                 <button
@@ -222,9 +224,11 @@ const OffPlanGrid = ({ filterParams = {} }) => {
                 />
                 <div className="off-plan-content">
                   <h3 className="project-title">{projects[1].name}</h3>
-                  <p className="project-developer">
-                    By: {projects[1].developer || "Developer Name"}
-                  </p>
+                  {projects[1].developer && (
+                    <p className="project-developer">
+                      By: {projects[1].developer}
+                    </p>
+                  )}
                   <p className="project-type">{projects[1].type}</p>
                   <p className="project-location">{projects[1].location}</p>
                   {projects[1].price && (
@@ -233,10 +237,10 @@ const OffPlanGrid = ({ filterParams = {} }) => {
                     </p>
                   )}
                   <div className="project-details">
-                    {projects[1].bedrooms && (
+                    {(projects[1].bedrooms !== undefined && projects[1].bedrooms !== null) && (
                       <span>
                         <i className="fa-solid fa-bed"></i>{" "}
-                        {projects[1].bedrooms} Beds
+                        {projects[1].bedrooms === 0 || projects[1].bedrooms === "0" ? "Studio" : `${projects[1].bedrooms} Beds`}
                       </span>
                     )}
                     {projects[1].bathrooms && (
@@ -323,9 +327,11 @@ const OffPlanGrid = ({ filterParams = {} }) => {
                 <div className="off-plan-content">
                   <h3 className="project-title">{projects[4].name}</h3>
                   <h4 className="project-subtitle">{projects[4].name}</h4>
-                  <p className="project-developer">
-                    By: {projects[4].developer || "Developer Name"}
-                  </p>
+                  {projects[4].developer && (
+                    <p className="project-developer">
+                      By: {projects[4].developer}
+                    </p>
+                  )}
                   <p className="project-type">{projects[4].type}</p>
                   <p className="project-location">{projects[4].location}</p>
                   <button
@@ -373,9 +379,11 @@ const OffPlanGrid = ({ filterParams = {} }) => {
                   </div>
                   <div className="off-plan-content">
                     <h3 className="project-title">{projects[5].name}</h3>
-                    <p className="project-developer">
-                      By: {projects[5].developer || "Developer Name"}
-                    </p>
+                    {projects[5].developer && (
+                      <p className="project-developer">
+                        By: {projects[5].developer}
+                      </p>
+                    )}
                     <p className="project-type">{projects[5].type}</p>
                     <p className="project-location">{projects[5].location}</p>
                     {projects[5].price && (
@@ -385,10 +393,10 @@ const OffPlanGrid = ({ filterParams = {} }) => {
                       </p>
                     )}
                     <div className="project-details">
-                      {projects[5].bedrooms && (
+                      {(projects[5].bedrooms !== undefined && projects[5].bedrooms !== null) && (
                         <span>
                           <i className="fa-solid fa-bed"></i>{" "}
-                          {projects[5].bedrooms} Beds
+                          {projects[5].bedrooms === 0 || projects[5].bedrooms === "0" ? "Studio" : `${projects[5].bedrooms} Beds`}
                         </span>
                       )}
                       {projects[5].bathrooms && (

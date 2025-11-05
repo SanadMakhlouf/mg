@@ -239,8 +239,10 @@ const PropertyDetails = () => {
     property.category === "off-plans" ||
     window.location.pathname.includes("/off-plan/");
 
-  // Get default amenities based on property type
-  const amenities = defaultAmenities[property.type] || defaultAmenities.default;
+  // Get amenities from API (features_amenities) or fall back to default amenities based on property type
+  const amenities = property.features_amenities && property.features_amenities.length > 0
+    ? property.features_amenities
+    : (defaultAmenities[property.type] || defaultAmenities.default);
 
   // Mock off-plan data (can be replaced with API data later)
   const offPlanData = {
@@ -419,7 +421,7 @@ const PropertyDetails = () => {
               <div className="property-key-stats">
                 <div className="stat-item">
                   <i className="fa-solid fa-bed"></i>
-                  <span>{property.bedrooms || 0} Beds</span>
+                  <span>{property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : `${property.bedrooms || 0} Beds`}</span>
                 </div>
                 <div className="stat-item">
                   <i className="fa-solid fa-bath"></i>
@@ -584,8 +586,8 @@ const PropertyDetails = () => {
             <div className="property-main-content-left">
               {/* Property Type/Features */}
               <div className="property-type-headline">
-                {property.bedrooms && property.bedrooms > 0 && (
-                  <span>{property.bedrooms}BR</span>
+                {(property.bedrooms !== undefined && property.bedrooms !== null) && (
+                  <span>{property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : `${property.bedrooms}BR`}</span>
                 )}
                 {property.type && <span>{property.type}</span>}
                 {property.category && <span>{property.category}</span>}
@@ -614,7 +616,7 @@ const PropertyDetails = () => {
                           .replace(/&nbsp;/g, " ")
                           .replace(/&lt;/g, "<")
                           .replace(/&gt;/g, ">")
-                      : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`,
+                      : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : `${property.bedrooms} bedrooms`} and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`,
                   }}
                 />
               </div>
@@ -666,10 +668,10 @@ const PropertyDetails = () => {
                     <span className="info-label">Location</span>
                     <span className="info-value">{property.location}</span>
                   </div>
-                  {property.bedrooms && (
+                  {(property.bedrooms !== undefined && property.bedrooms !== null) && (
                     <div className="info-row">
                       <span className="info-label">Bedrooms</span>
-                      <span className="info-value">{property.bedrooms}</span>
+                      <span className="info-value">{property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : property.bedrooms}</span>
                     </div>
                   )}
                   {property.bathrooms && (
@@ -1085,7 +1087,7 @@ const PropertyDetails = () => {
                         .replace(/&nbsp;/g, " ")
                         .replace(/&lt;/g, "<")
                         .replace(/&gt;/g, ">")
-                    : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms} bedrooms and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`,
+                    : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : `${property.bedrooms} bedrooms`} and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`,
                 }}
               />
             </div>
