@@ -98,14 +98,6 @@ const TrustedAgents = () => {
                     competitive UAE market.
                   </p>
                 </div>
-                <div className="social-icons">
-                  <a href="#" aria-label="LinkedIn">
-                    <i className="fab fa-linkedin-in"></i>
-                  </a>
-                  <a href="#" aria-label="Email">
-                    <i className="fas fa-envelope"></i>
-                  </a>
-                </div>
               </div>
             </div>
 
@@ -132,14 +124,6 @@ const TrustedAgents = () => {
                     quality and client satisfaction in the competitive UAE real
                     estate market.
                   </p>
-                </div>
-                <div className="social-icons">
-                  <a href="#" aria-label="LinkedIn">
-                    <i className="fab fa-linkedin-in"></i>
-                  </a>
-                  <a href="#" aria-label="Email">
-                    <i className="fas fa-envelope"></i>
-                  </a>
                 </div>
               </div>
             </div>

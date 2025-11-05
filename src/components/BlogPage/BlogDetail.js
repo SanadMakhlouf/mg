@@ -28,16 +28,20 @@ const BlogDetail = () => {
           // Adapter les URLs des images
           const blogData = {
             ...result.data,
-            image: result.data.image.startsWith("http")
+            image: result.data.image && result.data.image.startsWith("http")
               ? result.data.image
-              : `${config.API_URL.replace("/api/v1", "")}/storage/${
+              : result.data.image
+              ? `${config.API_URL.replace("/api/v1", "")}/storage/${
                   result.data.image
-                }`,
-            authorImage: result.data.authorImage.startsWith("http")
+                }`
+              : "",
+            authorImage: result.data.authorImage && result.data.authorImage.startsWith("http")
               ? result.data.authorImage
-              : `${config.API_URL.replace("/api/v1", "")}/storage/${
+              : result.data.authorImage
+              ? `${config.API_URL.replace("/api/v1", "")}/storage/${
                   result.data.authorImage
-                }`,
+                }`
+              : "",
           };
           setBlog(blogData);
 
@@ -54,11 +58,13 @@ const BlogDetail = () => {
               // Adapter les URLs des images pour les articles liés
               const relatedData = relatedResult.data.map((post) => ({
                 ...post,
-                image: post.image.startsWith("http")
+                image: post.image && post.image.startsWith("http")
                   ? post.image
-                  : `${config.API_URL.replace("/api/v1", "")}/storage/${
+                  : post.image
+                  ? `${config.API_URL.replace("/api/v1", "")}/storage/${
                       post.image
-                    }`,
+                    }`
+                  : "",
               }));
               setRelatedPosts(relatedData);
             }
@@ -144,7 +150,9 @@ const BlogDetail = () => {
       <div className="blog-detail-container">
       <div className="blog-detail-header">
         <div className="blog-detail-image">
-          <img src={blog.image} alt={blog.title} />
+          {blog.image && blog.image.trim() !== "" && (
+            <img src={blog.image} alt={blog.title} />
+          )}
         </div>
         <div className="blog-detail-overlay"></div>
         <div className="blog-detail-title-container">
@@ -162,7 +170,7 @@ const BlogDetail = () => {
           <h1 className="blog-detail-title">{blog.title || "Untitled"}</h1>
           {blog.author && (
             <div className="blog-detail-author">
-              {blog.authorImage && (
+              {blog.authorImage && blog.authorImage.trim() !== "" && (
                 <img
                   src={blog.authorImage}
                   alt={blog.author}
@@ -194,14 +202,31 @@ const BlogDetail = () => {
           {blog.content && (
             <div
               className="blog-detail-content"
-              dangerouslySetInnerHTML={{ __html: blog.content }}
+              dangerouslySetInnerHTML={{
+                __html: blog.content
+                  .replace(/&amp;lt;/g, "<")
+                  .replace(/&amp;gt;/g, ">")
+                  .replace(/&amp;amp;/g, "&")
+                  .replace(/&amp;quot;/g, '"')
+                  .replace(/&amp;#039;/g, "'")
+                  .replace(/&amp;nbsp;/g, " ")
+                  .replace(/&lt;br\s*\/?&gt;/gi, "<br>")
+                  .replace(/<br\s*\/?>/gi, "<br>")
+                  .replace(/&amp;lt;br\s*\/?&amp;gt;/gi, "<br>")
+                  .replace(/&amp;/g, "&")
+                  .replace(/&quot;/g, '"')
+                  .replace(/&#39;/g, "'")
+                  .replace(/&nbsp;/g, " ")
+                  .replace(/&lt;/g, "<")
+                  .replace(/&gt;/g, ">"),
+              }}
             ></div>
           )}
 
           {blog.author && blog.authorBio && (
             <div className="blog-detail-author-bio">
               <div className="author-bio-image">
-                {blog.authorImage && (
+                {blog.authorImage && blog.authorImage.trim() !== "" && (
                   <img src={blog.authorImage} alt={blog.author} />
                 )}
               </div>
@@ -242,7 +267,9 @@ const BlogDetail = () => {
                       to={`/blog/${post.id}`}
                       className="related-post-image"
                     >
-                      <img src={post.image} alt={post.title} />
+                      {post.image && post.image.trim() !== "" && (
+                        <img src={post.image} alt={post.title} />
+                      )}
                     </Link>
                     <div className="related-post-content">
                       <Link

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./GetInTouchSection.css";
 import config from "../config";
 
@@ -12,6 +12,59 @@ const GetInTouchSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [errors, setErrors] = useState({});
+  const [turnstileToken, setTurnstileToken] = useState(null);
+  const turnstileRef = useRef(null);
+
+  // Initialize Turnstile widget
+  useEffect(() => {
+    const initTurnstile = () => {
+      if (window.turnstile && turnstileRef.current && !turnstileRef.current.dataset.rendered) {
+        window.turnstile.render(turnstileRef.current, {
+          sitekey: config.TURNSTILE_SITE_KEY,
+          callback: (token) => {
+            setTurnstileToken(token);
+          },
+          "expired-callback": () => {
+            setTurnstileToken(null);
+          },
+          "error-callback": () => {
+            setTurnstileToken(null);
+          },
+        });
+        turnstileRef.current.dataset.rendered = "true";
+      }
+    };
+
+    let checkTurnstileInterval = null;
+
+    // Check if Turnstile is already loaded
+    if (window.turnstile) {
+      initTurnstile();
+    } else {
+      // Wait for Turnstile to load
+      checkTurnstileInterval = setInterval(() => {
+        if (window.turnstile) {
+          initTurnstile();
+          if (checkTurnstileInterval) {
+            clearInterval(checkTurnstileInterval);
+          }
+        }
+      }, 100);
+
+      // Cleanup interval after 10 seconds
+      setTimeout(() => {
+        if (checkTurnstileInterval) {
+          clearInterval(checkTurnstileInterval);
+        }
+      }, 10000);
+    }
+
+    return () => {
+      if (checkTurnstileInterval) {
+        clearInterval(checkTurnstileInterval);
+      }
+    };
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +83,16 @@ const GetInTouchSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Check if Turnstile token is present
+    if (!turnstileToken) {
+      setSubmitStatus({
+        success: false,
+        message: "Please complete the security verification.",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
     setErrors({});
@@ -41,7 +104,10 @@ const GetInTouchSection = () => {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          turnstile_token: turnstileToken
+        })
       });
 
       const result = await response.json();
@@ -59,6 +125,11 @@ const GetInTouchSection = () => {
           mobile_number: "",
           message: "",
         });
+        // Reset Turnstile
+        if (window.turnstile && turnstileRef.current) {
+          window.turnstile.reset(turnstileRef.current);
+          setTurnstileToken(null);
+        }
       } else {
         // Show validation errors
         if (result.errors) {
@@ -224,10 +295,14 @@ const GetInTouchSection = () => {
               )}
             </div>
 
+            <div className="form-group">
+              <div ref={turnstileRef} className="turnstile-widget"></div>
+            </div>
+
             <button
               type="submit"
               className="send-message-btn"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !turnstileToken}
             >
               {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
             </button>

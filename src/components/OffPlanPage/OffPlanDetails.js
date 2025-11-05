@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../PropertyDetails/PropertyDetails.css";
 import config from "../../config";
@@ -15,6 +15,14 @@ const OffPlanDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showScheduleViewing, setShowScheduleViewing] = useState(false);
+  const [showAgentInfo, setShowAgentInfo] = useState(false);
+
+  // ✅ Sticky pour agent-card-bayut (position fixed)
+  const agentCardRef = useRef(null);
+  const sidebarRef = useRef(null);
+  const priceHeaderRef = useRef(null);
+  const [isSticky, setIsSticky] = useState(false);
+  const [fixedStyle, setFixedStyle] = useState({});
 
   // Default agent data if no agent is assigned
   const defaultAgent = {
@@ -91,6 +99,93 @@ const OffPlanDetails = () => {
 
     fetchPropertyDetails();
   }, [id, navigate]);
+
+  useEffect(() => {
+    if (!property) return;
+
+    const handleScroll = () => {
+      if (
+        !agentCardRef.current ||
+        !sidebarRef.current ||
+        !priceHeaderRef.current
+      )
+        return;
+
+      const priceHeaderRect = priceHeaderRef.current.getBoundingClientRect();
+      const triggerPoint = 120; // Point où le fixed s'active (navbar + marge)
+
+      // Vérifier si on a dépassé le property-price-header
+      // La carte devient fixed quand le price-header sort de la vue (son bas est au-dessus du haut de la fenêtre)
+      const hasPassedPriceHeader = priceHeaderRect.bottom < triggerPoint;
+
+      // Garder l'icône visible même si on est à la fin de la page
+      // Une fois qu'on a dépassé le price-header, l'icône reste visible jusqu'à la fin
+      // Activer fixed si on a dépassé le price-header (l'icône reste visible jusqu'à la fin)
+      const shouldBeSticky = hasPassedPriceHeader;
+
+      setIsSticky(shouldBeSticky);
+
+      // Si on doit être sticky, positionner la carte comme icône flottant en bas à droite
+      if (shouldBeSticky) {
+        // Positionner en bas à droite, juste à côté du bouton WhatsApp
+        const margin = 20;
+        const whatsappButtonSize = 60; // Taille approximative du bouton WhatsApp
+        const iconSize = 70; // Taille de l'icône flottant
+        const spacing = 15; // Espacement entre WhatsApp et l'icône
+        const windowWidth = window.innerWidth;
+
+        // Sur mobile, ajuster la position
+        const isMobile = windowWidth <= 768;
+        const mobileMargin = isMobile ? 15 : margin;
+        const mobileIconSize = isMobile ? 60 : iconSize;
+        const mobileSpacing = isMobile ? 10 : spacing;
+
+        // Positionner à gauche du bouton WhatsApp
+        const right = whatsappButtonSize + mobileSpacing + mobileMargin;
+
+        setFixedStyle({
+          width: `${mobileIconSize}px`,
+          height: `${mobileIconSize}px`,
+          right: `${right}px`,
+          bottom: `${mobileMargin}px`,
+          left: "auto",
+          top: "auto",
+        });
+      }
+    };
+
+    // Utiliser requestAnimationFrame pour de meilleures performances
+    let ticking = false;
+    const optimizedScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", optimizedScroll, { passive: true });
+    window.addEventListener(
+      "resize",
+      () => {
+        handleScroll();
+      },
+      { passive: true }
+    );
+
+    // Attendre que le DOM soit complètement rendu
+    const timeoutId = setTimeout(() => {
+      handleScroll();
+    }, 300);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("scroll", optimizedScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [property]);
 
   // Force solid navbar background on this page only
   useEffect(() => {
@@ -252,7 +347,7 @@ const OffPlanDetails = () => {
             </div>
 
           {/* Price and Key Info Section */}
-          <div className="property-price-header">
+          <div className="property-price-header" ref={priceHeaderRef}>
             <div className="price-header-left">
               <h1 className="property-price-large">
                   {parseFloat(property.price) > 0 
@@ -350,7 +445,6 @@ const OffPlanDetails = () => {
                   <span>{property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : `${property.bedrooms}BR`}</span>
                 )}
                 {property.type && <span>{property.type}</span>}
-                {property.category && <span>{property.category}</span>}
             </div>
 
               {/* Description */}
@@ -461,8 +555,16 @@ const OffPlanDetails = () => {
           </div>
 
             {/* Right Column - Agent Sidebar */}
-            <div className="property-sidebar-right">
-              <div className="agent-card-bayut">
+            <div className="property-sidebar-right" ref={sidebarRef}>
+              <div
+                className={`agent-card-bayut ${
+                  isSticky ? "agent-card-sticky" : ""
+                }`}
+                ref={agentCardRef}
+                style={isSticky ? fixedStyle : {}}
+                title={isSticky ? `${agent.name} - Contact Agent` : ""}
+                onClick={isSticky ? () => setShowAgentInfo(true) : undefined}
+              >
                 <div className="agent-card-header">
                   <div className="agent-card-banner">
                     <span className="broker-badge">Verified Broker</span>
@@ -488,7 +590,7 @@ const OffPlanDetails = () => {
                       )}
 
                   {/* Social Media Links */}
-                  {property.agent && agent.social_media && Object.keys(agent.social_media).length > 0 && (
+                  {property.agent && agent.social_media && (
                     <div className="agent-social-buttons">
                       {agent.social_media.instagram && (
                         <a 
@@ -562,252 +664,376 @@ const OffPlanDetails = () => {
                     </div>
                   )}
 
-                  {/* Schedule Viewing Button */}
-                  <button 
-                    className="schedule-viewing-btn"
+                  <button
+                    className="schedule-viewing-btn-bayut"
                     onClick={() => setShowScheduleViewing(true)}
                   >
                     <i className="fa-solid fa-calendar-check"></i>
-                    Schedule a Viewing
+                    Schedule Viewing
                   </button>
 
-                  {/* Quick Contact Card */}
-                  <div className="quick-contact-card">
-                    <h4 className="quick-contact-title">
+              {/* Quick Contact Card */}
+              <div className="quick-contact-card">
+                <h4 className="quick-contact-title">
+                  <i className="fa-solid fa-headset"></i>
+                  Quick Contact
+                </h4>
+                <div className="quick-contact-items">
+                  <a href="tel:+971586830401" className="quick-contact-item">
+                    <div className="quick-contact-icon phone-icon">
                       <i className="fa-solid fa-phone"></i>
-                      Quick Contact
-                    </h4>
-                    <div className="quick-contact-items">
-                      <a href={`tel:${agent.phone || '+971 586830401'}`} className="quick-contact-item">
-                        <div className="quick-contact-icon">
-                          <i className="fa-solid fa-phone"></i>
-                        </div>
-                        <div className="quick-contact-text">
-                          <span className="quick-contact-label">Call</span>
-                          <span className="quick-contact-value">{agent.phone || '+971 586830401'}</span>
-                        </div>
-                      </a>
-                      <a href={`mailto:${agent.email || 'info@meridiangroup.ae'}`} className="quick-contact-item">
-                        <div className="quick-contact-icon">
-                          <i className="fa-solid fa-envelope"></i>
-                        </div>
-                        <div className="quick-contact-text">
-                          <span className="quick-contact-label">Email</span>
-                          <span className="quick-contact-value">{agent.email || 'info@meridiangroup.ae'}</span>
-                        </div>
-                      </a>
-                      <a 
-                        href={`https://wa.me/971586830401?text=${encodeURIComponent(`Hi, I'm interested in ${property.name}`)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="quick-contact-item"
-                      >
-                        <div className="quick-contact-icon">
-                          <i className="fa-brands fa-whatsapp"></i>
-                        </div>
-                        <div className="quick-contact-text">
-                          <span className="quick-contact-label">WhatsApp</span>
-                          <span className="quick-contact-value">+971 586830401</span>
-                        </div>
-                      </a>
+                    </div>
+                    <div className="quick-contact-text">
+                      <span className="quick-contact-label">Call Us</span>
+                      <span className="quick-contact-value">
+                        +971 586830401
+                      </span>
+                    </div>
+                  </a>
+                  <a
+                    href="mailto:info@meridiangroup.ae"
+                    className="quick-contact-item"
+                  >
+                    <div className="quick-contact-icon email-icon">
+                      <i className="fa-solid fa-envelope"></i>
+                    </div>
+                    <div className="quick-contact-text">
+                      <span className="quick-contact-label">Email Us</span>
+                      <span className="quick-contact-value">
+                        info@meridiangroup.ae
+                      </span>
+                    </div>
+                  </a>
+                  <a
+                    href="https://wa.me/971586830401"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="quick-contact-item"
+                  >
+                    <div className="quick-contact-icon whatsapp-icon">
+                      <i className="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div className="quick-contact-text">
+                      <span className="quick-contact-label">WhatsApp</span>
+                      <span className="quick-contact-value">Chat Now</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              {/* Office Location Card */}
+              <div className="office-location-card">
+                <h4 className="office-location-title">
+                  <i className="fa-solid fa-location-dot"></i>
+                  Visit Our Office
+                </h4>
+                <div className="office-location-content">
+                  <p className="office-address">
+                    <i className="fa-solid fa-building"></i>
+                    Al Hisn, Baynunah Tower 2, Office 402, Abu Dhabi
+                  </p>
+                  <div className="office-hours">
+                    <div className="office-hours-item">
+                      <i className="fa-solid fa-clock"></i>
+                      <span>Mon - Sat: 09:00 AM - 6:00 PM</span>
                     </div>
                   </div>
+                  <button
+                    className="view-map-btn"
+                    onClick={() => {
+                      const address = encodeURIComponent(
+                        "Al Hisn, Baynunah Tower 2, Office 402, Abu Dhabi"
+                      );
+                      window.open(
+                        `https://www.google.com/maps/search/?api=1&query=${address}`,
+                        "_blank"
+                      );
+                    }}
+                  >
+                    <i className="fa-solid fa-map-pin"></i>
+                    View on Map
+                  </button>
+                </div>
+              </div>
 
-                  {/* Office Location Card */}
-                  <div className="office-location-card">
-                    <h4 className="office-location-title">
-                      <i className="fa-solid fa-location-dot"></i>
-                      Office Location
-                    </h4>
-                    <div className="office-location-content">
-                      <div className="office-address">
-                        <i className="fa-solid fa-map-marker-alt"></i>
-                        <span>Al Hisn, Baynunah Tower 2, Office 402, Abu Dhabi</span>
-                      </div>
-                      <div className="office-hours">
-                        <div className="office-hours-item">
-                          <span className="hours-label">Working Hours:</span>
-                          <span className="hours-value">Mon - Sat: 09:00 AM - 6:00 PM</span>
-                        </div>
-                      </div>
-                      <button 
-                        className="view-map-btn"
-                        onClick={() => {
-                          const address = encodeURIComponent("Al Hisn, Baynunah Tower 2, Office 402, Abu Dhabi");
-                          window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
-                        }}
-                      >
-                        <i className="fa-solid fa-map"></i>
-                        View on Map
-                      </button>
+              {/* Property Insights Card */}
+              <div className="property-insights-card">
+                <h4 className="property-insights-title">
+                  <i className="fa-solid fa-chart-line"></i>
+                  Property Insights
+                </h4>
+                <div className="insights-grid">
+                  <div className="insight-item">
+                    <div className="insight-icon">
+                      <i className="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <div className="insight-content">
+                      <span className="insight-label">Listing Date</span>
+                      <span className="insight-value">
+                        {property.created_at
+                          ? new Date(property.created_at).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              }
+                            )
+                          : "Recently Listed"}
+                      </span>
                     </div>
                   </div>
-
-                  {/* Property Insights Card */}
-                  <div className="property-insights-card">
-                    <h4 className="property-insights-title">
-                      <i className="fa-solid fa-info-circle"></i>
-                      Property Insights
-                    </h4>
-                    <div className="insights-grid">
-                      <div className="insight-item">
-                        <div className="insight-icon">
-                          <i className="fa-solid fa-calendar"></i>
-                        </div>
-                        <div className="insight-content">
-                          <span className="insight-label">Listed</span>
-                          <span className="insight-value">
-                            {property.created_at 
-                              ? new Date(property.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-                              : 'Recently'
-                            }
-                          </span>
-                        </div>
-                      </div>
-                      <div className="insight-item">
-                        <div className="insight-icon">
-                          <i className="fa-solid fa-hashtag"></i>
-                        </div>
-                        <div className="insight-content">
-                          <span className="insight-label">Property ID</span>
-                          <span className="insight-value">MG-{property.id}</span>
-                        </div>
-                      </div>
-                      {property.permit_number && (
-                        <div className="insight-item">
-                          <div className="insight-icon">
-                            <i className="fa-solid fa-certificate"></i>
-                          </div>
-                          <div className="insight-content">
-                            <span className="insight-label">Permit Number</span>
-                            <span className="insight-value">{property.permit_number}</span>
-                          </div>
-                        </div>
-                      )}
-                      <div className="insight-item">
-                        <div className="insight-icon">
-                          <i className="fa-solid fa-tag"></i>
-                        </div>
-                        <div className="insight-content">
-                          <span className="insight-label">Listing Type</span>
-                          <span className="insight-value">Off-Plan</span>
-                        </div>
-                      </div>
-                        </div>
-                      </div>
-
-                  {/* Quick Actions Card */}
-                  <div className="quick-actions-card">
-                    <h4 className="quick-actions-title">
-                      <i className="fa-solid fa-bolt"></i>
-                      Quick Actions
-                    </h4>
-                    <div className="quick-actions-grid">
-                      <button 
-                        className="quick-action-btn"
-                        onClick={() => setShowScheduleViewing(true)}
-                      >
-                        <i className="fa-solid fa-calendar-check"></i>
-                        <span>Schedule Viewing</span>
-                      </button>
-                      <button 
-                        className="quick-action-btn"
-                        onClick={() => {
-                          const subject = encodeURIComponent(`Inquiry about ${property.name}`);
-                          const body = encodeURIComponent(`Hello,\n\nI'm interested in ${property.name} located at ${property.location}.\n\nPlease contact me with more information.\n\nThank you!`);
-                          window.location.href = `mailto:info@meridiangroup.ae?subject=${subject}&body=${body}`;
-                        }}
-                      >
-                        <i className="fa-solid fa-envelope"></i>
-                        <span>Send Inquiry</span>
-                      </button>
-                      <button 
-                        className="quick-action-btn"
-                        onClick={() => {
-                          const message = encodeURIComponent(`Hi, I'm interested in ${property.name} - ${window.location.href}`);
-                          window.open(`https://wa.me/971586830401?text=${message}`, '_blank');
-                        }}
-                      >
-                        <i className="fa-brands fa-whatsapp"></i>
-                        <span>WhatsApp</span>
-                      </button>
-                      <button 
-                        className="quick-action-btn"
-                        onClick={() => {
-                          const propertyUrl = encodeURIComponent(window.location.href);
-                          const propertyTitle = encodeURIComponent(`${property.name} - Meridian Group`);
-                          window.open(`https://www.facebook.com/sharer/sharer.php?u=${propertyUrl}`, '_blank');
-                        }}
-                      >
-                        <i className="fa-brands fa-facebook"></i>
-                        <span>Share</span>
-                      </button>
+                  <div className="insight-item">
+                    <div className="insight-icon">
+                      <i className="fa-solid fa-eye"></i>
+                    </div>
+                    <div className="insight-content">
+                      <span className="insight-label">Property ID</span>
+                      <span className="insight-value">MG-{property.id}</span>
                     </div>
                   </div>
-
-                  {/* Trust Badge Card */}
-                  <div className="trust-badge-card">
-                    <div className="trust-badge-header">
-                      <i className="fa-solid fa-shield-check"></i>
-                      <h4>Verified Property</h4>
+                  {property.permit_number && (
+                    <div className="insight-item">
+                      <div className="insight-icon">
+                        <i className="fa-solid fa-certificate"></i>
+                      </div>
+                      <div className="insight-content">
+                        <span className="insight-label">Permit Number</span>
+                        <span className="insight-value">
+                          {property.permit_number}
+                        </span>
+                      </div>
                     </div>
-                    <div className="trust-badges">
-                      <div className="trust-badge-item">
-                        <i className="fa-solid fa-check-circle"></i>
-                        <span>100% Verified</span>
-                      </div>
-                      <div className="trust-badge-item">
-                        <i className="fa-solid fa-check-circle"></i>
-                        <span>Legal Documents</span>
-                      </div>
-                      <div className="trust-badge-item">
-                        <i className="fa-solid fa-check-circle"></i>
-                        <span>Trusted Broker</span>
+                  )}
+                  <div className="insight-item">
+                    <div className="insight-icon">
+                      <i className="fa-solid fa-tag"></i>
+                    </div>
+                    <div className="insight-content">
+                      <span className="insight-label">Listing Type</span>
+                      <span className="insight-value">
+                        {property.listing_type === "rental"
+                          ? "For Rent"
+                          : "For Sale"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Actions Card */}
+              <div className="quick-actions-card">
+                <h4 className="quick-actions-title">
+                  <i className="fa-solid fa-bolt"></i>
+                  Quick Actions
+                </h4>
+                <div className="quick-actions-grid">
+                  <button
+                    className="quick-action-btn"
+                    onClick={() => setShowScheduleViewing(true)}
+                  >
+                    <i className="fa-solid fa-calendar-check"></i>
+                    <span>Schedule Viewing</span>
+                  </button>
+                  <button
+                    className="quick-action-btn"
+                    onClick={() => {
+                      const subject = encodeURIComponent(
+                        `Inquiry about ${property.name}`
+                      );
+                      const body = encodeURIComponent(
+                        `Hello,\n\nI'm interested in ${property.name} located at ${property.location}.\n\nPlease contact me with more information.\n\nThank you!`
+                      );
+                      window.location.href = `mailto:info@meridiangroup.ae?subject=${subject}&body=${body}`;
+                    }}
+                  >
+                    <i className="fa-solid fa-envelope"></i>
+                    <span>Send Inquiry</span>
+                  </button>
+                  <button
+                    className="quick-action-btn"
+                    onClick={() => {
+                      const message = encodeURIComponent(
+                        `Hi, I'm interested in ${property.name} - ${window.location.href}`
+                      );
+                      window.open(
+                        `https://wa.me/971586830401?text=${message}`,
+                        "_blank"
+                      );
+                    }}
+                  >
+                    <i className="fa-brands fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                  </button>
+                  <button
+                    className="quick-action-btn"
+                    onClick={() => {
+                      const propertyUrl = encodeURIComponent(
+                        window.location.href
+                      );
+                      window.open(
+                        `https://www.facebook.com/sharer/sharer.php?u=${propertyUrl}`,
+                        "_blank"
+                      );
+                    }}
+                  >
+                    <i className="fa-brands fa-facebook"></i>
+                    <span>Share</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Trust Badge Card */}
+              <div className="trust-badge-card">
+                <div className="trust-badge-header">
+                  <i className="fa-solid fa-shield-check"></i>
+                  <h4>Verified Property</h4>
+                </div>
+                <div className="trust-badges">
+                  <div className="trust-badge-item">
+                    <i className="fa-solid fa-check-circle"></i>
+                    <span>100% Verified</span>
+                  </div>
+                  <div className="trust-badge-item">
+                    <i className="fa-solid fa-check-circle"></i>
+                    <span>Legal Documents</span>
+                  </div>
+                  <div className="trust-badge-item">
+                    <i className="fa-solid fa-check-circle"></i>
+                    <span>Trusted Broker</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Description Section - Mobile Position (After Agent) */}
+          <div className="property-description-section description-mobile">
+            <h3>About This Property</h3>
+            <div
+              className="description-text"
+              dangerouslySetInnerHTML={{
+                __html: property.description
+                  ? property.description
+                      .replace(/&amp;lt;/g, "<")
+                      .replace(/&amp;gt;/g, ">")
+                      .replace(/&amp;amp;/g, "&")
+                      .replace(/&amp;quot;/g, '"')
+                      .replace(/&amp;#039;/g, "'")
+                      .replace(/&amp;nbsp;/g, " ")
+                      .replace(/&lt;br\s*\/?&gt;/gi, "<br>")
+                      .replace(/<br\s*\/?>/gi, "<br>")
+                      .replace(/&amp;lt;br\s*\/?&amp;gt;/gi, "<br>")
+                      .replace(/&amp;/g, "&")
+                      .replace(/&quot;/g, '"')
+                      .replace(/&#39;/g, "'")
+                      .replace(/&nbsp;/g, " ")
+                      .replace(/&lt;/g, "<")
+                      .replace(/&gt;/g, ">")
+                  : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : `${property.bedrooms} bedrooms`} and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`,
+              }}
+            />
+          </div>
+          </div>
         </div>
       </div>
 
-            {/* Description Section - Mobile Position (After Agent) */}
-            <div className="property-description-section description-mobile">
-              <h3>About This Property</h3>
-              <div 
-                className="description-text"
-                dangerouslySetInnerHTML={{
-                  __html: property.description 
-                    ? property.description
-                        .replace(/&amp;lt;/g, '<')
-                        .replace(/&amp;gt;/g, '>')
-                        .replace(/&amp;amp;/g, '&')
-                        .replace(/&amp;quot;/g, '"')
-                        .replace(/&amp;#039;/g, "'")
-                        .replace(/&amp;nbsp;/g, ' ')
-                        .replace(/&lt;br\s*\/?&gt;/gi, '<br>')
-                        .replace(/<br\s*\/?>/gi, '<br>')
-                        .replace(/&amp;lt;br\s*\/?&amp;gt;/gi, '<br>')
-                        .replace(/&amp;/g, '&')
-                        .replace(/&quot;/g, '"')
-                        .replace(/&#39;/g, "'")
-                        .replace(/&nbsp;/g, ' ')
-                        .replace(/&lt;/g, '<')
-                        .replace(/&gt;/g, '>')
-                    : `Beautiful ${property.type} located in ${property.location}. This property features ${property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : `${property.bedrooms} bedrooms`} and ${property.bathrooms} bathrooms with a total area of ${property.area} square feet.`
+      {showScheduleViewing && (
+        <ScheduleViewingPopup
+          onClose={() => setShowScheduleViewing(false)}
+          propertyId={property.id}
+          propertyName={property.name}
+        />
+      )}
+
+      {/* Agent Info Popup */}
+      {showAgentInfo && (
+        <div
+          className="agent-info-popup-overlay"
+          onClick={() => setShowAgentInfo(false)}
+        >
+          <div
+            className="agent-info-popup"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="agent-info-close-btn"
+              onClick={() => setShowAgentInfo(false)}
+              aria-label="Close"
+            >
+              <i className="fa-solid fa-times"></i>
+            </button>
+
+            <div className="agent-info-header">
+              <div className="agent-info-avatar">
+                <img src={agent.photo_url || agent.image} alt={agent.name} />
+                <div className="agent-info-verified-badge">
+                  <i className="fa-solid fa-check-circle"></i>
+                </div>
+              </div>
+              <div className="agent-info-title">
+                <h3>{agent.name}</h3>
+                {agent.job_title && (
+                  <p className="agent-info-job-title">{agent.job_title}</p>
+                )}
+                {property.agent && (
+                  <span className="agent-info-badge">Verified Agent</span>
+                )}
+              </div>
+            </div>
+
+            {!property.agent && agent.description && (
+              <div className="agent-info-description">
+                <p>{agent.description}</p>
+              </div>
+            )}
+
+            <div className="agent-info-phone">
+              <div className="agent-info-phone-card">
+                <div className="agent-info-phone-icon">
+                  <i className="fa-solid fa-phone"></i>
+                </div>
+                <div className="agent-info-phone-content">
+                  <span className="agent-info-phone-label">Call Us</span>
+                  <a
+                    href="tel:+971586830401"
+                    className="agent-info-phone-number"
+                  >
+                    +971 586830401
+                  </a>
+                </div>
+                <a
+                  href="tel:+971586830401"
+                  className="agent-info-phone-btn"
+                  aria-label="Call +971 586830401"
+                >
+                  <i className="fa-solid fa-phone"></i>
+                </a>
+              </div>
+            </div>
+
+            <div className="agent-info-actions">
+              <button
+                className="agent-info-primary-btn"
+                onClick={() => {
+                  setShowAgentInfo(false);
+                  setShowScheduleViewing(true);
                 }}
-              />
+              >
+                <i className="fa-solid fa-calendar-check"></i>
+                Schedule Viewing
+              </button>
+              <button
+                className="agent-info-secondary-btn"
+                onClick={() => setShowAgentInfo(false)}
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
-
-        {showScheduleViewing && (
-          <ScheduleViewingPopup
-            onClose={() => setShowScheduleViewing(false)}
-            propertyId={property.id}
-            propertyName={property.name}
-          />
-        )}
-    </div>
+      )}
+      </div>
     </>
   );
 };

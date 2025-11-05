@@ -60,7 +60,7 @@
 }
 
 .last-properties-header h2 {
-  font-family: "Times New Roman", serif;
+  font-family: "Poppins", sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
   color: #1a1a1a;
@@ -249,7 +249,7 @@
 }
 
 .property-title {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #333;
   margin-bottom: 0.5rem;
 }

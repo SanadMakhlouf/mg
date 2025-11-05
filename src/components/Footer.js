@@ -91,9 +91,6 @@ const Footer = () => {
               <li>
                 <ScrollToTopLink to="/buy">Buy A Property</ScrollToTopLink>
               </li>
-              <li>
-                <ScrollToTopLink to="/sell">Sell A Property</ScrollToTopLink>
-              </li>
               {/* Investment Plan button hidden temporarily */}
               {/* <li>
                 <Link to="/investment">Investment Plan</Link>

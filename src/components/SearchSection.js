@@ -82,6 +82,17 @@ const SearchSection = ({ defaultTab = null, hideTabs = false, title = "Find Your
     // Set listing type based on active tab
     queryParams.append("listing_type", activeTab === "rental" ? "rent" : "sale");
 
+    // Check if we're on off-plan-properties-resale or off-plan-properties page
+    // If so, just update URL params without navigating
+    if (location.pathname === "/off-plan-properties-resale" || location.pathname === "/off-plan-properties") {
+      const newUrl = queryParams.toString() 
+        ? `${location.pathname}?${queryParams.toString()}`
+        : location.pathname;
+      // Use navigate to properly update React Router location
+      navigate(newUrl, { replace: true });
+      return;
+    }
+
     // Navigate to the appropriate page with new API parameters
     if (activeTab === "rental") {
       navigate(`/rent?${queryParams.toString()}`);
@@ -89,6 +100,27 @@ const SearchSection = ({ defaultTab = null, hideTabs = false, title = "Find Your
       navigate(`/buy?${queryParams.toString()}`);
     }
   };
+
+  // Auto-search with debouncing
+  useEffect(() => {
+    // Skip initial render
+    const isInitialMount = !searchParams.location && 
+                          !searchParams.propertyType && 
+                          !searchParams.minBathrooms && 
+                          !searchParams.maxBathrooms && 
+                          !searchParams.minBedrooms && 
+                          !searchParams.maxBedrooms;
+    
+    if (isInitialMount) return;
+
+    // Debounce search
+    const searchTimeout = setTimeout(() => {
+      handleSearch();
+    }, 500); // 500ms delay
+
+    return () => clearTimeout(searchTimeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams.location, searchParams.propertyType, searchParams.minBathrooms, searchParams.maxBathrooms, searchParams.minBedrooms, searchParams.maxBedrooms, activeTab]);
 
   return (
     <section className="search-section">

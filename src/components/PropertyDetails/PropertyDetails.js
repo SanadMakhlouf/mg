@@ -590,7 +590,6 @@ const PropertyDetails = () => {
                   <span>{property.bedrooms === 0 || property.bedrooms === "0" ? "Studio" : `${property.bedrooms}BR`}</span>
                 )}
                 {property.type && <span>{property.type}</span>}
-                {property.category && <span>{property.category}</span>}
               </div>
 
               {/* Description */}

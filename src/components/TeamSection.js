@@ -76,7 +76,7 @@ const TeamSection = () => {
             <h2 className="team-title">
               <span className="team-title-small">Our</span>
               <br />
-              Team Member
+              Team Members
             </h2>
             <p className="team-description">
               We are a real estate firm with over 15 years of expertise. We provide amazing locations to our partners and clients.

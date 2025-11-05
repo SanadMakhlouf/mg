@@ -35,7 +35,7 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  background-color: #800020;
+  background-color: #3F0316;
   color: white;
   padding: 5px 12px;
   border-radius: 20px;
@@ -88,14 +88,14 @@
 }
 
 .blog-tag {
-  color: #800020;
+  color: #3F0316;
   font-size: 0.85rem;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .blog-tag:hover {
-  color: #600018;
+  color: rgba(63, 3, 22, 0.8);
   text-decoration: underline;
 }
 
@@ -120,7 +120,7 @@
 }
 
 .read-more-btn {
-  color: #800020;
+  color: #3F0316;
   font-weight: 500;
   text-decoration: none;
   display: flex;
@@ -130,7 +130,7 @@
 }
 
 .read-more-btn:hover {
-  color: #600018;
+  color: rgba(63, 3, 22, 0.8);
 }
 
 .read-more-btn i {

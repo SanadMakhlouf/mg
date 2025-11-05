@@ -47,6 +47,44 @@ const OffPlanResale = () => {
     });
   };
 
+  // Auto-search with debouncing - update URL params
+  useEffect(() => {
+    // Skip initial mount
+    const isInitialMount = !filterParams.location && 
+                          !filterParams.propertyType && 
+                          !filterParams.minBathrooms && 
+                          !filterParams.maxBathrooms && 
+                          !filterParams.minBedrooms && 
+                          !filterParams.maxBedrooms &&
+                          !filterParams.minArea &&
+                          !filterParams.maxArea &&
+                          !filterParams.minPrice &&
+                          !filterParams.maxPrice;
+    
+    if (isInitialMount) return;
+
+    // Debounce search
+    const searchTimeout = setTimeout(() => {
+      const queryParams = new URLSearchParams();
+      
+      Object.keys(filterParams).forEach(key => {
+        if (filterParams[key]) {
+          queryParams.append(key, filterParams[key]);
+        }
+      });
+
+      const newUrl = queryParams.toString() 
+        ? `${window.location.pathname}?${queryParams.toString()}`
+        : window.location.pathname;
+      
+      window.history.pushState({}, '', newUrl);
+      // Trigger OffPlanResaleGrid to refetch
+      window.dispatchEvent(new Event('popstate'));
+    }, 500); // 500ms delay
+
+    return () => clearTimeout(searchTimeout);
+  }, [filterParams.location, filterParams.propertyType, filterParams.minBathrooms, filterParams.maxBathrooms, filterParams.minBedrooms, filterParams.maxBedrooms, filterParams.minArea, filterParams.maxArea, filterParams.minPrice, filterParams.maxPrice]);
+
   // Handle search button click
   const handleSearch = () => {
   };

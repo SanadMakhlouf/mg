@@ -191,7 +191,7 @@ body .list-property-btn:hover {
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 0.5rem 0;
-  font-family: "Times New Roman", serif;
+  font-family: "Poppins", sans-serif;
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
@@ -278,7 +278,7 @@ body .list-property-btn:hover {
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 1rem 0;
-  font-family: "Times New Roman", serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .description-text {
@@ -303,7 +303,7 @@ body .list-property-btn:hover {
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 1.5rem 0;
-  font-family: "Times New Roman", serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .info-table {
@@ -369,7 +369,7 @@ body .list-property-btn:hover {
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 1.5rem 0;
-  font-family: "Times New Roman", serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .amenities-grid {
