@@ -23,6 +23,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsConditions from "./components/TermsConditions";
 import MortgageCalculator from "./components/MortgageCalculator/MortgageCalculator";
 import AmortizationCalculator from "./components/AmortizationCalculator/AmortizationCalculator";
+import RentVsBuyCalculator from "./components/RentVsBuyCalculator/RentVsBuyCalculator";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import WhatsAppWidget from "./components/WhatsAppWidget";
@@ -71,6 +72,7 @@ function App() {
             <Route path="/interactive-map" element={<InteractiveMap />} />
             <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
             <Route path="/amortization-calculator" element={<AmortizationCalculator />} />
+            <Route path="/rent-vs-buy-calculator" element={<RentVsBuyCalculator />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsConditions />} />
           </Routes>
