@@ -5,10 +5,10 @@ import SEO from "../SEO";
 const MortgageCalculator = () => {
   const [propertyPrice, setPropertyPrice] = useState(2000000);
   const [residencyStatus, setResidencyStatus] = useState("resident");
-  const [downPaymentPercent, setDownPaymentPercent] = useState(20);
-  const [downPaymentAED, setDownPaymentAED] = useState(400000);
+  const [downPaymentPercent, setDownPaymentPercent] = useState(30); // 30% for resident (70% loan)
+  const [downPaymentAED, setDownPaymentAED] = useState(600000); // 30% of 2,000,000
   const [loanPeriod, setLoanPeriod] = useState(25);
-  const [interestRate, setInterestRate] = useState(4.5);
+  const [interestRate, setInterestRate] = useState(3.75); // 3.75% for resident
   const [upfrontCosts, setUpfrontCosts] = useState(0);
 
   // Track which down payment input was last changed to avoid infinite loops
@@ -53,9 +53,15 @@ const MortgageCalculator = () => {
 
   // Sync down payment percentage and AED (avoid infinite loop)
   useEffect(() => {
-    if (downPaymentSourceRef.current === "percent") {
+    if (
+      downPaymentSourceRef.current === "percent" ||
+      downPaymentSourceRef.current === "residency"
+    ) {
       const calculatedAED = (propertyPrice * downPaymentPercent) / 100;
       setDownPaymentAED(calculatedAED);
+      if (downPaymentSourceRef.current === "residency") {
+        downPaymentSourceRef.current = "percent"; // Reset to prevent loops
+      }
     } else if (downPaymentSourceRef.current === "price") {
       // When property price changes, recalculate AED based on percentage
       const calculatedAED = (propertyPrice * downPaymentPercent) / 100;
@@ -74,6 +80,31 @@ const MortgageCalculator = () => {
     }
   }, [downPaymentAED, propertyPrice]);
 
+  // Auto-update down payment and interest rate based on residency status
+  useEffect(() => {
+    downPaymentSourceRef.current = "residency"; // Set source to prevent loops
+
+    switch (residencyStatus) {
+      case "uae-national":
+        // UAE National: 75% loan (25% down payment), 4.54% interest
+        setDownPaymentPercent(25);
+        setInterestRate(4.54);
+        break;
+      case "resident":
+        // UAE Resident: 70% loan (30% down payment), 3.75% interest
+        setDownPaymentPercent(30);
+        setInterestRate(3.75);
+        break;
+      case "non-resident":
+        // Non-Resident: 60% loan (40% down payment), 4.54% interest
+        setDownPaymentPercent(40);
+        setInterestRate(4.54);
+        break;
+      default:
+        break;
+    }
+  }, [residencyStatus]);
+
   // Validation
   const validateForm = () => {
     const errors = {};
@@ -90,7 +121,7 @@ const MortgageCalculator = () => {
 
     if (!formData.phone.trim()) {
       errors.phone = "Phone number is required";
-    } else if (!/^[\d\s\-\+\(\)]+$/.test(formData.phone)) {
+    } else if (!/^[\d\s\-+()]+$/.test(formData.phone)) {
       errors.phone = "Please enter a valid phone number";
     }
 
