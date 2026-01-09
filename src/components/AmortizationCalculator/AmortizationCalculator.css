@@ -1,0 +1,424 @@
+/* Amortization Calculator Page */
+.amortization-calculator-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fafafa 0%, #ffffff 50%, #fafafa 100%);
+  padding-top: 120px;
+  padding-bottom: 4rem;
+}
+
+.amortization-calculator-container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.amortization-calculator-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.amortization-calculator-header h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.amortization-calculator-header p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.15rem;
+  color: #666;
+  font-weight: 400;
+}
+
+.amortization-calculator-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Input Section */
+.amortization-inputs-section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(63, 3, 22, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.inputs-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.input-group label {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: 0.3px;
+}
+
+.required {
+  color: #dc3545;
+  margin-left: 4px;
+}
+
+.number-input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid rgba(63, 3, 22, 0.2);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: "Open Sans", sans-serif;
+  color: #333;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.number-input:focus {
+  outline: none;
+  border-color: #451123;
+  box-shadow: 0 0 0 4px rgba(69, 17, 35, 0.1);
+  background: #fafafa;
+}
+
+.term-converter {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #451123;
+  font-weight: 500;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Monthly Payment Display */
+.monthly-payment-display {
+  background: linear-gradient(135deg, #3f0316, rgba(63, 3, 22, 0.9));
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  color: #ffffff;
+  grid-column: 1 / -1;
+}
+
+.payment-label {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.payment-amount {
+  font-family: "Poppins", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Totals Summary */
+.amortization-totals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.total-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(63, 3, 22, 0.1);
+  text-align: center;
+}
+
+.total-label {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.total-value {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #3f0316;
+}
+
+/* Amortization Table Section */
+.amortization-table-section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(63, 3, 22, 0.1);
+}
+
+.amortization-table-section h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.table-description {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.amortization-table {
+  width: auto;
+  border-collapse: collapse;
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.9rem;
+  table-layout: auto;
+  margin: 0 auto;
+}
+
+.amortization-table thead {
+  background: linear-gradient(135deg, #3f0316, rgba(63, 3, 22, 0.9));
+  color: #ffffff;
+}
+
+.amortization-table th {
+  padding: 1rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.amortization-table th:nth-child(1) {
+  min-width: 80px;
+  width: 80px;
+}
+
+.amortization-table th:nth-child(2),
+.amortization-table th:nth-child(3),
+.amortization-table th:nth-child(4),
+.amortization-table th:nth-child(5) {
+  min-width: 140px;
+}
+
+.amortization-table tbody tr {
+  border-bottom: 1px solid rgba(63, 3, 22, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.amortization-table tbody tr:hover {
+  background-color: rgba(63, 3, 22, 0.02);
+}
+
+.amortization-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.amortization-table td {
+  padding: 1rem 0.75rem;
+  color: #333;
+  white-space: nowrap;
+}
+
+.amortization-table tbody tr:nth-child(even) {
+  background-color: rgba(63, 3, 22, 0.01);
+}
+
+.amortization-table tbody tr:nth-child(even):hover {
+  background-color: rgba(63, 3, 22, 0.03);
+}
+
+.paid-off {
+  color: #28a745;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Empty State */
+.amortization-empty {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(63, 3, 22, 0.1);
+}
+
+.amortization-empty p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .amortization-calculator-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .inputs-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .input-group {
+    flex: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .amortization-calculator-page {
+    padding-top: 100px;
+    padding-bottom: 2rem;
+  }
+
+  .amortization-calculator-container {
+    padding: 0 1rem;
+  }
+
+  .amortization-calculator-header h1 {
+    font-size: 2rem;
+  }
+
+  .amortization-calculator-header p {
+    font-size: 1rem;
+  }
+
+  .amortization-inputs-section,
+  .amortization-table-section {
+    padding: 1.5rem;
+  }
+
+  .payment-amount {
+    font-size: 2rem;
+  }
+
+  .amortization-totals {
+    grid-template-columns: 1fr;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem;
+    width: calc(100% + 3rem);
+  }
+
+  .amortization-table {
+    font-size: 0.85rem;
+    min-width: 700px;
+  }
+
+  .amortization-table th,
+  .amortization-table td {
+    padding: 0.75rem 0.5rem;
+    white-space: nowrap;
+  }
+
+  .amortization-table th:nth-child(1) {
+    min-width: 70px;
+    width: 70px;
+  }
+
+  .amortization-table th:nth-child(2),
+  .amortization-table th:nth-child(3),
+  .amortization-table th:nth-child(4),
+  .amortization-table th:nth-child(5) {
+    min-width: 130px;
+  }
+}
+
+@media (max-width: 480px) {
+  .amortization-calculator-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .amortization-inputs-section,
+  .amortization-table-section {
+    padding: 1.25rem;
+  }
+
+  .inputs-row {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .input-group {
+    flex: none;
+    width: 100%;
+  }
+
+  .payment-amount {
+    font-size: 1.75rem;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -1.25rem;
+    padding: 0 1.25rem;
+    width: calc(100% + 2.5rem);
+  }
+
+  .amortization-table {
+    font-size: 0.75rem;
+    width: 100%;
+    min-width: 650px;
+  }
+
+  .amortization-table th,
+  .amortization-table td {
+    padding: 0.6rem 0.4rem;
+    white-space: nowrap;
+  }
+
+  .amortization-table th:nth-child(1) {
+    min-width: 60px;
+    width: 60px;
+  }
+
+  .amortization-table th:nth-child(2),
+  .amortization-table th:nth-child(3),
+  .amortization-table th:nth-child(4),
+  .amortization-table th:nth-child(5) {
+    min-width: 120px;
+  }
+}

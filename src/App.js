@@ -22,6 +22,7 @@ import InteractiveMap from "./components/InteractiveMapPage/InteractiveMap";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsConditions from "./components/TermsConditions";
 import MortgageCalculator from "./components/MortgageCalculator/MortgageCalculator";
+import AmortizationCalculator from "./components/AmortizationCalculator/AmortizationCalculator";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import WhatsAppWidget from "./components/WhatsAppWidget";
@@ -69,6 +70,7 @@ function App() {
             <Route path="/blog/:id" element={<BlogDetail />} />
             <Route path="/interactive-map" element={<InteractiveMap />} />
             <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
+            <Route path="/amortization-calculator" element={<AmortizationCalculator />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsConditions />} />
           </Routes>
