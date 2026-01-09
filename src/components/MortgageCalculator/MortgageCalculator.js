@@ -204,12 +204,21 @@ const MortgageCalculator = () => {
                     step="10000"
                     value={propertyPrice}
                     onChange={(e) => {
-                      const value = Math.max(
-                        100000,
-                        Math.min(50000000, parseFloat(e.target.value) || 100000)
-                      );
+                      // Allow any value while typing
+                      const value = parseFloat(e.target.value) || 0;
                       downPaymentSourceRef.current = "price";
                       setPropertyPrice(value);
+                    }}
+                    onBlur={(e) => {
+                      // Validate on blur and reset to default if invalid
+                      const value = parseFloat(e.target.value);
+                      if (isNaN(value) || value < 100000 || value > 50000000) {
+                        downPaymentSourceRef.current = "price";
+                        setPropertyPrice(2000000); // Default value
+                      } else {
+                        downPaymentSourceRef.current = "price";
+                        setPropertyPrice(value);
+                      }
                     }}
                     className="number-input"
                   />
