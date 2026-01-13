@@ -6,6 +6,7 @@ import logo from "../assets/logo.png";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showPropertiesDropdown, setShowPropertiesDropdown] = useState(false);
+  const [showCalculatorDropdown, setShowCalculatorDropdown] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -85,6 +86,7 @@ const Navbar = () => {
             if (e.target.tagName === 'A' || e.target.classList.contains('navbar-links')) {
               setIsMobileMenuOpen(false);
               setShowPropertiesDropdown(false);
+              setShowCalculatorDropdown(false);
             }
           }}
         >
@@ -126,6 +128,38 @@ const Navbar = () => {
           <Link to="/services">
             SERVICES
           </Link>
+          <div className="dropdown-container">
+            <div
+              className="dropdown-trigger"
+              onMouseEnter={() =>
+                !isMobileMenuOpen && setShowCalculatorDropdown(true)
+              }
+              onMouseLeave={() =>
+                !isMobileMenuOpen && setShowCalculatorDropdown(false)
+              }
+              onClick={() =>
+                isMobileMenuOpen &&
+                setShowCalculatorDropdown(!showCalculatorDropdown)
+              }
+            >
+              <span>CALCULATOR</span>
+              <div
+                className={`dropdown-menu ${
+                  showCalculatorDropdown ? "show" : ""
+                }`}
+              >
+                <Link to="/mortgage-calculator">
+                  MORTGAGE CALCULATOR
+                </Link>
+                <Link to="/amortization-calculator">
+                  AMORTIZATION CALCULATOR
+                </Link>
+                <Link to="/rent-vs-buy-calculator">
+                  RENT VS BUY CALCULATOR
+                </Link>
+              </div>
+            </div>
+          </div>
           <Link to="/about">
             ABOUT US
           </Link>
